@@ -1,6 +1,20 @@
 <h1>Pagination</h1>
 
 <p>
+    <table style="background-color: #FFFFA5">
+        <tr>
+            <td style="padding:15px">   
+                    <b><center>NOTICE</center>
+                        <br />
+                        In the current V3 version pagination mechanism has changed. The new cursor based pagination uses different URL query parameters depending on whether it is the initial request for a collection or a subsequent request. </a>
+                    <br /> <br />
+                    </b>
+            </td>
+        </tr>
+    </table>
+</p>    
+
+<p>
     API endpoints that can return large numbers of objects return their results using an offset-based paging mechanism
     to improve performance. Applications are able to specify <span class="pre">limit</span> and <span
         class="pre">offset</span> query parameters to control what subset of the results are returned to them.
