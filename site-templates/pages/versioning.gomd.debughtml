@@ -46,17 +46,19 @@
 
 <p>      
     For example, to view all the workspaces that a user can access, make the following change:<br />
-    Previous format: <br />
+    Previous format:
     <pre>[[apiHost]]/v2/users/me/workspaces</pre>
     New format:
-    <pre>[[apiHost]]/v3/users/me/workspaces</pre><br />
-
-    To add a new canvas to a workspace, make the following change:<br />
-    Previous Format: <br />
-    <pre>[[apiHost]]/v2/workspaces/&lt;<b>workspace_UID</b>&gt;/elements/canvas</pre>
-    New format (note the new addition of <span class="pre">elements</span> in the path):<br />
-    <pre>[[apiHost]]/v3/workspaces/&lt;<b>workspace_UID</b>&gt;/elements?type=Canvas</pre>
+    <pre>[[apiHost]]/v3/users/me/workspaces</pre>
 </p>   
+
+<p>
+    To add a new canvas to a workspace, make the following change:<br />
+    Previous Format:
+    <pre>[[apiHost]]/v2/workspaces/&lt;<b>workspace_UID</b>&gt;/elements/canvas</pre>
+    New format (note the new addition of <span class="pre">type</span> in the path):
+    <pre>[[apiHost]]/v3/workspaces/&lt;<b>workspace_UID</b>&gt;/elements?type=Canvas</pre>  
+</p>
 
 <p>
     <b>Q: Why is Bluescape adding versioning to the APIs?</b><br />
