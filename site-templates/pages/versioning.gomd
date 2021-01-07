@@ -1,6 +1,18 @@
 <h1>Versioning</h1>
 
-The support for API version <span class="pre">/v3/</span> is now released. This change went into effect with release version 21.03.1, on MM DD, YYYY. 
+<p>
+    <table style="background-color: #FFFFA5">
+        <tr>
+            <td style="padding:15px">   
+                    <b><center>NOTICE</center>
+                        <br />
+                        The support for API version <span class="pre">/v3/</span> is now released. This change went into effect with release version 21.03.1, on MM DD, YYYY. 
+                    <br /> <br />
+                    </b>
+            </td>
+        </tr>
+    </table>
+</p> 
 
 <h1>Versions</h1>
 
