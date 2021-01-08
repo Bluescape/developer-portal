@@ -15,91 +15,75 @@
 </p>    
 
 <p>
-    API endpoints that can return large numbers of objects return their results using an offset-based paging mechanism
-    to improve performance. Applications are able to specify <span class="pre">limit</span> and <span
-        class="pre">offset</span> query parameters to control what subset of the results are returned to them.
+    API endpoints that can return large numbers of objects return their results using an cursor-based paging mechanism
+    to improve performance. Applications are able to specify <span class="pre">limit</span>, <span
+        class="pre">filterBy</span> and <span class="pre">sortBy</span> query parameters in the initial request to control what subset of the results are returned to them.
 </p>
 
 <ul>
-    <li>The <span class="pre">limit</span> parameter sets a maximum number of results to return per call.</li>
-    <li>The <span class="pre">limit</span> parameter defaults to a value of 25</li>
-    <li>The <span class="pre">limit</span> parameter has a maximum value of 200</li>
-    <li>The <span class="pre">offset</span> parameter defines the number of resources in the collection to skip before
-        assembling the results array
-    </li>
-    <li>The <span class="pre">offset</span> parameter defaults to 0</li>
+    <li>The <span class="pre">limit</span> parameter sets a maximum number of results to return per call. (defaults to a value of 25)</li>
+    <li>The <span class="pre">filterBy</span> parameter specifies filter query condition. (supported fields: firstName, lastName, email, avatarUrl)</li>
+    <li>The <span class="pre">sortBy</span> parameter specifies the sort query condition. (supported orders: asc, desc)</li>
+    <li>The <span class="pre">cursor</span> parameter sets the cursor string to navigate next and prev. (defaults to a based64 encoded string)</li>
 </ul>
 
-<p>
-    To fetch the first set of entries, call the endpoint with <span class="pre">offset = 0</span> and <span class="pre">limit = &lt;your-limit&gt;</span>.
-    To fetch the next set of entries, call the endpoint with <span class="pre">offset = &lt;previous-offset&gt; + &lt;previous-limit&gt;</span>.
-    Note that you should increment the offset by the limit that is returned in the response object, not by the limit you
-    passed in the query parameter or size of the results array. If <span class="pre">&lt;previous-offset&gt; + &lt;previous-limit&gt; >= total</span>,
-    then you have retrieved all of the entries and there are no more to fetch. Note that the total may change between
-    API calls, so always use the most recent values.
-</p>
-
-<h3>A sample request</h3>
+<h3>A sample initial request</h3>
 
 <p>
-    For an application displaying an organization's workspaces 10 records at a time, the query for page 2 would look
-    like:
+    The initial request contains the limit, filterBy & sortBy parameters that all subsequent requests will use. The result includes cursors for navigating back and forward in increments of the provided limit. Subsequent requests should only provide these cursors in order to continue pagination:
 </p>
 
 <pre>
-/v2/organizations/OPki5yp3-7UQaGtC91gE/workspaces?offset=10&limit=10
+/api/v3/users/me/workspaces?limit=1&filterBy=(name eq bob)&orderBy=name desc
 </pre>
 
 <p>
-    Endpoints that support paging return the requested data as well as additional information related to paging:
+    The results retrieved from an endpoint that returns paginated results should have a prev and next cursor:
 </p>
 
 <ul>
     <li>the set of results</li>
-    <li>the <span class="pre">offset</span> specified in the query</li>
-    <li>the <span class="pre">limit</span> specified in the query</li>
-    <li>the <span class="pre">size</span> of the result set returned by the query</li>
-    <li>the <span class="pre">total</span> number of resources available in the collection</li>
-    <li>a <span class="pre">paging</span> object containing prepared queries for your convenience:
-        <ul>
-            <li>the <span class="pre">self</span> URL reflects the request that generated this response</li>
-            <li>the <span class="pre">next</span> URL can be used to request the next page of results</li>
-            <li>the <span class="pre">prev</span> URL can be used to request the previous page of results</li>
-        </ul>
-    </li>
+    <li>the <span class="pre">prev_cursor</span> string can be used to request the previous page of results</li>
+    <li>the <span class="pre">next_cursor</span> string can be used to request the next page of results</li>
 </ul>
 
-<h3>A sample response</h3>
+<h3>A sample initial response</h3>
 
 <pre>
 {
- "workspaces": [    // the results array
-   {
-     "uid": "4Nkidyp3CpUQaotRx1gE",
-     "name": "Workspace 1",
-     ...
-   },
-   {
-     "uid": "EUYYqLMUzLp5vww_z-mf",
-     "name": "Workspace 2",
-     ...
-   },
-   ...
- ],
- "limit": 10,        // the query requested a maximum of 10 results
- "offset": 10,       // the query requested to skip the first 10 workspaces (page 1)
- "size": 10,         // the number of results returned for this query
- "total": 50,        // the number of workspaces available in the organization
- "paging": {
+  "workspaces":[    //the results array
+    {
+      "id": "zYecVV0l2hppIhMSpdkL",
+      "name": "workspace 1"
+    }
+  ],
+  "prev_cursor": null,                                          // previous cursor is null in the initial request
+  "next_cursor": "ZFJOWjtLtjBSOdP5XXdvkQzK2hRQ81WuoYKvQbnqSDK"  // next cursor navigates to subsequent requests
+}
+</pre>
 
-   // request URL for the previous page
-   "prev": "/v2/organizations/OPki5yp3-7UQaGtC91gE/workspaces?offset=0&limit=10",
 
-   // request URL for the current page
-   "self": "/v2/organizations/OPki5yp3-7UQaGtC91gE/workspaces?offset=10&limit=10",
+<h3>A sample subsequent request</h3>
 
-   // request URL for the next page
-   "next": "/v2/organizations/OPki5yp3-7UQaGtC91gE/workspaces?offset=20&limit=10",
- }
+<p>
+    After the initial request these parameters cannot be changed as they are included in the cursor which is opaque to the user:
+</p>
+
+<pre>
+/api/v3/users/me/workspaces?cursor=ZFJOWjtLtjBSOdP5XXdvkQzK2hRQ81WuoYKvQbnqSDK
+</pre>
+
+<h3>A sample subsequent response</h3>
+
+<pre>
+{
+  "workspaces":[    //the results array
+    {
+      "id": "4MbstEfKhPixXKRnSY7Z",
+      "name": "workspace 2"
+    }
+  ],
+  "prev_cursor": "WOsxk6rPfmJ82bLCnweOF1iZz4fJcU0RURgyGjgsPJ5b7RUgg",   // previous cursor points to the last request
+  "next_cursor": "wFkZLNx+jnly3wRUMfUjzGV2gEMEpKWXDyHjCGtwRQ7IG"        // next cursor navigates to subsequent requests
 }
 </pre>
