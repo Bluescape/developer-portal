@@ -22,8 +22,9 @@
 
 <ul>
     <li>The <span class="pre">limit</span> parameter sets a maximum number of results to return per call. (defaults to a value of 25)</li>
-    <li>The <span class="pre">filterBy</span> parameter specifies filter query condition. (supported values: firstName, lastName, email, avatarUrl)</li>
-    <li>The <span class="pre">sortBy</span> parameter specifies the sort query condition. (supported values: asc, desc)</li>
+    <li>The <span class="pre">filterBy</span> parameter specifies filter query condition. (supported fields: firstName, lastName, email, avatarUrl)</li>
+    <li>The <span class="pre">sortBy</span> parameter specifies the sort query condition. (supported orders: asc, desc)</li>
+    <li>The <span class="pre">cursor</span> parameter sets the cursor string to navigate next and prev. (defaults to a based64 encoded string)</li>
 </ul>
 
 <h3>A sample initial request</h3>
