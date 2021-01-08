@@ -40,8 +40,11 @@
         {{else}}}
         {{template "navigation" $}}
         {{end}}
-        {{define "navigation"}}{{end}}
+        {{if eq .Ctx "landing"}}
+        <main class="o-page__main" style="margin-left: 0px">
+        {{else}}
         <main class="o-page__main">
+        {{end}}
             <div>
                 <article>
                     <section>
