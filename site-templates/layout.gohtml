@@ -37,7 +37,7 @@
         {{define "header"}}{{end}}
         {{if  eq .Ctx "landing"}}
         {{else if eq $.CurrentPage "overview"}}
-        {{else}}}
+        {{else}}
         {{template "navigation" $}}
         {{end}}
         {{if eq .Ctx "landing"}}

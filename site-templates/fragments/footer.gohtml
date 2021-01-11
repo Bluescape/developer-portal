@@ -1,4 +1,8 @@
+{{if or (eq .Ctx "landing") (eq $.CurrentPage "overview")}}
+<footer class="o-page__footer c-footer" style="margin-left: 0px">
+{{else}}
 <footer class="o-page__footer c-footer">
+{{end}}
     <nav>
         <div class="container-fluid">
             <div class="container">
