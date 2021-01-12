@@ -17,20 +17,20 @@
 <p>
     API endpoints that can return large numbers of objects return their results using an cursor-based paging mechanism
     to improve performance. Applications are able to specify <span class="pre">limit</span>, <span
-        class="pre">filterBy</span> and <span class="pre">sortBy</span> query parameters in the initial request to control what subset of the results are returned to them.
+        class="pre">filterBy</span> and <span class="pre">orderBy</span> query parameters in the initial request to control what subset of the results are returned to them.
 </p>
 
 <ul>
     <li>The <span class="pre">limit</span> parameter sets a maximum number of results to return per call. (defaults to a value of 25)</li>
     <li>The <span class="pre">filterBy</span> parameter specifies filter query condition. (supported fields: firstName, lastName, email, avatarUrl)</li>
-    <li>The <span class="pre">sortBy</span> parameter specifies the sort query condition. (supported orders: asc, desc)</li>
-    <li>The <span class="pre">cursor</span> parameter sets the cursor string to navigate next and prev. (defaults to a based64 encoded string)</li>
+    <li>The <span class="pre">orderBy</span> parameter specifies the order query condition. (supported orders: asc, desc)</li>
+    <li>The <span class="pre">cursor</span> parameter sets the cursor string to navigate next and previous requests. (defaults to a based64 encoded string)</li>
 </ul>
 
 <h3>A sample initial request</h3>
 
 <p>
-    The initial request contains the limit, filterBy & sortBy parameters that all subsequent requests will use. The result includes cursors for navigating back and forward in increments of the provided limit. Subsequent requests should only provide these cursors in order to continue pagination:
+    The initial request contains the limit, filterBy & orderBy parameters that all subsequent requests will use. The result includes cursors for navigating back and forward in increments of the provided limit. Subsequent requests should only provide these cursors in order to continue pagination:
 </p>
 
 <pre>
