@@ -36,7 +36,7 @@
 </pre>
 
 <p>
-    The results retrieved from an endpoint that returns paginated results should have a prev and next cursor as well as additional related information to paging:
+    The results retrieved from an endpoint that returns paginated results should have a <span class="pre">prev</span> and <span class="pre">next</span> cursor, as well as additional related information to paging:
 </p>
 
 <ul>
