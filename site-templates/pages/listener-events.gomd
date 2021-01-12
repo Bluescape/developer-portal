@@ -6,7 +6,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        In the current V3 version listeners are not available. They will be implemented later with GraphQl subscriptions, date: TBD</a>.
+                        In the current V3 version listeners are not available. They will be implemented later with GraphQL subscriptions, date: TBD</a>.
                     <br /> <br />
                     </b>
             </td>
