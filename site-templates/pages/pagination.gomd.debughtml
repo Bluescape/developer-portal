@@ -57,8 +57,8 @@
     }
   ],
   "prev": null,                                                 // previous cursor is null in the initial request
-  "next": "ZFJOWjtLtjBSOdP5XXdvkQzK2hRQ81WuoYKvQbnqSDK"         // next cursor navigates to subsequent requests
-  "totalItems": n,                                              // the total number of items that match the query
+  "next": "ZFJOWjtLtjBSOdP5XXdvkQzK2hRQ81WuoYKvQbnqSDK",        // next cursor navigates to subsequent requests
+  "totalItems": n                                               // the total number of items that match the query
 }
 </pre>
 
@@ -83,7 +83,7 @@
     }
   ],
   "prev": "WOsxk6rPfmJ82bLCnweOF1iZz4fJcU0RURgyGjgsPJ5b7RUgg",       // previous cursor points to the last request
-  "next": "wFkZLNx+jnly3wRUMfUjzGV2gEMEpKWXDyHjCGtwRQ7IG"            // next cursor navigates to subsequent requests
-  "totalItems": n,                                                   // the total number of items that match the query
+  "next": "wFkZLNx+jnly3wRUMfUjzGV2gEMEpKWXDyHjCGtwRQ7IG",           // next cursor navigates to subsequent requests
+  "totalItems": n                                                    // the total number of items that match the query
 }
 </pre></p>
