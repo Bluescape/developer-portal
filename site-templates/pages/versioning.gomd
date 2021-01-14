@@ -49,9 +49,11 @@
 <p>
     <b>Q: What's New in V3?</b><br />
 
-    <b>A</b>: With the <span class="pre">/v3/</span> endpoint, scripts previously using the id field will need to be replaced with the uid field. 
-    Before updating to <span class="pre">/v3/</span>, check all scripts that are potentially impacted by the migration of id to uid fields in API bodies and responses. 
-    See more details in the id to uid migration page.
+    <b>A</b>: With the <span class="pre">/v3/</span> endpoint, scripts previously using the uid field will need to be replaced (<b>e.g.</b>, change the id field in the API endpoint 
+    from <span class="pre">v2/users/{user_uid}</span> to <span class="pre">v3/users/{userId}</span>). 
+    
+    Before updating to <span class="pre">/v3/</span>, please check all scripts that are potentially 
+    impacted by the migration of id fields in API bodies and responses. 
 </p>
     
 <p>      
@@ -74,8 +76,8 @@
 </p>
 
 <p>
-    <b>New format (note the new addition of <span class="pre">type</span> in the path):</b><br />
-    <pre>[[apiHost]]/v3/workspaces/&lt;<b>workspace_UID</b>&gt;/elements?type=Canvas</pre>
+    <b>New format (note the new addition of <span class="pre">type</span> and updated <span class="pre">Id</span> field in the path):</b><br />
+    <pre>[[apiHost]]/v3/workspaces/&lt;<b>workspaceId</b>&gt;/elements?type=Canvas</pre>
 </p>
 
 <p>
