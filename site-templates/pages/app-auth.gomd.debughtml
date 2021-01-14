@@ -83,7 +83,7 @@ The <span class="pre">client_id</span> can be obtained from your Developer Porta
 </p>
 
 <p>
-When users arrive at the authorization page they will be asked to log in to their Bluescape account. By entering valid Bluescape credentials, users will implicitly authorize the application to receive an access token connected to their account. Bluescape will then generate an access token for the application that grants access to anyone who holds it to make calls on the behalf of the user who the name of the application is under. 
+When users arrive at the authorization page, they will be asked to log in to their Bluescape account. By entering valid Bluescape credentials, users will implicitly authorize the application to receive an access token connected to their account. Bluescape will then generate an access token for the application that grants access to anyone who holds it to make calls on the behalf of the user who the name of the application is under. 
 </p>
 
 <p>
@@ -311,7 +311,7 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
     Important points:<br />
     <ul>
         <li>You can use this Access Token right away with your API scripts.</li>
-        <li>Refresh Tokens do not expire, this means you can generate your new Access Tokens using the Refresh Tokens at any moment, before of after the current Access Token expires. </li>
+        <li>Refresh Tokens do not expire. This means you can generate your new Access Tokens using the Refresh Tokens at any moment, before or after the current Access Token expires. </li>
         <li>If an Access Token is used after it has expired, you will get a <span class="pre">401 Unauthorized</span> error code. In this case you will need to trigger the process to generate a new Access Token using the Refresh Token (as explained in the next section)</li>
     </ul>
 </p>
@@ -320,7 +320,7 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
 <p>
     The final step involves using the Refresh Token along with other Application credentials to automatically generate new Access Tokens. These are the steps you can follow:
 <ol>
-    <li>To see if your Access token is still valid, you can either check it's expiration time, or simply try using it in any valid Bluescape API call.</li>
+    <li>To see if your Access token is still valid, you can either check its expiration time, or simply try using it in any valid Bluescape API call.</li>
     <li>If you get a <span class="pre">401 Unauthorized</span> error code, then you can trigger an automated process to use the Refresh Tokens to issue a new Access Token. The Access Tokens do not have an expiration date.</li>
 </ol>
 </p></p>
@@ -543,7 +543,7 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
 </p>
 
 <p>    
-    Please remember that Access Tokens expire 2 weeks after they are issued. Requests made with expired access tokens will receive a <span class="pre">401 Unauthorized</span> response from the Bluescape API. The proper response in this case is to restart the authorization flow with the user, this according to the method you have chosen to manage your Access Tokens.
+    Please remember that Access Tokens expire 2 weeks after they are issued. Requests made with expired access tokens will receive a <span class="pre">401 Unauthorized</span> response from the Bluescape API. The proper response in this case is to restart the authorization flow according to the method you have chosen to manage your Access Tokens.
 </p>
 
 <p><h3>Full Example</h3>
