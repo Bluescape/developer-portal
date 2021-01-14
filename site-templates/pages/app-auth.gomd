@@ -83,7 +83,7 @@ The <span class="pre">client_id</span> can be obtained from your Developer Porta
 </p>
 
 <p>
-When users arrive at the authorization page they will be asked to log in to their Bluescape account. By entering valid Bluescape credentials, users will implicitly authorize the application to receive an access token connected to their account. Bluescape will then generate an access token for the application that grants access to anyone who holds it to make calls on the behalf of the user who the name of the application is under. 
+When users arrive at the authorization page, they will be asked to log in to their Bluescape account. By entering valid Bluescape credentials, users will implicitly authorize the application to receive an access token connected to their account. Bluescape will then generate an access token for the application that grants access to anyone who holds it to make calls on the behalf of the user who the name of the application is under. 
 </p>
 
 <p>
