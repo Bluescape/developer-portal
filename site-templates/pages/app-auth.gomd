@@ -311,7 +311,7 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
     Important points:<br />
     <ul>
         <li>You can use this Access Token right away with your API scripts.</li>
-        <li>Refresh Tokens do not expire, this means you can generate your new Access Tokens using the Refresh Tokens at any moment, before of after the current Access Token expires. </li>
+        <li>Refresh Tokens do not expire. This means you can generate your new Access Tokens using the Refresh Tokens at any moment, before or after the current Access Token expires. </li>
         <li>If an Access Token is used after it has expired, you will get a <span class="pre">401 Unauthorized</span> error code. In this case you will need to trigger the process to generate a new Access Token using the Refresh Token (as explained in the next section)</li>
     </ul>
 </p>
@@ -320,7 +320,7 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
 <p>
     The final step involves using the Refresh Token along with other Application credentials to automatically generate new Access Tokens. These are the steps you can follow:
 <ol>
-    <li>To see if your Access token is still valid, you can either check it's expiration time, or simply try using it in any valid Bluescape API call.</li>
+    <li>To see if your Access token is still valid, you can either check its expiration time, or simply try using it in any valid Bluescape API call.</li>
     <li>If you get a <span class="pre">401 Unauthorized</span> error code, then you can trigger an automated process to use the Refresh Tokens to issue a new Access Token. The Access Tokens do not have an expiration date.</li>
 </ol>
 </p>
@@ -541,7 +541,7 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
 </p>
 
 <p>    
-    Please remember that Access Tokens expire 2 weeks after they are issued. Requests made with expired access tokens will receive a <span class="pre">401 Unauthorized</span> response from the Bluescape API. The proper response in this case is to restart the authorization flow with the user, this according to the method you have chosen to manage your Access Tokens.
+    Please remember that Access Tokens expire 2 weeks after they are issued. Requests made with expired access tokens will receive a <span class="pre">401 Unauthorized</span> response from the Bluescape API. The proper response in this case is to restart the authorization flow according to the method you have chosen to manage your Access Tokens.
 </p>
 
 
