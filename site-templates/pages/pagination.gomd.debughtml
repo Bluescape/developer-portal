@@ -15,7 +15,7 @@
 </p>    
 
 <p>
-    API endpoints that can return large numbers of objects return their results using an cursor-based paging mechanism
+    API endpoints that can return large numbers of objects return their results using a cursor-based paging mechanism
     to improve performance. Applications are able to specify <span class="pre">limit</span> in the initial request to control what subset of the results are returned to them.
     The initial request's result includes cursors for navigating back and forward in increments of the provided limit. Subsequent requests should only provide these cursors in order to continue pagination.
 </p>
@@ -28,7 +28,7 @@
 <h3>A sample initial request</h3>
 
 <p>
-   For an application displaying a user's workspaces 1 record at a time, along with filter and order query conditions would look like:
+   For an application displaying a user's workspaces 1 record at a time based on the specified query parameters, the API endpoint would look like:
 </p>
 
 <pre>
@@ -65,7 +65,7 @@
 <h3>A sample subsequent request</h3>
 
 <p>
-    After the initial request these parameters cannot be changed as they are included in the cursor which is opaque to the user:
+    After the initial request, the specified query parameters cannot be changed as they are included in the cursor which is opaque to the user:
 </p>
 
 <pre>
