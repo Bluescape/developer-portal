@@ -888,3 +888,11 @@ ul.list-auth-provider {
 ul li, ol li {
   line-height: 33px;
 }
+
+ul {
+  padding-left: 40px;
+}
+
+ol {
+  padding-left: 40px;
+}
