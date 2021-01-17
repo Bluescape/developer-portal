@@ -10,7 +10,7 @@
   {{end}}
     <div>
         <strong>Bluescape v3 APIs</strong>
-        <ul class="main-nav-ul">
+        <ul class="unindent-side-nav-ul">
         {{range $i, $element := .S.K8sStore.Slice }}
             {{$svc := $element.Service}}
             {{$class := ""}}
@@ -34,7 +34,7 @@
     {{if or (eq $.CurrentPage "reference") (eq $.CurrentPage "urls") (eq $.CurrentPage "pagination") (eq $.CurrentPage "listener-events") (eq $.CurrentPage "permissions") (eq $.CurrentPage "versioning") (eq $.CurrentPage "sso")}}
     <div>
         <strong>Reference</strong>
-        <ul class="top-reference-nav-ul">
+        <ul class="unindent-side-nav-ul">
             <li><a href="/docs/page/urls">URLs</a></li>
             <li><a href="/docs/page/pagination">Pagination</a></li>
             <li><a href="/docs/page/listener-events">Listener Events</a></li>
@@ -51,7 +51,7 @@
     {{if or (eq $.CurrentPage "guides") (eq $.CurrentPage "app-auth") (eq $.CurrentPage "basic-api-requests") (eq $.CurrentPage "get-list-of-workspaces") (eq $.CurrentPage "get-all-images-from-a-workspace") (eq $.CurrentPage "create-canvas-and-add-note") (eq $.CurrentPage "upload-from-local-drive-into-a-canvas")  (eq $.CurrentPage "traits-api") (eq $.CurrentPage "attachments-api") (eq $.CurrentPage "listeners-api") (eq $.CurrentPage "wall-apis") }}
     <div>
         <strong>Guides</strong>
-        <ul class="guides-nav-ul">
+        <ul class="unindent-side-nav-ul">
             <!--
             <li><a href="/docs/page/whats-new">What's New</a></li> 
             -->
@@ -82,7 +82,7 @@
     {{if or (eq $.CurrentPage "support") (eq $.CurrentPage "supportFAQ")}}
     <div>
         <strong>Support Reference</strong>
-        <ul class="support-reference-nav-ul">
+        <ul class="unindent-side-nav-ul">
             <li><a href="/docs/page/supportFAQ">FAQ</a></li>    
             <li><a href="https://community.bluescape.com/s/">Contact Us</a></li>
         </ul>
@@ -91,7 +91,7 @@
     {{end}}
     <div>
         <strong>Reference</strong>
-        <ul class="bottom-reference-nav-ul">
+        <ul class="unindent-side-nav-ul">
             {{range $i, $page := $.Pages}}
                 {{$class := ""}}
                 {{if eq $.CurrentPage $page}}
@@ -105,7 +105,7 @@
     <br />
     <div>
         <strong>Services without documentation</strong>
-        <ul class="services-nav-ul">
+        <ul class="unindent-side-nav-ul">
         {{range $i, $element := .S.K8sStore.Slice }}
             {{$svc := $element.Service}}
             {{if not $element.Metadata.HasDoc}}
