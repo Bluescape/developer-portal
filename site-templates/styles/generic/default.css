@@ -888,3 +888,17 @@ ul.list-auth-provider {
 ul li, ol li {
   line-height: 33px;
 }
+
+/* indent global ul and ol */
+ul {
+  padding-left: 40px;
+}
+
+ol {
+  padding-left: 40px;
+}
+
+/* unindent side navigation ul affected by global ul indentations */
+.unindent-side-nav-ul {
+  padding-left: 0px !important;
+}
