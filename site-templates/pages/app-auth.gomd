@@ -13,7 +13,7 @@
     access to.
 </p>
 
-<h4>Content in this page:</h4>                           
+<h3>Content in this page:</h3>                           
 <ul style="list-style-type:none; padding-left: 0px;">
     <li><a href="#oauth-flow">OAuth Flow</a></li>
     <li><a href="#step-1_authorize">Step 1: Authorize</a></li>
