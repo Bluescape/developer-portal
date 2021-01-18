@@ -1,4 +1,5 @@
 <h1>Attachments APIs</h1>
+<h1>*NOTE: These are not currently supported through REST APIs, but they will be available soon!</h1>
 
 <h2>What are Attachments?</h2>
 <p>Attachments allow the user to pair together two elements so that they act as a single, interactable object.</p>
@@ -115,6 +116,7 @@
     <tr>
     <td><b>Endpoint</b></td>
     <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments</td>
+
     </tr>
     <tr>
         <td><b>Method</b></td>

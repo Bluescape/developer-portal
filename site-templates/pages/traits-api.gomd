@@ -1,7 +1,9 @@
 <h1>Traits: API for elements traits</h1>
+<h1>*NOTE: These are not currently supported through REST APIs, but they will be available soon!</h1>
+
 
 <h2>What are Traits?</h2>
-<p>Traits are a new feature that allows to associate metadata to objects within a workspace via a REST API, they are open-ended metadata for workspace objects. For example, if you upload assets (images, documents, etc.) that belong to a specific project, you can add that project information as Traits to each asset in the workspace. Later, you could download those assets and the data in the Traits of each asset will let you know the original project data.</p>
+<p>Traits are a new feature that allows developers to associate metadata to objects within a workspace via a REST API. Traits are open-ended metadata for workspace objects. For example, if you upload assets (images, documents, etc.) that belong to a specific project, you can add that project information as Traits to each asset in the workspace. Later, you could download those assets, and the data in the Traits of each asset will provide insight to the original project data.</p>
 
 <h2>Highlights of Traits</h2>
     <p>Important points regarding Traits:
@@ -110,7 +112,7 @@ data_load = {
         <table class="table table-striped">
                 <tr>
                   <td><b>Endpoint</b></td>
-                  <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;object_type&gt;/&lt;object_id&gt;/traits</td>
+                  <td>/v3/workspaces/&lt;workspaceId&gt;/elements/&lt;object_type&gt;/&lt;object_id&gt;/traits</td>
                 </tr>
                 <tr>
                     <td><b>Method</b></td>
@@ -140,7 +142,7 @@ data_load = [{
         <table class="table table-striped">
                 <tr>
                   <td><b>Endpoint</b></td>
-                  <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;object_type&gt;/&lt;object_id&gt;/traits</td>
+                  <td>/v3/workspaces/&lt;workspaceId&gt;/elements/&lt;object_type&gt;/&lt;object_id&gt;/traits</td>
                 </tr>
                 <tr>
                     <td><b>Method</b></td>

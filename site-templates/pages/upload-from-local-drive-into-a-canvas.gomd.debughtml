@@ -1,6 +1,8 @@
-<p><h1>Upload content from local drive into a Canvas</h1>
+<h1>Upload content from local drive into a Canvas</h1>
+<h1>*NOTE: These are being replaced with GraphQL subscriptions in V3</h1>
+
 <p>
-<b>Objective</b>: create a new Canvas and upload content from a local drive to a this new Canvas.
+<b>Objective</b>: Create a new Canvas and upload content from a local drive to this new Canvas.
 </p>
 <p>The currently supported file extensions for uploading content to a Workspace include:  png, jpeg, gif, tiff, pdf, docx, pptx, xlsx, doc, ppt, xls.<br />
     The image may be uploaded as a binary attachment, multipart form data, or via a remote url.<br />
@@ -8,14 +10,14 @@
 <p>
     See below examples for the upload methods: multipart form data and via remote URL.
 </p>
-<p><b>NOTE:</b> You can use this same code to implement upload to a Workspace, just changing the API endpoint (removing the <span class="pre">/canvas/&amp;lt;canvas_id&amp;gt;</span> part from the path).</p></p>
+<p><b>NOTE:</b> You can use this same code to upload to a Workspace; just remove the <span class="pre">/elements</span> part of the API endpoint.</p>
 
 <h4>Create Canvas</h4>
 
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/canvas</td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -28,8 +30,16 @@
         </tr>
         -->
         <tr>
+            <td><b>Body</b></td>
+                <td>{ </br>
+                &nbsp;&nbsp;&nbsp;&nbsp; "type": "Canvas",</br> 
+                &nbsp;&nbsp;&nbsp;&nbsp; "name": "&lt;SET_CANVAS_NAME&gt;"</br>
+                }
+                </td>
+        </tr>
+        <tr>
           <td><b>Comments</b></td>
-          <td>You need to know the workspace UID.</td>
+          <td>You need to know the workspace ID.</td>
         </tr>
 </table>
 
@@ -38,7 +48,7 @@
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/canvas/&lt;canvas_id&gt;/documents and <br />/v2/workspaces/&lt;workspace_uid&gt;/elements/canvas/&lt;canvas_id&gt;/images </td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -52,8 +62,16 @@
         </tr>
         -->
         <tr>
+          <td><b>Body</b></td>
+            <td>{ </br>
+            &nbsp;&nbsp;&nbsp;&nbsp; "type": "Image",</br> 
+            &nbsp;&nbsp;&nbsp;&nbsp; "name": "&lt;SET_CANVAS_NAME&gt;"</br>
+            }
+            </td>
+        </tr>
+        <tr>
           <td><b>Comments</b></td>
-          <td>You need to know the workspace UID.</td>
+          <td>You need to know the workspace ID.</td>
         </tr>
 </table>
 
@@ -91,9 +109,9 @@ token = '&lt;SET_YOUR_TOKEN_HERE&gt;'
 
 if __name__ == "__main__":
     portal = '[[apiHost]]'
-    workspace_uid = '&lt;SET_YOUR_WORKSPACE-UID_HERE&gt;'
-    API_version = 'v2'
-    API_endpoint = '/' + API_version + '/workspaces/' + workspace_uid + '/elements/canvas'
+    workspaceId = '&lt;SET_WORKSPACE_ID&gt;'
+    API_version = 'v3'
+    API_endpoint = '/' + API_version + '/workspaces/' + workspaceId + '/elements/canvas'
     parameters = ''
 
     canvas_x = 0
@@ -133,13 +151,13 @@ if __name__ == "__main__":
     pprint.pprint(json_response)
 
     # Add the files in the folder into the Canvas
-    # /v2/workspaces/&lt;workspace_uid&gt;/elements/canvas/&lt;canvas_id&gt;/documents
-    # /v2/workspaces/&lt;workspace_uid&gt;/elements/canvas/&lt;canvas_id&gt;/images
+    # /v3/workspaces/&lt;workspaceId&gt;/elements/canvas/&lt;canvas_id&gt;/documents
+    # /v3/workspaces/&lt;workspaceId&gt;/elements/canvas/&lt;canvas_id&gt;/images
 
     mypath = '&lt;SET_PATH_HERE&gt;'
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
-    API_endpoint = '/' + API_version + '/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/documents'
+    API_endpoint = '/' + API_version + '/workspaces/' + workspaceId + '/elements/canvas/' + canvas_id + '/documents'
 
     # Canvas coordinates are from its top left corner, relative from there
     xx = 100
@@ -166,10 +184,10 @@ if __name__ == "__main__":
         is_supported_extension = True
 
         if file_extension in document_extensions:
-            API_endpoint = '/' + API_version + '/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/documents'
+            API_endpoint = '/' + API_version + '/workspaces/' + workspaceId + '/elements/canvas/' + canvas_id + '/documents'
             file_type_key = 'document'
         elif file_extension in image_extensions:
-            API_endpoint = '/' + API_version + '/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/images'
+            API_endpoint = '/' + API_version + '/workspaces/' + workspaceId + '/elements/canvas/' + canvas_id + '/images'
             file_type_key = 'image'
         else:
             is_supported_extension = False
@@ -232,9 +250,9 @@ npm install request
 
 const token = '&lt;SET_YOUR_TOKEN_HERE&gt;';
 const portal = 'https://api.apps.us.bluescape.com';
-const workspace_uid = '&lt;SET_WORKSPACE-UID_HERE&gt;';
-const api_version = 'v2';
-var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/images';
+const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
+const api_version = 'v3';
+var api_endpoint = '/' + api_version + '/workspaces/' + workspaceId + '/elements/images';
 var method = '';
 
 const canvas_x = 0;
@@ -306,7 +324,7 @@ async function asyncForEach(array, callback) {
 async function runAPIRequests() {
     try {
         // Create canvas
-        api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas';
+        api_endpoint = '/v3/workspaces/' + workspaceId + '/elements/canvas';
         method = 'POST';
         var currtime = new Date().toISOString().slice(0,16).replace('T',' ');
 
@@ -348,10 +366,10 @@ async function runAPIRequests() {
 
                 // Check if the file is a supported one for uploading.
                 if (allowedDocExtensions.test(filename) ){
-                    api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/documents';
+                    api_endpoint = '/v3/workspaces/' + workspaceId + '/elements/canvas/' + canvas_id + '/documents';
                     file_type_key = 'document';
                 } else if (allowedImageExtensions.test(filename)) {
-                    api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/images';
+                    api_endpoint = '/v3/workspaces/' + workspaceId + '/elements/canvas/' + canvas_id + '/images';
                     file_type_key = 'image';
                 } else {
                     is_supported_extension = false;
@@ -432,11 +450,11 @@ token = '<SET_YOUR_TOKEN_HERE>'
 if __name__ == "__main__":
 
     portal = 'https://api.apps.us.bluescape.com'
-    workspace_uid = '<SET_YOUR_WORKSPACE-UID_HERE>' 
-    API_version = 'v2'    
+    workspaceId = '<SET_WORKSPACE_ID>' 
+    API_version = 'v3'    
     params = ''
 
-    API_endpoint = '/' + API_version + '/workspaces/' + workspace_uid + '/elements/images'
+    API_endpoint = '/' + API_version + '/workspaces/' + workspaceId + '/elements/images'
 
     # URL of the image, public URL
     objectURL = '<URL_OF_IMAGE_TO_UPLOAD>'
@@ -493,9 +511,9 @@ npm install request@2.88.2
 
 const token = '<SET_YOUR_TOKEN_HERE>';
 const portal = 'https://api.apps.us.bluescape.com';
-const workspace_uid = '<SET_WORKSPACE-UID_HERE>';
-const api_version = 'v2';
-var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/images'; 
+const workspaceId = '<SET_WORKSPACE_ID>';
+const api_version = 'v3';
+var api_endpoint = '/' + api_version + '/workspaces/' + workspaceId + '/elements/images'; 
 const imageURL = '<IMAGE_URL>'
 const imageURL = 'https://kinsta.com/wp-content/uploads/2017/04/change-wordpress-url-1-1024x512.png'
 
