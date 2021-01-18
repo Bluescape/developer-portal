@@ -35,9 +35,16 @@
     <div class="o-page">
         {{template "header" $}}
         {{define "header"}}{{end}}
+        {{if  eq .Ctx "landing"}}
+        {{else if eq $.CurrentPage "overview"}}
+        {{else}}
         {{template "navigation" $}}
-        {{define "navigation"}}{{end}}
+        {{end}}
+        {{if eq .Ctx "landing"}}
+        <main class="o-page__main" style="margin-left: 0px">
+        {{else}}
         <main class="o-page__main">
+        {{end}}
             <div>
                 <article>
                     <section>

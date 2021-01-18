@@ -631,6 +631,16 @@ section.invert {
   text-transform: uppercase;
 }
 
+.developer {
+  font-size: 14px;
+  padding: 15px 0 12px;
+  letter-spacing: 3px;
+  font-weight: 600 !important;
+  margin-right: 20px;
+  text-transform: uppercase;
+}
+
+
 .navbar-nav:not(.navbar-right) {
   padding-left: 20px;
   /* text-transform: uppercase; */
@@ -877,4 +887,18 @@ ul.list-auth-provider {
 
 ul li, ol li {
   line-height: 33px;
+}
+
+/* indent global ul and ol */
+ul {
+  padding-left: 40px;
+}
+
+ol {
+  padding-left: 40px;
+}
+
+/* unindent side navigation ul affected by global ul indentations */
+.unindent-side-nav-ul {
+  padding-left: 0px !important;
 }

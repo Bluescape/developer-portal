@@ -275,13 +275,13 @@ Sample Response Body:
 </p>
 
 <p>
-Sample Request:
 
+<p>Sample Request:
 <div class="lang-selector">
     <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
     <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
-</div>
+</div></p>
 
 <pre class="lang lang-node">
 var request = require('request');
@@ -403,13 +403,13 @@ Sample Response Body with the list of attachements an object has:
         </tr>
 </table>
 </br>
-Sample Request:
 
+<p>Sample Request:
 <div class="lang-selector">
     <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
     <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
-</div>
+</div></p>
 
 <pre class="lang lang-node">
 var request = require('request');
@@ -516,10 +516,10 @@ attaches the text fields to the files. An e-mail is then sent to the specified r
 made within the workspace.
 <br />
 
-<div class="lang-selector">
+<p><div class="lang-selector">
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
     <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
-</div>
+</div></p>
 
 <pre class="lang lang-node">
 // Use Case Example (Node.js)

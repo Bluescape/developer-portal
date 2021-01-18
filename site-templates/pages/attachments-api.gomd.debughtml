@@ -277,13 +277,13 @@ Sample Response Body:
 </p></p>
 
 <p>
-Sample Request:
 
+<p>Sample Request:
 <div class="lang-selector">
     <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
     <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
-</div>
+</div></p>
 
 <pre class="lang lang-node">
 var request = require('request');
@@ -388,12 +388,12 @@ Sample Response Body with the list of attachements an object has:
 </pre>
 </p>
 
-<p><a name="delete-attachment"><h3>Delete: remove an element's attachments</h3></a>
+<a name="delete-attachment"><h3>Delete: remove an element's attachments</h3></a>
 <p>
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v2/workspaces/&amp;lt;workspace_uid&amp;gt;/elements/&amp;lt;surface_type&amp;gt;/&amp;lt;surface_id&amp;gt;/attachments/&amp;lt;source_id&amp;gt;</td>
+          <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments/&lt;source_id&gt;</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -405,13 +405,13 @@ Sample Response Body with the list of attachements an object has:
         </tr>
 </table>
 </br>
-Sample Request:</p>
 
+<p>Sample Request:
 <div class="lang-selector">
     <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
     <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
-</div>
+</div></p>
 
 <pre class="lang lang-node">
 var request = require('request');
@@ -517,10 +517,10 @@ attaches the text fields to the files. An e-mail is then sent to the specified r
 made within the workspace.
 <br /></p>
 
-<div class="lang-selector">
+<p><div class="lang-selector">
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
     <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
-</div>
+</div></p>
 
 <pre class="lang lang-node">
 // Use Case Example (Node.js)

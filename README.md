@@ -1,3 +1,4 @@
-# developer-portal
+# Bluescape Developer Portal
 
-Nice site.
+Site for the Bluescape Developer Portal.
+Current site URL: https://developer.bluescape.com/
