@@ -14,16 +14,18 @@
 </p>
 
 <p><h4>Content in this page:</h4><br>
-<p>
-    <a href="#oauth-flow">OAuth Flow</a> <br />
-    <a href="#step-1_authorize">Step 1: Authorize</a></br>
-    <a href="#step-2_choose-how-to-generate-access-tokens">Step 2: Choose how to generate the Access Tokens:</a><br />
-    &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<a href="#2.1-access-token-generated-manually">2.1 Access Token generated manually</a> or <a href="#2.2-access-code-and-refresh-tokens">2.2 Access Token generated using Access Code and Refresh Tokens</a> <br />
-    <a href="#2.3-troubleshooting">2.3 Troubleshooting</a><br />
-    <a href="#step-3_extract-access-token">Step 3: Extract the Access Tokens</a> <br />
-    <a href="#step-4_using-the-access-token">Step 4: Using the Access Token </a> <br/>
-    <a href="#appendices">Appendices</a>
-</p></p>
+<ul style="list-style-type:none; padding-left: 0px;">
+    <li><a href="#oauth-flow">OAuth Flow</a></li>
+    <li><a href="#step-1_authorize">Step 1: Authorize</a></li>
+    <li><a href="#step-2_choose-how-to-generate-access-tokens">Step 2: Choose how to generate the Access Tokens:</a></li>
+    <ul style="list-style-type:none;">
+        <li><a href="#2.1-access-token-generated-manually">2.1 Access Token generated manually</a> or <a href="#2.2-access-code-and-refresh-tokens">2.2 Access Token generated using Access Code and Refresh Tokens</a></li>
+         <li><a href="#2.3-troubleshooting">2.3 Troubleshooting</a></li>
+    </ul>
+    <li><a href="#step-3_extract-access-token">Step 3: Extract the Access Tokens</a></li>
+    <li><a href="#step-4_using-the-access-token">Step 4: Using the Access Token</a></li>
+    <li><a href="#appendices">Appendices</a></li>
+</ul></p>
 
 <p><a name="oauth-flow"><h3>OAuth Flow</h3></a>
     <ol>
