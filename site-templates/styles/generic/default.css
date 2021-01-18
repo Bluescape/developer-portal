@@ -129,9 +129,9 @@ h1, h2, h3, h4, h5, h6 {
   color: rgb(44, 45, 48);
 }
 
-h1, h2 {
+/* h1, h2 {
   padding-bottom: 2rem;
-}
+} */
 
 h3, h4 {
   padding-top: 1rem;
