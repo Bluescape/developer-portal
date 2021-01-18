@@ -25,14 +25,14 @@
 
 <p>
     A request URL is assembled from the base URL and the <strong>path</strong> information for an operation as found in
-    the reference. For example, <a href="/reference/apis#Organizations:postOrganizationsUsersByOrganizationuid" target="_blank">Add a User
+    the reference. For example, <a href="/reference/apis#Organizations:postOrganizationsUsersByOrganizationid" target="_blank">Add a User
     to an Organization</a> is an operation with path <span
-        class="pre">/organizations/&lt;organization_uid&gt;/users</span>. Combining this path with the base URL gives us
+        class="pre">/organizations/&lt;organizationId&gt;/members</span>. Combining this path with the base URL gives us
     a request URL of:
 </p>
 
 <pre>
-[[apiHost]]/organizations/&lt;organization_uid&gt;/users
+[[apiHost]]/organizations/&lt;organizationId&gt;/members
 </pre>
 
 <h4>Parameters</h4>
@@ -40,20 +40,21 @@
 <p>
     The path for the operation above, like many in the Bluescape API, contains a parameter. Adding a user to an
     organization requires we identify the organization to which the new user should be invited. To finish preparing this
-    request URL, we must replace <span class="pre">&lt;organization_uid&gt;</span> with a valid organization UID, such as
-    one obtained from the <a href="/reference/apis#Organizations:getOrganizationsUsersByOrganizationuid" target="_blank">List a User's
-    Organizations</a> operation. Replacing the parameter placeholder with a sample organization UID yields a request URL
+    request URL, we must replace <span class="pre">&lt;organizationId&gt;</span> with a valid organization ID, such as
+    one obtained from the <a href="/reference/apis#Organizations:getOrganizationsUsersByOrganizationid" target="_blank">List a User's
+    Organizations</a> operation. Replacing the parameter placeholder with a sample organization ID yields a request URL
     of:
 </p>
 
 <pre>
-[[apiHost]]/organizations/eidzMVOsv4peKG-4DLKA/users
+[[apiHost]]/organizations/eidzMVOsv4peKG-4DLKA/members
 </pre>
 
 <p>
     In addition to path parameters, some requests will have query, body and form data parameters. Reviewing the
-    documentation for Add a User to an Organization, we see that this operation has a JSON-format body parameter with a
-    required <span class="pre">email</span> field. When an operation requires a body parameter, be sure to send your
+    documentation for <a href="/reference/apis#Organizations:postOrganizationsUsersByOrganizationid" target="_blank">Add a User
+    to an Organization</a>, we see that this operation has a JSON-format body parameter, with
+    required <span class="pre">email</span> and <span class="pre">organizationRoleId</span> fields. When an operation requires a body parameter, be sure to send your
     request with a <span class="pre">Content-Type</span> header of <span class="pre">application/json</span>. When a
     form data parameter is expected, be sure to send your request with a <span class="pre">Content-Type</span> header of
     <span class="pre">multipart/form-data</span>. A valid body for this request looks like:
@@ -61,7 +62,8 @@
 
 <pre>
 {
-  "email": "michael.scott@bluescape.com"
+  "email": "michael.scott@bluescape.com",
+  "organizationRoleId": "&lt;SET_ORGANIZATION_ROLE_ID&gt;"
 }
 </pre>
 
@@ -84,11 +86,12 @@
 </div>
 
 <pre class="lang lang-curl">
-curl -X POST [[apiHost]]/organizations/eidzMVOsv4peKG-4DLKA/users \
-  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3d...' \
+curl -X POST [[apiHost]]/organizations/&lt;SET_ORGANIZATION_ID&gt;/members \
+  -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
   -d '{
-    "email": "michael.scott@bluescape.com"
+    "email": "michael.scott@bluescape.com",
+    "organizationRoleId": "&lt;SET_ORGANIZATION_ROLE_ID&gt;"
   }'
 </pre>
 
@@ -100,15 +103,20 @@ import pprint
 ...
 ...
 portal = '[[apiHost]]'
-workspace_uid = &lt;SET_WORKSPACE_UID&gt;
-API_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/images'
-token = &lt;SET_YOUR_TOKEN&gt;
+organizationId = &lt;SET_ORGANIZATION_ID&gt;
+API_endpoint = portal + '/organizations/' + organizationId + '/members'
+token = &lt;SET_TOKEN&gt;
+data_load = {
+  "email": "michael.scott@bluescape.com",
+  "organizationRoleId": "&lt;SET_ORGANIZATION_ROLE_ID&gt;"
+}
 
-the_request = requests.get(
-    portal + API_endpoint,
+the_request = requests.post(
+    API_endpoint,
     headers={"Authorization": "Bearer " + token,
             "Content-Type": "application/json"
-            }
+            },
+    json=data_load
 )
 
 json_response = the_request.json()

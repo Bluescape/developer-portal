@@ -1,13 +1,13 @@
 <h1>Get all the images from a workspace</h1>
 
 <p>
-<b>Objective</b>: get a list of all the images in a Workspace. You will need the Workspace UID. This list will contain, for each image, details such as: image name, creation date, traits, comments, etc.
+<b>Objective</b>: get a list of all the images in a Workspace. You will need the Workspace ID. This list will contain, for each image, details such as: image name, creation date, traits, comments, etc.
 </p>
 
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/images</td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -21,7 +21,7 @@
         -->
         <tr>
           <td><b>Comments</b></td>
-          <td>You need to know the workspace UID.</td>
+          <td>You need to know the workspace ID.</td>
         </tr>
 </table>
 
@@ -48,16 +48,16 @@ Required modules:
    requests 2.22.0
 '''
 
-token = 'ADD_YOUR_TOKEN_HERE'
+token = '&lt;SET_TOKEN&gt;'
 
 if __name__ == "__main__":
    portal = "[[apiHost]]"
-   workspace_uid = 'ADD_WORKSPACE_UID'   
-   API_version = 'v2'
+   workspaceId = '&lt;SET_WORKSPACE_ID&gt;'   
+   API_version = 'v3'
 
    # Get all the images from a workspace
 
-   API_endpoint = '/' + API_version + '/workspaces/' + workspace_uid + '/elements/images'
+   API_endpoint = '/' + API_version + '/workspaces/' + workspaceId + '/elements?type=Image'
 
    the_request = requests.get(
        portal + API_endpoint,
@@ -93,11 +93,11 @@ website: https://github.com/axios/axios
 
 var axios = require('axios');
 
-const token = 'SET_YOUR_TOKEN_HERE';
-const portal = 'https://api.apps.us.bluescape.com';
-const workspace_uid = 'SET_WORKSPACE-UID_HERE';
-const api_version = 'v2';
-const api_endpoint = '/workspaces/' + workspace_uid + '/elements/images';
+const token = '&lt;SET_TOKEN&gt;';
+const portal = [[apiHost]];
+const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
+const api_version = 'v3';
+const api_endpoint = '/workspaces/' + workspaceId + '/elements?type=Image';
 
 var request_values = {
     url: portal + '/' + api_version + api_endpoint,
@@ -124,24 +124,29 @@ axios(request_values)
 
 <p>
 You can modify this script to return a list of each specific object from the workspace by changing the last element in the API entrypoint:
-<span class="pre">API_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/images'</span>. Here, replace the final <span class="pre">'/images'</span> element with:
+<span class="pre">API_endpoint = '/v3/workspaces/' + workspaceId + '/elements?type=Image'</span>. Here, replace the final <span class="pre">'Image'</span> element with:
 <ul>
- <li>"/documents" </li>
- <li>"/notes" </li>
- <li>"/images"</li>
- <li>"/text"</li>
- <li>"/canvas"</li>
- <li>"/browsers"</li>
- <li>"/strokes"</li>
- <li>"/videos"</li>
- <li>"/grids"</li>
+ <li>"Document" </li>
+ <li>"Note" </li>
+ <li>"Image"</li>
+ <li>"Text"</li>
+ <li>"Canvas"</li>
+ <li>"Browser"</li>
+ <li>"Stroke"</li>
+ <li>"Video"</li>
+ <li>"Grid"</li>
+ <li>"Shape"</li>
+ <li>"Line"</li>
+ <li>"Selection"</li>
+ <li>"Window"</li>
+
 </ul>
 </p>
 
 <h2>OUTPUT</h2>
 
 <p>
-What you should get: json with the list of the first 25 workspaces
+What you should get: JSON with the list of all images in the workspace
 </p>
 
 <table class="table table-striped">
@@ -152,17 +157,17 @@ What you should get: json with the list of the first 25 workspaces
         </tr>
         <tr>
             <td>Image ID</td>
-            <td>['images'][N]['id']</td>
-            <td>where N is the N-th workspace in the list.</td>
+            <td>['data'][N]['id']</td>
+            <td>where N is the N-th image in the list.</td>
         </tr>
         <tr>
             <td>Image Title</td>
-            <td>['workspaces'][N]['title']</td>
-            <td>where N is the N-th workspace in the list.</td>
+            <td>['data'][N]['title']</td>
+            <td>where N is the N-th image in the list.</td>
         </tr>
         <tr>
             <td>Image URL</td>
-            <td>['workspaces'][N]['url']</td>
+            <td>['data'][N]['url']</td>
             <td>where N is the N-th image in the list.</td>
         </tr>
       
@@ -170,49 +175,32 @@ What you should get: json with the list of the first 25 workspaces
 
 <p><h3>Output Json sample</h3>
 <pre>
-{'images': [{'comments': [{'actorId': '38988',
-           'actorType': 'user',
-           'date': '2019-07-23T17:37:03+00:00',
-           'id': '5d3745bfda1ecc2c2d00036c',
-           'name': 'Ansel Adams',
-           'text': 'Nice picture, beautiful dunes.'}],
-     'height': 871,
-     'id': '5d374593da139IOOd000369',
-     'order': 193,
-     'pin': False,
-     'scale': 0.4,
-     'strokeIds': [],
-     'title': 'Screen Shot 2019-06-18 at 2.51.06 PM.png',
-     'traits': [{'<a href="http://test.bluescape.com/picture/description':">http://test.bluescape.com/picture/description':</a> 'Sand '
-                                                                  'Dunes, '
-                                                                  'big, '
-                                                                  'light '
-                                                                  'on '
-                                                                  'one '
-                                                                  'side, '
-                                                                  'shadow '
-                                                                  'ont '
-                                                                  'he '
-                                                                  'other '
-                                                                  'one',
-                 '<a href="http://test.bluescape.com/picture/tags':">http://test.bluescape.com/picture/tags':</a> ['sand '
-                                                            'dunes',
-                                                            'light',
-                                                            'desert',
-                                                            'blue sky',
-                                                            'yellow '
-                                                            'sand',
-                                                            'sand'],
-                 '<a href="http://test.bluescape.com/picture/title':">http://test.bluescape.com/picture/title':</a> 'Nice sand '
-                                                            'dunes '
-                                                            'picture'}],
-                 'url': '<a href="https://s3.amazonaws.com/public-assets.bluescape.com/sessions/objects/QJh-lZUZGaFinBFuz2/5d37459cc2c9Ad000369.png?X-Amz&lt;-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=BKIXIWO33I6HA%2F20191723%2Fus-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20190723T230936Amz-Expires=300'">https://s3.amazonaws.com/public-assets.bluescape.com/sessions/objects/QJh-lZUZGaFinBFuz2/5d37459cc2c9Ad000369.png?X-Amz&lt;-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=BKIXIWO33I6HA%2F20191723%2Fus-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20190723T230936Amz-Expires=300'</a>,
-                 'width': 1394,
-                 'workspace_uid': 'QJh-lZU9RRFinOuzeR2',
-                 'x': 6344,
-                 'y': 4520}
-                ]
-}<br>
+{
+    "data": [
+        {
+            "id": "5fff28048204fed72abc0123",
+            "zIndex": 45,
+            "transform": {
+                "x": 166,
+                "y": 145,
+                "scaleX": 1,
+                "scaleY": 1
+            },
+            "traits": null,
+            "pinned": false,
+            "attachments": [],
+            "width": 512,
+            "height": 512,
+            "url": "<a href="https://s3.amazonaws.com/test-bucket/sessions/objects/j2FLqcSmCpkJjXnWb8qk/5fff28048204fed72abc0123.jpg&quot;">https://s3.amazonaws.com/test-bucket/sessions/objects/j2FLqcSmCpkJjXnWb8qk/5fff28048204fed72abc0123.jpg"</a>,
+            "title": "Test_Image.jpg",
+            "type": "Image",
+            "style": {
+                "hidden": false
+            },
+            "contentType": "png"
+        }
+    ]
+}
 </pre></p>
 
 <p><br />
