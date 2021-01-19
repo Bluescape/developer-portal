@@ -31,7 +31,7 @@
         </ul>
     </div>
     <br />
-    {{if or (eq $.CurrentPage "reference") (eq $.CurrentPage "urls") (eq $.CurrentPage "pagination") (eq $.CurrentPage "listener-events") (eq $.CurrentPage "permissions") (eq $.CurrentPage "versioning") (eq $.CurrentPage "sso")}}
+    {{if or (eq $.CurrentPage "reference") (eq $.CurrentPage "urls") (eq $.CurrentPage "pagination") (eq $.CurrentPage "listener-events") (eq $.CurrentPage "permissions") (eq $.CurrentPage "versioning")}}
     <div>
         <strong>Reference</strong>
         <ul class="unindent-side-nav-ul">
@@ -44,6 +44,25 @@
             {{/* <li><h3>API Reference</h3></li>
             {% include 'reference/api-toc' %} */}}
 
+        </ul>
+    </div>
+    <br />
+    {{end}}
+    {{if or (eq $.CurrentPage "reference-v2") (eq $.CurrentPage "urls-v2") (eq $.CurrentPage "pagination-v2") (eq $.CurrentPage "listener-events-v2") (eq $.CurrentPage "permissions-v2") (eq $.CurrentPage "versioning-v2") (eq $.CurrentPage "sso")}}
+    <div>
+        <strong>Reference: /v2/</strong>
+        <ul class="unindent-side-nav-ul">
+            <li><a href="/docs/page/urls-v2">URLs</a></li>
+            <li><a href="/docs/page/pagination-v2">Pagination</a></li>
+            <li><a href="/docs/page/listener-events-v2">Listener Events</a></li>
+            <li><a href="/docs/page/permissions-v2">Permissions</a></li>
+            <li><a href="/docs/page/versioning-v2">Versioning</a></li>
+            <li><a href="/docs/page/sso">SSO</a></li>
+        </ul>
+
+        <strong>API Reference: /v2/</strong>
+        <ul class="unindent-side-nav-ul">
+            <li><a href="/docs/page/reference">Go to current API version</a></li>
         </ul>
     </div>
     <br />
