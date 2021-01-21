@@ -14,9 +14,10 @@
 <p>
     All API endpoints share the same base URL:
 </p>
-
 <pre>
-[[apiHost]]
+<script type="text/javascript">
+    document.write("https://api." + window.location.hostname);
+</script>
 </pre>
 
 <h3>Assembling a Request</h3>
