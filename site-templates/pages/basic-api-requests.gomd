@@ -16,7 +16,7 @@
 </p>
 <pre>
 <script type="text/javascript">
-    document.write("https://api." + window.location.hostname);
+    document.write("https://" + window.location.hostname);
 </script>
 </pre>
 
