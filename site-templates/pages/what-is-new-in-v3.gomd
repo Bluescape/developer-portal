@@ -122,14 +122,16 @@
         </li>
       </ul>
 
-      <span class="indent-level-1">
+      <span class="indent-level">
         <b>"data"</b>: [<br />
-        <span class="indent-level-2">
+        <span class="indent-level">
           {<br />
-          "id": "5fc7f508e2db9d003ee5ee4c",<br />
-          "zIndex": 5,<br />
-          "transform": {<br />
-          …<br />
+            <span class="indent-level">
+            "id": "5fc7f508e2db9d003ee5ee4c",<br />
+            "zIndex": 5,<br />
+            "transform": {<br />
+            …<br />
+            </span>
           },<br />
           … <br />
           <b>"type": "Text"</b>,<br />
@@ -178,6 +180,20 @@
       </span>
       } <br />
     </td>
+  </tr>
+  <tr>
+    <td>Color schema <b>[[TO CONFIRM]]</b></td>
+    <td></td>
+    <td>Color scheme is defined using RGBA color model<br />
+        What is RGBA? Detailed explanation: https://en.wikipedia.org/wiki/RGBA_color_model <br /><br />
+        The color is defined by:
+        <ul>
+            <li>R: how much red</li>
+            <li>G: how much green</li>
+            <li>B: how much blue</li>
+            <li>A: alpha channel, how opaque it is  (0: transparent, 1: solid color)</li>
+        </ul>
+ </td>
   </tr>
   <tr>
     <td>
