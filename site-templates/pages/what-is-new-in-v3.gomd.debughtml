@@ -1,0 +1,70 @@
+<p><h1>What is new in V3? (IN PROGRESS)</h1>
+<p>
+    This page covers the new features in V3, as a comparison with V2.
+</p></p>
+
+<table class="table table-striped">
+<tr>
+    <td><b>Aspect</b></td>
+    <td><b>V2</b></td>
+    <td><b>V3</b></td>
+</tr>
+<tr>
+    <td>For fields containing IDs: in V3 there are no longer “uid” fields, all are named “id”<br />
+    See the example for getting a workspace.
+</td>
+    <td>{<br />
+   "workspace": {<br />
+       <b>"uid"</b>: "vfg6CZFHqWqsVjyZNhmH",<br />
+       "name": "Vladimir - project, notes, etc.",<br />
+       … <br />
+       "organization": {<br />
+           "name": "Bluescape",<br />
+           "uid": "wOETxsWt3SAmuyUQbbLy",<br />
+           <b>"default_public_workspace_role_uid"</b>: "VJKO1MCvXQLfhMB6bzde"<br />
+       }<br />,<br />
+       "favorite": false,<br />
+       "users_count": 12,<br />
+       "workspace_owner": {<br />
+           "first_name": "Vladimir",<br />
+           … <br />
+           "uid": "DbfcGpN-U30XIjjy0yjX"
+       }<br />,<br />
+       "workspace_role": {<br />
+           "name": "Owner",<br />
+           ...<br />
+           <b>"uid"</b>: "HLBI9sd-yyHWupboR7MH"<br />
+       }<br />,<br />
+       <b>"organization_uid"</b>: "wOETxsWt3SAmuyUQbbLy",<br />
+       <b>"default_role_uid"</b>: "VJKO1MCvXQLfhMB6bzde"<br />
+   }<br />
+}<br /></td>
+    <td>{<br />
+   <b>"id"</b>: "j5FIqcSmCpkJjXnWb8qk",<br />
+   "name": "Team Project",<br />
+   "description": "",<br />
+   "isPublic": true,<br />
+   <b>"defaultRoleId"</b>: "gQ2DA6mMC4Op-_EHuR6S",<br />
+   <b>"organizationId"</b>: "5JIGySFmJpfen3Jnozqx",<br />
+   <b>"ownerId"</b>: "qIN-MJbWD1fGByxm-qw4",<br />
+   "createdAt": "2020-12-02T20:07:56.000Z",<br />
+   "updatedAt": "2020-12-04T00:54:31.000Z"<br />
+}<br /></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+
+</table>
