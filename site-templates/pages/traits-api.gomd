@@ -1,6 +1,19 @@
 <h1>Traits: API for elements traits</h1>
-<h1>*NOTE: These are not currently supported through REST APIs, but they will be available soon!</h1>
+<p>
+    <table style="background-color: #FFFFA5">
+        <tr>
+            <td style="padding:15px">   
+                    <b><center>NOTICE</center>
+                        <br />
+                        The version <span class="pre">/v3/</span> beta release will not include REST API support for Traits. Traits will be released with REST API support in a future release.
+                    <br /> <br />
+                    </b>
+            </td>
+        </tr>
+    </table>
+</p> 
 
+<!--
 
 <h2>What are Traits?</h2>
 <p>Traits are a new feature that allows developers to associate metadata to objects within a workspace via a REST API. Traits are open-ended metadata for workspace objects. For example, if you upload assets (images, documents, etc.) that belong to a specific project, you can add that project information as Traits to each asset in the workspace. Later, you could download those assets, and the data in the Traits of each asset will provide insight to the original project data.</p>
@@ -178,5 +191,7 @@ data_load = [{
 
 
 </p>
+
 <br />
+-->
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.

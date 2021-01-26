@@ -1,5 +1,19 @@
 <h1>Upload content from local drive into a Canvas</h1>
-<h1>*NOTE: These are being replaced with GraphQL subscriptions in V3</h1>
+<p>
+    <table style="background-color: #FFFFA5">
+        <tr>
+            <td style="padding:15px">   
+                    <b><center>NOTICE</center>
+                        <br />
+                        The version <span class="pre">/v3/</span> beta release will not include REST API support for uploading from a local drive. REST API support for this will be included in a future release.
+                    <br /> <br />
+                    </b>
+            </td>
+        </tr>
+    </table>
+</p> 
+
+<!--
 
 <p>
 <b>Objective</b>: Create a new Canvas and upload content from a local drive to this new Canvas.
@@ -23,12 +37,10 @@
             <td><b>Method</b></td>
             <td>POST</td>
         </tr>
-        <!--
         <tr>
             <td><b>Developer Portal URL</b></td>
             <td><a href="/reference/apis#Canvas:postWorkspacesElementsCanvasByWorkspaceid">[[developerPortalHost]]/reference/apis#Canvas:postWorkspacesElementsCanvasByWorkspaceid</a></td>
         </tr>
-        -->
         <tr>
             <td><b>Body</b></td>
                 <td>{ </br>
@@ -54,13 +66,11 @@
             <td><b>Method</b></td>
             <td>POST</td>
         </tr>
-        <!-- 
         <tr>
             <td><b>Developer Portal URL</b></td>
             <td><a href="/reference/apis#Documents:postWorkspacesElementsCanvasDocumentsByWorkspaceidCanvasid">[[developerPortalHost]]/reference/apis#Documents:postWorkspacesElementsCanvasDocumentsByWorkspaceidCanvasid</a> and 
                 <a href="/reference/apis#Images:postWorkspacesElementsCanvasImagesByWorkspaceidCanvasid">[[developerPortalHost]]/reference/apis#Images:postWorkspacesElementsCanvasImagesByWorkspaceidCanvasid</a></td>
         </tr>
-        -->
         <tr>
           <td><b>Body</b></td>
             <td>{ </br>
@@ -611,5 +621,5 @@ From this answer you can obtain the newly created Canvas ID: ['canvas']['id']
 
 
 <br />
+-->
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
-

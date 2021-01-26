@@ -1,5 +1,19 @@
 <h1>Attachments APIs</h1>
-<h1>*NOTE: These are not currently supported through REST APIs, but they will be available soon!</h1>
+<p>
+    <table style="background-color: #FFFFA5">
+        <tr>
+            <td style="padding:15px">   
+                    <b><center>NOTICE</center>
+                        <br />
+                        The version <span class="pre">/v3/</span> beta release will not include REST API support for Attachments. Attachments will be released with REST API support in a future release.
+                    <br /> <br />
+                    </b>
+            </td>
+        </tr>
+    </table>
+</p> 
+
+<!--
 
 <h2>What are Attachments?</h2>
 <p>Attachments allow the user to pair together two elements so that they act as a single, interactable object.</p>
@@ -1298,7 +1312,7 @@ async function runAPIRequests() {
 runAPIRequests();       
 
 </pre>
-
+-->
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
 
 
