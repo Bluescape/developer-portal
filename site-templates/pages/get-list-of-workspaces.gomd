@@ -67,7 +67,7 @@ if __name__ == "__main__":
    # Get all the workspaces for your user
    API_version = 'v3'
 
-   API_endpoint = '/' + API_version + '/users/me/workspaces'
+   API_endpoint = '/api/' + API_version + '/users/me/workspaces'
 
    the_request = requests.get(
        portal + API_endpoint,

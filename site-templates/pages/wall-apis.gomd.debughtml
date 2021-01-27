@@ -15,7 +15,7 @@
     <table class="table table-striped">
             <tr>
                 <td><b>Endpoint</b></td>
-                <td>/v3/organizations/<code>&lt;</code>organizationId<code>&gt;</code>/walls</td>
+                <td>/api/v3/organizations/<code>&lt;</code>organizationId<code>&gt;</code>/walls</td>
                 <td></td>
             </tr>
             <tr>
@@ -46,7 +46,7 @@
 
     if __name__ == "__main__":
 
-        API_endpoint = '/v3/organizations/' + organizationId + '/walls'
+        API_endpoint = '/api/v3/organizations/' + organizationId + '/walls'
 
         data_load = {                  # Example showing how to use the filter_by field
             'filter_by=name' : '&lt;NAME_TO_FILTER_BY&gt;' 

@@ -57,7 +57,7 @@ if __name__ == "__main__":
 
    # Get all the images from a workspace
 
-   API_endpoint = '/' + API_version + '/workspaces/' + workspaceId + '/elements?type=Image'
+   API_endpoint = '/api/' + API_version + '/workspaces/' + workspaceId + '/elements?type=Image'
 
    the_request = requests.get(
        portal + API_endpoint,
@@ -68,11 +68,8 @@ if __name__ == "__main__":
 
    json_response = the_request.json()
 
-   # Uncomment line below if you want to see the whole structure of the json answer
-   # pprint.pprint(json_response)
+   pprint.pprint(json_response)
 
-   for object_item in json_response['images']:
-       print("\tImage: ", object_item['url'])
 </pre>
 </p>
 
