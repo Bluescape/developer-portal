@@ -1,5 +1,19 @@
-<h1>Attachments APIs</h1>
-<h1>*NOTE: These are not currently supported through REST APIs, but they will be available soon!</h1>
+<p><h1>Attachments APIs</h1>
+<p>
+    <table style="background-color: #FFFFA5">
+        <tr>
+            <td style="padding:15px"><br>
+                    <b><center>NOTICE</center>
+                        <br />
+                        The version <span class="pre">/v3/</span> beta release will not include REST API support for Attachments. Attachments will be released with REST API support in a future release.
+                    <br /> <br />
+                    </b>
+            </td>
+        </tr>
+    </table>
+</p></p>
+
+<!--
 
 <h2>What are Attachments?</h2>
 <p>Attachments allow the user to pair together two elements so that they act as a single, interactable object.</p>
@@ -28,7 +42,7 @@
     <a href="#use-case-example">Use Case Example</a> <br />  
 </p>
 
-<p><a name="allowed-types"><h3>Allowed Element types for Attachments:</h3></a>
+<a name="allowed-types"><h3>Allowed Element types for Attachments:</h3></a>
 <p>
 <table class="table table-striped">
     <tr>
@@ -39,7 +53,7 @@
         <td><b>Notes</b></td>
         <td>
             <ul>
-                <li>Notes</li><br>
+                <li>Notes</li>    
                 <li>Images</li>
                 <li>Browsers</li>
                 <li>Documents</li>
@@ -52,7 +66,7 @@
         <td><b>Images</b></td>
         <td>
                 <ul>
-                        <li>Notes</li><br>
+                        <li>Notes</li>    
                         <li>Images</li>
                         <li>Browsers</li>
                         <li>Documents</li>
@@ -65,7 +79,7 @@
         <td><b>Documents</b></td>
         <td>
                 <ul>
-                        <li>Notes</li><br>
+                        <li>Notes</li>    
                         <li>Images</li>
                         <li>Browsers</li>
                         <li>Documents</li>
@@ -77,7 +91,7 @@
     <tr>
         <td><b>Browsers</b></td>
         <td> <ul>
-                <li>Notes</li><br>
+                <li>Notes</li>    
                 <li>Images</li>
                 <li>Browsers</li>
                 <li>Documents</li>
@@ -88,7 +102,7 @@
     <tr>
         <td><b>Videos</b></td>
         <td> <ul>
-                <li>Notes</li><br>
+                <li>Notes</li>    
                 <li>Images</li>
                 <li>Browsers</li>
                 <li>Documents</li>
@@ -106,38 +120,36 @@
     </tr>
 </table>
 </p>
-<br /></p>
+<br />
 
-<p><a name="how-to-implement"><h2>How to Implement Attachments APIs</h2></a></p>
+<a name="how-to-implement"><h2>How to Implement Attachments APIs</h2></a>
 
-<p><a name="create-attachment"><h3>Create: attach one element to another</h3></a>
+<a name="create-attachment"><h3>Create: attach one element to another</h3></a>
 <p>
 <table class="table table-striped">
     <tr>
     <td><b>Endpoint</b></td>
-    <td>/v2/workspaces/&amp;lt;workspace_uid&amp;gt;/elements/&amp;lt;surface_type&amp;gt;/&amp;lt;surface_id&amp;gt;/attachments</td></p>
+    <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments</td>
 
-<pre><code>&lt;/tr&gt;
-&lt;tr&gt;
-    &lt;td&gt;&lt;b&gt;Method&lt;/b&gt;&lt;/td&gt;
-    &lt;td&gt;POST&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;b&gt;Comments&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-</code></pre>
-
-<p></table>
+    </tr>
+    <tr>
+        <td><b>Method</b></td>
+        <td>POST</td>
+    </tr>
+    <tr>
+    <td><b>Comments</b></td>
+    <td></td>
+    </tr>
+</table>
 </p>
-<p></p>
-
-<p>Sample Request:
+<p>
+    
+Sample Request:
 <div class="lang-selector">
     <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
     <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
-</div></p>
+</div>
 
 <pre class="lang lang-node">
 var request = require('request');
@@ -237,7 +249,7 @@ curl -X POST https://api.apps.us.bluescape.com/v2/workspaces/&lt;workspace_uid&g
 }'
 </pre>    
 
-<p><br/>
+<br/>
 Sample Response Body:
     <ul>
         <li>Note the <span class='pre'>sourceId</span> being placed at coordinates [10,10]</li>
@@ -247,23 +259,23 @@ Sample Response Body:
         "x": 10,
         "y": 10,
         "source": {
-        "id": "<code>&lt;</code>SET_SOURCE_ID<code>&gt;</code>",
+        "id": "`<`SET_SOURCE_ID`>`",
         "type": "note"
         },
         "surface": {
-        "id": "<code>&lt;</code>SET_SURFACE_ID<code>&gt;</code>",
+        "id": "`<`SET_SURFACE_ID`>`",
         "type": "image"
         }
-    }</pre></p>
+    }</pre>
+        
+</p>
 
-<p></p></p>
-
-<p><a name="get-attachments"><h3>Get: list all attachments of an element</h3></a>
+<a name="get-attachments"><h3>Get: list all attachments of an element</h3></a>
 <p>
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v2/workspaces/&amp;lt;workspace_uid&amp;gt;/elements/&amp;lt;surface_type&amp;gt;/&amp;lt;surface_id&amp;gt;/attachments</td>
+          <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -274,7 +286,7 @@ Sample Response Body:
           <td></td>
         </tr>
 </table>
-</p></p>
+</p>
 
 <p>
 
@@ -510,12 +522,13 @@ Sample Response Body after deleting the attachments in an element:
 </pre>
 </p>
 
-<p><a name="use-case-example"><h3>Use Case Example</h3></a>
+
+<a name="use-case-example"><h3>Use Case Example</h3></a>
 Below is a simple, end-to-end example of how someone might use the Attachments APIs. This example is one in which a user uploads
-content from a local directory into a Bluescape workspace, generates text fields corresponding to the names of the uploaded files, and
-attaches the text fields to the files. An e-mail is then sent to the specified recipient, notifying them of the changes that were
+content from a local directory into a Bluescape workspace, generates text fields corresponding to the names of the uploaded files, and 
+attaches the text fields to the files. An e-mail is then sent to the specified recipient, notifying them of the changes that were 
 made within the workspace.
-<br /></p>
+<br />
 
 <p><div class="lang-selector">
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
@@ -799,6 +812,7 @@ async function runAPIRequests() {
 runAPIRequests();       
 
 </pre>
+
 
 <pre class="lang lang-python">
 # Use Case Example (Python)
@@ -1298,5 +1312,6 @@ async function runAPIRequests() {
 runAPIRequests();       
 
 </pre>
+-->
 
 <p>If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.</p>

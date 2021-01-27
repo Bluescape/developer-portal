@@ -20,18 +20,25 @@
             {{end}}
             {{if $element.Metadata.HasDoc}}
                 {{if or (eq $svc.Name "elementary") (eq $svc.Name "isam")}}
-                    <li>
+                    {{if (eq $svc.Name "elementary")}}
+                        <li>
                         <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
-                            {{$svc.Namespace}}.{{$svc.Name}}
+                            Workspace Content APIs
                         </a>
                     </li>
-                {{else}}
-                    <li><samp>None</samp></li> 
+                    {{end}}
+                    {{if (eq $svc.Name "isam")}}
+                        <li>
+                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                            General APIs
+                        </a>
+                    </li>
+                    {{end}}
                 {{end}}
             {{end}}
         {{end}}
         {{if not $haveApi}}
-        <li><samp>None</samp></li>
+            <li><samp>None</samp></li>
         {{end}}
         </ul>
     </div>
@@ -46,18 +53,39 @@
             {{end}}
             {{if $element.Metadata.HasDoc}}
                 {{if or (eq $svc.Name "collab") (eq $svc.Name "identity-api") (eq $svc.Name "portal-api") (eq $svc.Name "listener-api")}}
-                <li>
-                    <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
-                        {{$svc.Namespace}}.{{$svc.Name}}
-                    </a>
-                </li>
-                {{else}}
-                    <li><samp>None</samp></li> 
+                    {{if (eq $svc.Name "collab")}}
+                        <li>
+                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                            Workspace Content APIs
+                        </a>
+                    </li>
+                    {{end}}
+                    {{if (eq $svc.Name "identity-api")}}
+                        <li>
+                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                            Identity APIs
+                        </a>
+                    </li>
+                    {{end}}
+                    {{if (eq $svc.Name "portal-api")}}
+                        <li>
+                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                            General APIs
+                        </a>
+                    </li>
+                    {{end}}
+                    {{if (eq $svc.Name "listener-api")}}
+                        <li>
+                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                            Listener APIs
+                        </a>
+                    </li>
+                    {{end}}
                 {{end}}
             {{end}} 
         {{end}}
         {{if not $haveApi}}
-        <li><samp>None</samp></li>
+            <li><samp>None</samp></li>
         {{end}}
         </ul>
     </div>
