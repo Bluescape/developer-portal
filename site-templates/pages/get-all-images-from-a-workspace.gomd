@@ -7,7 +7,7 @@
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image</td>
+          <td>/api/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -97,7 +97,7 @@ const api_version = 'v3';
 const api_endpoint = '/workspaces/' + workspaceId + '/elements?type=Image';
 
 var request_values = {
-    url: portal + '/' + api_version + api_endpoint,
+    url: portal + '/api/' + api_version + api_endpoint,
     method : 'GET' ,
     headers : {
         'Authorization': "Bearer " + token,

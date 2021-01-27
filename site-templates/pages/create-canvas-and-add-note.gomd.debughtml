@@ -9,7 +9,7 @@
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>/api/v3/workspaces/&lt;workspaceId&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -40,7 +40,7 @@
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>/api/v3/workspaces/&lt;workspaceId&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -198,7 +198,7 @@ var api_endpoint = '/workspaces/' + workspaceId + '/elements';
 
 function runRequest(portal,api_version,api_endpoint,the_method,data_load) {
     var request_values = {
-        url : portal + '/' + api_version + api_endpoint,
+        url : portal + '/api/' + api_version + api_endpoint,
         method : the_method ,
         headers : {
             'Authorization': "Bearer " + token,
@@ -234,7 +234,7 @@ async function runAPIRequests() {
         
         var canvas_creation = await runRequest(portal,api_version,api_endpoint,the_method,data_load);
 
-        const canvasId = canvas_creation.data.id;
+        const canvasId = canvas_creation.data.data.id;
         console.log("canvas ID: " + canvasId);
 
         // Now add a Note to the Canvas
@@ -251,7 +251,7 @@ async function runAPIRequests() {
 
         var note_creation = await runRequest(portal,api_version,api_endpoint,the_method,data_load);
 
-        var noteId = note_creation.data.id;
+        var noteId = note_creation.data.data.id;
         console.log('Note ID: ' + noteId);
 
     } catch (error) {
