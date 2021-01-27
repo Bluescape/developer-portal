@@ -254,7 +254,12 @@
     </td>
   </tr>
   <tr>
-    <td></td>
+    <td><b>TODO</b>How to upload content into the workspaces.<br />This is a 2 steps process:
+      <ul> 
+        <li>crate an upload steam (?)</li> 
+        <li>assign the stream to an object</li> 
+      </ul>
+    </td>
     <td></td>
     <td></td>
   </tr>
