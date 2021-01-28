@@ -8,7 +8,7 @@
       {{$haveOther = true}}
     {{end}}
   {{end}}
-    {{if (eq $.CurrentPage "reference")}}
+    {{if or (eq $.CurrentPage "reference") (eq $.Ctx "doc")}}
     <div>
         <strong>Bluescape v3 APIs</strong>
         <ul class="unindent-side-nav-ul">
