@@ -9,7 +9,7 @@
 
 .c-nav a {
   display: block;
-  padding: 1em;
+  padding: 0.6em;
   position: relative;
   color: var(--secondary-color);
   line-height: initial;
