@@ -13,7 +13,7 @@
   }
 </style>
 
-<h1>What is new in V3? (IN PROGRESS)</h1>
+<h1>What is new in V3? (IN PROGRESS - DO NOT REVIEW YET)</h1>
 <p>This page covers the new features in V3, as a comparison with V2.</p>
 
 <!-- REST APIs -->
@@ -147,7 +147,8 @@
   <tr>
     <td>
       How to specify the position of objects in the workspace.<br /><br />Example
-      of the request and response body.
+      of the request and response body.<br />
+    <b>[[TODO: probably will not be like this, waiting for confirmation ,br/>probably delete this row and fix examples everywhwere]]
     </td>
     <td>
       {<br />
