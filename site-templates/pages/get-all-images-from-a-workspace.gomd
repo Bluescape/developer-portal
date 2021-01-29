@@ -51,7 +51,7 @@ Required modules:
 token = '&lt;SET_TOKEN&gt;'
 
 if __name__ == "__main__":
-   portal = "[[apiHost]]"
+   portal = "<script type="text/javascript">document.write("https://" + window.location.hostname); </script>"
    workspaceId = '&lt;SET_WORKSPACE_ID&gt;'   
    API_version = 'v3'
 
@@ -91,7 +91,7 @@ website: https://github.com/axios/axios
 var axios = require('axios');
 
 const token = '&lt;SET_TOKEN&gt;';
-const portal = [[apiHost]];
+const portal = '<script type="text/javascript">document.write("https://" + window.location.hostname); </script>';
 const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
 const api_version = 'v3';
 const api_endpoint = '/workspaces/' + workspaceId + '/elements?type=Image';
