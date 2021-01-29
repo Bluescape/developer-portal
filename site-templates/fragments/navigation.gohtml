@@ -245,17 +245,5 @@
         </ul>
     </div>
     <br />
-    {{end}}
-    <div>
-        <strong>Reference</strong>
-        <ul class="unindent-side-nav-ul">
-            {{range $i, $page := $.Pages}}
-                {{$class := ""}}
-                {{if eq $.CurrentPage $page}}
-                    {{$class = "c-nav__selected"}}
-                {{end}}
-                <li><a class="{{$class}}" href="{{$.Prefix}}page/{{$page}}">{{$page}}</a></li>
-            {{end}}
-        </ul>
-    </div>    
+    {{end}}   
 </nav>

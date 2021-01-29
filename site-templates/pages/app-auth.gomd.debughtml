@@ -44,7 +44,7 @@
 
 <p>
     Applications requesting an access token should direct users to the authorization page at:
-<pre>[[apiHost]]/authorize</pre>
+<pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/authorize</pre>
 </p>
 
 <p>

@@ -7,10 +7,10 @@
 <table class="table table-striped">
     <tr>
         <th>Base URL for API Requests</th>
-        <td>[[apiHost]]</td>
+        <td><script type="text/javascript">document.write("https://" + window.location.hostname); </script></td>
     </tr>
     <tr>
         <th>OAuth Authorization URL</th>
-        <td>[[apiHost]]/authorize</td>
+        <td><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/authorize</td>
     </tr>
 </table>

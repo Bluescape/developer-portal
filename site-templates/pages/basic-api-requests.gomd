@@ -16,7 +16,9 @@
 </p>
 
 <pre>
-[[apiHost]]
+<script type="text/javascript">
+    document.write("https://" + window.location.hostname);
+</script>
 </pre>
 
 <h3>Assembling a Request</h3>
@@ -32,7 +34,9 @@
 </p>
 
 <pre>
-[[apiHost]]/api/v3/organizations/&lt;organizationId&gt;/members
+<script type="text/javascript">
+    document.write("https://" + window.location.hostname + "/api/v3/organizations/&lt;organizationId&gt;/members");
+</script>
 </pre>
 
 <h4>Parameters</h4>
@@ -47,7 +51,9 @@
 </p>
 
 <pre>
-[[apiHost]]/api/v3/organizations/eidzMVOsv4peKG-4DLKA/members
+<script type="text/javascript">
+    document.write("https://" + window.location.hostname + "/api/v3/organizations/eidzMVOsv4peKG-4DLKA/members");
+</script>
 </pre>
 
 <p>
@@ -87,7 +93,7 @@
 </div>
 
 <pre class="lang lang-curl">
-curl -X POST [[apiHost]]/api/v3/organizations/&lt;SET_ORGANIZATION_ID&gt;/members \
+curl -X POST <script type="text/javascript">document.write("https://" + window.location.hostname + "/api/v3/organizations/&lt;SET_ORGANIZATION_ID&gt;/members"); </script> \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -103,7 +109,7 @@ curl -X POST [[apiHost]]/api/v3/organizations/&lt;SET_ORGANIZATION_ID&gt;/member
 import requests
 import pprint 
 
-portal = '[[apiHost]]'
+portal = '<script type="text/javascript">document.write("https://" + window.location.hostname); </script>'
 organizationId = '&lt;SET_ORGANIZATION_ID&gt';
 API_version = 'v3'
 API_endpoint = '/api/' + API_version + '/organizations/' + organizationId + '/members'

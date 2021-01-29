@@ -10,7 +10,7 @@
 
 
 <pre>
-[[apiHost]]
+<script type="text/javascript">document.write("https://" + window.location.hostname); </script>
 </pre>
 
 <p>
@@ -62,7 +62,7 @@ Required modules:
 token = '&lt;SET_TOKEN&gt;'
 
 if __name__ == "__main__":
-   portal = "[[apiHost]]"
+   portal = "<script type="text/javascript">document.write("https://" + window.location.hostname); </script>"
 
    # Get all the workspaces for your user
    API_version = 'v3'
@@ -102,7 +102,7 @@ website: https://github.com/axios/axios
 */
 
 const token = '&lt;SET_TOKEN&gt;';
-const portal = '[[apiHost]]';
+const portal = '<script type="text/javascript">document.write("https://" + window.location.hostname); </script>';
 const api_version = 'v3';
 const api_endpoint = '/users/me/workspaces';
 
