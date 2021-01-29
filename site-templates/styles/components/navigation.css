@@ -13,7 +13,7 @@
   position: relative;
   color: var(--secondary-color);
   line-height: initial;
-  border-bottom: solid 1px var(--terciary-color);
+  /* border-bottom: solid 1px var(--terciary-color); */
   transition: background-color 100ms ease-in-out;
   font-size: 15px;
 }
@@ -39,7 +39,7 @@
 }
 
 .c-nav__selected:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
