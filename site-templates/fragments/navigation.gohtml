@@ -8,51 +8,75 @@
       {{$haveOther = true}}
     {{end}}
   {{end}}
-    {{if or (eq $.CurrentPage "reference") (eq $.Ctx "doc")}}
+    <br />
+    {{if or (eq $.CurrentPage "reference") (eq $.CurrentPage "urls") (eq $.CurrentPage "pagination") (eq $.CurrentPage "listener-events") (eq $.CurrentPage "permissions") (eq $.CurrentPage "versioning")}}
     <div>
-        <strong>Bluescape v3 APIs</strong>
         <ul class="unindent-side-nav-ul">
-        {{range $i, $element := .S.K8sStore.Slice }}
-            {{$svc := $element.Service}}
-            {{$class := ""}}
-            {{if and (eq $.CurrentService $svc.Name) (eq $.CurrentNamespace $svc.Namespace)}}
-                {{$class = "c-nav__selected"}}
-            {{end}}
-            {{if $element.Metadata.HasDoc}}
-                {{if or (eq $svc.Name "elementary") (eq $svc.Name "isam")}}
-                    {{if (eq $svc.Name "elementary")}}
-                        <li>
-                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
-                            Workspace Content APIs
-                        </a>
-                    </li>
-                    {{end}}
-                    {{if (eq $svc.Name "isam")}}
-                        <li>
-                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
-                            General APIs
-                        </a>
-                    </li>
+            <li><a href="/docs/page/urls">URLs</a></li>
+            <li><a href="/docs/page/pagination">Pagination</a></li>
+            <li><a href="/docs/page/listener-events">Listener Events</a></li>
+            <li><a href="/docs/page/permissions">Permissions</a></li>
+            <li><a href="/docs/page/versioning">Versioning</a></li>
+
+            {{/* <li><h3>API Reference</h3></li>
+            {% include 'reference/api-toc' %} */}}
+        </ul>
+        <strong>API Reference</strong>
+        <ul class="unindent-side-nav-ul">
+            {{range $i, $element := .S.K8sStore.Slice }}
+                {{$svc := $element.Service}}
+                {{$class := ""}}
+                {{if and (eq $.CurrentService $svc.Name) (eq $.CurrentNamespace $svc.Namespace)}}
+                    {{$class = "c-nav__selected"}}
+                {{end}}
+                {{if $element.Metadata.HasDoc}}
+                    {{if or (eq $svc.Name "elementary") (eq $svc.Name "isam")}}
+                        {{if (eq $svc.Name "elementary")}}
+                            <li>
+                            <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                                Workspace Content APIs
+                            </a>
+                        </li>
+                        {{end}}
+                        {{if (eq $svc.Name "isam")}}
+                            <li>
+                            <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                                General APIs
+                            </a>
+                        </li>
+                        {{end}}
                     {{end}}
                 {{end}}
             {{end}}
-        {{end}}
-        {{if not $haveApi}}
-            <li><samp>None</samp></li>
-        {{end}}
-        </ul>
+            {{if not $haveApi}}
+                <li><samp>None</samp></li>
+            {{end}}
+            </ul>
     </div>
+    <br />
+    {{end}}
+    {{if or (eq $.CurrentPage "reference-v2") (eq $.CurrentPage "urls-v2") (eq $.CurrentPage "pagination-v2") (eq $.CurrentPage "listener-events-v2") (eq $.CurrentPage "permissions-v2") (eq $.CurrentPage "versioning-v2") (eq $.CurrentPage "sso")}}
     <div>
+        <strong>Reference: /v2/</strong>
+        <ul class="unindent-side-nav-ul">
+            <li><a href="/docs/page/urls-v2">URLs</a></li>
+            <li><a href="/docs/page/pagination-v2">Pagination</a></li>
+            <li><a href="/docs/page/listener-events-v2">Listener Events</a></li>
+            <li><a href="/docs/page/permissions-v2">Permissions</a></li>
+            <li><a href="/docs/page/versioning-v2">Versioning</a></li>
+            <li><a href="/docs/page/sso">SSO</a></li>
+        </ul>
         <strong>Bluescape v2 APIs</strong>
         <ul class="unindent-side-nav-ul">
-        {{range $i, $element := .S.K8sStore.Slice }}
+            <li><a href="/docs/page/reference">Go to current API version</a></li>
+                    {{range $i, $element := .S.K8sStore.Slice }}
             {{$svc := $element.Service}}
             {{$class := ""}}
             {{if and (eq $.CurrentService $svc.Name) (eq $.CurrentNamespace $svc.Namespace)}}
                 {{$class = "c-nav__selected"}}
             {{end}}
             {{if $element.Metadata.HasDoc}}
-                {{if or (eq $svc.Name "collab") (eq $svc.Name "identity-api") (eq $svc.Name "portal-api") (eq $svc.Name "listener-api")}}
+                {{if or (eq $svc.Name "collab") (eq $svc.Name "identity-api") (eq $svc.Name "portal-api") (eq $svc.Name "listener-api") (eq $svc.Name "service")}}
                     {{if (eq $svc.Name "collab")}}
                         <li>
                         <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
@@ -81,6 +105,13 @@
                         </a>
                     </li>
                     {{end}}
+                    {{if (eq $svc.Name "service")}}
+                        <li>
+                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                            General APIs
+                        </a>
+                    </li>
+                    {{end}}
                 {{end}}
             {{end}} 
         {{end}}
@@ -89,43 +120,93 @@
         {{end}}
         </ul>
     </div>
-    {{end}}
-    <br />
-    {{if or (eq $.CurrentPage "reference") (eq $.CurrentPage "urls") (eq $.CurrentPage "pagination") (eq $.CurrentPage "listener-events") (eq $.CurrentPage "permissions") (eq $.CurrentPage "versioning")}}
-    <div>
-        <strong>Reference</strong>
-        <ul class="unindent-side-nav-ul">
-            <li><a href="/docs/page/urls">URLs</a></li>
-            <li><a href="/docs/page/pagination">Pagination</a></li>
-            <li><a href="/docs/page/listener-events">Listener Events</a></li>
-            <li><a href="/docs/page/permissions">Permissions</a></li>
-            <li><a href="/docs/page/versioning">Versioning</a></li>
-
-            {{/* <li><h3>API Reference</h3></li>
-            {% include 'reference/api-toc' %} */}}
-
-        </ul>
-    </div>
     <br />
     {{end}}
-    {{if or (eq $.CurrentPage "reference-v2") (eq $.CurrentPage "urls-v2") (eq $.CurrentPage "pagination-v2") (eq $.CurrentPage "listener-events-v2") (eq $.CurrentPage "permissions-v2") (eq $.CurrentPage "versioning-v2") (eq $.CurrentPage "sso")}}
-    <div>
-        <strong>Reference: /v2/</strong>
+    {{if (eq $.Ctx "doc") }}
+        <strong>Bluescape v3 APIs</strong>
         <ul class="unindent-side-nav-ul">
-            <li><a href="/docs/page/urls-v2">URLs</a></li>
-            <li><a href="/docs/page/pagination-v2">Pagination</a></li>
-            <li><a href="/docs/page/listener-events-v2">Listener Events</a></li>
-            <li><a href="/docs/page/permissions-v2">Permissions</a></li>
-            <li><a href="/docs/page/versioning-v2">Versioning</a></li>
-            <li><a href="/docs/page/sso">SSO</a></li>
-        </ul>
-
-        <strong>API Reference: /v2/</strong>
+            {{range $i, $element := .S.K8sStore.Slice }}
+                {{$svc := $element.Service}}
+                {{$class := ""}}
+                {{if and (eq $.CurrentService $svc.Name) (eq $.CurrentNamespace $svc.Namespace)}}
+                    {{$class = "c-nav__selected"}}
+                {{end}}
+                {{if $element.Metadata.HasDoc}}
+                    {{if or (eq $svc.Name "elementary") (eq $svc.Name "isam")}}
+                        {{if (eq $svc.Name "elementary")}}
+                            <li>
+                            <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                                Workspace Content APIs
+                            </a>
+                        </li>
+                        {{end}}
+                        {{if (eq $svc.Name "isam")}}
+                            <li>
+                            <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                                General APIs
+                            </a>
+                        </li>
+                        {{end}}
+                    {{end}}
+                {{end}}
+            {{end}}
+            {{if not $haveApi}}
+                <li><samp>None</samp></li>
+            {{end}}
+            </ul>
+        
+        <strong>Bluescape v2 APIs</strong>
         <ul class="unindent-side-nav-ul">
-            <li><a href="/docs/page/reference">Go to current API version</a></li>
+            {{range $i, $element := .S.K8sStore.Slice }}
+            {{$svc := $element.Service}}
+            {{$class := ""}}
+            {{if and (eq $.CurrentService $svc.Name) (eq $.CurrentNamespace $svc.Namespace)}}
+                {{$class = "c-nav__selected"}}
+            {{end}}
+            {{if $element.Metadata.HasDoc}}
+                {{if or (eq $svc.Name "collab") (eq $svc.Name "identity-api") (eq $svc.Name "portal-api") (eq $svc.Name "listener-api") (eq $svc.Name "service")}}
+                    {{if (eq $svc.Name "collab")}}
+                        <li>
+                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                            Workspace Content APIs
+                        </a>
+                    </li>
+                    {{end}}
+                    {{if (eq $svc.Name "identity-api")}}
+                        <li>
+                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                            Identity APIs
+                        </a>
+                    </li>
+                    {{end}}
+                    {{if (eq $svc.Name "portal-api")}}
+                        <li>
+                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                            General APIs
+                        </a>
+                    </li>
+                    {{end}}
+                    {{if (eq $svc.Name "listener-api")}}
+                        <li>
+                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                            Listener APIs
+                        </a>
+                    </li>
+                    {{end}}
+                    {{if (eq $svc.Name "service")}}
+                        <li>
+                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
+                            General APIs
+                        </a>
+                    </li>
+                    {{end}}
+                {{end}}
+            {{end}} 
+        {{end}}
+        {{if not $haveApi}}
+            <li><samp>None</samp></li>
+        {{end}}
         </ul>
-    </div>
-    <br />
     {{end}}
     {{if or (eq $.CurrentPage "guides") (eq $.CurrentPage "app-auth") (eq $.CurrentPage "basic-api-requests") (eq $.CurrentPage "get-list-of-workspaces") (eq $.CurrentPage "get-all-images-from-a-workspace") (eq $.CurrentPage "create-canvas-and-add-note") (eq $.CurrentPage "upload-from-local-drive-into-a-canvas")  (eq $.CurrentPage "traits-api") (eq $.CurrentPage "attachments-api") (eq $.CurrentPage "listeners-api") (eq $.CurrentPage "wall-apis") (eq $.CurrentPage "what-is-new-in-v3") }}
     <div>
