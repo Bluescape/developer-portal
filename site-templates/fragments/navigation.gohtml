@@ -76,18 +76,11 @@
                 {{$class = "c-nav__selected"}}
             {{end}}
             {{if $element.Metadata.HasDoc}}
-                {{if or (eq $svc.Name "collab") (eq $svc.Name "identity-api") (eq $svc.Name "portal-api") (eq $svc.Name "listener-api") (eq $svc.Name "service")}}
+                {{if or (eq $svc.Name "collab") (eq $svc.Name "portal-api") (eq $svc.Name "listener-api")}}
                     {{if (eq $svc.Name "collab")}}
                         <li>
                         <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
                             Workspace Content APIs
-                        </a>
-                    </li>
-                    {{end}}
-                    {{if (eq $svc.Name "identity-api")}}
-                        <li>
-                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
-                            Identity APIs
                         </a>
                     </li>
                     {{end}}
@@ -102,13 +95,6 @@
                         <li>
                         <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
                             Listener APIs
-                        </a>
-                    </li>
-                    {{end}}
-                    {{if (eq $svc.Name "service")}}
-                        <li>
-                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
-                            General APIs
                         </a>
                     </li>
                     {{end}}
@@ -164,18 +150,11 @@
                 {{$class = "c-nav__selected"}}
             {{end}}
             {{if $element.Metadata.HasDoc}}
-                {{if or (eq $svc.Name "collab") (eq $svc.Name "identity-api") (eq $svc.Name "portal-api") (eq $svc.Name "listener-api") (eq $svc.Name "service")}}
+                {{if or (eq $svc.Name "collab") (eq $svc.Name "portal-api") (eq $svc.Name "listener-api")}}
                     {{if (eq $svc.Name "collab")}}
                         <li>
                         <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
                             Workspace Content APIs
-                        </a>
-                    </li>
-                    {{end}}
-                    {{if (eq $svc.Name "identity-api")}}
-                        <li>
-                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
-                            Identity APIs
                         </a>
                     </li>
                     {{end}}
@@ -190,13 +169,6 @@
                         <li>
                         <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
                             Listener APIs
-                        </a>
-                    </li>
-                    {{end}}
-                    {{if (eq $svc.Name "service")}}
-                        <li>
-                        <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
-                            General APIs
                         </a>
                     </li>
                     {{end}}
