@@ -1,3 +1,17 @@
+<p>
+    <table style="background-color: #FFFFA5">
+        <tr>
+            <td style="padding:15px">   
+                    <b><center>NOTICE</center>
+                        <br />
+                        <font size="+5"><center>THIS IS NOT READY FOR QA TESTING!!!</center></font>
+                    <br /> <br />
+                    </b>
+            </td>
+        </tr>
+    </table>
+</p> 
+
 <header id="home-header" class="page-header">
   <div class="container">
     <div class="row">
