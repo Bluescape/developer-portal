@@ -254,19 +254,14 @@
     </td>
   </tr>
   <tr>
-    <td><b>TODO</b>How to upload content into the workspaces.<br />This is a 2 steps process:
-      <ul> 
-        <li>crate an upload steam (?)</li> 
-        <li>assign the stream to an object</li> 
-      </ul>
-    </td>
-    <td></td>
-    <td></td>
+    <td>How to get the content of a Canvas</td>
+    <td>GET /v2/workspaces/{workspace_uid}/elements/canvas/{canvas_uid}</td>
+    <td>GET /v3/workspaces/{workspaceId}/elements?canvas={canvasID}</td>
   </tr>
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>How to get the content of a Canvas, for a specific object type</td>
+    <td>GET /v2/workspaces/{workspace_uid}/elements/canvas/{canvas_uid}/{object_type}</td>
+    <td>GET /v3/workspaces/{workspaceId}/elements?type={object_type}&canvas={canvasID}</td>
   </tr>
   <tr>
     <td></td>
