@@ -264,6 +264,11 @@
     <td>GET /v3/workspaces/{workspaceId}/elements?type={object_type}&canvas={canvasID}</td>
   </tr>
   <tr>
+    <td>How to create an object in a canvas, e.g. a browser</td>
+    <td>POST /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/browsers</td>
+    <td>POST /v3/workspaces/{workspaceId}/elements?canvas={canvasId}, provide "type": "Note" in payload</td>
+  </tr>
+  <tr>
     <td></td>
     <td></td>
     <td></td>
