@@ -9,7 +9,7 @@
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>/api/v3/workspaces/&lt;workspaceId&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -40,7 +40,7 @@
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>/api/v3/workspaces/&lt;workspaceId&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -113,13 +113,13 @@ Required modules:
 token = '&lt;SET_TOKEN&gt;'        
 
 if __name__ == "__main__":
-    portal = '[[apiHost]]' 
+    portal = '<script type="text/javascript">document.write("https://" + window.location.hostname); </script>' 
     workspaceId = '&lt;SET_WORKSPACE_ID&gt;'  # REMEMBER TO ADD WORKSPACE ID
 
     # Create new Canvas
     # Path:     /v3/workspaces/&lt;workspaceId&gt;/elements
 
-    API_endpoint = '/v3/workspaces/' + workspaceId + '/elements'
+    API_endpoint = '/api/v3/workspaces/' + workspaceId + '/elements'
 
     timestamp = datetime.datetime.now()
 
@@ -145,7 +145,7 @@ if __name__ == "__main__":
     # Add a Note to a canvas  
     # Path: 	/v3/workspaces/&lt;workspaceId&gt;/elements
 
-    API_endpoint = '/v3/workspaces/' + workspaceId + '/elements'
+    API_endpoint = '/api/v3/workspaces/' + workspaceId + '/elements'
     params = ''
 
     timestamp = datetime.datetime.now()
@@ -191,14 +191,14 @@ website: https://github.com/axios/axios
 var axios = require('axios');
 
 const token = '&lt;SET_TOKEN&gt;';
-const portal = '[[apiHost]]';
+const portal = '<script type="text/javascript">document.write("https://" + window.location.hostname); </script>';
 const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
 const api_version = 'v3';
 var api_endpoint = '/workspaces/' + workspaceId + '/elements';
 
 function runRequest(portal,api_version,api_endpoint,the_method,data_load) {
     var request_values = {
-        url : portal + '/' + api_version + api_endpoint,
+        url : portal + '/api/' + api_version + api_endpoint,
         method : the_method ,
         headers : {
             'Authorization': "Bearer " + token,
@@ -234,7 +234,7 @@ async function runAPIRequests() {
         
         var canvas_creation = await runRequest(portal,api_version,api_endpoint,the_method,data_load);
 
-        const canvasId = canvas_creation.data.id;
+        const canvasId = canvas_creation.data.data.id;
         console.log("canvas ID: " + canvasId);
 
         // Now add a Note to the Canvas
@@ -251,7 +251,7 @@ async function runAPIRequests() {
 
         var note_creation = await runRequest(portal,api_version,api_endpoint,the_method,data_load);
 
-        var noteId = note_creation.data.id;
+        var noteId = note_creation.data.data.id;
         console.log('Note ID: ' + noteId);
 
     } catch (error) {

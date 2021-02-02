@@ -1,5 +1,19 @@
 <h1>Listeners APIs</h1>
-<h1>*NOTE: These are being replaced with GraphQL subscriptions in V3</h1>
+<p>
+    <table style="background-color: #FFFFA5">
+        <tr>
+            <td style="padding:15px">   
+                    <b><center>NOTICE</center>
+                        <br />
+                        The version <span class="pre">/v3/</span> beta release will not include Listeners. GraphQL Subscriptions will be replacing Listeners in a future release.
+                    <br /> <br />
+                    </b>
+            </td>
+        </tr>
+    </table>
+</p> 
+
+<!--
 
 <p>
     Bluescape Listeners, commonly called webhooks, enable applications to receive notifications via HTTP POST whenever
@@ -774,4 +788,5 @@ app.post("/", (req, res, next) => {
 </p>
 
 <br />
+-->
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.

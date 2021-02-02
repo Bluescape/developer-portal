@@ -40,11 +40,14 @@
     <img class="img-responsive center-block" src="/docs/assets/images/oauth.png" width="600">
 </center>
 
-<a name="step-1_authorize"><h2>Step 1: Direct the User to Bluescape for Authorization</h2></a>
+<p>
+<font size="+5"><center>TODO: Update steps below once new app registration workflow has been provided to us.</center></font>
+</p>
 
+<a name="step-1_authorize"><h2>Step 1: Direct the User to Bluescape for Authorization</h2></a>
 <p>
     Applications requesting an access token should direct users to the authorization page at:
-<pre>[[apiHost]]/authorize</pre>
+<pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/authorize</pre>
 </p>
 
 <p>
@@ -145,11 +148,10 @@ When users arrive at the authorization page, they will be asked to log in to the
 
 <p>
         Example, replace <b>&lt;client_id&gt;</b> with your Client ID and <b>&lt;redirect_url&gt;</b> with the redirect URL you configured in your Application:<br />
-<pre>TEMP URL:  https://api.apps.us.bluescape.com/authorize?response_type=token&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>
+<pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/authorize?response_type=token&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>
         
         After the login and authorization of the application, you will be redirected to a new URL. This is an example of the expected return URL that contains the Token:<br />
-        <pre>TEMP URL:
-[[developerPortalHost]]/tools/access-token/callback#<b>access_token</b>=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6WyIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZiYjY5MTQ5MjliZjhjIiwiNmM0MzcyMjNlM2IwOTYyYzMxZjI5ZTc5ZjBiZmRhMjllYTFhNjg5YyIsIjM2ZjhjZjUxNzVlNGZhYWE0ZjA2NzE4NDA0YjdkZjk0ZGRjMGQ4YWUiLCIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZ1YjY5MTQ5MjljZTlkIl0sImV4cCI6MTU2NzAyNzE5NiwiYXpwIjoiODlhY2NlODIiLCJzY29wZXMiOl3idXNlciJdLCJhcHBfYXV0aG9yaXphdGlvbl9pZCI6MjA1MSwibmJmIPoxNTY1ODE3NTg8LCJpYXQiOjE1NjU4MTc1OTYsImlzcyI6Imh0dHBzOi8vaWRlbnRp4XktYXBpLmFwcHMudOMuYmx1ZXNjYXBlLmNvbSJ9.5N1SpTv1FmxzhQujEY5kqjzJBTrWWnts2r9ilbm9Jis&<b>token_type</b>=Bearer
+        <pre><script type="text/javascript">document.write("https://" + window.location.hostname);</script>/tools/access-token/callback#<b>access_token</b>=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6WyIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZiYjY5MTQ5MjliZjhjIiwiNmM0MzcyMjNlM2IwOTYyYzMxZjI5ZTc5ZjBiZmRhMjllYTFhNjg5YyIsIjM2ZjhjZjUxNzVlNGZhYWE0ZjA2NzE4NDA0YjdkZjk0ZGRjMGQ4YWUiLCIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZ1YjY5MTQ5MjljZTlkIl0sImV4cCI6MTU2NzAyNzE5NiwiYXpwIjoiODlhY2NlODIiLCJzY29wZXMiOl3idXNlciJdLCJhcHBfYXV0aG9yaXphdGlvbl9pZCI6MjA1MSwibmJmIPoxNTY1ODE3NTg8LCJpYXQiOjE1NjU4MTc1OTYsImlzcyI6Imh0dHBzOi8vaWRlbnRp4XktYXBpLmFwcHMudOMuYmx1ZXNjYXBlLmNvbSJ9.5N1SpTv1FmxzhQujEY5kqjzJBTrWWnts2r9ilbm9Jis&<b>token_type</b>=Bearer
         </pre>
 From this URL you need to use the  access_token value, this is your Token:<br />
 <pre>
@@ -196,10 +198,10 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6
 
 <p>
     Example, replace <b>&lt;client_id&gt;</b> with your Client ID and <b>&lt;redirect_url&gt;</b> with the redirect URL you configured in your Application:<br />
-    <pre>TEMP URL https://api.apps.us.bluescape.com/authorize?response_type=<b>code</b>&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>
+    <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/authorize?response_type=<b>code</b>&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>
     
     After the login and authorization the application, you will be redirected to a new URL that contains the Access Code. Example:
-<pre>TEMP URL[[developerPortalHost]]/tools/access-token/callback?code=BFyQPkmEYeSmWP1XYmeiXRJtdEgJLY</pre>
+<pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/tools/access-token/callback?code=BFyQPkmEYeSmWP1XYmeiXRJtdEgJLY</pre>
     
     Here the Access Code is <span class="pre">BFyQPkmEYeSmWP1XYmeiXRJtdEgJLY</span>            
 </p>
@@ -219,7 +221,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6
         <tr>
                 <td>authorization-token-endpoint</td>
                 <td>Required</td>
-                <td>For this example, use:TEMP URL https://identity.apps.us.bluescape.com/api/v2/oauth2/token<br />
+                <td>For this example, use: <script type="text/javascript">document.write("https://" + window.location.hostname); </script>/api/v2/oauth2/token<br />
 
                         For Private Instances, check your Developer Portal Website > Reference> URLs for the OAuth Authorization URL.</td>
             </tr>
@@ -339,7 +341,7 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
     <tr>
             <td>authorization-token-endpoint</td>
             <td>Required</td>
-            <td>For this example, use: TEMP URL https://identity.apps.us.bluescape.com/api/v2/oauth2/token<br />
+            <td>For this example, use: <script type="text/javascript">document.write("https://" + window.location.hostname); </script>/api/v2/oauth2/token<br />
                     For Private Instances, check your Developer Portal Website > Reference> URLs for the OAuth Authorization URL.</td>
         </tr>
         <tr>
@@ -595,7 +597,7 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
 <a name="appendices"><h2>Appendices</h2></a>
 <a name="appendix1"><h3>Appendix 1: Create a new Application</h3></a>
 <ul>
-    <li>Go to the Developer Portal website: <a href="[[developerPortalHost]]">[[developerPortalHost]]</a></li>
+    <li>Go to the Developer Portal website: <a href="../"><script type="text/javascript">document.write("https://" + window.location.hostname); </script></a></li>
     <li>Sign in: use Single Sign On login.</li>
     <li>Go to top right link with your email address link, click it. In the drop down menu, click <b>Applications</b> <br />
         <img class="img-responsive center-block" src="/docs/assets/images/user-menu.png">
@@ -622,7 +624,7 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
 <ul>
     <li>Go to the Developer Portal website and log in</li>
         <ul>
-            <li>The URL is <a href="[[developerPortalHost]]" target="blank">[[developerPortalHost]]</a> or the URL assigned to your Private Instance</li>
+            <li>The URL is <a href="../" target="blank"><script type="text/javascript">document.write("https://" + window.location.hostname); </script></a> or the URL assigned to your Private Instance</li>
         </ul>
     <li>Go to top right link with your email address link, click it. In the drop down menu, click Applications <br />
         <img class="img-responsive center-block" src="/docs/assets/images/user-menu.png">
@@ -650,7 +652,7 @@ An <b>ADMIN user</b> from your organization needs to run this one time process:
         where &lt;redirect_url&gt; is the redirect URL set in the configuration of the application.       
     </li>
     <li>Example:<br />
-        <pre>https://api.apps.us.bluescape.com/authorize?response_type=code&client_id=4563bA3&redirect_uri=[[developerPortalHost]]/tools/access-token/callback&org_id=wOLPxsWt3SLOm2UQbbLy&scope=org</pre>        
+        <pre>https://api.apps.us.bluescape.com/authorize?response_type=code&client_id=4563bA3&redirect_uri=<script type="text/javascript">document.write("https://" + window.location.hostname); </script>/tools/access-token/callback&org_id=wOLPxsWt3SLOm2UQbbLy&scope=org</pre>        
     </li>
     <li>You will need to login and authorize the application, using the credentials of an <b>ADMIN user</b> for the organization specified in the URL</li>
     <li>You will get back an Access Code you can use to generate the Access Code and Refresh Token.</li>
