@@ -264,6 +264,16 @@
     <td>GET /v3/workspaces/{workspaceId}/elements?type={object_type}&canvas={canvasID}</td>
   </tr>
   <tr>
+    <td>How to create an object in a canvas, e.g. a browser</td>
+    <td>POST /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/browsers</td>
+    <td>POST /v3/workspaces/{workspaceId}/elements?canvas={canvasId}<br /> Provide "type": "Browser" in payload</td>
+  </tr>
+  <tr>
+    <td>How to get a my user's list of workspaces</td>
+    <td>In V2 it is displayed in the response body of GET /v2/users/me or GET /v2/users/me/workspaces </td>
+    <td>GET /v3/users/me/workspaces</td>
+  </tr>
+  <tr>
     <td></td>
     <td></td>
     <td></td>
