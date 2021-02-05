@@ -13,7 +13,7 @@
   }
 </style>
 
-<p><h1>What is new in V3? (IN PROGRESS)</h1>
+<p><h1>What is new in V3? (IN PROGRESS - DO NOT REVIEW YET)</h1>
 <p>This page covers the new features in V3, as a comparison with V2.</p></p>
 
 <!-- REST APIs -->
@@ -148,7 +148,8 @@
   <tr>
     <td>
       How to specify the position of objects in the workspace.<br /><br />Example
-      of the request and response body.
+      of the request and response body.<br />
+    <b>[[TODO: probably will not be like this, waiting for confirmation ,br/>probably delete this row and fix examples everywhwere]]
     </td>
     <td>
       {<br />
@@ -254,19 +255,24 @@
     </td>
   </tr>
   <tr>
-    <td><b>TODO</b>How to upload content into the workspaces.<br />This is a 2 steps process:
-      <ul> 
-        <li>crate an upload steam (?)</li> 
-        <li>assign the stream to an object</li> 
-      </ul>
-    </td>
-    <td></td>
-    <td></td>
+    <td>How to get the content of a Canvas</td>
+    <td>GET /v2/workspaces/{workspace_uid}/elements/canvas/{canvas_uid}</td>
+    <td>GET /v3/workspaces/{workspaceId}/elements?canvas={canvasID}</td>
   </tr>
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>How to get the content of a Canvas, for a specific object type</td>
+    <td>GET /v2/workspaces/{workspace_uid}/elements/canvas/{canvas_uid}/{object_type}</td>
+    <td>GET /v3/workspaces/{workspaceId}/elements?type={object_type}&canvas={canvasID}</td>
+  </tr>
+  <tr>
+    <td>How to create an object in a canvas, e.g. a browser</td>
+    <td>POST /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/browsers</td>
+    <td>POST /v3/workspaces/{workspaceId}/elements?canvas={canvasId}<br /> Provide "type": "Browser" in payload</td>
+  </tr>
+  <tr>
+    <td>How to get a my user's list of workspaces</td>
+    <td>In V2 it is displayed in the response body of GET /v2/users/me or GET /v2/users/me/workspaces </td>
+    <td>GET /v3/users/me/workspaces</td>
   </tr>
   <tr>
     <td></td>

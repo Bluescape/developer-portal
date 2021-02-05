@@ -1,6 +1,7 @@
 <!-- JavaScripts -->
 
 <script type="text/javascript">var appStr = "Applications"; var appsLink=appStr.link("https://admin." + window.location.hostname.split('.').splice(1).join('.') + "/applications/all_organizations");</script>
+<script type="text/javascript">var identityStr="https://identity-api." + window.location.hostname.split('.').splice(1).join('.');</script>
 
 <p><h1>Application Authorization</h1>
 <p>
@@ -44,10 +45,6 @@
     <img class="img-responsive center-block" src="/docs/assets/images/oauth.png" width="600">
 </center></p>
 
-<p>
-<font size="+5"><center>TODO: Update steps below once new app registration workflow has been provided to us.</center></font>
-</p>
-
 <p><a name="step-1_authorize"><h2>Step 1: Direct the User to Bluescape for Authorization</h2></a>
 <p>
     Applications requesting an access token should direct users to the authorization page at:
@@ -82,7 +79,7 @@ The following parameters should be URL-encoded and passed in the query string:
     
 </p>
 <p>
-The <span class="pre">client_id</span> can be obtained from the <script type="text/javascript">document.write(appsLink);</script>  page. After you sign in, go to the left list of options and select <b>Applications</b>. Here you will be able to create and generate new client_ids for your applications (see <a href="#appendix1" target="_blank">Appendix 1</a>). Use the value in the <b>Client ID</b> field as your <span class="pre">client_id</span> for this authentication process. See the reference in the image below.
+The <span class="pre">client_id</span> can be obtained from the <script type="text/javascript">document.write(appsLink);</script>  page. After you sign in, go to the <b>Applications</b> option in the left list. Here you will be able to create and generate new client_ids for your applications (see <a href="#appendix1" target="_blank">Appendix 1</a>). Use the value in the <b>Client ID</b> field as your <span class="pre">client_id</span> for this authentication process. See the reference in the image below.
 </p>
 <p>
     <center>
@@ -270,7 +267,7 @@ curl -w "%{\\nhttp_code}\\n" -X POST \
 <p>
     Example of the request: 
 <pre>curl -w "%{http_code}\\n" -X POST \
-https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
+<script type="text/javascript">document.write(identityStr);</script>/api/v2/oauth2/token \
     -H 'Content-Type: application/json' \
     -d '{
     "grant_type":"authorization_code",
@@ -390,7 +387,7 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
 <p>
     Example of request to get Access Token using Refresh Tokens: 
     <pre>curl -w "\\n%{http_code}\\n" -X POST \
-    https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
+    <script type="text/javascript">document.write(identityStr);</script>/api/v2/oauth2/token \
         -H 'Content-Type: application/json' \
         -d '{
         "grant_type":"refresh_token",  
@@ -450,7 +447,7 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
 
                 <img class="img-responsive center-block" src="/docs/assets/images/application-info.png"><br />
                 For the image above, the correct value for <b>redirect_uri</b> is <b>http://localhost/callback</b>, and the full URL to trigger the Access Token generation would be:
-                <pre>https://api.apps.us.bluescape.com/authorize?response_type=token&client_id=59923cd0&<b>redirect_uri</b>=<b>http://localhost/callback</b></pre>
+                <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/authorize?response_type=token&client_id=59923cd0&<b>redirect_uri</b>=<b>http://localhost/callback</b></pre>
             
             </td>
         </tr>
@@ -537,7 +534,7 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
 <p>
     Example HTTP request:
 
-    <pre>curl -X GET https://api.apps.us.bluescape.com/session/user \
+    <pre>curl -X GET <script type="text/javascript">document.write("https://" + window.location.hostname); </script>/session/user \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6pJ9.eyJpc...'</pre>
 </p>
 
@@ -583,7 +580,7 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
 <p>        
     Authorization URL
     
-    <pre>https://api.apps.us.bluescape.com/authorize?client_id=a33e5f767&redirect_uri=http%3A%2F%2Fmy-bluescape-app.io%2Foauth2%2Fcallback</pre>
+    <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/authorize?client_id=a33e5f767&redirect_uri=http%3A%2F%2Fmy-bluescape-app.io%2Foauth2%2Fcallback</pre>
 </p>
 
 <p>
@@ -602,45 +599,44 @@ https://identity-api.apps.us.bluescape.com/api/v2/oauth2/token \
 <p><a name="appendices"><h2>Appendices</h2></a>
 <a name="appendix1"><h3>Appendix 1: Create a new Application</h3></a>
 <ul>
-    <li>Go to the Developer Portal website: <a href="../"><script type="text/javascript">document.write("https://" + window.location.hostname); </script></a></li>
-    <li>Sign in: use Single Sign On login.</li>
-    <li>Go to top right link with your email address link, click it. In the drop down menu, click <b>Applications</b> <br />
+    <li>Go to your application list: <a href="../"><script type="text/javascript">document.write(appsLink); </script></a></li>
+    <li>Sign in, if you haven't already.</li>
+    <li>In the left menu, select "<b>Applications</b>" <br />
         <img class="img-responsive center-block" src="/docs/assets/images/user-menu.png">
     </li>
-    <li>In the New window, click “New Application” button</li>
-    <li>Fill out the field fields:</li>
-        <ul>
-            <li>Set the value for Whitelist Domains and Redirect URI the same. This is the redirect URL you will use when generating the tokens <br />
+    <li>Click the “<b>New Application</b>” button</li>
+    <li>Fill out the required fields:</li>
+            <br />
                 <img class="img-responsive center-block" src="/docs/assets/images/app-basic-info.png"><br>
-            </li>
-            <li>Save</li>
-        </ul>
+    <li>Save</li>
     <li>The new application is created: <br />
-        <img class="img-responsive center-block" src="/docs/assets/images/application-info.png"><br>
+        <img class="img-responsive center-block" src="/docs/assets/images/applications.png"><br>
     </li>
     <li>The main data points you will need from here are the <b>Client ID</b> and <b>Client Secret</b></li>
         <ul>
-            <li>It is critical that you keep the <b>Client Secret</b> a secret. You can always get a new <b>Client Secret</b> by clicking the <b>Regenerate</b> button, however this operation will void the previously used <b>Client Secret</b>, so you will need to update the new <b>Client Secret</b> in any place where it is being used.</li>
+            <li>To view the <b>Client Secret</b>, click the gear to the right of the application <img class="img-responsive center-block" src="/docs/assets/images/gear.png"> Then, the eye icon <img class="img-responsive center-block" src="/docs/assets/images/eye.png"> This will display your client secret.</li>
+        </ul>
+        <ul>
+            <li>It is critical that you keep the <b>Client Secret</b> a secret. You can always get a new <b>Client Secret</b> by clicking the <b>Regenerate</b> button, <img class="img-responsive center-block" src="/docs/assets/images/regenerate.png"> This operation will void the previously used <b>Client Secret</b>, so you will need to update the new <b>Client Secret</b> in any place where it is being used.</li>
         </ul><br>
 </ul></p>
 
 <p><h3>Appendix 2: How to get the Client Secret</h3>
    How to get the Client Secret:<br>
 <ul>
-    <li>Go to the Developer Portal website and log in</li>
-        <ul>
-            <li>The URL is <a href="../" target="blank"><script type="text/javascript">document.write("https://" + window.location.hostname); </script></a> or the URL assigned to your Private Instance</li>
-        </ul>
-    <li>Go to top right link with your email address link, click it. In the drop down menu, click Applications <br />
+    <li>Go to your application list: <a href="../"><script type="text/javascript">document.write(appsLink); </script></a></li>
+    <li>Sign in, if you haven't already.</li>
+    <li>In the left menu, select "<b>Applications</b>" <br />
         <img class="img-responsive center-block" src="/docs/assets/images/user-menu.png">
     </li>
-    <li>In the new window you get a list of Applications. Click the link with the name of the application you are using for this Token method <br />
-        <img class="img-responsive center-block" src="/docs/assets/images/application-info.png">
-    </li>
+    <li>To view the <b>Client Secret</b>, click the gear to the right of the application <img class="img-responsive center-block" src="/docs/assets/images/gear.png"> Then, the eye icon <img class="img-responsive center-block" src="/docs/assets/images/eye.png"> This will display your client secret.</li><br>
+    <li>It is critical that you keep the <b>Client Secret</b> a secret. You can always get a new <b>Client Secret</b> by clicking the <b>Regenerate</b> button, <img class="img-responsive center-block" src="/docs/assets/images/regenerate.png"> This operation will void the previously used <b>Client Secret</b>, so you will need to update the new <b>Client Secret</b> in any place where it is being used.</li>
+    <br />
+                <img class="img-responsive center-block" src="/docs/assets/images/edit-application.png">
     <li> From here you can get:</li>
         <ul>
             <li><span class="pre">client_id</span>: value of Client ID</li>
-            <li><span class="pre">client_secret</span>: value of Client Secret after clicking the Show button</li>
+            <li><span class="pre">client_secret</span>: value of Client Secret after clicking the Show button after clicking the eye icon <img class="img-responsive center-block" src="/docs/assets/images/eye.png"></li>
         </ul><br>
 </ul></p>
 
@@ -651,11 +647,11 @@ You need to whitelist the application you will use to generate the tokens. <br /
 
 <ul>
     <li>Request:<br />
-        <pre>https://api.apps.us.bluescape.com/authorize?response_type=code&client_id=<b>&lt;app_id_to_whitelist&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b>&org_id=<b>&lt;organization_uid&gt;</b>&<b>scope=org</b></pre> <br />
+        <pre><script type="text/javascript">document.write("https://" + window.location.hostname);</script>/authorize?response_type=code&client_id=<b>&lt;app_id_to_whitelist&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b>&org_id=<b>&lt;organization_id&gt;</b>&<b>scope=org</b></pre> <br />
         where &lt;redirect_url&gt; is the redirect URL set in the configuration of the application.       
     </li>
     <li>Example:<br />
-        <pre>https://api.apps.us.bluescape.com/authorize?response_type=code&client_id=4563bA3&redirect_uri=<script type="text/javascript">document.write("https://" + window.location.hostname); </script>/tools/access-token/callback&org_id=wOLPxsWt3SLOm2UQbbLy&scope=org</pre>        
+        <pre><script type="text/javascript">document.write("https://" + window.location.hostname);</script>/authorize?response_type=code&client_id=4563bA3&redirect_uri=<script type="text/javascript">document.write("https://" + window.location.hostname); </script>/tools/access-token/callback&org_id=wOLPxsWt3SLOm2UQbbLy&scope=org</pre>        
     </li>
     <li>You will need to login and authorize the application, using the credentials of an <b>ADMIN user</b> for the organization specified in the URL</li>
     <li>You will get back an Access Code you can use to generate the Access Code and Refresh Token.</li>
@@ -664,11 +660,17 @@ You need to whitelist the application you will use to generate the tokens. <br /
     How to obtain the Organization ID:
 <ul>
     <li>Go to Bluescape, log in as the user that created the application.</li>
-    <li>Click the User icon on the left column:<br />
-        <img class="img-responsive center-block" src="/docs/assets/images/user-view.png">
+    <li>Click the Admin button in the top right:<br />
+        <img class="img-responsive center-block" src="/docs/assets/images/admin.png">
     </li>
-    <li>Inspect the URL in the browser: it contains the organization UID. example: <span class="pre">https://portal.apps.us.bluescape.com/organizations/wOLPxsWt3SLOm2UQbbLy/users</span>, 
-        where <span class="pre">wOLPxsWt3SLOm2UQbbLy</span> is the organization UID</li>
+    <li>Click on Settings on the left menu:<br />
+        <img class="img-responsive center-block" src="/docs/assets/images/settings.png">
+    </li> 
+    <li>Select the organization from the dropdown at the top:<br />
+        <img class="img-responsive center-block" src="/docs/assets/images/org.png">
+    </li> 
+    <li>Inspect the URL in the browser; it contains the organization ID. example: <span class="pre"><script type="text/javascript">document.write("https://admin." + window.location.hostname.split('.').splice(1).join('.') + "/settings/wOLPxsWt3SLOm2UQbbLy"); </script></span>, 
+        where <span class="pre">wOLPxsWt3SLOm2UQbbLy</span> is the organization ID</li>
 </ul> 
 
 <p><br />

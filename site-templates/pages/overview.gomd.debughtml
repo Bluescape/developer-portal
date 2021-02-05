@@ -33,10 +33,10 @@
     </p>
 
     <ol>
-      <li>Create a developer <a href="sign-up-url">account</a></li>
-      <li>Create an <a href="create-app-url">application</a></li>
-      <li>Implement the <a href="/guides/app-auth">OAuth flow</a></li>
-      <li>Issue your <a href="/guides/basic-api-requests">first requests</a></li>
+      <li>Log in to your Bluescape account</li>
+      <li>Create an <script type="text/javascript">var appStr = "application"; var appsLink=appStr.link("https://admin." + window.location.hostname.split('.').splice(1).join('.') + "/applications/all_organizations"); document.write(appsLink);</script></li>
+      <li>Implement the <a href="/docs/page/app-auth">OAuth flow</a></li>
+      <li>Issue your <a href="/docs/page/basic-api-requests">first requests</a></li>
     </ol>
 
   </div>
