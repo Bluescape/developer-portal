@@ -62,7 +62,7 @@
     For example, to view all the workspaces that a user can access, make the following change:<br />
 
     <b>Previous format:</b><br />
-    <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/v2/users/me/workspaces</pre>
+    <pre>https://api.apps.us.bluescape.com/v2/users/me/workspaces</pre>
 </p>   
 
 <p>
@@ -74,7 +74,7 @@
     To add a new canvas to a workspace, make the following change:<br />
     
     <b>Previous format:</b><br />
-    <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/v2/workspaces/&lt;<b>workspace_UID</b>&gt;/elements/canvas</pre>    
+    <pre>https://api.apps.us.bluescape.com/v2/workspaces/&lt;<b>workspace_UID</b>&gt;/elements/canvas</pre>    
 </p>
 
 <p>
