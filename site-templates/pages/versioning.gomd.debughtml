@@ -59,7 +59,7 @@
     
 
 <p>      
-    For example, to view all the workspaces that a user can access, make the following change:<br />
+    For example, to view all the workspaces that a user can access, make the following change (<b>note the addition of <span class="pre">/api</span> in V3</b>):<br />
 
     <b>Previous format:</b><br />
     <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/v2/users/me/workspaces</pre>
@@ -67,11 +67,11 @@
 
 <p>
     <b>New format:</b><br />
-    <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/v3/users/me/workspaces</pre>
+    <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/api/v3/users/me/workspaces</pre>
 </p>
 
 <p>
-    To add a new canvas to a workspace, make the following change:<br />
+    To add a new canvas to a workspace, make the following change (<b>note the addition of <span class="pre">/api</span> in V3</b>):<br />
     
     <b>Previous format:</b><br />
     <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/v2/workspaces/&lt;<b>workspace_UID</b>&gt;/elements/canvas</pre>    
@@ -79,7 +79,7 @@
 
 <p>
     <b>New format (note the new addition of <span class="pre">type</span> and updated <span class="pre">Id</span> field in the path):</b><br />
-    <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/v3/workspaces/&lt;<b>workspaceId</b>&gt;/elements?type=Canvas</pre>
+    <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/api/v3/workspaces/&lt;<b>workspaceId</b>&gt;/elements?type=Canvas</pre>
 </p>
 
 <p>
