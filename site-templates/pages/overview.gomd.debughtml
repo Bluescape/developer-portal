@@ -1,9 +1,6 @@
 <div class="row">
 
   <div class="col-md-8 content">
-
-    <h1>Overview</h1>
-
     <p>The Bluescape API is a <a href="/docs/page/reference">REST API</a> that can be accessed through explicit HTTP calls. These APIs expose most of the features available in the Bluescape product. The Bluescape API enables developers to programmatically create, upload, and update content within Bluescape workspaces. Applications are able to pull data and files from external sources like databases, content management systems and cloud storage and push them into Bluescape workspaces with ease. Organizations are free to move beyond the Bluescape web and wall interfaces for integrating the Bluescape visual layer into their collaboration and decision-making processes.</p>
     <!--
     <p>In addition, the Bluescape API enables applications to register <a href="/docs/page/graphql-not-yet-created">GraphQL subscriptions</a> for Bluescape workspaces that will be notified whenever content or comments are created, updated or deleted. Subscriptions are key to integrating Bluescape with the communication platforms that organizations use to keep their project teams connected and informed. Using these GraphQL Subscriptions, developers can easily translate actions taken in Bluescape workspaces into emails, chat messages, database updates, and much more.</p>
@@ -34,7 +31,7 @@
 
     <ol>
       <li>Log in to your Bluescape account</li>
-      <li>Create an <script type="text/javascript">var appStr = "application"; var appsLink=appStr.link("https://admin." + window.location.hostname.split('.').splice(1).join('.') + "/applications/all_organizations"); document.write(appsLink);</script></li>
+      <li>Create an <script type="text/javascript">document.write(appsLinkLower);</script></li>
       <li>Implement the <a href="/docs/page/app-auth">OAuth flow</a></li>
       <li>Issue your <a href="/docs/page/basic-api-requests">first requests</a></li>
     </ol>
