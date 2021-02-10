@@ -17,7 +17,7 @@
 
 <pre>
 <script type="text/javascript">
-    document.write("https://" + window.location.hostname);
+    document.write(apiBaseStr);
 </script>
 </pre>
 
@@ -35,7 +35,7 @@
 
 <pre>
 <script type="text/javascript">
-    document.write("https://" + window.location.hostname + "/api/v3/organizations/&lt;organizationId&gt;/members");
+    document.write(apiBaseStr + "/api/v3/organizations/&lt;organizationId&gt;/members");
 </script>
 </pre>
 
@@ -52,7 +52,7 @@
 
 <pre>
 <script type="text/javascript">
-    document.write("https://" + window.location.hostname + "/api/v3/organizations/eidzMVOsv4peKG-4DLKA/members");
+    document.write(apiBaseStr + "/api/v3/organizations/eidzMVOsv4peKG-4DLKA/members");
 </script>
 </pre>
 
@@ -93,7 +93,7 @@
 </div>
 
 <pre class="lang lang-curl">
-curl -X POST <script type="text/javascript">document.write("https://" + window.location.hostname + "/api/v3/organizations/&lt;SET_ORGANIZATION_ID&gt;/members"); </script> \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr + "/api/v3/organizations/&lt;SET_ORGANIZATION_ID&gt;/members"); </script> \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -109,7 +109,7 @@ curl -X POST <script type="text/javascript">document.write("https://" + window.l
 import requests
 import pprint 
 
-portal = '<script type="text/javascript">document.write("https://" + window.location.hostname); </script>'
+portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
 organizationId = '&lt;SET_ORGANIZATION_ID&gt';
 API_version = 'v3'
 API_endpoint = '/api/' + API_version + '/organizations/' + organizationId + '/members'

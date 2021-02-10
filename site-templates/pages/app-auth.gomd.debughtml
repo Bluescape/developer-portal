@@ -1,8 +1,3 @@
-<!-- JavaScripts -->
-
-<script type="text/javascript">var appStr = "Applications"; var appsLink=appStr.link("https://admin." + window.location.hostname.split('.').splice(1).join('.') + "/applications/all_organizations");</script>
-<script type="text/javascript">var identityStr="https://identity-api." + window.location.hostname.split('.').splice(1).join('.');</script>
-
 <p><h1>Application Authorization</h1>
 <p>
     Applications that want to query the Bluescape API must be authorized to do so by an active Bluescape user.
@@ -48,7 +43,7 @@
 <p><a name="step-1_authorize"><h2>Step 1: Direct the User to Bluescape for Authorization</h2></a>
 <p>
     Applications requesting an access token should direct users to the authorization page at:
-<pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/authorize</pre>
+<pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize</pre>
 </p></p>
 
 <p>
@@ -148,10 +143,10 @@ When users arrive at the authorization page, they will be asked to log in to the
 
 <p>
         Example, replace <b>&lt;client_id&gt;</b> with your Client ID and <b>&lt;redirect_url&gt;</b> with the redirect URL you configured in your Application:<br />
-<pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/authorize?response_type=token&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>
+<pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>
         
         After the login and authorization of the application, you will be greeted with an error page in the browser; this is because you will have been redirected to a new URL, which will contain your token. Look at the the address bar of your browser (where you see your URL) to find your Token. This is an example of the expected return URL that contains the Token:<br />
-        <pre><script type="text/javascript">document.write("https://" + window.location.hostname);</script>/tools/access-token/callback#<b>access_token</b>=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6WyIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZiYjY5MTQ5MjliZjhjIiwiNmM0MzcyMjNlM2IwOTYyYzMxZjI5ZTc5ZjBiZmRhMjllYTFhNjg5YyIsIjM2ZjhjZjUxNzVlNGZhYWE0ZjA2NzE4NDA0YjdkZjk0ZGRjMGQ4YWUiLCIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZ1YjY5MTQ5MjljZTlkIl0sImV4cCI6MTU2NzAyNzE5NiwiYXpwIjoiODlhY2NlODIiLCJzY29wZXMiOl3idXNlciJdLCJhcHBfYXV0aG9yaXphdGlvbl9pZCI6MjA1MSwibmJmIPoxNTY1ODE3NTg8LCJpYXQiOjE1NjU4MTc1OTYsImlzcyI6Imh0dHBzOi8vaWRlbnRp4XktYXBpLmFwcHMudOMuYmx1ZXNjYXBlLmNvbSJ9.5N1SpTv1FmxzhQujEY5kqjzJBTrWWnts2r9ilbm9Jis&<b>token_type</b>=Bearer
+        <pre><script type="text/javascript">document.write(apiBaseStr);</script>/tools/access-token/callback#<b>access_token</b>=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6WyIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZiYjY5MTQ5MjliZjhjIiwiNmM0MzcyMjNlM2IwOTYyYzMxZjI5ZTc5ZjBiZmRhMjllYTFhNjg5YyIsIjM2ZjhjZjUxNzVlNGZhYWE0ZjA2NzE4NDA0YjdkZjk0ZGRjMGQ4YWUiLCIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZ1YjY5MTQ5MjljZTlkIl0sImV4cCI6MTU2NzAyNzE5NiwiYXpwIjoiODlhY2NlODIiLCJzY29wZXMiOl3idXNlciJdLCJhcHBfYXV0aG9yaXphdGlvbl9pZCI6MjA1MSwibmJmIPoxNTY1ODE3NTg8LCJpYXQiOjE1NjU4MTc1OTYsImlzcyI6Imh0dHBzOi8vaWRlbnRp4XktYXBpLmFwcHMudOMuYmx1ZXNjYXBlLmNvbSJ9.5N1SpTv1FmxzhQujEY5kqjzJBTrWWnts2r9ilbm9Jis&<b>token_type</b>=Bearer
         </pre>
 From this URL, you need to retrieve the access_token value. This is your Token:<br />
 <pre>
@@ -195,10 +190,10 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6
 
 <p>
     Example, replace <b>&lt;client_id&gt;</b> with your Client ID and <b>&lt;redirect_url&gt;</b> with the redirect URL you configured in your Application:<br />
-    <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/authorize?response_type=<b>code</b>&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=<b>code</b>&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>
     
     After the login and authorization of the application, you will be redirected to a new URL and greeted with an error page in the browser. The address bar (where you see your URL) contains the Access Code. Example:
-<pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/tools/access-token/callback?code=BFyQPkmEYeSmWP1XYmeiXRJtdEgJLY</pre>
+<pre><script type="text/javascript">document.write(apiBaseStr); </script>/tools/access-token/callback?code=BFyQPkmEYeSmWP1XYmeiXRJtdEgJLY</pre>
     
     Here is the Access Code: <span class="pre">BFyQPkmEYeSmWP1XYmeiXRJtdEgJLY</span>            
 </p>
@@ -219,7 +214,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6
         <tr>
                 <td>authorization-token-endpoint</td>
                 <td>Required</td>
-                <td>For this example, use: <script type="text/javascript">document.write("https://" + window.location.hostname); </script>/api/v2/oauth2/token<br />
+                <td>For this example, use: <script type="text/javascript">document.write(identityStr); </script>/api/v2/oauth2/token<br />
 
                         For Private Instances, check your Developer Portal Website > Reference> URLs for the OAuth Authorization URL.</td>
             </tr>
@@ -250,7 +245,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6
 <p>
     The client request for Access Token and Refresh Token is:
 <pre>
-curl -w "%{\\nhttp_code}\\n" -X POST \
+curl -w "%{http_code}\\n" -X POST \
 <b>&lt;authorization-token-endpoint&gt;</b> \
     -H 'Content-Type: application/json' \
     -d '{
@@ -341,7 +336,7 @@ curl -w "%{\\nhttp_code}\\n" -X POST \
     <tr>
             <td>authorization-token-endpoint</td>
             <td>Required</td>
-            <td>For this example, use: <script type="text/javascript">document.write("https://" + window.location.hostname); </script>/api/v2/oauth2/token<br />
+            <td>For this example, use: <script type="text/javascript">document.write(apiBaseStr); </script>/api/v2/oauth2/token<br />
                     For Private Instances, check your Developer Portal Website > Reference> URLs for the OAuth Authorization URL.</td>
         </tr>
         <tr>
@@ -447,7 +442,7 @@ curl -w "%{\\nhttp_code}\\n" -X POST \
 
                 <img class="img-responsive center-block" src="/docs/assets/images/application-info.png"><br />
                 For the image above, the correct value for <b>redirect_uri</b> is <b>http://localhost/callback</b>, and the full URL to trigger the Access Token generation would be:
-                <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/authorize?response_type=token&client_id=59923cd0&<b>redirect_uri</b>=<b>http://localhost/callback</b></pre>
+                <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=59923cd0&<b>redirect_uri</b>=<b>http://localhost/callback</b></pre>
             
             </td>
         </tr>
@@ -502,27 +497,6 @@ curl -w "%{\\nhttp_code}\\n" -X POST \
     </table>
 
 </p>
-   
-
-<p>
-    Sample Javascript code to extract this fragment from the window.location:
-    <pre>
-    &lt;script&gt;
-      const params = {};
-      const queryString = location.hash.substring(1);
-      const regex = /([^&=]+)=([^&]*)/g;
-    
-      let match;
-    
-      while (match = regex.exec(queryString)) {
-        params[match[1]] = match[2];
-      }
-    
-      const accessToken = params.access_token;
-      alert(accessToken);
-    &lt;/script&gt;
-    </pre>
-</p>
     
 
 <p><a name="step-4_using-the-access-token"><h2>Step 4: Using the Access Token</h2></a>
@@ -534,7 +508,7 @@ curl -w "%{\\nhttp_code}\\n" -X POST \
 <p>
     Example HTTP request:
 
-    <pre>curl -X GET <script type="text/javascript">document.write("https://" + window.location.hostname); </script>/session/user \
+    <pre>curl -X GET <script type="text/javascript">document.write(apiBaseStr); </script>/session/user \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6pJ9.eyJpc...'</pre>
 </p>
 
@@ -580,7 +554,7 @@ curl -w "%{\\nhttp_code}\\n" -X POST \
 <p>        
     Authorization URL
     
-    <pre><script type="text/javascript">document.write("https://" + window.location.hostname); </script>/authorize?client_id=a33e5f767&redirect_uri=http%3A%2F%2Fmy-bluescape-app.io%2Foauth2%2Fcallback</pre>
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?client_id=a33e5f767&redirect_uri=http%3A%2F%2Fmy-bluescape-app.io%2Foauth2%2Fcallback</pre>
 </p>
 
 <p>
@@ -647,11 +621,11 @@ You need to whitelist the application you will use to generate the tokens. <br /
 
 <ul>
     <li>Request:<br />
-        <pre><script type="text/javascript">document.write("https://" + window.location.hostname);</script>/authorize?response_type=code&client_id=<b>&lt;app_id_to_whitelist&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b>&org_id=<b>&lt;organization_id&gt;</b>&<b>scope=org</b></pre> <br />
+        <pre><script type="text/javascript">document.write(apiBaseStr);</script>/authorize?response_type=code&client_id=<b>&lt;app_id_to_whitelist&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b>&org_id=<b>&lt;organization_id&gt;</b>&<b>scope=org</b></pre> <br />
         where &lt;redirect_url&gt; is the redirect URL set in the configuration of the application.       
     </li>
     <li>Example:<br />
-        <pre><script type="text/javascript">document.write("https://" + window.location.hostname);</script>/authorize?response_type=code&client_id=4563bA3&redirect_uri=<script type="text/javascript">document.write("https://" + window.location.hostname); </script>/tools/access-token/callback&org_id=wOLPxsWt3SLOm2UQbbLy&scope=org</pre>        
+        <pre><script type="text/javascript">document.write(apiBaseStr);</script>/authorize?response_type=code&client_id=4563bA3&redirect_uri=<script type="text/javascript">document.write(apiBaseStr); </script>/tools/access-token/callback&org_id=wOLPxsWt3SLOm2UQbbLy&scope=org</pre>        
     </li>
     <li>You will need to login and authorize the application, using the credentials of an <b>ADMIN user</b> for the organization specified in the URL</li>
     <li>You will get back an Access Code you can use to generate the Access Code and Refresh Token.</li>
@@ -669,7 +643,7 @@ You need to whitelist the application you will use to generate the tokens. <br /
     <li>Select the organization from the dropdown at the top:<br />
         <img class="img-responsive center-block" src="/docs/assets/images/org.png">
     </li> 
-    <li>Inspect the URL in the browser; it contains the organization ID. example: <span class="pre"><script type="text/javascript">document.write("https://admin." + window.location.hostname.split('.').splice(1).join('.') + "/settings/wOLPxsWt3SLOm2UQbbLy"); </script></span>, 
+    <li>Inspect the URL in the browser; it contains the organization ID. example: <span class="pre"><script type="text/javascript">document.write(adminStr + "/settings/wOLPxsWt3SLOm2UQbbLy"); </script></span>, 
         where <span class="pre">wOLPxsWt3SLOm2UQbbLy</span> is the organization ID</li>
 </ul> 
 
