@@ -75,7 +75,7 @@ The main differences can be grouped in 2 sections:
     </td>
   </tr>
   <tr>
-    <td>How the elements are listed in the response body when getting elements</td>
+    <td>How the elemenst are listed in the response body when getting elements</td>
     <td>
       V2 response body delivers the elements of the workspace grouped by type:
       <br />
@@ -125,18 +125,18 @@ The main differences can be grouped in 2 sections:
     {
       "id": "5fc7f508e2db9d003ee5ee4c",
       "zIndex": 5,      
-      ...
+      … 
       <b>"type": "Text"</b>,
       "text": "Text - test 1",
-      ...
+      …
     },
     {
       "id": "60249bc63fe6b011cc752a4d",
       "zIndex": 10,      
-      ...
+      … 
       <b>"type": "Canvas"</b>,
       "name": "Top Canvas",
-      ...
+      …
     }
   ]
 }
@@ -146,6 +146,7 @@ The main differences can be grouped in 2 sections:
   <tr>
     <td>
       How to specify the position of objects in the workspace.<br /><br />Example of the request and response body.<br />
+    
     </td>
     <td>
 <pre>In V2: <br/><br />
@@ -159,7 +160,7 @@ The main differences can be grouped in 2 sections:
 </pre>  
     </td>
     <td>
-      In V3 the position of an object is specified within the <b>transform</b> key:<br /><br />
+      In V3 the position of an object is specified within the <i>transform</i> key:<br /><br />
 <pre>
 {
   "type": "Text",
@@ -191,7 +192,7 @@ The main differences can be grouped in 2 sections:
 </pre>
     </td>
     <td>
-      In V3 the dimensions of an object are specified within the <b>style</b> key:<br /><br />
+      In V3 the dimensions of an object are specified within the <i>style</i> key:<br /><br />
 <pre>
 {
   "type": "Text",
@@ -209,7 +210,7 @@ The main differences can be grouped in 2 sections:
   </tr>
 
   <tr>
-    <td>Color schema for elements</td>
+    <td>Color schema <b>[[TO CONFIRM]]</b></td>
     <td>In V2, this is the way the color is specified, for example, for a Text object:<br />
 <pre>
 {
@@ -220,7 +221,7 @@ The main differences can be grouped in 2 sections:
 }
 </pre>   
     </td>
-    <td>In V3 the color scheme is defined using RGBA color model.<br />
+    <td>In V3 the color scheme is defined using RGBA color model<br />
         What is RGBA? You can find a detailed explanation here: <a href="https://en.wikipedia.org/wiki/RGBA_color_model">RGBA Color Model</a> <br /><br />
         The color is defined by:
         <ul>
@@ -229,7 +230,7 @@ The main differences can be grouped in 2 sections:
             <li>B: how much blue</li>
             <li>A: alpha channel, how opaque the color is (0: transparent, 1: solid color)</li>
         </ul>
-        The color properties of an object are specified within the <b>style</b> key, also for a Text object:<br />
+        The color properties of an object are specified within the <i>style</i> key, also for a Text object:<br />
 
 <pre>
 { 
@@ -274,7 +275,7 @@ The main differences can be grouped in 2 sections:
 </pre>
     </td>
     <td>
-      In V3 the dimensions of an object are specified within the <b>style</b> key:<br />
+      In V3 the dimensions of an object are specified within the <i>style</i> key:<br />
 <pre>
 {
   "type": "Text",
