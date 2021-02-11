@@ -1,25 +1,25 @@
-<style>
-  .indent-level-1 {
-    margin-left: 20px;
-    display: block;
+<style>  
+  pre {
+    font-size: 11px;
   }
-  .indent-level-2 {
-    margin-left: 20px;
-    display: block;
-  }
-  .indent-level {
-    margin-left: 20px;
-    display: block;
-  }
+  
 </style>
 
 <h1>What is new in V3? (IN PROGRESS - DO NOT REVIEW YET)</h1>
-<p>This page covers the new features in V3, as a comparison with V2.</p>
+<p>This page covers the new features in V3, as a comparison with V2.<br />
+The main differences can be grouped in 2 sections:
+<ul>
+  <li><a href="#changes-in-request-response-body">Changes in Request and Response Body</a></li>
+  <li><a href="#changes-in-path-rest-apis">Changes in the path of the REST APIs</a></li>
+</ul>
+</p>
+
+<a name="changes-in-request-response-body"></a><h3>Changes in Request and Response Body</h3>
 
 <!-- REST APIs -->
 <table class="table table-striped">
   <tr>
-    <td><b>Aspect</b></td>
+    <td><b>Subject</b></td>
     <td><b>V2</b></td>
     <td><b>V3</b></td>
   </tr>
@@ -30,78 +30,75 @@
       See the example of the response body for getting a workspace.
     </td>
     <td>
-      {<br />
-      <span class="indent-level">
-        "workspace": {<br />
-        <span class="indent-level">
-          <b>"uid"</b>: "vfg6CZFHqWqsVjyZNhmH",<br />
-          "name": "Vladimir - project, notes, etc.",<br />
-          … <br />
-
-          "organization": {<br />
-          <span class="indent-level">
-            "name": "Bluescape",<br />
-            "uid": "wOETxsWt3SAmuyUQbbLy",<br />
-            <b>"default_public_workspace_role_uid"</b>:
-            "VJKO1MCvXQLfhMB6bzde"<br />
-          </span>
-          }<br />,<br />
-          "favorite": false,<br />
-          "users_count": 12,<br />
-          "workspace_owner": {<br />
-          <span class="indent-level">
-            "first_name": "Vladimir",<br />
-            … <br />
-            <b>"uid": "DbfcGpN-U30XIjjy0yjX"</b><br />
-          </span>
-          }<br />,<br />
-          "workspace_role": {<br />
-          <span class="indent-level">
-            "name": "Owner",<br />
-            ...<br />
-            <b>"uid"</b>: "HLBI9sd-yyHWupboR7MH"<br />
-          </span>
-          }<br />,<br />
-          <b>"organization_uid"</b>: "wOETxsWt3SAmuyUQbbLy",<br />
-          <b>"default_role_uid"</b>: "VJKO1MCvXQLfhMB6bzde"<br />
-        </span>
-        }<br />
-      </span>
-      }<br />
+<pre>
+{
+  "workspace": {       
+    <b>"uid"</b>: "vfg6CZFHqWqsVjyZNhmH",
+    "name": "Vladimir - project, notes, etc.",
+    … 
+    "organization": {
+      "name": "Bluescape",
+      "uid": "wOETxsWt3SAmuyUQbbLy",
+      <b>"default_public_workspace_role_uid"</b>:
+      "VJKO1MCvXQLfhMB6bzde"
+    },
+    "favorite": false,
+    "users_count": 12,
+    "workspace_owner": {
+      "first_name": "Vladimir",
+      … 
+      <b>"uid": "DbfcGpN-U30XIjjy0yjX"</b>
+    },
+    "workspace_role": {
+      "name": "Owner",
+      ...
+      <b>"uid"</b>: "HLBI9sd-yyHWupboR7MH"
+    },
+    <b>"organization_uid"</b>: "wOETxsWt3SAmuyUQbbLy",
+    <b>"default_role_uid"</b>: "VJKO1MCvXQLfhMB6bzde"
+  }
+}
+</pre>
     </td>
     <td>
-      {<br />
-      <span class="indent-level-1">
-        <b>"id"</b>: "j5FIqcSmCpkJjXnWb8qk",<br />
-        "name": "Team Project",<br />
-        "description": "",<br />
-        "isPublic": true,<br />
-        <b>"defaultRoleId"</b>: "gQ2DA6mMC4Op-_EHuR6S",<br />
-        <b>"organizationId"</b>: "5JIGySFmJpfen3Jnozqx",<br />
-        <b>"ownerId"</b>: "qIN-MJbWD1fGByxm-qw4",<br />
-        "createdAt": "2020-12-02T20:07:56.000Z",<br />
-        "updatedAt": "2020-12-04T00:54:31.000Z"<br />
-      </span>
-      }<br />
+<pre>
+{  
+  <b>"id"</b>: "j5FIqcSmCpkJjXnWb8qk",
+  "name": "Team Project",
+  "description": "",
+  "isPublic": true,
+  <b>"defaultRoleId"</b>: "gQ2DA6mMC4Op-_EHuR6S",
+  <b>"organizationId"</b>: "5JIGySFmJpfen3Jnozqx",
+  <b>"ownerId"</b>: "qIN-MJbWD1fGByxm-qw4",
+  "createdAt": "2020-12-02T20:07:56.000Z",
+  "updatedAt": "2020-12-04T00:54:31.000Z"
+}
+</pre>
     </td>
   </tr>
   <tr>
-    <td>Changes in the way the objects are listed in the response body</td>
+    <td>How the elemenst are listed in the response body when getting elements</td>
     <td>
       V2 response body delivers the elements of the workspace grouped by type:
       <br />
       <ul>
         <li>
           all text objects within this array:<br />
-          "text": [...]
+<pre>
+"text": [...]
+</pre>
         </li>
         <li>
           all strokes within this array:<br />
-          "strokes": [...]
+<pre>
+"strokes": [...]
+</pre>
         </li>
         <li>
           all images within this array:<br />
-          "images": [...]
+<pre>
+"images": [...]
+</pre>
         </li>
       </ul>
     </td>
@@ -109,183 +106,262 @@
       V3 does not group the elements by type
       <ul>
         <li>
-          the response body contains all the elements within this array: "data":
-          [...]
+          the response body contains all the elements within this array: 
+<pre>
+"data":
+[...]
+</pre>
         </li>
         <li>
-          and each element contains its type, specified by the “type” key. E.g.:
+          and each element contains its type definition, specified by the “type” key. E.g.:
           <ul>
-            <li>"type": "Text",</li>
-            <li>"type": "Canvas",</li>
+            <li><pre>"type": "Text"</pre></li>
+            <li><pre>"type": "Canvas"</pre></li>
             <li>etc.</li>
           </ul>
         </li>
       </ul>
 
-      <span class="indent-level">
-        <b>"data"</b>: [<br />
-        <span class="indent-level">
-          {<br />
-            <span class="indent-level">
-            "id": "5fc7f508e2db9d003ee5ee4c",<br />
-            "zIndex": 5,<br />
-            "transform": {<br />
-            …<br />
-            </span>
-          },<br />
-          … <br />
-          <b>"type": "Text"</b>,<br />
-          "text": "Text - test 1",<br />
-          …<br />
-          }<br />
-        </span>
-        ]<br />
-      </span>
-      }<br />
+<pre>
+{
+  <b>"data"</b>: [
+    {
+      "id": "5fc7f508e2db9d003ee5ee4c",
+      "zIndex": 5,      
+      … 
+      <b>"type": "Text"</b>,
+      "text": "Text - test 1",
+      …
+    },
+    {
+      "id": "60249bc63fe6b011cc752a4d",
+      "zIndex": 10,      
+      … 
+      <b>"type": "Canvas"</b>,
+      "name": "Top Canvas",
+      …
+    }
+  ]
+}
+</pre>
     </td>
   </tr>
   <tr>
     <td>
-      How to specify the position of objects in the workspace.<br /><br />Example
-      of the request and response body.<br />
-    <b>[[TODO: probably will not be like this, waiting for confirmation ,br/>probably delete this row and fix examples everywhwere]]
+      How to specify the position of objects in the workspace.<br /><br />Example of the request and response body.<br />
+    
     </td>
     <td>
-      {<br />
-      <span class="indent-level">
-        "text": "Hello there!", <br />
-        …<br />
-        "x": 100,<br />
-        "y": 200,<br />
-        …<br />
-      </span>
-      }<br />
+<pre>In V2: <br/><br />
+{
+  "text": "Hello there!", 
+  …
+  "x": 100,
+  "y": 200,
+  …
+}
+</pre>  
     </td>
     <td>
-      In V3 the position of an object is specified within the
-      <i>transform</i> key:<br />
-      {<br />
-      <span class="indent-level">
-        "type": "Text",<br />
-        "text": "Hello there!",<br />
-        … <br />
-        <b
-          >"transform" : {<br />
-          <span class="indent-level">
-            "x": 100,<br />
-            "y": 200<br />
-          </span>
-          }</b
-        ><br />
-        …<br />
-      </span>
-      } <br />
+      In V3 the position of an object is specified within the <i>transform</i> key:<br /><br />
+<pre>
+{
+  "type": "Text",
+  "text": "Hello there!",
+  … 
+  <b>"transform" : {
+      "x": 100,
+      "y": 200
+    }</b
+  >
+  …
+}
+</pre>
     </td>
   </tr>
+<tr>
+    <td>
+      How to specify the style dimensions (height and width) of an object
+    </td>
+    <td> In V2:<br /><br />
+<pre>
+{
+  "text": "Hello there!", 
+  …
+  "width": 300, 
+  "height": 200, 
+  …
+}
+</pre>
+    </td>
+    <td>
+      In V3 the dimensions of an object are specified within the <i>style</i> key:<br /><br />
+<pre>
+{
+  "type": "Text",
+  "text": "Hello there!",
+  … 
+  <b>"style": {
+      "width": 300, 
+      "height": 200, 
+      ...       
+      },
+    }</b>
+  ...
+}</pre>
+    </td>
+  </tr>
+
   <tr>
     <td>Color schema <b>[[TO CONFIRM]]</b></td>
-    <td></td>
-    <td>Color scheme is defined using RGBA color model<br />
-        What is RGBA? Detailed explanation: https://en.wikipedia.org/wiki/RGBA_color_model <br /><br />
+    <td>In V2, this is the way the color is specified, for example, for a Text object:
+<pre>
+{
+    "text": "Hello, new text!",
+    ...
+    "fontColor" : "#ffffff",
+    "backgroundColor": "Red"
+}
+</pre>    
+    
+    </td>
+    <td>In V3 the color scheme is defined using RGBA color model<br />
+        What is RGBA? You can find a detailed explanation here: <a href="https://en.wikipedia.org/wiki/RGBA_color_model">RGBA Color Model</a> <br /><br />
         The color is defined by:
         <ul>
             <li>R: how much red</li>
             <li>G: how much green</li>
             <li>B: how much blue</li>
-            <li>A: alpha channel, how opaque it is  (0: transparent, 1: solid color)</li>
+            <li>A: alpha channel, how opaque the color is (0: transparent, 1: solid color)</li>
         </ul>
+        The color properties of an object are specified within the <i>style</i> key, also for a Text object:<br /><br />
+
+<pre>
+{ 
+  "type": "Text",
+  "text": "Hello there!",
+  … 
+  <b>"style": {
+      ... 
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 1
+      },
+      "backgroundColor": {
+        "r": 255,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+    }</b>
+  ...
+}</pre>   
  </td>
   </tr>
   <tr>
     <td>
       How to specify the style properties of an object: height/width, color,
-      background color, font, etc.<br /><br />Example of the request and
-      response body.
+      background color, font, etc.
     </td>
     <td>
-      {<br />
-      <span class="indent-level">
-        "text": "Hello there!", <br />
-        …<br />
-        "width": 300, <br />
-        "height": 200, <br />
-        "fontColor": "blue",<br />
-        "backgroundColor": "white",<br />
-        …<br />
-      </span>
-      }<br />
+<pre>
+{
+  "text": "Hello there!", 
+  …
+  "width": 300, 
+  "height": 200, 
+  "fontColor": "blue",
+  "backgroundColor": "white",
+  …
+}
+</pre>
     </td>
     <td>
-      In V3 the position of an object is specified within the
-      <i>style</i> key:<br />
-      {<br />
-      <span class="indent-level-1">
-        "type": "Text",<br />
-        "text": "Hello there!",<br />
-        … <br />
-        <b
-          >"style": {<br />
-          <span class="indent-level-2">
-            "width": 600, <br />
-            "height": 400, <br />
-            ... <br />
-            "color": {<br />
-            <span class="indent-level">
-              "r": 0,<br />
-              "g": 0,<br />
-              "b": 255,<br />
-              "a": 1<br />
-            </span>
-            },<br />
-            "backgroundColor": {<br />
-            <span class="indent-level">
-              "r": 255,<br />
-              "g": 255,<br />
-              "b": 255,<br />
-              "a": 1<br />
-            </span>
-            },<br />
-          </span>
-          }</b
-        ><br />
-        …<br />
-      </span>
-      } <br />
+      In V3 the dimensions of an object are specified within the <i>style</i> key:<br />
+<pre>
+{
+  "type": "Text",
+  "text": "Hello there!",
+  … 
+  <b>"style": {
+      "width": 600, 
+      "height": 400, 
+      ... 
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255,
+        "a": 1
+      },
+      "backgroundColor": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 1
+      },
+    }</b>
+  ...
+}</pre>
+    </td>
+  </tr>
+</table>
+
+<a name="changes-in-path-rest-apis"></a><h3>Changes in the path of the REST APIs</h3>
+
+<table class="table table-striped">
+<td><b>Subject</b></td>
+    <td><b>V2</b></td>
+    <td><b>V3</b></td>
+  <tr>
+    <td>How to get the list of all objects of an object type in the workspace.<br /><br />
+    <b>NOTE</b>: The object types are different in V2 and V3, see the difference sin casing and names</td>
+    <td>GET /v2/workspaces/{workspace_id}/elements/{object_type}
+    <br /> <br />
+        List of Types in V3: text, images, browsers, documents, grids, notes, strokes, videos, canvas
+    </td>
+    <td>GET /v3/workspaces/{workspaceId}/elements<b>?type={object_type}</b>
+        <br /> <br />
+        List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, Shape, Line, Canvas, Selection, Window      
     </td>
   </tr>
   <tr>
     <td>How to get the content of a Canvas</td>
     <td>GET /v2/workspaces/{workspace_uid}/elements/canvas/{canvas_uid}</td>
-    <td>GET /v3/workspaces/{workspaceId}/elements?canvas={canvasID}</td>
+    <td>GET /v3/workspaces/{workspaceId}/elements<b>?canvas={canvasID}</b></td>
   </tr>
   <tr>
     <td>How to get the content of a Canvas, for a specific object type</td>
     <td>GET /v2/workspaces/{workspace_uid}/elements/canvas/{canvas_uid}/{object_type}</td>
-    <td>GET /v3/workspaces/{workspaceId}/elements?type={object_type}&canvas={canvasID}</td>
+    <td>GET /v3/workspaces/{workspaceId}/elements<b>?type={object_type}&canvas={canvasID}</b></td>
   </tr>
   <tr>
-    <td>How to create an object in a canvas, e.g. a browser</td>
+    <td>How to create an element, e.g. a Text</td>
+    <td>POST /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/text</td>
+    <td>POST /v3/workspaces/{workspaceId}/elements<br /><br /> Provide the type in the request body: 
+<pre>
+{
+  "type": "Text"
+  ...
+}</pre></td>
+  </tr>
+  <tr>
+    <td>How to create an element in a canvas, e.g. a Browser</td>
     <td>POST /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/browsers</td>
-    <td>POST /v3/workspaces/{workspaceId}/elements?canvas={canvasId}<br /> Provide "type": "Browser" in payload</td>
+    <td>POST /v3/workspaces/{workspaceId}/elements?canvas={canvasId}<br /><br /> Provide the type in the request body: 
+<pre>
+{
+  "type": "Browser"
+  ...
+}</pre></td>
   </tr>
   <tr>
     <td>How to get a my user's list of workspaces</td>
-    <td>In V2 it is displayed in the response body of GET /v2/users/me or GET /v2/users/me/workspaces </td>
-    <td>GET /v3/users/me/workspaces</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
+    <td>In V2, this data is displayed in the response body of <br />
+    GET /v2/users/me or </br>
+    GET /v2/users/me/workspaces </td>
+    <td>In V3, this data is only available as the response of <br />
+    GET /v3/users/me/workspaces</td>
+  </tr>  
 </table>
