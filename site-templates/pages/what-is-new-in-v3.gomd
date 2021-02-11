@@ -219,8 +219,7 @@ The main differences can be grouped in 2 sections:
     "fontColor" : "#ffffff",
     "backgroundColor": "Red"
 }
-</pre>    
-    
+</pre>   
     </td>
     <td>In V3 the color scheme is defined using RGBA color model<br />
         What is RGBA? You can find a detailed explanation here: <a href="https://en.wikipedia.org/wiki/RGBA_color_model">RGBA Color Model</a> <br /><br />
