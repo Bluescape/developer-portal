@@ -231,7 +231,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6
                     <tr>
                             <td>client_secret</td>
                             <td>Required</td>
-                            <td>Use the Client Secret from your Application (see details in Appendices).</td>
+                            <td>Use the Client Secret from your Application (see details in <a href="#appendices">Appendices</a>).</td>
                         </tr>
                         <tr>
                                 <td>redirect_uri</td>
@@ -336,7 +336,7 @@ curl -w "%{http_code}\\n" -X POST \
     <tr>
             <td>authorization-token-endpoint</td>
             <td>Required</td>
-            <td>For this example, use: <script type="text/javascript">document.write(apiBaseStr); </script>/api/v2/oauth2/token<br />
+            <td>For this example, use: <script type="text/javascript">document.write(identityStr); </script>/api/v2/oauth2/token<br />
                     For Private Instances, check your Developer Portal Website > Reference> URLs for the OAuth Authorization URL.</td>
         </tr>
         <tr>
@@ -352,7 +352,7 @@ curl -w "%{http_code}\\n" -X POST \
         <tr>
             <td>client_secret</td>
             <td>Required</td>
-            <td>Use the Client Secret from your Application (see details in Appendices).</td>
+            <td>Use the Client Secret from your Application (see details in <a href="#appendix2">Appendix 2</a>).</td>
         </tr>
         <tr>
             <td>redirect_uri</td>
@@ -364,7 +364,7 @@ curl -w "%{http_code}\\n" -X POST \
 
 <p>
     The client request for Access Token and Refresh Token is:
-    <pre>curl -w "\\n%{http_code}\\n" -X POST \
+    <pre>curl -w "%{http_code}\\n" -X POST \
     <b>&lt;authorization-token-endpoint&gt;</b> \
         -H 'Content-Type: application/json' \
         -d '{
@@ -381,7 +381,7 @@ curl -w "%{http_code}\\n" -X POST \
 
 <p>
     Example of request to get Access Token using Refresh Tokens: 
-    <pre>curl -w "\\n%{http_code}\\n" -X POST \
+    <pre>curl -w "%{http_code}\\n" -X POST \
     <script type="text/javascript">document.write(identityStr);</script>/api/v2/oauth2/token \
         -H 'Content-Type: application/json' \
         -d '{
@@ -405,9 +405,9 @@ curl -w "%{http_code}\\n" -X POST \
 <p>
     This request execution provides you with:
 <ol>
-    <li><b>access-token</b>: this is the new Access Token you will use as the authentication to run your APIs, uses JWT format.</li>
+    <li><b>access-token</b>: this is the new Access Token you will use as the authentication to run your APIs; it uses JWT format.</li>
     <li><b>refresh_token</b>: this is the refresh token to use the next time you want to re-generate the Access Token.</li>
-    <li><b>expire-timestamp</b>: this is the expiration date of the Access Token, it is in Epoch format.</li>
+    <li><b>expire-timestamp</b>: this is the expiration date of the Access Token; it is in Epoch format.</li>
 </ol>
 </p>
 
@@ -426,7 +426,7 @@ curl -w "%{http_code}\\n" -X POST \
 
 <p><a name="2.3-troubleshooting"><h3>2.3 Troubleshooting</h3></a>
 <p>
-    If you get an error message when trying to authenticate and authorize, or when trying generate your Tokens, please review the error messages and error codes in the table below.<br>
+    If you get an error message when trying to authenticate and authorize, or when trying to generate your Tokens, please review the error messages and error codes in the table below.<br>
 </p></p>
 
 <p>
@@ -440,9 +440,9 @@ curl -w "%{http_code}\\n" -X POST \
             <td>If you see this message in the step to authenticate and authorize in order to generate an Access Token or an Access Code, please verify that the <span class="pre">Redirect URL</span> you set in your Developer Portal Application is the same one you are using as the <span class="pre">redirect_uri</span> parameter in the URL you are using to generate the Access Token or Access Code.<br />
                 For example, let's consider this Application:<br >
 
-                <img class="img-responsive center-block" src="/docs/assets/images/application-info.png"><br />
+                <img class="img-responsive center-block" src="/docs/assets/images/edit-application.png"><br />
                 For the image above, the correct value for <b>redirect_uri</b> is <b>http://localhost/callback</b>, and the full URL to trigger the Access Token generation would be:
-                <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=59923cd0&<b>redirect_uri</b>=<b>http://localhost/callback</b></pre>
+                <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=5d623442-7157-4c57-8102-7fa9e6989827&<b>redirect_uri</b>=<b>http://localhost/callback</b></pre>
             
             </td>
         </tr>
@@ -464,7 +464,7 @@ curl -w "%{http_code}\\n" -X POST \
 
 <p><a name="step-3_extract-access-token"><h2>Step 3: Implement Code that Extracts the Access Token</h2></a>
 <p>
-    Once authorization is complete, Bluescape will redirect users back to the application along with the access token. Specifically, users will be sent to the Redirect URI specified in the application settings and the access token will be provided in the URL fragment (after the '#'). Applications will need to extract and store the access token before continuing the user experience. Note: server-side apps do not have visibility of the URL fragment and therefore cannot be responsible for extracting the access token.
+    Once authorization is complete, Bluescape will redirect users back to the application, along with the access token. Specifically, users will be sent to the Redirect URI specified in the application settings, and the access token will be provided in the URL fragment (after the <code>#</code>). Applications will need to extract and store the access token before continuing the user experience. Note: server-side apps do not have visibility of the URL fragment and therefore cannot be responsible for extracting the access token.
 </p></p>
 
 <p>
@@ -488,7 +488,7 @@ curl -w "%{http_code}\\n" -X POST \
         </tr>
         <tr>
                 <td>access_token</td>
-                <td>The precious access token for connecting to the Bluescape API. Store it safely, this token grants add/modify/delete permissions to the APIs to anything the authenticated user has access to.</td>
+                <td>The precious access token for connecting to the Bluescape API. You should store it safely because this token grants add/modify/delete permissions to any of the APIs the authenticated user has access to.</td>
             </tr>
             <tr>
                     <td>token_type</td>
@@ -501,7 +501,7 @@ curl -w "%{http_code}\\n" -X POST \
 
 <p><a name="step-4_using-the-access-token"><h2>Step 4: Using the Access Token</h2></a>
 <p>
-    At this step you have your Access Token and you are ready to start using it.
+    At this point, you have your Access Token, and you are ready to start using it.
     Access Tokens enable applications to make requests of the Bluescape API. They are intended to be used as Bearer tokens and should be provided in the Authorization header of HTTP requests to the Bluescape API. The value of the header must be Bearer, a space, and the access token.
 </p></p>
 
@@ -554,7 +554,7 @@ curl -w "%{http_code}\\n" -X POST \
 <p>        
     Authorization URL
     
-    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?client_id=a33e5f767&redirect_uri=http%3A%2F%2Fmy-bluescape-app.io%2Foauth2%2Fcallback</pre>
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=a33e5f767&redirect_uri=http%3A%2F%2Fmy-bluescape-app.io%2Foauth2%2Fcallback</pre>
 </p>
 
 <p>
@@ -586,16 +586,9 @@ curl -w "%{http_code}\\n" -X POST \
     <li>The new application is created: <br />
         <img class="img-responsive center-block" src="/docs/assets/images/applications.png"><br>
     </li>
-    <li>The main data points you will need from here are the <b>Client ID</b> and <b>Client Secret</b></li>
-        <ul>
-            <li>To view the <b>Client Secret</b>, click the gear to the right of the application <img class="img-responsive center-block" src="/docs/assets/images/gear.png"> Then, the eye icon <img class="img-responsive center-block" src="/docs/assets/images/eye.png"> This will display your client secret.</li>
-        </ul>
-        <ul>
-            <li>It is critical that you keep the <b>Client Secret</b> a secret. You can always get a new <b>Client Secret</b> by clicking the <b>Regenerate</b> button, <img class="img-responsive center-block" src="/docs/assets/images/regenerate.png"> This operation will void the previously used <b>Client Secret</b>, so you will need to update the new <b>Client Secret</b> in any place where it is being used.</li>
-        </ul><br>
-</ul></p>
-
-<p><h3>Appendix 2: How to get the Client Secret</h3>
+    <li>The main data points you will need from here are the <b>Client ID</b> and <b>Client Secret</b>. See <a href="#appendix2">Appendix 2</a> for retrieiving the <b>Client ID</b> and <b>Client Secret</b>.</li><br>
+</ul>
+<a name="appendix2"><h3>Appendix 2: How to get the Client ID and Client Secret</h3></a>
    How to get the Client Secret:<br>
 <ul>
     <li>Go to your application list: <a href="../"><script type="text/javascript">document.write(appsLink); </script></a></li>
@@ -621,31 +614,15 @@ You need to whitelist the application you will use to generate the tokens. <br /
 
 <ul>
     <li>Request:<br />
-        <pre><script type="text/javascript">document.write(apiBaseStr);</script>/authorize?response_type=code&client_id=<b>&lt;app_id_to_whitelist&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b>&org_id=<b>&lt;organization_id&gt;</b>&<b>scope=org</b></pre> <br />
+        <pre><script type="text/javascript">document.write(apiBaseStr);</script>/authorize?response_type=code&client_id=<b>&lt;app_id_to_whitelist&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</pre> <br />
         where &lt;redirect_url&gt; is the redirect URL set in the configuration of the application.       
     </li>
     <li>Example:<br />
-        <pre><script type="text/javascript">document.write(apiBaseStr);</script>/authorize?response_type=code&client_id=4563bA3&redirect_uri=<script type="text/javascript">document.write(apiBaseStr); </script>/tools/access-token/callback&org_id=wOLPxsWt3SLOm2UQbbLy&scope=org</pre>        
+        <pre><script type="text/javascript">document.write(apiBaseStr);</script>/authorize?response_type=code&client_id=4563bA3&redirect_uri=<script type="text/javascript">document.write(apiBaseStr); </script>/tools/access-token/callback</pre>        
     </li>
     <li>You will need to login and authorize the application, using the credentials of an <b>ADMIN user</b> for the organization specified in the URL</li>
     <li>You will get back an Access Code you can use to generate the Access Code and Refresh Token.</li>
 </ul>
-   <br /> 
-    How to obtain the Organization ID:
-<ul>
-    <li>Go to Bluescape, log in as the user that created the application.</li>
-    <li>Click the Admin button in the top right:<br />
-        <img class="img-responsive center-block" src="/docs/assets/images/admin.png">
-    </li>
-    <li>Click on Settings on the left menu:<br />
-        <img class="img-responsive center-block" src="/docs/assets/images/settings.png">
-    </li> 
-    <li>Select the organization from the dropdown at the top:<br />
-        <img class="img-responsive center-block" src="/docs/assets/images/org.png">
-    </li> 
-    <li>Inspect the URL in the browser; it contains the organization ID. example: <span class="pre"><script type="text/javascript">document.write(adminStr + "/settings/wOLPxsWt3SLOm2UQbbLy"); </script></span>, 
-        where <span class="pre">wOLPxsWt3SLOm2UQbbLy</span> is the organization ID</li>
-</ul> 
 
 <p><br />
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.</p>
