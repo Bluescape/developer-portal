@@ -5,7 +5,7 @@
   
 </style>
 
-<h1>What is new in V3? (IN PROGRESS - DO NOT REVIEW YET)</h1>
+<h1>What is new in V3?</h1>
 <p>This page covers the new features in V3, as a comparison with V2.<br />
 The main differences can be grouped in 2 sections:
 <ul>
@@ -351,10 +351,10 @@ The main differences can be grouped in 2 sections:
 }</pre></td>
   </tr>
   <tr>
-    <td>How to get a my user's list of workspaces</td>
+    <td>How to get a my user's list of organizations</td>
     <td>In V2, this data is displayed in the response body of <br />
     GET /v2/users/me or </br>
-    GET /v2/users/me/workspaces </td>
+    GET /v2/users/me/organizations </td>
     <td>In V3, this data is only available as the response of <br />
     GET /v3/users/me/workspaces</td>
   </tr>  
