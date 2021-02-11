@@ -3,7 +3,7 @@
 <p>
     <em>
         This guide assumes you have obtained an access token from an authorized user. You can obtain an access token
-        either by completing the OAuth flow (see the <a href="/docs/page/app-auth">Application Authorization</a> guide).
+        by completing the OAuth flow (see the <a href="/docs/page/app-auth">Application Authorization</a> guide).
     </em>
 </p>
 
