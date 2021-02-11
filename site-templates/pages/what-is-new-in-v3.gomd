@@ -99,6 +99,7 @@ The main differences can be grouped in 2 sections:
 </pre>
         </li>
       </ul>
+      List of Types in V3: text, images, browsers, documents, grids, notes, strokes, videos, canvas.
     </td>
     <td>
       V3 does not group the elements by type
@@ -141,6 +142,7 @@ The main differences can be grouped in 2 sections:
   ]
 }
 </pre>
+List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, Shape, Line, Canvas, Selection, Window.
     </td>
   </tr>
   <tr>
@@ -319,11 +321,11 @@ The main differences can be grouped in 2 sections:
     <b>NOTE</b>: The object types are different in V2 and V3, see the difference sin casing and names</td>
     <td>GET /v2/workspaces/{workspace_id}/elements/{object_type}
     <br /> <br />
-        List of Types in V3: text, images, browsers, documents, grids, notes, strokes, videos, canvas
+        List of Types in V3: text, images, browsers, documents, grids, notes, strokes, videos, canvas.
     </td>
     <td>GET /v3/workspaces/{workspaceId}/elements<b>?type={object_type}</b>
         <br /> <br />
-        List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, Shape, Line, Canvas, Selection, Window      
+        List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, Shape, Line, Canvas, Selection, Window.
     </td>
   </tr>
   <tr>
