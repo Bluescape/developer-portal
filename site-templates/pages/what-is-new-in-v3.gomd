@@ -211,7 +211,7 @@ The main differences can be grouped in 2 sections:
 
   <tr>
     <td>Color schema <b>[[TO CONFIRM]]</b></td>
-    <td>In V2, this is the way the color is specified, for example, for a Text object:
+    <td>In V2, this is the way the color is specified, for example, for a Text object:<br />
 <pre>
 {
     "text": "Hello, new text!",
@@ -230,7 +230,7 @@ The main differences can be grouped in 2 sections:
             <li>B: how much blue</li>
             <li>A: alpha channel, how opaque the color is (0: transparent, 1: solid color)</li>
         </ul>
-        The color properties of an object are specified within the <i>style</i> key, also for a Text object:<br /><br />
+        The color properties of an object are specified within the <i>style</i> key, also for a Text object:<br />
 
 <pre>
 { 
