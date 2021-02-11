@@ -278,7 +278,6 @@ Each time you run a POST API, you will get back a Response Body with the propert
         <tr>
             <td><b>Element</b></td>
             <td><b>Json</b></td>
-            <td><b>Comments</b></td>
         </tr>
         <tr>
             <td>Element ID</td>
