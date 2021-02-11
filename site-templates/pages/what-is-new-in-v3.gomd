@@ -1,21 +1,19 @@
 <style>  
   pre {
-    font-size: 11px;
+    font-size: 13px;
   }
   
 </style>
 
 <h1>What is new in V3? (IN PROGRESS - DO NOT REVIEW YET)</h1>
 <p>This page covers the new features in V3, as a comparison with V2.<br />
-The main differences can be grouped in 2 sections:
+The main fifferences can be grouped in 2 sections:
 <ul>
   <li><a href="#changes-in-request-response-body">Changes in Request and Response Body</a></li>
   <li><a href="#changes-in-path-rest-apis">Changes in the path of the REST APIs</a></li>
 </ul>
 </p>
-
-<a name="changes-in-request-response-body"></a><h3>Changes in Request and Response Body</h3>
-
+<a name="changes-in-request-response-body"></a><h2>Changes in Request and Response Body</h2>
 <!-- REST APIs -->
 <table class="table table-striped">
   <tr>
@@ -307,9 +305,7 @@ The main differences can be grouped in 2 sections:
     </td>
   </tr>
 </table>
-
-<a name="changes-in-path-rest-apis"></a><h3>Changes in the path of the REST APIs</h3>
-
+<a name="changes-in-path-rest-apis"></a><h2>Changes in the path of the REST APIs</h2>
 <table class="table table-striped">
 <td><b>Subject</b></td>
     <td><b>V2</b></td>
