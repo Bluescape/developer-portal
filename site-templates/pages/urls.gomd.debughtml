@@ -4,7 +4,7 @@
     Below is a list of the URLs you will need when developing applications using the Bluescape API.
 </p>
 
-<table class="table table-striped">
+<p><table style="margin-bottom: 16rem;" class="table table-striped">
     <tr>
         <th>Base URL for API Requests</th>
         <td><script type="text/javascript">document.write(apiBaseStr); </script></td>
@@ -13,4 +13,4 @@
         <th>OAuth Authorization URL</th>
         <td><script type="text/javascript">document.write(apiBaseStr); </script>/authorize</td>
     </tr>
-</table>
+</table></p>
