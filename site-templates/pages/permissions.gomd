@@ -60,16 +60,16 @@
 <p>
     The owner of the organization has the ability to add, delete and modify users and update organizational settings.
     They also have the same functionality as a user of the organization. The owner cannot be removed from the organization,
-    and they will always be an administrator for this organization. Only the owner of the organization can modify organization
+    and they will always be an administrator for this organization. The owner of the organization, along with admins, can modify organization
     settings.
 </p>
 
 <h4>Admin</h4>
 
 <p>
-    Admins have the same capabilities as the owner, except they cannot access the Organization Settings tab. The owner
-    and other admins can make any organization member an administrator by opening the user's settings and check the
-    option for administrator.
+    Admins have the same capabilities as the owner. The owner and other admins can make any organization 
+    member an administrator by opening the user's settings and check the option for administrator. Admins 
+    also have the ability to modify organization settings.
 </p>
 
 <h4>User</h4>

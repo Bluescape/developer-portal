@@ -42,7 +42,8 @@
 <p>   
     <b>Q: Will my current scripts stop working after the 21.03.1 Release (released on MM DD, YYYY)?</b><br />
         
-    <b>A</b>: Any scripts using the <span class="pre">/v2/</span> endpoint will no longer work. 
+    <b>A</b>: There will be a short grace period after the time of the release where <span class="pre">v2</span> endpoints will still be active
+    in order to give developers time to migrate their existing scripts to <span class="pre">v3</span> APIs instead. After this period, any scripts using the <span class="pre">/v2/</span> endpoint will no longer work. 
     You will need to update the version parameter pointing to the API endpoints from <span class="pre">/v2/</span> to <span class="pre">/v3/</span>.
 </p>
 
