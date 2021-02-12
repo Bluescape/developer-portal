@@ -2,7 +2,7 @@
 <p>
     Applications that want to query the Bluescape API must be authorized to do so by an active Bluescape user.
     Applications obtain this authorization using the OAuth flow which enables users to share access to their account
-    without divulging their password.
+    without divulging their password. 
 </p>
 
 <p>
