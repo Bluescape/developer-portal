@@ -9,17 +9,29 @@
 <p>This page covers the new features in V3, as a comparison with V2.<br />
 The main differences can be grouped in 2 sections:
 <ul>
+  <li><a href="#changes-in-rest-api-verbs">Changes in REST API verbs</a></li>
   <li><a href="#changes-in-request-response-body">Changes in Request and Response Body</a></li>
   <li><a href="#changes-in-path-rest-apis">Changes in the path of the REST APIs</a></li>
 </ul>
 </p>
+<a name="changes-in-rest-api-verbs"></a><h2>Changes in REST API verbs</h2>
+<table class="table table-striped">
+<td><b>Subject</b></td>
+    <td><center><b>V2</b></center></td>
+    <td><center><b>V3</b></center></td>
+  <tr>
+    <td>Modify an element already created: position, color, text, etc.</td>
+    <td>verb: PUT</td>
+    <td>verb: PATCH</td>
+  </tr>
+</table>
 <a name="changes-in-request-response-body"></a><h2>Changes in Request and Response Body</h2>
 <!-- REST APIs -->
 <table class="table table-striped">
   <tr>
     <td><b>Subject</b></td>
-    <td><b>V2</b></td>
-    <td><b>V3</b></td>
+    <td><center><b>V2</b></center></td>
+    <td><center><b>V3</b></center></td>
   </tr>
   <tr>
     <td>
@@ -314,34 +326,33 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
 <a name="changes-in-path-rest-apis"></a><h2>Changes in the path of the REST APIs</h2>
 <table class="table table-striped">
 <td><b>Subject</b></td>
-    <td><b>V2</b></td>
-    <td><b>V3</b></td>
+    <td><center><b>V2</b></center></td>
+    <td><center><b>V3</b></center></td>
   <tr>
     <td>How to get the list of all objects of an object type in the workspace.<br /><br />
     <b>NOTE</b>: The object types are different in V2 and V3, see the difference sin casing and names</td>
-    <td>GET /v2/workspaces/{workspace_id}/elements/{object_type}
-    <br /> <br />
+    <td>
+    <pre>GET /v2/workspaces/{workspace_id}/elements/{object_type}</pre>
         List of Types in V3: text, images, browsers, documents, grids, notes, strokes, videos, canvas.
     </td>
-    <td>GET /v3/workspaces/{workspaceId}/elements<b>?type={object_type}</b>
-        <br /> <br />
+    <td><pre>GET /v3/workspaces/{workspaceId}/elements<b>?type={object_type}</b></pre>
         List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, Shape, Line, Canvas, Selection, Window.
     </td>
   </tr>
   <tr>
     <td>How to get the content of a Canvas</td>
-    <td>GET /v2/workspaces/{workspace_uid}/elements/canvas/{canvas_uid}</td>
-    <td>GET /v3/workspaces/{workspaceId}/elements<b>?canvas={canvasID}</b></td>
+    <td><pre>GET /v2/workspaces/{workspace_uid}/elements/canvas/{canvas_uid}</re></td>
+    <td><pre>GET /v3/workspaces/{workspaceId}/elements<b>?canvas={canvasID}</b></pre></td>
   </tr>
   <tr>
     <td>How to get the content of a Canvas, for a specific object type</td>
-    <td>GET /v2/workspaces/{workspace_uid}/elements/canvas/{canvas_uid}/{object_type}</td>
-    <td>GET /v3/workspaces/{workspaceId}/elements<b>?type={object_type}&canvas={canvasID}</b></td>
+    <td><pre>GET /v2/workspaces/{workspace_uid}/elements/canvas/{canvas_uid}/{object_type}</pre></td>
+    <td><pre>GET /v3/workspaces/{workspaceId}/elements<b>?type={object_type}&canvas={canvasID}</b></pre></td>
   </tr>
   <tr>
     <td>How to create an element, e.g. a Text element</td>
-    <td>POST /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/text</td>
-    <td>POST /v3/workspaces/{workspaceId}/elements<br /><br /> Provide the type in the request body: 
+    <td><pre>POST /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/text</pre></td>
+    <td><pre>POST /v3/workspaces/{workspaceId}/elements</pre>Provide the type in the request body: 
 <pre>
 {
   "type": "Text"
@@ -350,8 +361,8 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
   </tr>
   <tr>
     <td>How to create an element in a canvas, e.g. a Browser element</td>
-    <td>POST /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/browsers</td>
-    <td>POST /v3/workspaces/{workspaceId}/elements?canvas={canvasId}<br /><br /> Provide the type in the request body: 
+    <td><pre>POST /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/browsers</pre></td>
+    <td><pre>POST /v3/workspaces/{workspaceId}/elements?canvas={canvasId}</pre> Provide the type in the request body: 
 <pre>
 {
   "type": "Browser"
@@ -361,9 +372,9 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
   <tr>
     <td>How to get a my user's list of organizations</td>
     <td>In V2, this data is displayed in the response body of <br />
-    GET /v2/users/me or </br>
-    GET /v2/users/me/organizations </td>
+    <pre>GET /v2/users/me</pre> or <pre>GET /v2/users/me/organizations</pre>
+    </td>
     <td>In V3, this data is only available as the response of <br />
-    GET /v3/users/me/workspaces</td>
+    <pre>GET /v3/users/me/organizations</pre></td>
   </tr>  
 </table>
