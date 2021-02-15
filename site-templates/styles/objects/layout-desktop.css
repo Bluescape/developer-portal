@@ -17,6 +17,8 @@
     bottom: 0;
     width: var(--nav-width);
     overflow-y: auto;
+    scrollbar-color: #0072ff #f9f9f9;
+    scrollbar-width: thin;
   }
 
   .o-page__main {
