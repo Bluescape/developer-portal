@@ -67,7 +67,8 @@
             <li><a href="/docs/page/sso">SSO</a></li>
         </ul>
         <strong>API Reference: /v2/</strong>
-        <ul class="unindent-side-nav-ul">            
+        <ul class="unindent-side-nav-ul">  
+            <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference">Go to current API version</a></li>          
                     {{range $i, $element := .S.K8sStore.Slice }}
             {{$svc := $element.Service}}
             {{$class := ""}}
@@ -102,8 +103,7 @@
         {{end}}
         {{if not $haveApi}}
             <li><samp>None</samp></li>
-        {{end}}
-        <br><li><a href="/docs/page/reference">Go to current API version</a></li>
+        {{end}}        
         </ul>
     </div>
     <br />
