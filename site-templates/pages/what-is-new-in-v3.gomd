@@ -35,8 +35,8 @@ The main differences can be grouped in 2 sections:
   </tr>
   <tr>
     <td>
-      For fields containing IDs: in V3 there are no longer “uid” fields, all are
-      named “id”<br /><br />
+      In V3, the fields containing the unique IDs for each object are no longer using the “uid” name or suffix, they are now called "id" or use the "id" suffix. 
+      <br /><br />
       See the example of the response body for getting a workspace.
     </td>
     <td>
