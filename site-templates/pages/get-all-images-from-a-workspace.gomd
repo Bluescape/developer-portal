@@ -134,9 +134,10 @@ You can modify this script to return a list of each specific object from the wor
  <li>"Grid"</li>
  <li>"Shape"</li>
  <li>"Line"</li>
+<!--
  <li>"Selection"</li>
  <li>"Window"</li>
-
+-->
 </ul>
 </p>
 
