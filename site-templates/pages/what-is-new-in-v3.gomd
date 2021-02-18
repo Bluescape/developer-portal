@@ -20,7 +20,7 @@ The main differences can be grouped in 2 sections:
     <td><center><b>V2</b></center></td>
     <td><center><b>V3</b></center></td>
   <tr>
-    <td>Modify an element already created: position, color, text, etc.</td>
+    <td WIDRTH="30%">In V3, the REST API verb to modify an element already created (its position, color, text, etc.) is PATCH.</td>
     <td>verb: PUT</td>
     <td>verb: PATCH</td>
   </tr>
@@ -87,7 +87,7 @@ The main differences can be grouped in 2 sections:
     </td>
   </tr>
   <tr>
-    <td>How the elements are listed in the response body when getting elements</td>
+    <td>In V3, the elements are not longer grouped by their type when running a GET API to get the list of elements the workspace.</td>
     <td>
       V2 response body delivers the elements of the workspace grouped by type:
       <br />
@@ -154,12 +154,12 @@ The main differences can be grouped in 2 sections:
   ]
 }
 </pre>
-List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, Shape, Line, Canvas, Selection, Window.
+List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, Shape, Line, Canvas.
     </td>
   </tr>
   <tr>
     <td>
-      How to specify the position of objects in the workspace.<br />
+      In V3 there is a new way specify the position of objects in the workspace.<br />
     </td>
     <td>
     In V2: <br/><br />
@@ -192,7 +192,7 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
   </tr>
 <tr>
     <td>
-      How to specify the style dimensions (height and width) of an object
+      In V3 thre is anew way to specify the style dimensions (height and width) of an object.
     </td>
     <td> In V2:<br /><br />
 <pre>
@@ -224,7 +224,7 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
   </tr>
 
   <tr>
-    <td>Color schema for elements</td>
+    <td>In V3 there is a new way to specify the color schema for elements.</td>
     <td>In V2, this is the way the color is specified, for example, for a Text object:<br /><br />
 <pre>
 {
@@ -271,8 +271,13 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
  </td>
   </tr>
   <tr>
+    <td>In V3, when adding an element to a Canvas, the coordinates you specify are absolute for the workspace, not relative to the top-left corner of the canvas</td>
+    <td>In V2, when you add an element to a canvas and specify a (x,y) set of coordinates, they are relative to the top-left corner of the Canvas.<br />If you do not specify the coordinates, it is assumed they are (0,0), and the new element will be added at the top-left corner of the Canvas</td>
+    <td>In V3, when you create a new element in a Canvas, the coordinates you specify are absolute for the workspace.<br />If you do not specify the coordinates, it is assumed they are (0,0), and will be created in the (0,0) coordinates of the workspace, not of the Canvas.</td>
+  </tr>
+  <tr>
     <td>
-      Summary example for how to specify the style properties of an object: position, height/width, color,
+      Let's see a summary example for how to specify the style properties of an object: position, height/width, color,
       background color. This is applied to a new Text element.
     </td>
     <td>In V2: <br /><br />
@@ -351,7 +356,7 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
   </tr>
   <tr>
     <td>How to create an element, e.g. a Text element</td>
-    <td><pre>POST /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/text</pre></td>
+    <td><pre>POST /v2/workspaces/{workspace_id}/elements/text</pre></td>
     <td><pre>POST /v3/workspaces/{workspaceId}/elements</pre>Provide the type in the request body: 
 <pre>
 {
