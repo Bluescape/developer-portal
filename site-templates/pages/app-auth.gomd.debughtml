@@ -614,7 +614,7 @@ You need to whitelist the application you will use to generate the tokens. <br /
 
 <ul>
     <li>Request:<br />
-        <pre><script type="text/javascript">document.write(apiBaseStr);</script>/authorize?response_type=code&client_id=<b>&lt;app_id_to_whitelist&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</pre> <br />
+        <pre><script type="text/javascript">document.write(apiBaseStr);</script>/authorize?response_type=code&client_id=<b>&lt;app_id_to_whitelist&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre> <br />
         where &lt;redirect_url&gt; is the redirect URL set in the configuration of the application.       
     </li>
     <li>Example:<br />

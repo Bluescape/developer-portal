@@ -59,24 +59,24 @@
 
 <p>
     The owner of the organization has the ability to add, delete and modify users and update organizational settings.
-    They also have the same functionality as a user of the organization. The owner cannot be removed from the account,
-    and they will always be an administrator for the account. Only the owner of the account can modify organization
+    They also have the same functionality as a user of the organization. The owner cannot be removed from the organization,
+    and they will always be an administrator for this organization. The owner of the organization, along with admins, can modify organization
     settings.
 </p>
 
 <h4>Admin</h4>
 
 <p>
-    Admins have the same capabilities as the owner, except they cannot access the Organization Settings tab. The owner
-    and other admins can make any organization member an administrator by opening the user's settings and check the
-    option for administrator.
+    Admins have the same capabilities as the owner. The owner and other admins can make any organization 
+    member an administrator by opening the user's settings and check the option for administrator. Admins 
+    also have the ability to modify organization settings.
 </p>
 
 <h4>User</h4>
 
 <p>
-    A User in an organization has the ability to view any public workspace shared with the organization, any private
-    workspace they own or have been invited to, and they can create new workspaces. They can also invite collaborators
+    A User in an organization has the ability to view any public workspace shared within organization, any private
+    workspace they own or have been invited to, and have the ability to create new workspaces. They can also invite collaborators
     into workspaces they own or to which they have “share” access.
 </p>
 
@@ -93,7 +93,7 @@
 
     <ul>
         <li>
-            Bluescape users can be a User, Admin, or Owner in one organization and a Guest User in other organizations.
+            Bluescape users can be a Guest, User, Admin, or Owner in any number of organizations.
         </li>
         <li>
             In the context of an SSO organization, only Users authorized in the company’s Identity Provider (IdP) will
@@ -115,7 +115,7 @@
     <tr>
         <th>Viewer</th>
         <td>This limits collaborators to only being able to view, interact, and download assets within the workspace.
-            They cannot move, add, or delete assets nor can draw or erase. They cannot invite collaborators into the
+            They cannot move, add, or delete assets nor can they draw or erase. They cannot invite collaborators into the
             workspace.
         </td>
     </tr>
