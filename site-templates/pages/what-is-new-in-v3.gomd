@@ -20,7 +20,7 @@ The main differences can be grouped in 2 sections:
     <td><center><b>V2</b></center></td>
     <td><center><b>V3</b></center></td>
   <tr>
-    <td WIDRTH="30%">Modify an element already created: position, color, text, etc.</td>
+    <td WIDRTH="30%">In V3, the REST API verb to modify an element already created (its position, color, text, etc.) is PATCH.</td>
     <td>verb: PUT</td>
     <td>verb: PATCH</td>
   </tr>
