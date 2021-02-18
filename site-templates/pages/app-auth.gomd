@@ -525,7 +525,7 @@ curl -w "%{http_code}\\n" -X POST \
 
 <h3>Full Example</h3>
 <p> 
-    <b>Preconditions (example values)</b>   
+    <b>Preconditions (example values)</b>
     <table class="table table-striped">
         <tr>
             <td><b>Name</b></td>
