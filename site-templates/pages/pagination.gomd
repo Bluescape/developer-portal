@@ -6,7 +6,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        In the current <span class="pre">/v3/</span> version, the pagination mechanism has been changed. The new cursor based pagination uses different URL query parameters depending on whether it is the initial request for a collection or a subsequent request. </a>
+                        In the current <span class="pre">/v3/</span> BETA version, the pagination mechanism has been changed. The new cursor based pagination uses different URL query parameters depending on whether it is the initial request for a collection or a subsequent request. </a>
                     <br /> <br />
                     </b>
             </td>
