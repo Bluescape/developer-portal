@@ -20,7 +20,7 @@
 
 <p><h4>3. Get list of workspaces</h4>
 <p>
-        Get the list of all Workspaces that you can access. You can get the IDs and names of each Workspace.
+        Get the list of all Workspaces that you can access. With this, you can get the IDs and names of each Workspace.
 </p></p>
 
 <p><a href="/docs/page/get-list-of-workspaces" class="action">Open Guide</a></p>
@@ -49,7 +49,7 @@
 <p><h2>Listeners</h2>
 <p>
     Listeners are a powerful tool for monitoring Bluescape workspaces and responding to user actions. The Listeners guide describes in detail how listeners work and how to get started using them. </br>
-    GraphQL Subscriptions will be replacing Listeners in a future release
+    GraphQL Subscriptions will be replacing Listeners in a future release.
 </p></p>
 
 <p><a href="/docs/page/listeners-api" class="action">Open Guide</a></p>
