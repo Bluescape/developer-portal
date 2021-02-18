@@ -6,7 +6,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        The support for API version <span class="pre">/v3/</span> is now released. This change went into effect with release version 21.03.1, on MM DD, YYYY. 
+                        The support for API version <span class="pre">/v3/</span> is now available. This change went into effect with release version 21.02.1, on Feb 12th, 2021. 
                     <br /> <br />
                     </b>
             </td>
@@ -26,21 +26,21 @@
     <tr>
         <td>3.0</td>
         <td><a href="/docs/page/reference">/v3/</a></td>
-        <td>21.03.1 (MM DD, YYYY) </td>
+        <td>21.02.1 (Feb 12th, 2021) </td>
         <td>Current</td>
     </tr>
     <tr>
         <td>2.0</td>
         <td><a href="/docs/page/reference-v2">/v2/</a></td>
         <td>19.11.1 (November 22, 2019) </td>
-        <td>Discontinued</td>
+        <td>Deprecated</td>
     </tr>
 </table>
         
 <h2>FAQ</h2>
 
 <p>   
-    <b>Q: Will my current scripts stop working after the 21.03.1 Release (released on MM DD, YYYY)?</b><br />
+    <b>Q: Will my current scripts stop working after the 21.02.1 Release (released on Feb 12, 2021)?</b><br />
         
     <b>A</b>: There will be a short grace period after the time of the release where <span class="pre">v2</span> endpoints will still be active
     in order to give developers time to migrate their existing scripts to <span class="pre">v3</span> APIs instead. After this period, any scripts using the <span class="pre">/v2/</span> endpoint will no longer work. 
@@ -50,7 +50,7 @@
 <p>
     <b>Q: What's New in V3?</b><br />
 
-    <b>A</b>: With the <span class="pre">/v3/</span> endpoint, scripts previously using the uid field will need to be replaced (<b>e.g.</b>, change the id field in the API endpoint 
+    <b>A</b>: With the <span class="pre">/v3/</span> endpoint, scripts previously using the <b>UID</b> field will need to be replaced (e.g., change the id field in the API endpoint 
     from <span class="pre">v2/users/{user_uid}</span> to <span class="pre">v3/users/{userId}</span>). 
     
     Before updating to <span class="pre">/v3/</span>, please check all scripts that are potentially 
@@ -58,7 +58,7 @@
 </p>
     
 <p>      
-    For example, to view all the workspaces that a user can access, make the following change (<b>note the addition of <span class="pre">/api</span> in V3 endpoints</b>):<br />
+    For example, to view all the workspaces that a user can access, make the following change:<br />
 
     <b>Previous format:</b><br />
     <pre><script type="text/javascript">document.write(apiBaseStr); </script>/v2/users/me/workspaces</pre>
@@ -66,19 +66,19 @@
 
 <p>
     <b>New format:</b><br />
-    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/api/v3/users/me/workspaces</pre>
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/v3/users/me/workspaces</pre>
 </p>
 
 <p>
-    To add a new canvas to a workspace, make the following change (<b>note the addition of <span class="pre">/api</span> in V3</b>):<br />
+    To add a new canvas to a workspace, make the following change:<br />
     
     <b>Previous format:</b><br />
     <pre><script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;<b>workspace_UID</b>&gt;/elements/canvas</pre>    
 </p>
 
 <p>
-    <b>New format (note the new addition of <span class="pre">type</span> and updated <span class="pre">Id</span> field in the path):</b><br />
-    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/api/v3/workspaces/&lt;<b>workspaceId</b>&gt;/elements?type=Canvas</pre>
+    <b>New format (note the addition of <span class="pre">type</span> and updated <span class="pre">Id</span> field in the path):</b><br />
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;<b>workspaceId</b>&gt;/elements?type=Canvas</pre>
 </p>
 
 <p>
