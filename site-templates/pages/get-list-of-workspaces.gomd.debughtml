@@ -19,7 +19,7 @@ After you receive the authentication token, you can get a list of all the worksp
 <table class="table table-striped">
   <tr>
     <td><b>Endpoint</b></td>
-    <td>/api/v3/users/me/workspaces</td>
+    <td>/v3/users/me/workspaces</td>
   </tr>
   <tr>
       <td><b>Method</b></td>
@@ -64,7 +64,7 @@ if __name__ == "__main__":
    # Get all the workspaces for your user
    API_version = 'v3'
 
-   API_endpoint = '/api/' + API_version + '/users/me/workspaces'
+   API_endpoint = '/' + API_version + '/users/me/workspaces'
 
    the_request = requests.get(
        portal + API_endpoint,
@@ -105,7 +105,7 @@ const api_endpoint = '/users/me/workspaces';
 
 request_values = {
     method: 'GET',
-    url: portal + '/api/' + api_version + api_endpoint,
+    url: portal + '/' + api_version + api_endpoint,
     headers : {
         'Authorization': "Bearer " + token,
         'Content-Type' : 'application/json'    

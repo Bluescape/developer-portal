@@ -32,7 +32,7 @@
 </p>
 
 <pre>
-/api/v3/users/me/workspaces?limit=1&filterBy=(name eq bob)&orderBy=name desc
+/v3/users/me/workspaces?limit=1&filterBy=(name eq bob)&orderBy=name desc
 </pre>
 
 <p>
@@ -69,7 +69,7 @@
 </p>
 
 <pre>
-/api/v3/users/me/workspaces?cursor=ZFJOWjtLtjBSOdP5XXdvkQzK2hRQ81WuoYKvQbnqSDK
+/v3/users/me/workspaces?cursor=ZFJOWjtLtjBSOdP5XXdvkQzK2hRQ81WuoYKvQbnqSDK
 </pre>
 
 <h3>A sample subsequent response</h3>

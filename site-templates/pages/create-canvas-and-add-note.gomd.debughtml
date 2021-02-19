@@ -9,7 +9,7 @@
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/api/v3/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -42,7 +42,7 @@
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/api/v3/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -124,7 +124,7 @@ if __name__ == "__main__":
     # Create new Canvas
     # Path:     /v3/workspaces/&lt;workspaceId&gt;/elements
 
-    API_endpoint = '/api/v3/workspaces/' + workspaceId + '/elements'
+    API_endpoint = '/v3/workspaces/' + workspaceId + '/elements'
 
     timestamp = datetime.datetime.now()
 
@@ -150,7 +150,7 @@ if __name__ == "__main__":
     # Add a Note to a canvas  
     # Path: 	/v3/workspaces/&lt;workspaceId&gt;/elements
 
-    API_endpoint = '/api/v3/workspaces/' + workspaceId + '/elements'
+    API_endpoint = '/v3/workspaces/' + workspaceId + '/elements'
     params = ''
 
     timestamp = datetime.datetime.now()
@@ -203,7 +203,7 @@ var api_endpoint = '/workspaces/' + workspaceId + '/elements';
 
 function runRequest(portal,api_version,api_endpoint,the_method,data_load) {
     var request_values = {
-        url : portal + '/api/' + api_version + api_endpoint,
+        url : portal + '/' + api_version + api_endpoint,
         method : the_method ,
         headers : {
             'Authorization': "Bearer " + token,
