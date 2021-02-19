@@ -67,22 +67,26 @@
 </p>
 
 <p>      
-        For example, to view all the workspaces that a user can access, make the following change:<br />
-        Previous format:
-        <pre><script type="text/javascript">document.write(apiBaseStr); </script>/v1/users/me/workspaces</pre>
-        
-            New format:
-            <pre><script type="text/javascript">document.write(apiBaseStr); </script>/v2/users/me/workspaces</pre><br />
+    For example, to view all the workspaces that a user can access, make the following change:<br />
+    <b>Previous format:</b>
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/v1/users/me/workspaces</pre>
+</p>         
 
-            To add a new canvas to a workspace, make the following change:<br />
+<p>
+    <b>New format:</b>
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/v2/users/me/workspaces</pre>
+</p>
 
-            Previous Format: <br />
-        <pre><script type="text/javascript">document.write(apiBaseStr); </script>/v1/workspaces/&lt;workspace_id&gt;/canvas</pre>
-            New format (note the new addition of <span class="pre">elements</span> in the path):<br />
-            <pre><script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;<b>workspace_UID</b>&gt;/elements/canvas</pre>
-
-
+<p>
+    To add a new canvas to a workspace, make the following change:<br />
+    <b>Previous Format: <br /></b>
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/v1/workspaces/&lt;workspace_id&gt;/canvas</pre>
 </p>   
+
+<p>
+    <b>New format (note the addition of <span class="pre">elements</span> in the path):<br /></b>
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;<b>workspace_UID</b>&gt;/elements/canvas</pre>
+</p>
         
 
 <p>

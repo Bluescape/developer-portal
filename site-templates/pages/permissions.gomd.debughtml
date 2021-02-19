@@ -68,16 +68,16 @@
 
 <p>
     Admins have the same capabilities as the owner. The owner and other admins can make any organization 
-    member an administrator by opening the user's settings and check the option for administrator. Admins 
+    member an administrator by opening the user's settings and checking the option for administrator. Admins 
     also have the ability to modify organization settings.
 </p>
 
 <h4>User</h4>
 
 <p>
-    A User in an organization has the ability to view any public workspace shared within organization, any private
+    A User in an organization has the ability to view any public workspace shared within an organization, any private
     workspace they own or have been invited to, and have the ability to create new workspaces. They can also invite collaborators
-    into workspaces they own or to which they have “share” access.
+    into workspaces that they own or to which they have “share” access.
 </p>
 
 <h4>Guest</h4>
