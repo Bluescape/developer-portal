@@ -27,11 +27,13 @@ The main differences can be grouped in 3 sections:
     <td>REST API verb: <b>PATCH</b> <br /><br />
     Specify the properties to change in the request body of the PATCH call.
     <br /><br >
-    Please note the following V3 REST APIs that still use the PUT verb to make a change:
+    Please note the following V3 REST APIs that still use the <b>PUT</b> verb to make a change:
     <ul>
-      <li><pre>/api/v3/organizations/{organizationId}/members/<memberId>/role</pre> : Update the Member's Role </li>
-      <li>/api/v3/users/me/avatar : /api/v3/users/me/avatar</li>
-      <li>/api/v3/users/me/favorites/workspaces/<workspaceId> : Favourite a workspace</li>
+      <li>Create Asset Upload: <pre>/api/v3/workspaces/{workspace}/assets/uploads/{id}/error</pre></li>
+      <li>Progress Asset Upload to processing: <pre>/api/v3/workspaces/{workspace}/assets/uploads/{id}</pre></li>
+      <li>Update the Member's Role:<pre>PUT /api/v3/organizations/{organizationId}/members/{memberId}/role</pre></li>
+      <li>Update Avatar: <pre>PUT /api/v3/users/me/avatar</pre></li>
+      <li>Favourite a workspace: <pre>PUT /api/v3/users/me/favorites/workspaces/{workspaceId}</pre></li>
     </ul>     
     </td>
   </tr>
