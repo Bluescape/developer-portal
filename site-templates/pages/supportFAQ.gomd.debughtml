@@ -12,7 +12,7 @@
     </p>
 
     <p>
-    You will likely need a server for Bluescape to communicate with that also has access to the sources of data and content you will want to import into your workspaces using our API. We provide a number of SDKs to help you get started creating Bluescape content and listening for Bluescape notifications.
+    You will likely need a server for Bluescape to communicate with that also has access to the sources of data and content you will want to import into your workspaces using our API.
     </p>
 
     <p>
@@ -26,8 +26,8 @@
     </p>
 
     <ol>
-      <li>Check <a href="https://support.bluescape.com" target="_BLANK">support.bluescape.com</a> for any service disruption advisories.</li>
-      <li>Send a simple HTTP GET to the <a href="https://health.apps.us.bluescape.com/" target="_BLANK">https://health.apps.us.bluescape.com/</a> API method. A <span class="pre">HTTP 200</span> application/json response of <span class="pre">{"ok":true}</span> indicates at least part of the Bluescape Service is available.</li>
+      <li>Check <a href="https://support.bluescape.com">support.bluescape.com</a> for any service disruption advisories.</li>
+      <li>Send a simple HTTP GET to the <a href="../"><script type="text/javascript">document.write(healthLink); </script></a> API method. A <span class="pre">HTTP 200</span> application/json response of <span class="pre">{"ok":true}</span> indicates at least part of the Bluescape Service is available.</li>
       <li>Still unsure if Bluescape is down? Contact our enthusiastic support team at the <a href="https://support.bluescape.com" target="_blank">Support page</a>.</li>
     </ol>
 
