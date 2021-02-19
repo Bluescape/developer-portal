@@ -25,8 +25,8 @@
 
 <p>
     A request URL is assembled from the base URL and the <strong>path</strong> information for an operation as found in
-    the reference. For example, <a href="/reference/apis#Organizations:postOrganizationsUsersByOrganizationid" target="_blank">Add a User
-    to an Organization</a> is an operation with path <span
+    the reference. For example, Add a User
+    to an Organization is an operation with path <span
         class="pre">/organizations/&lt;organizationId&gt;/members</span>. Combining this path with the base URL gives us
     a request URL of:
 </p>
@@ -43,8 +43,8 @@
     The path for the operation above, like many in the Bluescape API, contains a parameter. Adding a user to an
     organization requires we identify the organization to which the new user should be invited. To finish preparing this
     request URL, we must replace <span class="pre">&lt;organizationId&gt;</span> with a valid organization ID, such as
-    one obtained from the <a href="/reference/apis#Organizations:getOrganizationsUsersByOrganizationid" target="_blank">List a User's
-    Organizations</a> operation. Replacing the parameter placeholder with a sample organization ID yields a request URL
+    one obtained from the List a User's
+    Organizations operation. Replacing the parameter placeholder with a sample organization ID yields a request URL
     of:
 </p>
 
@@ -56,8 +56,7 @@
 
 <p>
     In addition to path parameters, some requests will have query, body and form data parameters. Reviewing the
-    documentation for <a href="/reference/apis#Organizations:postOrganizationsUsersByOrganizationid" target="_blank">Add a User
-    to an Organization</a>, we see that this operation has a JSON-format body parameter, with
+    documentation for Add a User to an Organization, we see that this operation has a JSON-format body parameter, with
     required <span class="pre">id</span>, <span class="pre">type</span> and <span class="pre">organizationRoleId</span> fields. When an operation requires a body parameter, be sure to send your
     request with a <span class="pre">Content-Type</span> header of <span class="pre">application/json</span>. When a
     form data parameter is expected, be sure to send your request with a <span class="pre">Content-Type</span> header of
