@@ -25,12 +25,6 @@
     We are dedicated to keeping Bluescape's services fully functional for users and developers at all times. In the unfortunate event that you're having trouble connecting to your workspaces or our API, here are some steps you can take to determine the state of the situation:
     </p>
 
-    <p>
-    Noah Test
-    <script type="text/javascript">document.write(appsLinkLower); </script>
-    <script type="text/javascript">document.write(appsStrLower); </script>
-    </p>
-
     <ol>
       <li>Check <a href="https://support.bluescape.com">support.bluescape.com</a> for any service disruption advisories.</li>
       <li>Send a simple HTTP GET to the <a href="https://health.apps.us.bluescape.com/" target="_BLANK">https://health.apps.us.bluescape.com/</a> API method. A <span class="pre">HTTP 200</span> application/json response of <span class="pre">{"ok":true}</span> indicates at least part of the Bluescape Service is available.</li>
