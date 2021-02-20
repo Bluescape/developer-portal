@@ -15,7 +15,7 @@
     <table class="table table-striped">
             <tr>
                 <td><b>Endpoint</b></td>
-                <td>/api/v3/organizations/<code>&lt;</code>organizationId<code>&gt;</code>/walls</td>
+                <td>/v3/organizations/<code>&lt;</code>organizationId<code>&gt;</code>/walls</td>
                 <td></td>
             </tr>
             <tr>
@@ -40,13 +40,13 @@
     import pprint
 
     token = '&lt;SET_TOKEN&gt;'
-    portal = '<script type="text/javascript">document.write("https://" + window.location.hostname); </script>'
+    portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
     organizationId = '&lt;SET_ORGANIZATION_ID&gt;'
 
 
     if __name__ == "__main__":
 
-        API_endpoint = '/api/v3/organizations/' + organizationId + '/walls'
+        API_endpoint = '/v3/organizations/' + organizationId + '/walls'
 
         data_load = {                  # Example showing how to use the filter_by field
             'filter_by=name' : '&lt;NAME_TO_FILTER_BY&gt;' 
@@ -88,7 +88,7 @@
     */
 
     const token = '&lt;SET_TOKEN&gt;';
-    const portal = '<script type="text/javascript">document.write("https://" + window.location.hostname); </script>';
+    const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
     const api_version = 'v3';
     const organizationId = '&lt;SET_ORGANIZATION_ID&gt;';
     const api_endpoint = '/organizations/' + organizationId + '/walls';
@@ -99,7 +99,7 @@
 
     request_values = {
         method: 'GET',
-        url: portal + '/api/' + api_version + api_endpoint,
+        url: portal + '/' + api_version + api_endpoint,
         headers : {
             'Authorization': "Bearer " + token,
             'Content-Type' : 'application/json'    
