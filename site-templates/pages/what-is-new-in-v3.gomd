@@ -205,9 +205,9 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
   </tr>
 <tr>
     <td>
-      In V3 thre is anew way to specify the style dimensions (height and width) of an object.
+      In V3 there is a new way to specify the dimensions (height and width) of an element, this except for elements of the Image, Document or Video type.
     </td>
-    <td> In V2:<br /><br />
+    <td> In V2, all the elements specify the width and height properties this way:<br /><br />
 <pre>
 {
   "text": "Hello there!", 
@@ -219,7 +219,7 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
 </pre>
     </td>
     <td>
-      In V3 the dimensions of an object are specified within the <b>style</b> key:<br /><br />
+      In V3 (except for elements of the Image, Document or Video type), the dimensions of an element are specified within the <b>style</b> key:<br /><br />
 <pre>
 {
   "type": "Text",
@@ -232,6 +232,15 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
       },
     }</b>
   ...
+}</pre>
+For the elements of the Image, Document or Video type, the width and height properties are specified as in V2:<br /><br />
+<pre>
+{
+  "type": "Image",
+  ... 
+  <b>"width": 300, 
+  "height": 200,  </b>
+  ...       
 }</pre>
     </td>
   </tr>
