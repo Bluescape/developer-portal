@@ -207,7 +207,7 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
     <td>
       In V3 there is a new way to specify the dimensions (height and width) of an element, this except for elements of the Image, Document or Video type.
     </td>
-    <td> In V2, all the objects specify the width and height properties this way:<br /><br />
+    <td> In V2, all the elements specify the width and height properties this way:<br /><br />
 <pre>
 {
   "text": "Hello there!", 
