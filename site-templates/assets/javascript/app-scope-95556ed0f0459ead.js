@@ -55,6 +55,4 @@ function getPermissionGroups() {
       return true;
     });
   }
-  
-  
-  
+   

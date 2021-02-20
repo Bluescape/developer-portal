@@ -5,7 +5,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        The version <span class="pre">/v3/</span> beta release will not include REST API support for Traits. Traits will be released with REST API support in a future release.
+                        The version <span class="pre">/v3/</span> Beta release will not include REST API support for Traits. Traits will be released with REST API support in a future release.
                     <br /> <br />
                     </b>
             </td>

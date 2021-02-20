@@ -9,7 +9,7 @@
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/api/v3/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -23,10 +23,12 @@
         -->
         <tr>
           <td><b>Body</b></td>
-            <td>{ </br>
-            &nbsp;&nbsp;&nbsp;&nbsp; "type": "Canvas",</br> 
-            &nbsp;&nbsp;&nbsp;&nbsp; "name": "&lt;SET_CANVAS_NAME&gt;"</br>
-            }
+            <td>
+            <pre>
+{
+&nbsp;&nbsp;&nbsp;&nbsp; "type": "Canvas",
+&nbsp;&nbsp;&nbsp;&nbsp; "name": "&lt;SET_CANVAS_NAME&gt;"
+}</pre>
             </td>
         </tr>
         <tr>
@@ -40,7 +42,7 @@
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/api/v3/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -54,10 +56,12 @@
         -->
         <tr>
             <td><b>Body</b></td>
-            <td>{ </br>
-            &nbsp;&nbsp;&nbsp;&nbsp; "type": "Note",</br> 
-            &nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;"</br>
-            }
+            <td>
+            <pre>
+{
+&nbsp;&nbsp;&nbsp;&nbsp; "type": "Note",
+&nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;"
+}</pre>
             </td>
         </tr>
         <tr>
@@ -65,18 +69,19 @@
           <td>You need to ensure that the Note fits within the Canvas' boundaries. You also need to ensure that the Note's position falls within the Canvas' boundaries. </br>
               If you need to change the dimensions or position of the Note, you'll need to add extra parameters in the Body of your request. </br>
               <b>To change the dimensions of the Note, the body should look like this:</b></br>
-              { </br>
-            &nbsp;&nbsp;&nbsp;&nbsp; "type": "Note",</br> 
-            &nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;"</br>
-            &nbsp;&nbsp;&nbsp;&nbsp; "transform": {"scale": &lt;SET_SCALE&gt;} </br>
-            } </br>
+              <pre>{
+&nbsp;&nbsp;&nbsp;&nbsp; "type": "Note",
+&nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;"
+&nbsp;&nbsp;&nbsp;&nbsp; "transform": {"scale": &lt;SET_SCALE&gt;}
+}</pre>
               
               <b>To change the position of the Note, the body should look like this: </b></br>
-              { </br>
-            &nbsp;&nbsp;&nbsp;&nbsp; "type": "Note",</br> 
-            &nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;"</br>
-            &nbsp;&nbsp;&nbsp;&nbsp; "transform": {"x": &lt;SET_X&gt;, "y": &lt;SET_Y&gt;} </br>
-            }              
+            <pre> 
+{
+&nbsp;&nbsp;&nbsp;&nbsp; "type": "Note",
+&nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;"
+&nbsp;&nbsp;&nbsp;&nbsp; "transform": {"x": &lt;SET_X&gt;, "y": &lt;SET_Y&gt;}
+}</pre>           
                </br>
           </td>       
         </tr>        
@@ -113,13 +118,13 @@ Required modules:
 token = '&lt;SET_TOKEN&gt;'        
 
 if __name__ == "__main__":
-    portal = '<script type="text/javascript">document.write("https://" + window.location.hostname); </script>' 
+    portal = '<script type="text/javascript">document.write(apiBaseStr); </script>' 
     workspaceId = '&lt;SET_WORKSPACE_ID&gt;'  # REMEMBER TO ADD WORKSPACE ID
 
     # Create new Canvas
     # Path:     /v3/workspaces/&lt;workspaceId&gt;/elements
 
-    API_endpoint = '/api/v3/workspaces/' + workspaceId + '/elements'
+    API_endpoint = '/v3/workspaces/' + workspaceId + '/elements'
 
     timestamp = datetime.datetime.now()
 
@@ -145,7 +150,7 @@ if __name__ == "__main__":
     # Add a Note to a canvas  
     # Path: 	/v3/workspaces/&lt;workspaceId&gt;/elements
 
-    API_endpoint = '/api/v3/workspaces/' + workspaceId + '/elements'
+    API_endpoint = '/v3/workspaces/' + workspaceId + '/elements'
     params = ''
 
     timestamp = datetime.datetime.now()
@@ -191,14 +196,14 @@ website: https://github.com/axios/axios
 var axios = require('axios');
 
 const token = '&lt;SET_TOKEN&gt;';
-const portal = '<script type="text/javascript">document.write("https://" + window.location.hostname); </script>';
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
 const api_version = 'v3';
 var api_endpoint = '/workspaces/' + workspaceId + '/elements';
 
 function runRequest(portal,api_version,api_endpoint,the_method,data_load) {
     var request_values = {
-        url : portal + '/api/' + api_version + api_endpoint,
+        url : portal + '/' + api_version + api_endpoint,
         method : the_method ,
         headers : {
             'Authorization': "Bearer " + token,
@@ -278,7 +283,6 @@ Each time you run a POST API, you will get back a Response Body with the propert
         <tr>
             <td><b>Element</b></td>
             <td><b>Json</b></td>
-            <td><b>Comments</b></td>
         </tr>
         <tr>
             <td>Element ID</td>

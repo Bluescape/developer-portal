@@ -3,9 +3,7 @@
 <p>
     <em>
         This guide assumes you have obtained an access token from an authorized user. You can obtain an access token
-        either by completing the OAuth flow (see the <a href="/docs/page/app-auth">Application Authorization</a> guide) or by
-        using the <a href="/tools/access-token">Access Token Generator</a> to generate a token using your own Bluescape
-        login information.
+        by completing the OAuth flow (see the <a href="/docs/page/app-auth">Application Authorization</a> guide).
     </em>
 </p>
 
@@ -17,7 +15,7 @@
 
 <pre>
 <script type="text/javascript">
-    document.write("https://" + window.location.hostname);
+    document.write(apiBaseStr);
 </script>
 </pre>
 
@@ -27,15 +25,15 @@
 
 <p>
     A request URL is assembled from the base URL and the <strong>path</strong> information for an operation as found in
-    the reference. For example, <a href="/reference/apis#Organizations:postOrganizationsUsersByOrganizationid" target="_blank">Add a User
-    to an Organization</a> is an operation with path <span
+    the reference. For example, Add a User
+    to an Organization is an operation with path <span
         class="pre">/organizations/&lt;organizationId&gt;/members</span>. Combining this path with the base URL gives us
     a request URL of:
 </p>
 
 <pre>
 <script type="text/javascript">
-    document.write("https://" + window.location.hostname + "/api/v3/organizations/&lt;organizationId&gt;/members");
+    document.write(apiBaseStr + "/v3/organizations/&lt;organizationId&gt;/members");
 </script>
 </pre>
 
@@ -45,21 +43,20 @@
     The path for the operation above, like many in the Bluescape API, contains a parameter. Adding a user to an
     organization requires we identify the organization to which the new user should be invited. To finish preparing this
     request URL, we must replace <span class="pre">&lt;organizationId&gt;</span> with a valid organization ID, such as
-    one obtained from the <a href="/reference/apis#Organizations:getOrganizationsUsersByOrganizationid" target="_blank">List a User's
-    Organizations</a> operation. Replacing the parameter placeholder with a sample organization ID yields a request URL
+    one obtained from the List a User's
+    Organizations operation. Replacing the parameter placeholder with a sample organization ID yields a request URL
     of:
 </p>
 
 <pre>
 <script type="text/javascript">
-    document.write("https://" + window.location.hostname + "/api/v3/organizations/eidzMVOsv4peKG-4DLKA/members");
+    document.write(apiBaseStr + "/v3/organizations/eidzMVOsv4peKG-4DLKA/members");
 </script>
 </pre>
 
 <p>
     In addition to path parameters, some requests will have query, body and form data parameters. Reviewing the
-    documentation for <a href="/reference/apis#Organizations:postOrganizationsUsersByOrganizationid" target="_blank">Add a User
-    to an Organization</a>, we see that this operation has a JSON-format body parameter, with
+    documentation for Add a User to an Organization, we see that this operation has a JSON-format body parameter, with
     required <span class="pre">id</span>, <span class="pre">type</span> and <span class="pre">organizationRoleId</span> fields. When an operation requires a body parameter, be sure to send your
     request with a <span class="pre">Content-Type</span> header of <span class="pre">application/json</span>. When a
     form data parameter is expected, be sure to send your request with a <span class="pre">Content-Type</span> header of
@@ -93,7 +90,7 @@
 </div>
 
 <pre class="lang lang-curl">
-curl -X POST <script type="text/javascript">document.write("https://" + window.location.hostname + "/api/v3/organizations/&lt;SET_ORGANIZATION_ID&gt;/members"); </script> \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr + "/v3/organizations/&lt;SET_ORGANIZATION_ID&gt;/members"); </script> \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -109,10 +106,10 @@ curl -X POST <script type="text/javascript">document.write("https://" + window.l
 import requests
 import pprint 
 
-portal = '<script type="text/javascript">document.write("https://" + window.location.hostname); </script>'
+portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
 organizationId = '&lt;SET_ORGANIZATION_ID&gt';
 API_version = 'v3'
-API_endpoint = '/api/' + API_version + '/organizations/' + organizationId + '/members'
+API_endpoint = '/' + API_version + '/organizations/' + organizationId + '/members'
 token = '&lt;SET_TOKEN&gt';
 data_load = {
   "id": "&lt;SET_USER_ID&gt;",

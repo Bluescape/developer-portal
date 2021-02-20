@@ -7,7 +7,7 @@
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/api/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image</td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -51,13 +51,13 @@ Required modules:
 token = '&lt;SET_TOKEN&gt;'
 
 if __name__ == "__main__":
-   portal = "<script type="text/javascript">document.write("https://" + window.location.hostname); </script>"
+   portal = "<script type="text/javascript">document.write(apiBaseStr); </script>"
    workspaceId = '&lt;SET_WORKSPACE_ID&gt;'   
    API_version = 'v3'
 
    # Get all the images from a workspace
 
-   API_endpoint = '/api/' + API_version + '/workspaces/' + workspaceId + '/elements?type=Image'
+   API_endpoint = '/' + API_version + '/workspaces/' + workspaceId + '/elements?type=Image'
 
    the_request = requests.get(
        portal + API_endpoint,
@@ -91,13 +91,13 @@ website: https://github.com/axios/axios
 var axios = require('axios');
 
 const token = '&lt;SET_TOKEN&gt;';
-const portal = '<script type="text/javascript">document.write("https://" + window.location.hostname); </script>';
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
 const api_version = 'v3';
 const api_endpoint = '/workspaces/' + workspaceId + '/elements?type=Image';
 
 var request_values = {
-    url: portal + '/api/' + api_version + api_endpoint,
+    url: portal + '/' + api_version + api_endpoint,
     method : 'GET' ,
     headers : {
         'Authorization': "Bearer " + token,
@@ -134,9 +134,10 @@ You can modify this script to return a list of each specific object from the wor
  <li>"Grid"</li>
  <li>"Shape"</li>
  <li>"Line"</li>
+<!--
  <li>"Selection"</li>
  <li>"Window"</li>
-
+-->
 </ul>
 </p>
 
