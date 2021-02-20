@@ -7,8 +7,8 @@
                     <b><center>NOTICE</center>
                         <br />
                         In the current <span class="pre">/v3/</span> Beta version, listeners are not available. 
-                        This functionality will be replaced with GraphQL subscriptions in a future release.<br /><br />
-                    <br /> <br />
+                        This functionality will be replaced with GraphQL subscriptions in a future release.
+                    <br /><br />
                     </b>
             </td>
         </tr>
