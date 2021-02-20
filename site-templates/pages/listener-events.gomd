@@ -6,7 +6,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        In the current <span class="pre">/v3/</span> Beta version, listeners are not available. The functionality will be replaced with GraphQL subscriptions in a future release. Date: TBD<br /><br />
+                        In the current <span class="pre">/v3/</span> Beta version, listeners are not available. This functionality will be replaced with GraphQL subscriptions in a future release. Date: TBD<br /><br />
                         Note: the availability of GraphQL subscriptions is currently planned for the GA release of the V3 APIs.</a>
                     <br /> <br />
                     </b>
