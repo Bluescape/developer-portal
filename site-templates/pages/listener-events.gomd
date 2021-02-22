@@ -14,7 +14,7 @@
         </tr>
     </table>
 </p>    
-
+<h4> The following documentation is still valid for use with <span class="pre">v2</span> API endpoints: </h4>
 <p>
     Below is a table of the event types that can be subscribed to when creating listeners. More details about Listeners can be found in the <a href="/docs/page/listeners-api">Listeners page</a>.
 </p>
