@@ -13,8 +13,7 @@
     </table>
 </p> 
 
-<!--
-
+<h4> The following documentation is still valid for use with <span class="pre">v2</span> API endpoints: </h4>
 <p>
 <b>Objective</b>: Create a new Canvas and upload content from a local drive to this new Canvas.
 </p>
