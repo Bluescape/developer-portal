@@ -1,7 +1,7 @@
 <h1>Guides</h1>
 
 <h2>Getting Started</h2>
-
+Codie Test
 <h4>1. Application Authorization</h4>
 <p>
     In order for applications to access the Bluescape API they must be authorized by an existing Bluescape user. The
