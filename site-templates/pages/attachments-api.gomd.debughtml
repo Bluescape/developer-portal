@@ -5,15 +5,14 @@
             <td style="padding:15px"><br>
                     <b><center>NOTICE</center>
                         <br />
-                        The version <span class="pre">/v3/</span> beta release will not include REST API support for Attachments. Attachments will be released with REST API support in a future release.
+                        The version <span class="pre">/v3/</span> Beta release will not include REST API support for Attachments. Attachments will be released with REST API support in a future release.
                     <br /> <br />
                     </b>
             </td>
         </tr>
     </table>
-</p></p>
-
-<!--
+</p>
+<h4> The following documentation is still valid for use with <span class="pre">v2</span> API endpoints: </h4></p>
 
 <h2>What are Attachments?</h2>
 <p>Attachments allow the user to pair together two elements so that they act as a single, interactable object.</p>
@@ -42,7 +41,7 @@
     <a href="#use-case-example">Use Case Example</a> <br />  
 </p>
 
-<a name="allowed-types"><h3>Allowed Element types for Attachments:</h3></a>
+<p><a name="allowed-types"><h3>Allowed Element types for Attachments:</h3></a>
 <p>
 <table class="table table-striped">
     <tr>
@@ -53,7 +52,7 @@
         <td><b>Notes</b></td>
         <td>
             <ul>
-                <li>Notes</li>    
+                <li>Notes</li>
                 <li>Images</li>
                 <li>Browsers</li>
                 <li>Documents</li>
@@ -66,7 +65,7 @@
         <td><b>Images</b></td>
         <td>
                 <ul>
-                        <li>Notes</li>    
+                        <li>Notes</li>
                         <li>Images</li>
                         <li>Browsers</li>
                         <li>Documents</li>
@@ -79,7 +78,7 @@
         <td><b>Documents</b></td>
         <td>
                 <ul>
-                        <li>Notes</li>    
+                        <li>Notes</li>
                         <li>Images</li>
                         <li>Browsers</li>
                         <li>Documents</li>
@@ -91,7 +90,7 @@
     <tr>
         <td><b>Browsers</b></td>
         <td> <ul>
-                <li>Notes</li>    
+                <li>Notes</li>
                 <li>Images</li>
                 <li>Browsers</li>
                 <li>Documents</li>
@@ -102,7 +101,7 @@
     <tr>
         <td><b>Videos</b></td>
         <td> <ul>
-                <li>Notes</li>    
+                <li>Notes</li>
                 <li>Images</li>
                 <li>Browsers</li>
                 <li>Documents</li>
@@ -120,42 +119,41 @@
     </tr>
 </table>
 </p>
-<br />
+<br /></p>
 
-<a name="how-to-implement"><h2>How to Implement Attachments APIs</h2></a>
+<p><a name="how-to-implement"><h2>How to Implement Attachments APIs</h2></a></p>
 
-<a name="create-attachment"><h3>Create: attach one element to another</h3></a>
-<p>
-<table class="table table-striped">
-    <tr>
-    <td><b>Endpoint</b></td>
-    <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments</td>
+<p><a name="create-attachment"><h3>Create: attach one element to another</h3></a>
+    <p>
+        <table class="table table-striped">
+                <tr>
+                    <td><b>Endpoint</b></td>
+                    <td>/v2/workspaces/<code>&lt;</code>workspace_uid<code>&gt;</code>/elements/<code>&lt;</code>surface_type<code>&gt;</code>/<code>&lt;</code>surface_id<code>&gt;</code>/attachments</td>
+                </tr>
+                <tr>
+                    <td><b>Method</b></td>
+                    <td>POST</td>
+                </tr>
+                <tr>
+                <td><b>Comments</b></td>
+                <td></td>
+                </tr>
+        </table>
+    </p>
+<p></p>
 
-    </tr>
-    <tr>
-        <td><b>Method</b></td>
-        <td>POST</td>
-    </tr>
-    <tr>
-    <td><b>Comments</b></td>
-    <td></td>
-    </tr>
-</table>
-</p>
-<p>
-    
-Sample Request:
+<p>Sample Request:
 <div class="lang-selector">
     <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
     <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
-</div>
+</div></p>
 
 <pre class="lang lang-node">
 var request = require('request');
 
 const token = &lt;SET_TOKEN&gt;
-const portal = 'https://api.apps.us.bluescape.com';
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspace_uid = &lt;SET_WORKSPACE_UID&gt;
 const api_version = 'v2';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;';
@@ -212,7 +210,7 @@ from requests.exceptions import HTTPError
 import pprint
 
 token = &lt;SET_TOKEN&gt;
-portal = 'https://api.apps.us.bluescape.com'
+portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
 workspace_uid = &lt;SET_WORKSPACE_UID&gt;
 api_version = '/v2/'
 
@@ -239,8 +237,8 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X POST https://api.apps.us.bluescape.com/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments 
--H 'Authorization: Bearer YOUR_TOKEN_HERE' 
+curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments 
+-H 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
 -H 'Content-Type: application/json' 
 -d '{
     "x" : 10,
@@ -249,7 +247,7 @@ curl -X POST https://api.apps.us.bluescape.com/v2/workspaces/&lt;workspace_uid&g
 }'
 </pre>    
 
-<br/>
+<p><br/>
 Sample Response Body:
     <ul>
         <li>Note the <span class='pre'>sourceId</span> being placed at coordinates [10,10]</li>
@@ -259,23 +257,23 @@ Sample Response Body:
         "x": 10,
         "y": 10,
         "source": {
-        "id": "`<`SET_SOURCE_ID`>`",
+        "id": "<code>&lt;</code>SET_SOURCE_ID<code>&gt;</code>",
         "type": "note"
         },
         "surface": {
-        "id": "`<`SET_SURFACE_ID`>`",
+        "id": "<code>&lt;</code>SET_SURFACE_ID<code>&gt;</code>",
         "type": "image"
         }
-    }</pre>
-        
-</p>
+    }</pre></p>
 
-<a name="get-attachments"><h3>Get: list all attachments of an element</h3></a>
+<p></p></p>
+
+<p><a name="get-attachments"><h3>Get: list all attachments of an element</h3></a>
 <p>
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments</td>
+          <td>/v2/workspaces/<code>&lt;</code>workspace_uid<code>&gt;</code>/elements/<code>&lt;</code>surface_type<code>&gt;</code>/<code>&lt;</code>surface_id<code>&gt;</code>/attachments</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -286,7 +284,7 @@ Sample Response Body:
           <td></td>
         </tr>
 </table>
-</p>
+</p></p>
 
 <p>
 
@@ -301,7 +299,7 @@ Sample Response Body:
 var request = require('request');
 
 const token = &lt;SET_TOKEN&gt;
-const portal = 'https://api.apps.us.bluescape.com';
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspace_uid = &lt;SET_WORKSPACE_UID&gt;
 const api_version = 'v2';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;';
@@ -354,7 +352,7 @@ from requests.exceptions import HTTPError
 import pprint
 
 token = &lt;SET_TOKEN&gt;
-portal = 'https://api.apps.us.bluescape.com'
+portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
 workspace_uid = &lt;SET_WORKSPACE_UID&gt;
 api_version = '/v2/'
 
@@ -373,8 +371,8 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X GET https://api.apps.us.bluescape.com/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments 
--H 'Authorization: Bearer YOUR_TOKEN_HERE' 
+curl -X GET <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments 
+-H 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
 -H 'Content-Type: application/json' 
 </pre>
 <br />
@@ -429,7 +427,7 @@ Sample Response Body with the list of attachements an object has:
 var request = require('request');
 
 const token = &lt;SET_TOKEN&gt;
-const portal = 'https://api.apps.us.bluescape.com';
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspace_uid = &lt;SET_WORKSPACE_UID&gt;
 const api_version = 'v2';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;';
@@ -485,7 +483,7 @@ from requests.exceptions import HTTPError
 import pprint
 
 token = &lt;SET_TOKEN&gt;
-portal = 'https://api.apps.us.bluescape.com'
+portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
 workspace_uid = &lt;SET_WORKSPACE_UID&gt;
 api_version = '/v2/'
 
@@ -504,7 +502,7 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X DELETE https://api.apps.us.bluescape.com/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments/&lt;target_id&gt; 
+curl -X DELETE <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments/&lt;target_id&gt; 
 -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
 -H 'Content-Type: application/json' 
 </pre>
@@ -522,13 +520,12 @@ Sample Response Body after deleting the attachments in an element:
 </pre>
 </p>
 
-
-<a name="use-case-example"><h3>Use Case Example</h3></a>
+<p><a name="use-case-example"><h3>Use Case Example</h3></a>
 Below is a simple, end-to-end example of how someone might use the Attachments APIs. This example is one in which a user uploads
-content from a local directory into a Bluescape workspace, generates text fields corresponding to the names of the uploaded files, and 
-attaches the text fields to the files. An e-mail is then sent to the specified recipient, notifying them of the changes that were 
+content from a local directory into a Bluescape workspace, generates text fields corresponding to the names of the uploaded files, and
+attaches the text fields to the files. An e-mail is then sent to the specified recipient notifying them of the changes that were
 made within the workspace.
-<br />
+<br /></p>
 
 <p><div class="lang-selector">
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
@@ -560,7 +557,7 @@ This script:
 */
 
 const token = &lt;SET_TOKEN&gt;
-const portal = 'https://api.apps.us.bluescape.com';
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspace_uid = &lt;SET_WORKSPACE_UID&gt;
 const api_version = 'v2';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/images';
@@ -779,7 +776,7 @@ async function runAPIRequests() {
                     from: '&lt;INSERT_YOUR_EMAIL&gt;',
                     to: '&lt;INSERT_DESTINATION_EMAIL&gt;',
                     subject: 'Attachment Canvas is Ready for Review',
-                    text: 'An attachment canvas is ready for review. You can reach this workspace here:'  + 'https://client.apps.us.bluescape.com/' + workspace_uid
+                    text: 'An attachment canvas is ready for review. You can reach this workspace here:' + '<script type="text/javascript">document.write("https://client." + window.location.hostname.split('.').splice(1).join('.')); </script>' + '/' + workspace_uid
                     };
                     transporter.sendMail(mailOptions, function(error, info){
                     if (error) {
@@ -813,7 +810,6 @@ runAPIRequests();
 
 </pre>
 
-
 <pre class="lang lang-python">
 # Use Case Example (Python)
 
@@ -844,7 +840,7 @@ token = &lt;SET_TOKEN&gt;
 #############################
 
 if __name__ == "__main__":
-    portal = 'https://api.apps.us.bluescape.com'
+    portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
     workspace_uid = &lt;SET_WORKSPACE_UID&gt;
     user_uid = ''
     API_version = 'v2'
@@ -1016,7 +1012,7 @@ if __name__ == "__main__":
             s.starttls()
             s.login('&lt;INSERT_YOUR_EMAIL&gt;', '&lt;INSERT_EMAIL_PASSWORD&gt;')
             msg = MIMEMultipart()
-            message = "An attachment canvas is ready for review. You can reach this workspace here: " + 'https://client.apps.us.bluescape.com/' + workspace_uid
+            message = "An attachment canvas is ready for review. You can reach this workspace here: " + "<script type="text/javascript">document.write("https://client." + window.location.hostname.split('.').splice(1).join('.')); </script>" + "/" + workspace_uid
             msg['From'] = '&lt;INSERT_YOUR_EMAIL&gt;'
             msg['To'] = '&lt;INSERT_DESTINATION_EMAIL&gt;'
             msg['Subject'] = 'Attachment Canvas is Ready for Review'
@@ -1035,283 +1031,287 @@ if __name__ == "__main__":
                 xx += delta
 </pre>
 
-<pre class = "lang lang-curl">
-// Use Case Example (Node.js)
+<p><pre class = "lang lang-curl">
+// Use Case Example (Node.js)</p>
 
-var request = require('request');
+<p>var request = require('request');
 var path = require('path');
 var fs = require('fs');
-var nodemailer = require('nodemailer');
+var nodemailer = require('nodemailer');</p>
 
-/*
+<p>/*
 How to run:
-node this_script_name.js 
+node this_script_name.js</p>
 
-Requires the following modules: fs, nodemailer, request, path
-Ex: npm install &lt;module_name&gt;
+<p>Requires the following modules: fs, nodemailer, request, path
+Ex: npm install &amp;lt;module_name&amp;gt;</p>
 
-This script:
+<p>This script:
 1) Creates a canvas
 2) Uploads the content from a specific folder into the canvas: documents and images
 3) Create a text field for each file, within the Bluescape workspace, containing the file's name
-4) Attach the filename text fields to their corresponding files 
-5) Send an e-mail to the specified recipient, notifying them of the changes that were made 
+4) Attach the filename text fields to their corresponding files
+5) Send an e-mail to the specified recipient, notifying them of the changes that were made</p>
 
-*/
+<p>*/</p>
 
-const token = &lt;SET_TOKEN&gt;
-const portal = 'https://api.apps.us.bluescape.com';
-const workspace_uid = &lt;SET_WORKSPACE_UID&gt;
+<p>const token = &amp;lt;SET_TOKEN&amp;gt;
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
+const workspace_uid = &amp;lt;SET_WORKSPACE_UID&amp;gt;
 const api_version = 'v2';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/images';
-var method = '';
+var method = '';</p>
 
-const canvas_x = 0;
-const canvas_y = 0;
+<p>const canvas_x = 0;
+const canvas_y = 0;</p>
 
-const canvas_width = 3000;
-const canvas_height = 6000;
+<p>const canvas_width = 3000;
+const canvas_height = 6000;</p>
 
-// Canvas coordinates are from its top left corner, relative from there
+<p>// Canvas coordinates are from its top left corner, relative from there
 var xx = 100;
-var yy = 200;
+var yy = 200;</p>
 
-function runUploadRequest(portal,api_endpoint,method,data_load){
-    return new Promise((resolve, reject) => {
+<p>function runUploadRequest(portal,api_endpoint,method,data_load){
+    return new Promise((resolve, reject) =&gt; {
         var request_values = {
             uri : portal + api_endpoint ,
             method : method ,
             headers : {
                 'Authorization': "Bearer " + token,
-                'Content-Type' : 'multipart/form-data'    
+                'Content-Type' : 'multipart/form-data'<br>
             },
             formData : data_load,
             json: true
-        };
+        };</p>
 
-        request(request_values, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                // Print out the result
-                console.log("Successful request. Body response: " + JSON.stringify(body,null,"     ")); 
-                } else {
-                reject('Invalid status code &lt; + response.statusCode + '&gt;'); 
-                }
-                resolve(body);
-        })
-    });
-}
+<pre><code>    request(request_values, function (error, response, body) {
+        if (!error &amp;&amp; response.statusCode == 200) {
+            // Print out the result
+            console.log(&quot;Successful request. Body response: &quot; + JSON.stringify(body,null,&quot;     &quot;)); 
+            } else {
+            reject('Invalid status code &amp;lt; + response.statusCode + '&amp;gt;'); 
+            }
+            resolve(body);
+    })
+});
+</code></pre>
 
-function runRequest(portal,api_endpoint,method,data_load) {
-    return new Promise((resolve, reject) => {
+<p>}</p>
+
+<p>function runRequest(portal,api_endpoint,method,data_load) {
+    return new Promise((resolve, reject) =&gt; {
         var request_values = {
             uri : portal + api_endpoint ,
             method : method ,
             headers : {
                 'Authorization': "Bearer " + token,
-                'Content-Type' : 'application/json'    
+                'Content-Type' : 'application/json'<br>
             },
             body : data_load,
             json: true
-        };
+        };</p>
 
-        request(request_values, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                // Print out the result
-                console.log("Successful request. Body response: " + JSON.stringify(body,null,"     ")); 
-                } else {
-                reject('Invalid status code &lt;' + response.statusCode + '&gt;'); 
-                }
-                resolve(body);
-        })
+<pre><code>    request(request_values, function (error, response, body) {
+        if (!error &amp;&amp; response.statusCode == 200) {
+            // Print out the result
+            console.log(&quot;Successful request. Body response: &quot; + JSON.stringify(body,null,&quot;     &quot;)); 
+            } else {
+            reject('Invalid status code &amp;lt;' + response.statusCode + '&amp;gt;'); 
+            }
+            resolve(body);
+    })
 
-    });
-}
+});
+</code></pre>
 
-async function asyncForEach(array, callback) {
-    for (let index = 0; index &lt; array.length; index++) {
+<p>}</p>
+
+<p>async function asyncForEach(array, callback) {
+    for (let index = 0; index &amp;lt; array.length; index++) {
         await callback(array[index], index, array);
     }
-}
+}</p>
 
-async function runAPIRequests() {
+<p>async function runAPIRequests() {</p>
 
-    /*****************************
-    **    1) Create a canvas:   ** 
-    *****************************/
+<pre><code>/*****************************
+**    1) Create a canvas:   ** 
+*****************************/
 
-    try {           
-        api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas';
-        method = 'POST';
-        var currtime = new Date().toISOString().slice(0,16).replace('T',' ');
+try {           
+    api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas';
+    method = 'POST';
+    var currtime = new Date().toISOString().slice(0,16).replace('T',' ');
 
-        var data_load = {
-            'x': canvas_x,
-            'y': canvas_y,
-            'width': canvas_width,
-            'height': canvas_height,
-            'name': "New Canvas - Creation time: " + currtime ,
-            'borderColor': 'Red'
-        }
-        
-        const canvasResponse = await runRequest(portal,api_endpoint,method,data_load);
-
-        const canvas_id = canvasResponse['canvas']['id'];
-
-        /****************************************
-        **    2) Upload content into canvas:   ** 
-        ****************************************/
-
-        // Supported: png, jpeg, gif, tiff, pdf, docx, pptx, xlsx, doc, ppt, xls
-
-        var allowedDocExtensions = new RegExp(/.*\.(pdf|docx|pptx|xlsx|doc|ppt|xls)$/i);
-        var allowedImageExtensions = new RegExp(/.*\.(jpg|png|jpeg|tiff)$/i)
-
-        const pathSource = &lt;SET_FILE_PATH&gt;
-        var myPath = path.dirname(pathSource +'*'); // Absolute path
-        // passsing myPath and callback function
-        fs.readdir(myPath, function (errorIssue, files) {
-            //handling error
-            if (errorIssue) {
-                return console.log('Unable to read directory: ' + errorIssue);
-            } 
-                
-            asyncForEach(files, async(filename) => {
-
-                var api_endpoint = '';
-                var file_type_key = '';
-
-                var is_supported_extension = true;
-
-                // Check if the file is a supported one for uploading.
-                if (allowedDocExtensions.test(filename) ){
-                    api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/documents';
-                    file_type_key = 'document';
-                } else if (allowedImageExtensions.test(filename)) {
-                    api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/images';
-                    file_type_key = 'image';
-                } else {
-                    is_supported_extension = false;
-                }
-
-                if (is_supported_extension) {
-                    console.log("Going to update: " + filename);
-                    console.log("File type: " + file_type_key)
-
-                    var data_load = {
-                        'x': xx,
-                        'y': yy,
-                        'title': filename,
-                        'scale': 1,
-                    };
-
-                    // Cannot add values for the keys using a variable name, it uses the name of the variable instead of its value.
-                    data_load[file_type_key] = fs.createReadStream( pathSource + filename );
-
-                    method = 'POST';
-
-                    try {
-                        var uploadResponse = await runUploadRequest(portal,api_endpoint,method,data_load);
-                    } catch (error) {
-                        console.error('ERROR  when uploading content for file '+ filename);
-                        console.error(error);
-                    }
-                    
-                    var file_id = uploadResponse[file_type_key]['id'];
-                    var file_name = uploadResponse[file_type_key]['title'];
-
-                    /****************************************************
-                    **    3) Create text field containing file_name:   ** 
-                    ****************************************************/
-
-                    api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/text';
-                    
-                    data_load = {
-                        'text': file_name,
-                        'fontFamily': 'Aleo'
-                    }
-
-                    method = 'POST';
-
-                    try {
-                        var uploadResponse = await runRequest(portal,api_endpoint,method,data_load);
-                    } catch (error) {
-                        console.error('ERROR  creating text for '+ filename);
-                        console.error(error);
-                    }
-
-                    var text_id = uploadResponse['text']['id'];
-
-                    const sleep = (waitTime) => new Promise(resolve => setTimeout(resolve, waitTime));
-                    await sleep(3000);
-                    
-                    /*******************************************
-                    **    4) Attach new text field to file:   ** 
-                    ********************************************
-
-                    api_endpoint = '/v2' + '/workspaces/' + workspace_uid + '/elements/'+file_type_key+'s/'+file_id+'/attachments'
-
-                    data_load = {
-                        'sourceId': text_id
-                    }
-
-                    method = 'POST';
-
-                    try {
-                        var uploadResponse = await runRequest(portal,api_endpoint,method,data_load);
-                    } catch (error) {
-                        console.error('ERROR  attaching ');
-                        console.error(error);
-                    }
-                    
-
-                    /*************************
-                    **    5) Send e-mail:   ** 
-                    *************************/
-
-                    var transporter = nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        user: '',
-                        pass: ''
-                    }
-                    });
-                    var mailOptions = {
-                    from: '&lt;INSERT_YOUR_EMAIL&gt;',
-                    to: '&lt;INSERT_DESTINATION_EMAIL&gt;',
-                    subject: 'Attachment Canvas is Ready for Review',
-                    text: 'An attachment canvas is ready for review. You can reach this workspace here:'  + 'https://client.apps.us.bluescape.com/' + workspace_uid
-                    };
-                    transporter.sendMail(mailOptions, function(error, info){
-                    if (error) {
-                        console.log(error);
-                    } else {
-                        console.log('Email sent: ' + info.response);
-                    }
-                    });
-
-                    delta = 1600;
-                    yy += delta;
-
-                    //  Check if the object's position is outside the canvas. If so, start in new column
-                    if (yy > canvas_height){
-                        yy = 200;
-                        xx += delta;
-                    }                      
-                }
-            } ); 
-        });
-
-
-    } catch (error) {
-        console.error('ERROR:');
-        console.error(error);
+    var data_load = {
+        'x': canvas_x,
+        'y': canvas_y,
+        'width': canvas_width,
+        'height': canvas_height,
+        'name': &quot;New Canvas - Creation time: &quot; + currtime ,
+        'borderColor': 'Red'
     }
+
+    const canvasResponse = await runRequest(portal,api_endpoint,method,data_load);
+
+    const canvas_id = canvasResponse['canvas']['id'];
+
+    /****************************************
+    **    2) Upload content into canvas:   ** 
+    ****************************************/
+
+    // Supported: png, jpeg, gif, tiff, pdf, docx, pptx, xlsx, doc, ppt, xls
+
+    var allowedDocExtensions = new RegExp(/.*\.(pdf|docx|pptx|xlsx|doc|ppt|xls)$/i);
+    var allowedImageExtensions = new RegExp(/.*\.(jpg|png|jpeg|tiff)$/i)
+
+    const pathSource = &amp;lt;SET_FILE_PATH&amp;gt;
+    var myPath = path.dirname(pathSource +'*'); // Absolute path
+    // passsing myPath and callback function
+    fs.readdir(myPath, function (errorIssue, files) {
+        //handling error
+        if (errorIssue) {
+            return console.log('Unable to read directory: ' + errorIssue);
+        } 
+
+        asyncForEach(files, async(filename) =&gt; {
+
+            var api_endpoint = '';
+            var file_type_key = '';
+
+            var is_supported_extension = true;
+
+            // Check if the file is a supported one for uploading.
+            if (allowedDocExtensions.test(filename) ){
+                api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/documents';
+                file_type_key = 'document';
+            } else if (allowedImageExtensions.test(filename)) {
+                api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/images';
+                file_type_key = 'image';
+            } else {
+                is_supported_extension = false;
+            }
+
+            if (is_supported_extension) {
+                console.log(&quot;Going to update: &quot; + filename);
+                console.log(&quot;File type: &quot; + file_type_key)
+
+                var data_load = {
+                    'x': xx,
+                    'y': yy,
+                    'title': filename,
+                    'scale': 1,
+                };
+
+                // Cannot add values for the keys using a variable name, it uses the name of the variable instead of its value.
+                data_load[file_type_key] = fs.createReadStream( pathSource + filename );
+
+                method = 'POST';
+
+                try {
+                    var uploadResponse = await runUploadRequest(portal,api_endpoint,method,data_load);
+                } catch (error) {
+                    console.error('ERROR  when uploading content for file '+ filename);
+                    console.error(error);
+                }
+
+                var file_id = uploadResponse[file_type_key]['id'];
+                var file_name = uploadResponse[file_type_key]['title'];
+
+                /****************************************************
+                **    3) Create text field containing file_name:   ** 
+                ****************************************************/
+
+                api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/text';
+
+                data_load = {
+                    'text': file_name,
+                    'fontFamily': 'Aleo'
+                }
+
+                method = 'POST';
+
+                try {
+                    var uploadResponse = await runRequest(portal,api_endpoint,method,data_load);
+                } catch (error) {
+                    console.error('ERROR  creating text for '+ filename);
+                    console.error(error);
+                }
+
+                var text_id = uploadResponse['text']['id'];
+
+                const sleep = (waitTime) =&gt; new Promise(resolve =&gt; setTimeout(resolve, waitTime));
+                await sleep(3000);
+
+                /*******************************************
+                **    4) Attach new text field to file:   ** 
+                ********************************************
+
+                api_endpoint = '/v2' + '/workspaces/' + workspace_uid + '/elements/'+file_type_key+'s/'+file_id+'/attachments'
+
+                data_load = {
+                    'sourceId': text_id
+                }
+
+                method = 'POST';
+
+                try {
+                    var uploadResponse = await runRequest(portal,api_endpoint,method,data_load);
+                } catch (error) {
+                    console.error('ERROR  attaching ');
+                    console.error(error);
+                }
+
+
+                /*************************
+                **    5) Send e-mail:   ** 
+                *************************/
+
+                var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: '',
+                    pass: ''
+                }
+                });
+                var mailOptions = {
+                from: '&amp;lt;INSERT_YOUR_EMAIL&amp;gt;',
+                to: '&amp;lt;INSERT_DESTINATION_EMAIL&amp;gt;',
+                subject: 'Attachment Canvas is Ready for Review',
+                text: 'An attachment canvas is ready for review. You can reach this workspace here:'  + '&lt;script type=&quot;text/javascript&quot;&gt;document.write(&quot;https://client.&quot; + window.location.hostname.split('.').splice(1).join('.')); &lt;/script&gt;/' + workspace_uid
+                };
+                transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
+                });
+
+                delta = 1600;
+                yy += delta;
+
+                //  Check if the object's position is outside the canvas. If so, start in new column
+                if (yy &gt; canvas_height){
+                    yy = 200;
+                    xx += delta;
+                }                      
+            }
+        } ); 
+    });
+
+
+} catch (error) {
+    console.error('ERROR:');
+    console.error(error);
 }
+</code></pre>
 
-// Run the requests
-runAPIRequests();       
+<p>}</p>
 
-</pre>
--->
+<p>// Run the requests
+runAPIRequests();</p>
 
-<p>If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.</p>
+<p></pre>
+If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.</p>

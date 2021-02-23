@@ -103,7 +103,7 @@
     </p>
     <p>
         You will need to add the JSON Array as a <span
-        class="pre">'traits'</span> field in the data load. For example, when craeting a Canvas, you can add Traits as in the example below:
+        class="pre">'traits'</span> field in the data load. For example, when creating a Canvas, you can add Traits as in the example below:
 <pre>
 ...
 data_load = {
@@ -125,7 +125,7 @@ data_load = {
         <table class="table table-striped">
                 <tr>
                   <td><b>Endpoint</b></td>
-                  <td>/v3/workspaces/&lt;workspaceId&gt;/elements/&lt;object_type&gt;/&lt;object_id&gt;/traits</td>
+                  <td>/v2/workspaces/&lt;workspaceId&gt;/elements/&lt;object_type&gt;/&lt;object_id&gt;/traits</td>
                 </tr>
                 <tr>
                     <td><b>Method</b></td>
@@ -155,7 +155,7 @@ data_load = [{
         <table class="table table-striped">
                 <tr>
                   <td><b>Endpoint</b></td>
-                  <td>/v3/workspaces/&lt;workspaceId&gt;/elements/&lt;object_type&gt;/&lt;object_id&gt;/traits</td>
+                  <td>/v2/workspaces/&lt;workspaceId&gt;/elements/&lt;object_type&gt;/&lt;object_id&gt;/traits</td>
                 </tr>
                 <tr>
                     <td><b>Method</b></td>
