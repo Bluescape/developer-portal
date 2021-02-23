@@ -35,7 +35,7 @@
     <a href="#listener-states">Listener States</a> <br />
     <a href="#full-example">Full Use Case Example</a> <br />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#setup-server">1. Setting up a Basic Server</a> <br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#setup-proxy">2. Seting Up the Reverse Proxy</a> <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#setup-proxy">2. Setting Up the Reverse Proxy</a> <br />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#create-listener">3. Creating a Listener</a> <br />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#act-on-listener">4. Acting on Listener Events</a>
     
@@ -105,7 +105,7 @@
 </pre>
 
 <p>
-    When <a href="/reference/apis#Listeners:postListeners" target="_blank">creating listeners</a>, applications must
+    When creating listeners, applications must
     specify which event types each listener should receive. Applications wishing to receive notifications about all
     event types in a workspace should specify <span class="pre">[ "ALL" ]</span>. Applications wishing to receive
     notifications about specific event types should specify the list of event types that are of interest. For example,
@@ -114,7 +114,7 @@
 </p>
 
 <p>
-    The full list of event types that can be subscribed to is available <a href="/reference/listener-events">here</a> in
+    The full list of event types that can be subscribed to is available <a href="/docs/page/listener-events">here</a> in
     the Reference section.
 </p>
 
@@ -128,7 +128,7 @@
 <a name="verification"><h3>Listener Verification</h3></a>
 
 <p>
-    When the api to <a href="/reference/apis#Listeners:postListeners" target="_blank">create a listener</a> is called,
+    When the api to create a listener is called,
     Bluescape will immediately attempt to send a test payload to the <span class="pre">url</span> specified with an
     event type of <span class="pre">TEST_HOOK</span>. The creation of the listener will only be successful if Bluescape
     receives a <span class="pre">200</span> code in response. This means that your application must handle the incoming
@@ -166,12 +166,12 @@
 </div>
 
 <pre class="lang lang-curl">
-curl -X POST [[apiHost]]/listeners \
-  -H 'Authorization: Bearer eyJhbGciOi...' \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/listeners \
+  -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
   -d '{
     "url": "http://sample-app.com/bluescape/listeners/incoming",
-    "workspaceId": &lt;SET_WORKSPACE_ID&gt;,
+    "workspaceId": &lt;SET_WORKSPACE_UID&gt;,
     "eventTypes": ["WORKSPACE_ALL"]
   }'
 </pre>
@@ -180,7 +180,7 @@ curl -X POST [[apiHost]]/listeners \
   const body = {
     "type" : "workspace",
     "url": "http://sample-app.com/bluescape/listeners/incoming",
-    "workspaceId": &lt;SET_WORKSPACE_ID&gt;,
+    "workspaceId": &lt;SET_WORKSPACE_UID&gt;,
     "eventTypes": ["WORKSPACE_ALL"]
   };
   sendRequest(body);
@@ -190,7 +190,7 @@ curl -X POST [[apiHost]]/listeners \
   data_load = {
     'type' : 'workspace',
     'url' : 'http://sample-app.com/bluescape/listeners/incoming',
-    'workspaceId' : &lt;SET_WORKSPACE_ID&gt;,
+    'workspaceId' : &lt;SET_WORKSPACE_UID&gt;,
     'eventTypes' : ['WORKSPACE_ALL']
   }
   sendRequest(data_load)
@@ -207,12 +207,12 @@ curl -X POST [[apiHost]]/listeners \
 </div>
 
 <pre class="lang lang-curl">
-curl -X POST [[apiHost]]/listeners \
-  -H 'Authorization: Bearer eyJhbGciOi...' \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/listeners \
+  -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
   -d '{
     "url": "http://sample-app.com/bluescape/listeners/incoming",
-    "workspaceId": &lt;SET_WORKSPACE_ID&gt;,
+    "workspaceId": &lt;SET_WORKSPACE_UID&gt;,
     "eventTypes": ["DOCUMENT_CREATE"]
   }'
 </pre>
@@ -221,7 +221,7 @@ curl -X POST [[apiHost]]/listeners \
   const body = {
     "type" : "workspace",
     "url": "http://sample-app.com/bluescape/listeners/incoming",
-    "workspaceId": &lt;SET_WORKSPACE_ID&gt;,
+    "workspaceId": &lt;SET_WORKSPACE_UID&gt;,
     "eventTypes": ["DOCUMENT_CREATE"]
   };
   sendRequest(body);
@@ -231,7 +231,7 @@ curl -X POST [[apiHost]]/listeners \
   data_load = {
     'type' : 'workspace',
     'url' : 'http://sample-app.com/bluescape/listeners/incoming',
-    'workspaceId' : &lt;SET_WORKSPACE_ID&gt;,
+    'workspaceId' : &lt;SET_WORKSPACE_UID&gt;,
     'eventTypes' : ['DOCUMENT_CREATE']
   }
   sendRequest(data_load)
@@ -248,12 +248,12 @@ curl -X POST [[apiHost]]/listeners \
 </div>
 
 <pre class="lang lang-curl">
-curl -X POST [[apiHost]]/listeners \
-  -H 'Authorization: Bearer eyJhbGciOi...' \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/listeners \
+  -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
   -d '{
     "url": "http://sample-app.com/bluescape/listeners/incoming",
-    "workspaceId": &lt;SET_WORKSPACE_ID&gt;,
+    "workspaceId": &lt;SET_WORKSPACE_UID&gt;,
     "targetId": &lt;SET_DOC_ID&gt;,  // the document ID
     "eventTypes": ["DOCUMENT_ALL"]
   }'
@@ -263,7 +263,7 @@ curl -X POST [[apiHost]]/listeners \
   const body = {
     "type" : "workspace",
     "url": "http://sample-app.com/bluescape/listeners/incoming",
-    "workspaceId": &lt;SET_WORKSPACE_ID&gt;,
+    "workspaceId": &lt;SET_WORKSPACE_UID&gt;,
     "targetId": &lt;SET_DOC_ID&gt;,  // the document ID
     "eventTypes": ["DOCUMENT_ALL"]
   };
@@ -274,7 +274,7 @@ curl -X POST [[apiHost]]/listeners \
   data_load = {
     'type' : 'workspace',
     'url' : 'http://sample-app.com/bluescape/listeners/incoming',
-    'workspaceId' : &lt;SET_WORKSPACE_ID&gt;,
+    'workspaceId' : &lt;SET_WORKSPACE_UID&gt;,
     'targetId': &lt;SET_DOC_ID&gt;,  // the document ID
     'eventTypes' : ['DOCUMENT_ALL']
   }
@@ -292,12 +292,12 @@ curl -X POST [[apiHost]]/listeners \
 </div>
 
 <pre class="lang lang-curl">
-curl -X POST [[apiHost]]/listeners \
-  -H 'Authorization: Bearer eyJhbGciOi...' \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/listeners \
+  -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
   -d '{
     "url": "http://sample-app.com/bluescape/listeners/incoming",
-    "workspaceId": &lt;SET_WORKSPACE_ID&gt;,
+    "workspaceId": &lt;SET_WORKSPACE_UID&gt;,
     "targetId": &lt;SET_NOTE_ID&gt;,  // the note ID
     "eventTypes": ["NOTE_UPDATE"]
   }'
@@ -307,7 +307,7 @@ curl -X POST [[apiHost]]/listeners \
   const body = {
     "type" : "workspace",
     "url": "http://sample-app.com/bluescape/listeners/incoming",
-    "workspaceId": &lt;SET_WORKSPACE_ID&gt;,
+    "workspaceId": &lt;SET_WORKSPACE_UID&gt;,
     "targetId": &lt;SET_NOTE_ID&gt;,  // the note ID
     "eventTypes": ["NOTE_UPDATE"]
   };
@@ -318,7 +318,7 @@ curl -X POST [[apiHost]]/listeners \
   data_load = {
     'type' : 'workspace',
     'url' : 'http://sample-app.com/bluescape/listeners/incoming',
-    'workspaceId' : &lt;SET_WORKSPACE_ID&gt;,
+    'workspaceId' : &lt;SET_WORKSPACE_UID&gt;,
     'eventTypes' : ['NOTE_UPDATE']
   }
   sendRequest(data_load)
@@ -330,7 +330,7 @@ curl -X POST [[apiHost]]/listeners \
     Listener states allow for existing listeners to be disabled without being deleted. When a listener is first created,
     it will have a state of <span class="pre">ACTIVE</span>. If an application wishes to temporarily disable
     notifications to that listener, it can update the listener's status to <span class="pre">IN_ACTIVE</span> using the
-    <a href="/reference/apis#Listeners:putListenersByListenerid">Update a Listener</a> operation. While <span class="pre">IN_ACTIVE</span>,
+    Update a Listener operation. While <span class="pre">IN_ACTIVE</span>,
     the listener will not receive any notifications from Bluescape. A listener can be re-enabled by setting its status
     back to <span class="pre">ACTIVE</span>.
 </p>
@@ -451,7 +451,7 @@ app.post("/", (req, res, next) => {
   has been recieved and properly handled.
 </p>
 
-<a name="setup-proxy"><h4>Seting Up the Reverse Proxy</h4></a>
+<a name="setup-proxy"><h4>Setting Up the Reverse Proxy</h4></a>
 
 <div class="well">
     <p>
@@ -492,14 +492,14 @@ app.post("/", (req, res, next) => {
 <pre class = "lang lang-curl">
   var axios = require('axios');
   const token = &lt;SET_TOKEN&gt;;
-  const portal = 'https://api.apps.us.bluescape.com';
+  const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
   const api_version = 'v2';
   const api_endpoint = '/listeners';
 
   const data_load = {
       'type' : 'workspace',
       'url' : &lt;SET_URL_ENDPOINT&gt;,          // If using the reverse proxy, this is the url of the forwarding address.     
-      'workspaceId' : &lt;SET_WORKSPACE_ID&gt;,  // Otherwise use your publically reachable endpoint.
+      'workspaceId' : &lt;SET_WORKSPACE_UID&gt;,  // Otherwise use your publically reachable endpoint.
       'eventTypes' : ['IMAGE_CREATE']
   }
 
@@ -528,14 +528,14 @@ app.post("/", (req, res, next) => {
 <pre class="lang lang-node">
   var axios = require('axios');
   const token = &lt;SET_TOKEN&gt;;
-  const portal = 'https://api.apps.us.bluescape.com';
+  const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
   const api_version = 'v2';
   const api_endpoint = '/listeners';
 
   const data_load = {
       'type' : 'workspace',
       'url' : &lt;SET_URL_ENDPOINT&gt;,          // If using the reverse proxy, this is the url of the forwarding address.     
-      'workspaceId' : &lt;SET_WORKSPACE_ID&gt;,  // Otherwise use your publically reachable endpoint.
+      'workspaceId' : &lt;SET_WORKSPACE_UID&gt;,  // Otherwise use your publically reachable endpoint.
       'eventTypes' : ['IMAGE_CREATE']
   }
 
@@ -568,8 +568,8 @@ app.post("/", (req, res, next) => {
   import pprint
   
   token = &lt;SET_TOKEN&gt;
-  portal = 'https://api.apps.us.bluescape.com'
-  workspace_uid = &lt;SET_WORKSPACE_ID&gt;
+  portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
+  workspace_uid = &lt;SET_WORKSPACE_UID&gt;
   
   
   if __name__ == "__main__":
@@ -579,7 +579,7 @@ app.post("/", (req, res, next) => {
       data_load = {
           'type' : 'workspace',
           'url' : &lt;SET_URL_ENDPOINT&gt;,         # If using the reverse proxy, this is the url of the forwarding address.
-          'workspaceId' : &lt;SET_WORKSPACE_ID&gt;, # Otherwise use your publically reachable endpoint.
+          'workspaceId' : &lt;SET_WORKSPACE_UID&gt;, # Otherwise use your publically reachable endpoint.
           'eventTypes' : ['WORKSPACE_ALL']
       }
   
@@ -680,7 +680,7 @@ app.post("/", (req, res, next) => {
     processSomething(() => {
       const webhookUrl = req.params.url;
       const workspaceId = req.params.workspaceId;
-      const workspaceLink = "https://client.apps.us.bluescape.com/" + workspaceId;
+      const workspaceLink = "<script type="text/javascript">document.write("https://client." + window.location.hostname.split('.').splice(1).join('.')); </script>/" + workspaceId;
       if (webhookUrl) {
         console.log("Image Created");
         const payload = {
@@ -726,7 +726,7 @@ app.post("/", (req, res, next) => {
     processSomething(() => {
       const webhookUrl = req.params.url;
       const workspaceId = req.params.workspaceId;
-      const workspaceLink = "https://client.apps.us.bluescape.com/" + workspaceId;
+      const workspaceLink = "<script type="text/javascript">document.write("https://client." + window.location.hostname.split('.').splice(1).join('.')); </script>/" + workspaceId;
       if (webhookUrl) {
         console.log("Image Created");
         const payload = {
@@ -770,7 +770,7 @@ app.post("/", (req, res, next) => {
   def processSomething():
       if request.method == 'POST':
           workspaceId = request.params.workspaceId
-          workspaceLink = "https://client.apps.us.bluescape.com/" + workspaceId
+          workspaceLink = "<script type="text/javascript">document.write("https://client." + window.location.hostname.split('.').splice(1).join('.')); </script>/" + workspaceId
           payload = {
               "channel": "YOUR_CHANNEL_ID",
               "text": "An image has been added to your workspace! You can view changes here: " + workspaceLink,

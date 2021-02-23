@@ -5,7 +5,7 @@
             <td style="padding:15px"><br>
                     <b><center>NOTICE</center>
                         <br />
-                        The version <span class="pre">/v3/</span> beta release will not include REST API support for Traits. Traits will be released with REST API support in a future release.
+                        The version <span class="pre">/v3/</span> Beta release will not include REST API support for Traits. Traits will be released with REST API support in a future release.
                     <br /> <br />
                     </b>
             </td>
@@ -13,7 +13,7 @@
     </table>
 </p></p>
 
-<!--
+<h4> The following documentation is still valid for use with <span class="pre">v2</span> API endpoints: </h4>
 
 <h2>What are Traits?</h2>
 <p>Traits are a new feature that allows developers to associate metadata to objects within a workspace via a REST API. Traits are open-ended metadata for workspace objects. For example, if you upload assets (images, documents, etc.) that belong to a specific project, you can add that project information as Traits to each asset in the workspace. Later, you could download those assets, and the data in the Traits of each asset will provide insight to the original project data.</p>
@@ -103,7 +103,7 @@
     </p>
     <p>
         You will need to add the JSON Array as a <span
-        class="pre">'traits'</span> field in the data load. For example, when craeting a Canvas, you can add Traits as in the example below:
+        class="pre">'traits'</span> field in the data load. For example, when creating a Canvas, you can add Traits as in the example below:
 <pre>
 ...
 data_load = {
@@ -125,7 +125,7 @@ data_load = {
         <table class="table table-striped">
                 <tr>
                   <td><b>Endpoint</b></td>
-                  <td>/v3/workspaces/&lt;workspaceId&gt;/elements/&lt;object_type&gt;/&lt;object_id&gt;/traits</td>
+                  <td>/v2/workspaces/&lt;workspaceId&gt;/elements/&lt;object_type&gt;/&lt;object_id&gt;/traits</td>
                 </tr>
                 <tr>
                     <td><b>Method</b></td>
@@ -155,7 +155,7 @@ data_load = [{
         <table class="table table-striped">
                 <tr>
                   <td><b>Endpoint</b></td>
-                  <td>/v3/workspaces/&lt;workspaceId&gt;/elements/&lt;object_type&gt;/&lt;object_id&gt;/traits</td>
+                  <td>/v2/workspaces/&lt;workspaceId&gt;/elements/&lt;object_type&gt;/&lt;object_id&gt;/traits</td>
                 </tr>
                 <tr>
                     <td><b>Method</b></td>
@@ -173,6 +173,7 @@ data_load = [{
 
 <h3>Cannot Delete/Edit Traits: alternative</h3>
    
+
 <p>       
         As previously mentioned, the traits of an element are never deleted during its lifetime, and all the traits association is cumulative. However, the API client is free to interpret cumulative traits associations as updates or deletions. For instance, another traits association may result in the traits array becoming this:
 <pre>
@@ -192,7 +193,5 @@ data_load = [{
 
 </p>
 
-<br />
--->
-
-<p>If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.</p>
+<p><br />
+If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.</p>

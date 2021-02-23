@@ -6,7 +6,8 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        In the current <span class="pre">/v3/</span> BETA version, the pagination mechanism has been changed. The new cursor based pagination uses different URL query parameters depending on whether it is the initial request for a collection or a subsequent request. </a>
+                        In the current <span class="pre">/v3/</span> Beta version, the pagination mechanism has been changed. The new cursor based pagination uses different URL query parameters depending on whether it is the initial request for a collection or a subsequent request. 
+                        For pagination information related to <span class="pre">/v2/</span> endpoints, please see <a href="/docs/page/pagination-v2">here</a>.
                     <br /> <br />
                     </b>
             </td>
