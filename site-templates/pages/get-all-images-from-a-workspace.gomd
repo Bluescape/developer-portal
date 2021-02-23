@@ -178,26 +178,26 @@ What you should get: JSON with the list of all images in the workspace
 {
     "data": [
         {
-            "id": "5fff28048204fed72abc0123",
-            "zIndex": 45,
+            "id": "6024576d277cc809d1391072",
+            "zIndex": 6,
             "transform": {
-                "x": 166,
-                "y": 145,
+                "x": -22552.69375,
+                "y": 16430.16964285714,
                 "scaleX": 1,
                 "scaleY": 1
             },
             "traits": null,
             "pinned": false,
             "attachments": [],
-            "width": 512,
-            "height": 512,
-            "url": "https://s3.amazonaws.com/test-bucket/sessions/objects/j2FLqcSmCpkJjXnWb8qk/5fff28048204fed72abc0123.jpg",
-            "title": "Test_Image.jpg",
+            "width": 609,
+            "height": 606,
+            "title": "doge.png",
+            "filename": "doge.png",
             "type": "Image",
-            "style": {
-                "hidden": false
-            },
-            "contentType": "png"
+            "asset": {
+                "url": "https://s3bucket.s3.s3region.amazonaws.com/jb37zadzAvin16ti2A-9/6024576d277cc809d1391072.png?X-Amz-Algorithm=AWS4-ABCD-ABC123&X-Amz-Credential=AKIA26JKTHARMSCAX2M2%2F20210223%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20211243T213700Z&X-Amz-Expires=900&X-Amz-Signature=c523152d2d6f2zbd028d7e371259ee6489d45db0777e6d3403e0f4a413e1035f&X-Amz-SignedHeaders=host",
+                "imageFormat": "png"
+            }
         }
     ]
 } 
