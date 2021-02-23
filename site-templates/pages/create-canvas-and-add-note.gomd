@@ -312,16 +312,13 @@ From this response, you can obtain the newly created Canvas ID: ['data']['id']
         "zIndex": 36,
         "transform": {
             "x": 0,
-            "y": 0,
-            "scaleX": 1,
-            "scaleY": 1
+            "y": 0
         },
         "traits": null,
         "pinned": false,
         "type": "Canvas",
         "name": "Test Canvas",
         "style": {
-            "hidden": false,
             "width": 1000,
             "height": 1000,
             "borderColor": {
