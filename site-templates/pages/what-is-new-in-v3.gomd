@@ -20,7 +20,7 @@ The main differences can be grouped in 3 sections:
     <td><center><b>V2</b></center></td>
     <td><center><b>V3</b></center></td>
   <tr>
-    <td WIDRTH="30%">In V3, when you want to modify a property of an object that is <br />already created (its position, color, text, etc.), the REST API verb to use is PATCH.</td>
+    <td>In V3, when you want to modify a property of an object that is <br />already created (its position, color, text, etc.), the REST API verb to use is PATCH.</td>
     <td>REST API verb: <b>PUT</b><br /><br />
     Specify the properties to change in the request body of the PUT call. 
     </td>
