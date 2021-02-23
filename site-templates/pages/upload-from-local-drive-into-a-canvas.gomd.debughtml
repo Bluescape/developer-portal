@@ -5,7 +5,7 @@
             <td style="padding:15px"><br>
                     <b><center>NOTICE</center>
                         <br />
-                        The version <span class="pre">/v3/</span> beta release will not include REST API support for uploading from a local drive. REST API support for this will be included in a future release.
+                        The version <span class="pre">/v3/</span> Beta release will not include REST API support for uploading from a local drive. REST API support for this will be included in a future release.
                     <br /> <br />
                     </b>
             </td>
@@ -13,8 +13,7 @@
     </table>
 </p></p>
 
-<!--
-
+<h4> The following documentation is still valid for use with <span class="pre">v2</span> API endpoints: </h4>
 <p>
 <b>Objective</b>: Create a new Canvas and upload content from a local drive to this new Canvas.
 </p>
@@ -84,10 +83,6 @@
           <td>You need to know the workspace ID.</td>
         </tr>
 </table>
-
-
-
-
 
 <h2>Code sample</h2>
 
@@ -436,8 +431,7 @@ runAPIRequests();
 </pre>
 </p>
 
-<br />
-
+<p><br /></p>
 
 <p> Upload Method: Remote URL
 
@@ -552,14 +546,11 @@ request(options, function (error, response) {
 </pre>
 </p>
 
-
-
 <h2>OUTPUT</h2>
 
 <p>
 Each time you run a POST API, you will get back a Response Body with the properties of the newly created object. Within this data you can get the object ID and other important information.
 </p>
-
 
 <table class="table table-striped">
         <tr>
@@ -585,12 +576,11 @@ Each time you run a POST API, you will get back a Response Body with the propert
       
       </table>
 
-
 <h3>Output Json sample</h3>
 
 <h4>Canvas creation</h4>
 
-From this answer you can obtain the newly created Canvas ID: ['canvas']['id']
+<p>From this answer you can obtain the newly created Canvas ID: ['canvas']['id']
 <pre>
 {'canvas': {'borderColor': 'Yellow',
             'height': 4000,
@@ -600,10 +590,10 @@ From this answer you can obtain the newly created Canvas ID: ['canvas']['id']
             'width': 4000,
             'x': 10000,
             'y': 1000}
-}    
-</pre>
+}<br>
+</pre></p>
 
-<h4>Note Creation</h4>
+<p><h4>Note Creation</h4>
 <pre>
 {'note': {'backgroundColor': 'Red',
             'fontWeight': 'normal',
@@ -617,10 +607,8 @@ From this answer you can obtain the newly created Canvas ID: ['canvas']['id']
             'x': 10400,
             'y': 1400}
 }
-</pre>
+</pre></p>
 
-
-<br />
--->
-
-<p>If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.</p>
+<p><br />
+--&gt;
+If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.</p>

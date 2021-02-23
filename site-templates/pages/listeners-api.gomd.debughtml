@@ -5,7 +5,7 @@
             <td style="padding:15px"><br>
                     <b><center>NOTICE</center>
                         <br />
-                        The version <span class="pre">/v3/</span> beta release will not include Listeners. GraphQL Subscriptions will be replacing Listeners in a future release.
+                        The version <span class="pre">/v3/</span> Beta release will not include Listeners. GraphQL Subscriptions will be replacing Listeners in a future release.
                     <br /> <br />
                     </b>
             </td>
@@ -13,8 +13,7 @@
     </table>
 </p></p>
 
-<!--
-
+<h4> The following documentation is still valid for use with <span class="pre">v2</span> API endpoints: </h4>
 <p>
     Bluescape Listeners, commonly called webhooks, enable applications to receive notifications via HTTP POST whenever
     important changes happen inside of Bluescape workspaces and organizations. Applications register listeners by
@@ -325,7 +324,7 @@ curl -X POST [[apiHost]]/listeners \
   sendRequest(data_load)
 </pre>
 
-<a name="listener-states"><h3>Listener States</h3></a>
+<p><a name="listener-states"><h3>Listener States</h3></a></p>
 
 <p>
     Listener states allow for existing listeners to be disabled without being deleted. When a listener is first created,
@@ -345,7 +344,7 @@ curl -X POST [[apiHost]]/listeners \
     In order to reactivate the listener, applications will need to set the listener's status back to <span class="pre">ACTIVE</span>.
 </p>
 
-<a name="full-example"><h2>Use Case Example:</h2></a>
+<p><a name="full-example"><h2>Use Case Example:</h2></a></p>
 
 <p>
   Here is an example of a top to bottom implementation of listeners. This will cover creating the listener, setting up a server 
@@ -353,7 +352,7 @@ curl -X POST [[apiHost]]/listeners \
   acting on the incoming listener events in order to send slack updates to a dedicated channel.
 </p>
 
-<a name="setup-server"><h4>Setting Up a Basic Server</h4></a>
+<p><a name="setup-server"><h4>Setting Up a Basic Server</h4></a></p>
 
 <p>
   Before the listener can actually be set, we will need some way to recieve the inital <span class="pre">TEST_HOOK</span>
@@ -452,7 +451,7 @@ app.post("/", (req, res, next) => {
   has been recieved and properly handled.
 </p>
 
-<a name="setup-proxy"><h4>Seting Up the Reverse Proxy</h4></a>
+<p><a name="setup-proxy"><h4>Seting Up the Reverse Proxy</h4></a></p>
 
 <div class="well">
     <p>
@@ -596,7 +595,7 @@ app.post("/", (req, res, next) => {
       pprint.pprint(json_response)
 </pre>
 
-<a name="act-on-listener"><h4>Acting on Listener Events</h4></a>
+<p><a name="act-on-listener"><h4>Acting on Listener Events</h4></a></p>
 
 <p>
   After running the code from the previous section we now have an active listener set up that is ready to broadcast any events related to it's eventType parameter, as well as
@@ -629,21 +628,20 @@ app.post("/", (req, res, next) => {
     # No timeout needed for python. This method will be populated later on.
 </pre>
 
-
 <p>
   The function is defined with a timeout of 5 seconds. This turns the handling of the event into an asyncronous action in order to give 
   ample time for the server to respond to the <span class="pre">TEST_HOOK</span> before preforming any actions so that the listener does 
   not time out while the data is being processed. This callback notation is only needed due to the asyncronous nature of Node.
 </p>
 
-<br />
+<p><br />
 <p>
-  Now it's time to populate our method with some code. For this example we will be sending a slack update whenever a listener 
+  Now it's time to populate our method with some code. For this example we will be sending a slack update whenever a listener
   event is triggered. For this you must have already created a Slack app with permissions <span class="pre">channels:read</span>
-  and <span class="pre">chat:bot:write</span> as well as have registered it to your Slack workspace. This can be done 
+  and <span class="pre">chat:bot:write</span> as well as have registered it to your Slack workspace. This can be done
   <a href="https://api.slack.com/apps">here</a>. To learn more about this process <a href="https://api.slack.com/messaging/sending">check here</a>.
   Now it's time to add some code to our app.post() method.
-</p>
+</p></p>
 
 <div class="lang-selector">
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
@@ -743,51 +741,50 @@ app.post("/", (req, res, next) => {
   });
 </pre>
 
-<pre class="lang lang-python">  
-  app = Flask(__name__)
+<p><pre class="lang lang-python"><br>
+  app = Flask(<strong>name</strong>)
   token = ''
   def sendRequest(payload):
-      API_endpoint = "https://slack.com/api/chat.postMessage"
-  
-      the_request = requests.get(
-          API_endpoint,
-          headers={
-              "Authorization": "Bearer " + token,
-              "Content-Type": "application/json"
-                      },
-          params = payload
-      )
-  
-  @app.route('/', methods=['POST'])
+      API_endpoint = "<a href="https://slack.com/api/chat.postMessage&quot;">https://slack.com/api/chat.postMessage"</a></p>
+
+<pre><code>  the_request = requests.get(
+      API_endpoint,
+      headers={
+          &quot;Authorization&quot;: &quot;Bearer &quot; + token,
+          &quot;Content-Type&quot;: &quot;application/json&quot;
+                  },
+      params = payload
+  )
+</code></pre>
+
+<p>@app.route('/', methods=['POST'])
   def respondToWebhook():
-      print("webhook"); 
+      print("webhook");
       sys.stdout.flush()
       if request.method == 'POST':
           print(request.json)
           return '', 200
       else:
-          abort(400)
-          
-  def processSomething():
+          abort(400)</p>
+
+<p>def processSomething():
       if request.method == 'POST':
           workspaceId = request.params.workspaceId
-          workspaceLink = "https://client.apps.us.bluescape.com/" + workspaceId
+          workspaceLink = "<a href="https://client.apps.us.bluescape.com/&quot;">https://client.apps.us.bluescape.com/"</a> + workspaceId
           payload = {
               "channel": "YOUR_CHANNEL_ID",
               "text": "An image has been added to your workspace! You can view changes here: " + workspaceLink,
               "mrkdwn" : True
           }
-          sendRequest(payload)
-  
-  if __name__ == '__main__':
+          sendRequest(payload)</p>
+
+<p>if <strong>name</strong> == '<strong>main</strong>':
       app.run(port=3000)
 </pre>
 <p>
   That's it! We now have functional listener pipeline that is able to send notifications along with info about what as happened
   any time an event is triggered.
-</p>
+</p></p>
 
-<br />
--->
-
-<p>If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.</p>
+<p><br />
+If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.</p>
