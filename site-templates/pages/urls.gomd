@@ -1,5 +1,17 @@
 <h1>URLs</h1>
-
+<p>
+    <table style="background-color: #FFFFA5">
+        <tr>
+            <td style="padding:15px">   
+                    <b><center>NOTICE</center>
+                        <br />
+                        The API Reference documentation currently shows API endpoints in the format <span class="pre">/api/v3/{endpoint}</span> This is just an abbreviation of the full API endpoint which is currently implemented at: <span class="pre"><script type="text/javascript">document.write(apiBaseStr);</script>/{endpoint}</span>. For example, the documented endpoint <span class="pre">/api/v3/organizations</span> would translate to an API call at <span class="pre"><script type="text/javascript">document.write(apiBaseStr);</script>/organizations</span>. This discrepency will be resolved in an upcoming release.
+                    <br /> <br />
+                    </b>
+            </td>
+        </tr>
+    </table>
+</p>  
 <p>
     Below is a list of the URLs you will need when developing applications using the Bluescape API.
 </p>
