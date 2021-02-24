@@ -108,7 +108,7 @@
 <p>
     When users are invited to collaborate on a workspace, the permissions they have to modify content and invite other
     users to the workspace are governed by the workspace role they are assigned. There are six role types in a
-    workspace - Owner, Editor+, and Editor, Commenter, Viewer, and Template.
+    workspace - Owner, Editor+, Editor, Commenter, Viewer, and Template.
 </p>
 
 <table class="table table-striped">
