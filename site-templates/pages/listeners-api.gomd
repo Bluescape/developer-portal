@@ -640,7 +640,7 @@ app.post("/", (req, res, next) => {
   Now it's time to populate our method with some code. For this example we will be sending a slack update whenever a listener 
   event is triggered. For this you must have already created a Slack app with permissions <span class="pre">channels:read</span>
   and <span class="pre">chat:bot:write</span> as well as have registered it to your Slack workspace. This can be done 
-  <a href="https://api.slack.com/apps">here</a>. To learn more about this process <a href="https://api.slack.com/messaging/sending">check here</a>.
+  <a href="https://api.slack.com/apps" target="_blank">here</a>. To learn more about this process <a href="https://api.slack.com/messaging/sending" target="_blank">check here</a>.
   Now it's time to add some code to our app.post() method.
 </p>
 

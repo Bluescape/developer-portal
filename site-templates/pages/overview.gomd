@@ -33,7 +33,7 @@
 
     <ol>
       <li>Log in to your Bluescape account</li>
-      <li>Create an <script type="text/javascript">document.write(appsLinkLower);</script></li>
+      <li>Create an <script type="text/javascript">document.write('<a href="' + applicationStr + '" target="_blank">application</a>');</script></li>
       <li>Implement the <a href="/docs/page/app-auth">OAuth flow</a></li>
       <li>Issue your <a href="/docs/page/basic-api-requests">first requests</a></li>
     </ol>
