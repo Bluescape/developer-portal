@@ -107,28 +107,50 @@
 
 <p>
     When users are invited to collaborate on a workspace, the permissions they have to modify content and invite other
-    users to the workspace are governed by the workspace role they are assigned. There are three role types in a
-    workspace - Viewer, Editor, and Editor+.
+    users to the workspace are governed by the workspace role they are assigned. There are six role types in a
+    workspace - Owner, Editor+, and Editor, Commenter, Viewer, and Template.
 </p>
 
 <table class="table table-striped">
     <tr>
-        <th>Viewer</th>
-        <td>This limits collaborators to only being able to view, interact, and download assets within the workspace.
-            They cannot move, add, or delete assets nor can they draw or erase. They cannot invite collaborators into the
-            workspace.
+    <th>Owner</th>
+        <td>The Owner of a workspace has the ability to edit workspace settings, export the workspace, and even change the organization that
+        the workspace belongs to, along with a variety of other management actions such as the ability to
+        delete or change ownership of a workspace. Only the Owner role can perform these actions.
+        </td>
+    </tr>
+    <tr>
+    <th>Editor+</th>
+        <td>This role allows users to fully collaborate within the space with no restrictions on adding, removing,
+            modifying, or downloading assets from the workspace. They can add and remove collaborators in the workspace along with being able to edit their roles.
         </td>
     </tr>
     <tr>
         <th>Editor</th>
-        <td>This allows users to fully collaborate within the space with no restrictions on adding, removing, or
-            manipulating the workspace. They cannot invite collaborators into the workspace.
+        <td>This role allows users to fully collaborate within the space with no restrictions on adding, removing,
+            modifying, or downloading assets from the workspace. They cannot invite or remove collaborators in the workspace.
         </td>
     </tr>
     <tr>
-        <th>Editor+</th>
-        <td>This allows users to fully collaborate within the space with no restrictions on adding, removing, or
-            manipulating the workspace. They can invite collaborators into the workspace.
+         <th>Commenter</th>
+        <td>This role limits collaborators to only being able to view and interact with assets within the workspace.
+            They cannot move, add, or delete assets nor can they draw or erase. They cannot invite collaborators into the
+            workspace. They can however leave comments on elements within the workspace.
+        </td>
+    </tr>
+    <tr>
+         <th>Viewer</th>
+        <td>This role limits collaborators to only being able to view and interact with assets within the workspace.
+            They cannot move, add, or delete assets nor can they draw or erase. They cannot invite collaborators into the
+            workspace. They cannot leave comments within the workspace.
+        </td>
+    </tr>
+    <tr>
+         <th>Template</th>
+        <td>This role limits collaborators to only being able to view and interact with assets within the workspace. This role can also downloading
+            assets from the workspace, as well as has the ability to duplicate a workspace.
+            They cannot move, add, or delete assets nor can they draw or erase. They cannot invite collaborators into the
+            workspace. They cannot leave comments within the workspace.
         </td>
     </tr>
 </table>
