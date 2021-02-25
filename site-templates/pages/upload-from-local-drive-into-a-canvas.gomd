@@ -273,7 +273,7 @@ const token = '&lt;SET_TOKEN&gt;';
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
 const api_version = 'v2';
-var api_endpoint = '/' + api_version + '/workspaces/' + workspaceId + '/elements/images';
+var api_endpoint = `/${api_version}/workspaces/${workspaceId}/elements/images`;
 var method = '';
 
 const canvas_x = 0;
@@ -345,7 +345,7 @@ async function asyncForEach(array, callback) {
 async function runAPIRequests() {
     try {
         // Create canvas
-        api_endpoint = '/v2/workspaces/' + workspaceId + '/elements/canvas';
+        api_endpoint = `/v2/workspaces/${workspaceId}/elements/canvas`;
         method = 'POST';
         var currtime = new Date().toISOString().slice(0,16).replace('T',' ');
 
@@ -369,7 +369,7 @@ async function runAPIRequests() {
         var allowedDocExtensions = new RegExp(/.*\.(pdf|docx|pptx|xlsx|doc|ppt|xls)$/i);
         var allowedImageExtensions = new RegExp(/.*\.(jpg|png|jpeg|tiff)$/i)
 
-        const pathSource = '&lt;SET_FULL_PATH_TO_YOUR_LOCAL_FOLDER&gt;';
+        const pathSource = '&lt;SET_FULL_PATH_TO_YOUR_LOCAL_FOLDER&gt;'; // Remember to add the final '/'
         var myPath = path.dirname(pathSource +'*'); // Absolute path
         // passsing myPath and callback function
         fs.readdir(myPath, function (errorIssue, files) {
@@ -387,10 +387,10 @@ async function runAPIRequests() {
 
                 // Check if the file is a supported one for uploading.
                 if (allowedDocExtensions.test(filename) ){
-                    api_endpoint = '/v2/workspaces/' + workspaceId + '/elements/canvas/' + canvas_id + '/documents';
+                    api_endpoint = `/v2/workspaces/${workspaceId}/elements/canvas/${canvas_id}/documents`;
                     file_type_key = 'document';
                 } else if (allowedImageExtensions.test(filename)) {
-                    api_endpoint = '/v2/workspaces/' + workspaceId + '/elements/canvas/' + canvas_id + '/images';
+                    api_endpoint = `/v2/workspaces/${workspaceId}/elements/canvas/${canvas_id}/images`;
                     file_type_key = 'image';
                 } else {
                     is_supported_extension = false;
