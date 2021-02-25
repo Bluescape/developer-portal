@@ -96,13 +96,13 @@ Required modules:
     requests 2.22.0
 '''
 
-token = '&lt;SET_YOUR_TOKEN_HERE&gt;'
+token = '&lt;SET_TOKEN&gt;'
 
 if __name__ == "__main__":
-    portal = '[[apiHost]]'
+    portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
     workspaceId = '&lt;SET_WORKSPACE_ID&gt;'
     API_version = 'v2'
-    API_endpoint = '/' + API_version + '/workspaces/' + workspaceId + '/elements/canvas'
+    API_endpoint = f'/{API_version}/workspaces/{workspaceId}/elements/canvas'
     parameters = ''
 
     canvas_x = 0
@@ -145,10 +145,10 @@ if __name__ == "__main__":
     # /v2/workspaces/&lt;workspaceId&gt;/elements/canvas/&lt;canvas_id&gt;/documents
     # /v2/workspaces/&lt;workspaceId&gt;/elements/canvas/&lt;canvas_id&gt;/images
 
-    mypath = '&lt;SET_PATH_HERE&gt;'
+    mypath = '&lt;SET_PATH_HERE&gt;' # Remember to add the closing '/'
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
-    API_endpoint = '/' + API_version + '/workspaces/' + workspaceId + '/elements/canvas/' + canvas_id + '/documents'
+    API_endpoint = f'/{API_version}/workspaces/{workspaceId}/elements/canvas/{canvas_id}/documents'
 
     # Canvas coordinates are from its top left corner, relative from there
     xx = 100
@@ -175,10 +175,10 @@ if __name__ == "__main__":
         is_supported_extension = True
 
         if file_extension in document_extensions:
-            API_endpoint = '/' + API_version + '/workspaces/' + workspaceId + '/elements/canvas/' + canvas_id + '/documents'
+            API_endpoint = f'/{API_version}/workspaces/{workspaceId}/elements/canvas/{canvas_id}/documents'
             file_type_key = 'document'
         elif file_extension in image_extensions:
-            API_endpoint = '/' + API_version + '/workspaces/' + workspaceId + '/elements/canvas/' + canvas_id + '/images'
+            API_endpoint = f'/{API_version}/workspaces/{workspaceId}/elements/canvas/{canvas_id}/images'
             file_type_key = 'image'
         else:
             is_supported_extension = False
