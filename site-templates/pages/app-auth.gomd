@@ -74,7 +74,7 @@ The following parameters should be URL-encoded and passed in the query string:
     
 </p>
 <p>
-The <span class="pre">client_id</span> can be obtained from the <script type="text/javascript">document.write(appsLink);</script>  page. After you sign in, go to the <b>Applications</b> option in the left list. Here you will be able to create and generate new client_ids for your applications (see <a href="#appendix1" target="_blank">Appendix 1</a>). Use the value in the <b>Client ID</b> field as your <span class="pre">client_id</span> for this authentication process. See the reference in the image below.
+The <span class="pre">client_id</span> can be obtained from the <script type="text/javascript">document.write('<a href="' + applicationStr + '" target="_blank">Applications</a>');</script>  page. After you sign in, go to the <b>Applications</b> option in the left list. Here you will be able to create and generate new client_ids for your applications (see <a href="#appendix1">Appendix 1</a>). Use the value in the <b>Client ID</b> field as your <span class="pre">client_id</span> for this authentication process. See the reference in the image below.
 </p>
 <p>
     <center>
@@ -172,7 +172,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6
                 <td>
                         <b><center>IMPORTANT</center>
                             <br />
-                        Verify that you have met all the requirements outlined in <a href="#appendix3" target="_blank">Appendix 3</a>, otherwise this process will not generate the Refresh Tokens correctly. 
+                        Verify that you have met all the requirements outlined in <a href="#appendix3">Appendix 3</a>, otherwise this process will not generate the Refresh Tokens correctly. 
                         </b>
                 </td>
             </tr>
@@ -276,7 +276,7 @@ curl -w "%{http_code}\\n" -X POST \
 </p>
     
 <p>
-    If you have not Allowed the application, you will get an error message <span class="pre">405 Not Allowed</span>. Please review the requirements outlined in <a href="#appendix3" target="_blank">Appendix 3</a>. 
+    If you have not Allowed the application, you will get an error message <span class="pre">405 Not Allowed</span>. Please review the requirements outlined in <a href="#appendix3">Appendix 3</a>. 
 </p>
 
 <p>
@@ -456,7 +456,7 @@ curl -w "%{http_code}\\n" -X POST \
         </tr>
         <tr>
             <td><span class="pre">405 Not Allowed</span></td>
-            <td>If you have not Allowed the application, you will get an error message <span class="pre">405 Not Allowed</span>. Please review the requirements outlined in <a href="#appendix3" target="_blank">Appendix 3</a>.</td>
+            <td>If you have not Allowed the application, you will get an error message <span class="pre">405 Not Allowed</span>. Please review the requirements outlined in <a href="#appendix3">Appendix 3</a>.</td>
             </tr>            
     </table>
 </p>
@@ -571,7 +571,7 @@ curl -w "%{http_code}\\n" -X POST \
 <a name="appendices"><h2>Appendices</h2></a>
 <a name="appendix1"><h3>Appendix 1: Create a new Application</h3></a>
 <ul>
-    <li>Go to your application list: <a href="../"><script type="text/javascript">document.write(appsLink); </script></a></li>
+    <li>Go to your application list: <a href="../"><script type="text/javascript">document.write('<a href="' + applicationStr + '" target="_blank">Applications</a>');</script></a></li>
     <li>Sign in, if you haven't already.</li>
     <li>In the left menu, select "<b>Applications</b>" <br />
         <img class="img-responsive center-block" src="/docs/assets/images/user-menu.png">
@@ -589,7 +589,7 @@ curl -w "%{http_code}\\n" -X POST \
 <a name="appendix2"><h3>Appendix 2: How to get the Client ID and Client Secret</h3></a>
    How to get the Client Secret:   
 <ul>
-    <li>Go to your application list: <a href="../"><script type="text/javascript">document.write(appsLink); </script></a></li>
+    <li>Go to your application list: <a href="../"><script type="text/javascript">document.write('<a href="' + applicationStr + '" target="_blank">Applications</a>');</script></a></li>
     <li>Sign in, if you haven't already.</li>
     <li>In the left menu, select "<b>Applications</b>" <br />
         <img class="img-responsive center-block" src="/docs/assets/images/user-menu.png">
@@ -604,11 +604,8 @@ curl -w "%{http_code}\\n" -X POST \
             <li><span class="pre">client_secret</span>: value of Client Secret after clicking the Show button after clicking the eye icon <img class="img-responsive center-block" src="/docs/assets/images/eye.png"></li>
         </ul>        
 </ul>
-  
- 
-
 <a name="appendix3"><h3>Appendix 3: Requirements for Refresh Tokens implementation</h3></a>
-You need to Allow the application you will use to generate the tokens. <br />
+You need to Allow the application you will use to generate the tokens. <br/>
     
 An <b>ADMIN user</b> from your organization needs to run this one time process:
 

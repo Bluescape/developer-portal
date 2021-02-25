@@ -258,7 +258,7 @@ For the elements of the Image, Document or Video type, the width and height prop
 </pre>   
     </td>
     <td>In V3 the color scheme is defined using RGBA color model.<br />
-        What is RGBA? You can find a detailed explanation here: <a href="https://en.wikipedia.org/wiki/RGBA_color_model">RGBA Color Model</a> <br /><br />
+        What is RGBA? You can find a detailed explanation here: <a href="https://en.wikipedia.org/wiki/RGBA_color_model" target="_blank">RGBA Color Model</a> <br /><br />
         The color is defined by:
         <ul>
             <li>R: how much red</li>
