@@ -251,14 +251,6 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6
     </table>
 </p>
 <p>
-   <b>IMPORTANT</b>: Please note that with the new changes in V3, the newly generate Applications will generate a longer ID. Difference in Applications IDs:  
-    <ul>
-        <li>Previous Application ID (example): 60261A3D</li>
-        <li>Newest Application ID (example): 70304a04-d522-45fe-8f8e-cb238845a9af</li>
-    </ul>
-    Both Application ID formats will work for generating Access Tokens.
-</p>
-<p>
     The client request for Access Token and Refresh Token is:
 <pre>
 curl -w "%{http_code}\\n" -X POST \
@@ -273,7 +265,14 @@ curl -w "%{http_code}\\n" -X POST \
 }'
 </pre>
 </p>
-    
+<p>
+   <b>IMPORTANT</b>: Please note that with the new changes in V3, the newly generate Applications will generate a longer ID. Difference in Applications IDs:  
+    <ul>
+        <li>Previous Application ID (example): 60261A3D</li>
+        <li>Newest Application ID (example): 70304a04-d522-45fe-8f8e-cb238845a9af</li>
+    </ul>
+    Both Application ID formats will work for generating Access Tokens.
+</p>    
 <p>
     Example of the request: 
 <pre>curl -w "%{http_code}\\n" -X POST \
