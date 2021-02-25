@@ -255,17 +255,18 @@ if __name__ == "__main__":
 <p> 
 <pre class="lang lang-node">
 // Node.js Javascript
-// Upload method:
+// Upload method: Multipart Form Data, from local drive
 var request = require('request');
 var path = require('path');
 var fs = require('fs');
 
 /*
-How to run:
+How to run: 
 node this_script_name.js 
 
-Requires "request" module, run:
-npm install request
+Requires "request" module, version 2.88.2,  run:
+npm install request@2.88.2
+
 
 */
 
@@ -518,6 +519,7 @@ if __name__ == "__main__":
 <p> 
 <pre class="lang lang-node">
 // Node.js Javascript
+// Upload method: Remote URL 
 var request = require('request');
 
 /*
@@ -531,13 +533,12 @@ npm install request@2.88.2
 
 */
 
-const token = '<SET_TOKEN>';
+const token = '&lt;SET_TOKEN&gt;';
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
-const workspaceId = '<SET_WORKSPACE_ID>';
+const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
 const api_version = 'v2';
-var api_endpoint = '/' + api_version + '/workspaces/' + workspaceId + '/elements/images'; 
-const imageURL = '<IMAGE_URL>'
-const imageURL = 'https://kinsta.com/wp-content/uploads/2017/04/change-wordpress-url-1-1024x512.png'
+var api_endpoint = `/${api_version}/workspaces/${workspaceId}/elements/images`; 
+const imageURL = '&lt;{IMAGE_URL&gt;' 
 
 var options = {
     'method': 'POST',
