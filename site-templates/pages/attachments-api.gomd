@@ -26,7 +26,7 @@
 </p>
 
 <p>    
-    When executing an Attachments API, the user will see the source element be moved onto the base element specified, and a yellow border will appear around the
+    When executing an Attachments API, the user will see the source element get moved onto the base element specified, and a yellow border will appear around the
     newly attached object. When deleting an Attachment, the user will see a blue border around the element that was unattached to signify the operation is complete.
 </p>
 
@@ -152,9 +152,9 @@ Sample Request:
 <pre class="lang lang-node">
 var request = require('request');
 
-const token = &lt;SET_TOKEN&gt;
+const token = &lt;SET_TOKEN&gt;;
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
-const workspace_uid = &lt;SET_WORKSPACE_UID&gt;
+const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
 const api_version = 'v2';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;';
 
@@ -237,13 +237,13 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments 
--H 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
--H 'Content-Type: application/json' 
+curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments \
+-H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+-H 'Content-Type: application/json' \
 -d '{
     "x" : 10,
     "y" : 10,
-    "sourceId: "YYYYYYYYY"
+    "sourceId": "YYYYYYYYY"
 }'
 </pre>    
 
@@ -252,19 +252,20 @@ Sample Response Body:
     <ul>
         <li>Note the <span class='pre'>sourceId</span> being placed at coordinates [10,10]</li>
     </ul>
-    <pre>
-    {
-        "x": 10,
-        "y": 10,
-        "source": {
+<pre>
+{
+    "workspace_id": "`<`WORKSPACE_ID`>`",
+    "x": 10,
+    "y": 10,
+    "source": {
         "id": "`<`SET_SOURCE_ID`>`",
         "type": "note"
-        },
-        "surface": {
+    },
+    "surface": {
         "id": "`<`SET_SURFACE_ID`>`",
         "type": "image"
-        }
-    }</pre>
+    }
+}</pre>
         
 </p>
 
@@ -298,9 +299,9 @@ Sample Response Body:
 <pre class="lang lang-node">
 var request = require('request');
 
-const token = &lt;SET_TOKEN&gt;
+const token = &lt;SET_TOKEN&gt;;
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
-const workspace_uid = &lt;SET_WORKSPACE_UID&gt;
+const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
 const api_version = 'v2';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;';
 
@@ -322,7 +323,7 @@ function runRequest(portal,api_endpoint,method,data_load) {
                 // Print out the result
                 console.log("Successful request. Body response: " + JSON.stringify(body,null,"     ")); 
                 } else {
-                    reject('Invalid status code &lt; + response.statusCode + '&gt;'); 
+                    reject('Invalid status code &lt;' + response.statusCode + '&gt;'); 
                 }
                 resolve(body);
         })
@@ -338,12 +339,11 @@ async function runAPIRequests() {
     try {
         var uploadResponse = await runRequest(portal,api_endpoint,method);
     } catch (error) {
-        console.error('ERROR  attaching ');
+        console.error('ERROR getting attachments ');
         console.error(error);
     }
 }
-runAPIRequests();
-        
+runAPIRequests();  
 </pre>
 
 <pre class="lang lang-python">
@@ -371,16 +371,14 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X GET <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments 
--H 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
+curl -X GET <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments \
+-H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' 
 </pre>
 <br />
 
 Sample Response Body with the list of attachements an object has:
-<pre>   
-...         
-{
+<pre>{
     "attachments": [{
     "id": "46degdftjd887d",
     "type": "note"
@@ -394,7 +392,6 @@ Sample Response Body with the list of attachements an object has:
     "type": "text"
     }]
 }
-...
 </pre>
 </p>
 
@@ -426,9 +423,9 @@ Sample Response Body with the list of attachements an object has:
 <pre class="lang lang-node">
 var request = require('request');
 
-const token = &lt;SET_TOKEN&gt;
+const token = &lt;SET_TOKEN&gt;;
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
-const workspace_uid = &lt;SET_WORKSPACE_UID&gt;
+const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
 const api_version = 'v2';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;';
 
@@ -441,7 +438,6 @@ function runRequest(portal,api_endpoint,method,data_load) {
                 'Authorization': "Bearer " + token,
                 'Content-Type' : 'application/json'    
             },
-            body : data_load,
             json: true
         };
 
@@ -460,21 +456,16 @@ function runRequest(portal,api_endpoint,method,data_load) {
 async function runAPIRequests() {
     api_endpoint = '/v2' + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;/&lt;SURFACE_ID&gt;/attachments/&lt;TARGET_ID&gt;'
 
-    data_load = {
-        'sourceId': "&lt;SOURCE_ID&gt;"
-    }
-
     method = 'DELETE';
 
     try {
-        var uploadResponse = await runRequest(portal,api_endpoint,method,data_load);
+        var uploadResponse = await runRequest(portal,api_endpoint,method);
     } catch (error) {
-        console.error('ERROR  attaching ');
+        console.error('ERROR deleting attachment ');
         console.error(error);
     }
 }
 runAPIRequests();
-    
 </pre>
 
 <pre class="lang lang-python">
@@ -502,8 +493,8 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X DELETE <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments/&lt;target_id&gt; 
--H 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
+curl -X DELETE <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments/&lt;target_id&gt; \
+-H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' 
 </pre>
 
@@ -561,9 +552,9 @@ This script:
 
 */
 
-const token = &lt;SET_TOKEN&gt;
+const token = &lt;SET_TOKEN&gt;;
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
-const workspace_uid = &lt;SET_WORKSPACE_UID&gt;
+const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
 const api_version = 'v2';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/images';
 var method = '';
@@ -596,7 +587,7 @@ function runUploadRequest(portal,api_endpoint,method,data_load){
                 // Print out the result
                 console.log("Successful request. Body response: " + JSON.stringify(body,null,"     ")); 
                 } else {
-                reject('Invalid status code &lt; + response.statusCode + '&gt;'); 
+                reject('Invalid status code &lt;' + response.statusCode + '&gt;'); 
                 }
                 resolve(body);
         })
@@ -748,7 +739,7 @@ async function runAPIRequests() {
                     
                     /*******************************************
                     **    4) Attach new text field to file:   ** 
-                    ********************************************
+                    ********************************************/
 
                     api_endpoint = '/v2' + '/workspaces/' + workspace_uid + '/elements/'+file_type_key+'s/'+file_id+'/attachments'
 
@@ -812,7 +803,6 @@ async function runAPIRequests() {
 
 // Run the requests
 runAPIRequests();       
-
 </pre>
 
 

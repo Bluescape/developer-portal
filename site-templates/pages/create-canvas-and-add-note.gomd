@@ -71,7 +71,7 @@
               <b>To change the dimensions of the Note, the body should look like this:</b></br>
               <pre>{
 &nbsp;&nbsp;&nbsp;&nbsp; "type": "Note",
-&nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;"
+&nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;",
 &nbsp;&nbsp;&nbsp;&nbsp; "transform": {"scale": &lt;SET_SCALE&gt;}
 }</pre>
               
@@ -79,7 +79,7 @@
             <pre> 
 {
 &nbsp;&nbsp;&nbsp;&nbsp; "type": "Note",
-&nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;"
+&nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;",
 &nbsp;&nbsp;&nbsp;&nbsp; "transform": {"x": &lt;SET_X&gt;, "y": &lt;SET_Y&gt;}
 }</pre>           
                </br>

@@ -56,7 +56,7 @@
 
     <h3>Trait structure</h3>
     <p>
-            In every request and response of the Bluescape REST API operating on elements of the supported types, traits are represented as a JSON array. Each item in the array must conform to the JSON-LD specification (<a href="https://json-ld.org/" target="_blank">https://json-ld.org/</a>). While the JSON-LD specification contains a rich set of features for data modeling, their use not necessary. The only relevant constraint imposed by the JSON-LD specification is that every JSON property name must either:
+            In every request and response of the Bluescape REST API operating on elements of the supported types, traits are represented as a JSON array. Each item in the array must conform to the JSON-LD specification (<a href="https://json-ld.org/" target="_blank">https://json-ld.org/</a>). While the JSON-LD specification contains a rich set of features for data modeling, their use is not necessary. The only relevant constraint imposed by the JSON-LD specification is that every JSON property name must either:
             <ul>
                 <li>be a Uniform Resource Locator (URI)</li>
                 <li>be a JSON-LD keyword - one of 13 reserved names starting with the "@" symbol</li>
@@ -72,18 +72,18 @@
     <p>
         Example of the data load: 
 <pre>
-    {
-        // trait from framework A
-        "http://acme.com/file-data/name":  “background-test-1.jpg”,
-        "http://acme.com/file-data/version": "1.0.4-First-review"
+{
+    // trait from framework A
+    "http://acme.com/file-data/name":  “background-test-1.jpg”,
+    "http://acme.com/file-data/version": "1.0.4-First-review"
+},
+{ // trait from framework B
+    "http://ajax.com/project/": {
+        "http://ajax.com/project/owner": "Joe Smith",
+        "http://ajax.com/project/deadline": "2019Q4"
     },
-    { // trait from framework B
-        "http://ajax.com/project/": {
-            "http://ajax.com/project/owner": "Joe Smith",
-            "http://ajax.com/project/deadline": "2019Q4"
-        },
-        "http://ajax.com/project/name": "Lorem Ipsum, the Return"
-    }
+    "http://ajax.com/project/name": "Lorem Ipsum, the Return"
+}
 </pre>
     </p>
 
@@ -105,17 +105,15 @@
         You will need to add the JSON Array as a <span
         class="pre">'traits'</span> field in the data load. For example, when creating a Canvas, you can add Traits as in the example below:
 <pre>
-...
-data_load = {
-    'x': 10000,
-    'y': 1000,
-    'width': 4000,
-    'height': 4000,
-    'name': "New Canvas - Creation time: " + str(timestamp),
-    'borderColor': 'Yellow',
-    'traits' : [{"http://acme.com/project": "Lorem Ipsum, The Return"},{"http://acme.com/project/review" : "First Review, gathering Feedback"}]
+{
+    "x": 10000,
+    "y": 1000,
+    "width": 4000,
+    "height": 4000,
+    "name": "New Canvas",
+    "borderColor": "Yellow",
+    "traits" : [{"http://acme.com/project": "Lorem Ipsum, The Return"},{"http://acme.com/project/review" : "First Review, gathering Feedback"}]
 }
-...
 </pre>
     </p>
 
@@ -139,13 +137,13 @@ data_load = {
         </table>
         <br />
     
-        When adding Traits to an object, you will need to provide a JSON Array as the data load for the API. An example of the data load for adding Traits to an image object would be:
+        When adding Traits to an object, you will need to provide a JSON Array in the body of the API request. An example of the data load body for adding Traits to an image object would be:
 <pre>
-data_load = [{
+[{
     "http://acme.com/picture/title": "Sand dunes picture",
     "http://acme.com/picture/description": "Sand Dunes, big, light on one side, shadow on the other side",
     "http://acme.com/picture/tags": ["sand dunes","light","desert","blue sky","yellow sand","sand"]
-    }]
+}]
 </pre>
     </p>
 
@@ -181,7 +179,7 @@ data_load = [{
     { "http://acme.com/bluescape#assetId": null }]
 </pre>
     <br />
-        The API client using the "http://acme.com" prefix is free to interpret such association as a deletion of the assetId property of the associated <span class="pre">bluescape#assetId</span> element by processing the values from older to newer (top to bottom in this example).
+        The API client using the <span class="pre">"http://acme.com"</span> prefix is free to interpret such associations as a deletion of the assetId property of the associated <span class="pre">bluescape#assetId</span> element by processing the values from older to newer (top to bottom in this example).
 </p>  
 
 <p>
