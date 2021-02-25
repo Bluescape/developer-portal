@@ -26,7 +26,7 @@
 </p>
 
 <p>    
-    When executing an Attachments API, the user will see the source element get moved onto the base element specified, and a yellow border will appear around the
+    When executing an Attachments API, the user will see the source element be moved onto the base element specified, and a yellow border will appear around the
     newly attached object. When deleting an Attachment, the user will see a blue border around the element that was unattached to signify the operation is complete.
 </p>
 
