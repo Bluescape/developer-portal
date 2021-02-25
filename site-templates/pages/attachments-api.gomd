@@ -209,14 +209,15 @@ import requests
 from requests.exceptions import HTTPError
 import pprint
 
-token = &lt;SET_TOKEN&gt;
+token = '&lt;SET_TOKEN&gt;'
 portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
-workspace_uid = &lt;SET_WORKSPACE_UID&gt;
+
+workspace_uid = '&lt;SET_WORKSPACE_UID&gt;'
 api_version = '/v2/'
 
 if __name__ == "__main__":
 
-    API_endpoint = API_endpoint = portal + api_version + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;/&lt;SURFACE_ID&gt;/attachments'
+    API_endpoint = API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;/&lt;SURFACE_ID&gt;/attachments'
 
     data_load = {
         'sourceId': '&lt;SET_SOURCE_ID&gt;',     # Example showing how to use the filter_by field
@@ -351,14 +352,14 @@ import requests
 from requests.exceptions import HTTPError
 import pprint
 
-token = &lt;SET_TOKEN&gt;
+token = '&lt;SET_TOKEN&gt;'
 portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
-workspace_uid = &lt;SET_WORKSPACE_UID&gt;
+workspace_uid = '&lt;SET_WORKSPACE_UID&gt;'
 api_version = '/v2/'
 
 
 if __name__ == "__main__":
-    API_endpoint = portal + api_version + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;/&lt;SURFACE_ID&gt;/attachments'
+    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;/&lt;SURFACE_ID&gt;/attachments'
 
     the_request = requests.get(
             API_endpoint,
@@ -473,14 +474,14 @@ import requests
 from requests.exceptions import HTTPError
 import pprint
 
-token = &lt;SET_TOKEN&gt;
+token = '&lt;SET_TOKEN&gt;'
 portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
-workspace_uid = &lt;SET_WORKSPACE_UID&gt;
+workspace_uid = '&lt;SET_WORKSPACE_UID&gt;'
 api_version = '/v2/'
 
 
 if __name__ == "__main__":
-    API_endpoint = portal + api_version + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;/&lt;SURFACE_ID&gt;/attachments/&lt;TARGET_ID&gt;'
+    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;/&lt;SURFACE_ID&gt;/attachments/&lt;TARGET_ID&gt;'
 
     the_request = requests.delete(
             API_endpoint,
@@ -829,7 +830,7 @@ Required modules:
     requests 2.22.0
 '''
 
-token = &lt;SET_TOKEN&gt;
+token = '&lt;SET_TOKEN&gt;'
 
 #############################
 #    1) Create a canvas:    #
@@ -837,7 +838,7 @@ token = &lt;SET_TOKEN&gt;
 
 if __name__ == "__main__":
     portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
-    workspace_uid = &lt;SET_WORKSPACE_UID&gt;
+    workspace_uid = '&lt;SET_WORKSPACE_UID&gt;'
     user_uid = ''
     API_version = 'v2'
     API_endpoint = '/' + API_version + '/workspaces/' + workspace_uid + '/elements/canvas'
@@ -882,7 +883,7 @@ if __name__ == "__main__":
     #    2) Upload content into the canvas:   #
     ###########################################
     
-    mypath = &lt;SET_FILE_PATH&gt;
+    mypath = '&lt;SET_FILE_PATH&gt;'
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
     API_endpoint = '/' + API_version + '/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/documents'
