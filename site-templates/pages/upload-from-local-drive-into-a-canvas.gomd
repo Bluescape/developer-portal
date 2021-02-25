@@ -438,19 +438,19 @@ Required Libraries:
 
 '''
 
-token = '<SET_TOKEN>'
+token = '&lt;SET_TOKEN&gt;'
 
 if __name__ == "__main__":
 
     portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
-    workspaceId = '<SET_WORKSPACE_ID>' 
+    workspaceId = '&lt;SET_WORKSPACE_ID&gt;' 
     API_version = 'v2'    
     params = ''
 
-    API_endpoint = '/' + API_version + '/workspaces/' + workspaceId + '/elements/images'
+    API_endpoint = f'/{API_version}/workspaces/{workspaceId}/elements/images'
 
     # URL of the image, public URL
-    objectURL = '<URL_OF_IMAGE_TO_UPLOAD>'
+    objectURL = '&lt;URL_OF_IMAGE_TO_UPLOAD&gt;'
     
     # The minimum needed is just the 'url' key
     data_load = {
