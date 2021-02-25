@@ -534,10 +534,16 @@ curl -w "%{http_code}\\n" -X POST \
 <p>    
     Please remember that Access Tokens expire 2 weeks after they are issued. Requests made with expired access tokens will receive a <span class="pre">401 Unauthorized</span> response from the Bluescape API. The proper response in this case is to restart the authorization flow according to the method you have chosen to manage your Access Tokens.
 </p>
-
-
 <h3>Full Example</h3>
 <p> 
+<p>
+   <b>IMPORTANT</b>: Please note that with the new changes in V3, the newly generate Applications will generate a longer ID. Difference in Applications IDs:  
+    <ul>
+        <li>Previous Application ID (example): 60261A3D</li>
+        <li>Newest Application ID (example): 70304a04-d522-45fe-8f8e-cb238845a9af </li>
+    </ul>
+    Both Application ID formats will work for generating Access Tokens.
+</p>
     <b>Preconditions (example values)</b>
     <table class="table table-striped">
         <tr>
