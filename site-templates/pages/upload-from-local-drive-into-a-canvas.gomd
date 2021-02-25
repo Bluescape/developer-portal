@@ -30,28 +30,12 @@
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v2/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>/v2/workspaces/&lt;workspaceId&gt;/elements/canvas</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
             <td>POST</td>
-        </tr>
-        <!--
-        <tr>
-            <td><b>Developer Portal URL</b></td>
-            <td><a href="/reference/apis#Canvas:postWorkspacesElementsCanvasByWorkspaceid">[[developerPortalHost]]/reference/apis#Canvas:postWorkspacesElementsCanvasByWorkspaceid</a></td>
-        </tr>
-        -->
-        <tr>
-            <td><b>Body</b></td>
-                <td>
-                <pre>
-{
-&nbsp;&nbsp;&nbsp;&nbsp; "type": "Canvas",
-&nbsp;&nbsp;&nbsp;&nbsp; "name": "&lt;SET_CANVAS_NAME&gt;"
-}</pre>
-                </td>
-        </tr>
+        </tr>        
         <tr>
           <td><b>Comments</b></td>
           <td>You need to know the workspace ID.</td>
@@ -63,29 +47,15 @@
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v2/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>
+          /v2/workspaces/&lt;workspaceId&gt;/elements/canvas/&lt;canvas_id&gt;/images for images<br >
+          /v2/workspaces/&lt;workspaceId&gt;/elements/canvas/&lt;canvas_id&gt;/documents for documents<br >
+          </td>
         </tr>
         <tr>
             <td><b>Method</b></td>
             <td>POST</td>
-        </tr>
-        <!--
-        <tr>
-            <td><b>Developer Portal URL</b></td>
-            <td><a href="/reference/apis#Documents:postWorkspacesElementsCanvasDocumentsByWorkspaceidCanvasid">[[developerPortalHost]]/reference/apis#Documents:postWorkspacesElementsCanvasDocumentsByWorkspaceidCanvasid</a> and 
-                <a href="/reference/apis#Images:postWorkspacesElementsCanvasImagesByWorkspaceidCanvasid">[[developerPortalHost]]/reference/apis#Images:postWorkspacesElementsCanvasImagesByWorkspaceidCanvasid</a></td>
-        </tr>
-        -->
-        <tr>
-          <td><b>Body</b></td>
-            <td>
-            <pre>
-{
-&nbsp;&nbsp;&nbsp;&nbsp; "type": "Canvas",
-&nbsp;&nbsp;&nbsp;&nbsp; "name": "&lt;SET_CANVAS_NAME&gt;"
-}</pre>
-            </td>
-        </tr>
+        </tr>        
         <tr>
           <td><b>Comments</b></td>
           <td>You need to know the workspace ID.</td>
@@ -611,19 +581,17 @@ From this answer you can obtain the newly created Canvas ID: ['canvas']['id']
 }    
 </pre>
 
-<h4>Note Creation</h4>
+<h4>Image Creation</h4>
 <pre>
-{'note': {'backgroundColor': 'Red',
-            'fontWeight': 'normal',
-            'height': 320,
-            'id': '5d3f40a7b068af0014933ae2',
-            'order': 216,
-            'pin': False,
+{ 'image': {'id': '6036f9fd2d1125001c3217d8',
+            'workspace_id': 'Ol5vMRiojRoltkCYsPQB',
+            'x': 1000,
+            'y': 1000,
+            'url': 'https://somedomain.com/uploads/5d3f40a66d2d1125.png',
+            'pin': false,
             'scale': 1,
-            'text': 'Hello! New note, added at 2019-07-29 11:53:26.791257',
-            'width': 560,
-            'x': 10400,
-            'y': 1400}
+            'order': 5,
+            'title': 'https://somedomain.com/uploads/5d3f40a66d2d1125.png'}
 }
 </pre>
 
