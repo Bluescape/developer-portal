@@ -48,8 +48,8 @@
         <tr>
           <td><b>Endpoint</b></td>
           <td>
-          /v2/workspaces/&lt;workspaceId&gt;/elements/canvas/&lt;canvas_id&gt;/images &nbsp;&nbsp;for images<br >
-          /v2/workspaces/&lt;workspaceId&gt;/elements/canvas/&lt;canvas_id&gt;/documents &nbsp;&nbsp;for documents<br >
+          /v2/workspaces/&lt;workspaceId&gt;/elements/canvas/&lt;canvas_id&gt;/images &nbsp;&nbsp;and<br/>
+          /v2/workspaces/&lt;workspaceId&gt;/elements/canvas/&lt;canvas_id&gt;/documents 
           </td>
         </tr>
         <tr>
