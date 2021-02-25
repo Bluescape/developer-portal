@@ -270,7 +270,7 @@ curl -w "%{http_code}\\n" -X POST \
     "code":"AIT6zDsPGaB-46T2mHlU0DJ-kh-Vuz",
     "client_id":"60261A3D",
     "client_secret":"50bccef3a05f5433624ge8eb47a01c5d",
-    "redirect_uri":"http://localhost/callback"
+    "redirect_uri":"https://something.com"
 }'
 </pre>    
 </p>
@@ -389,7 +389,7 @@ curl -w "%{http_code}\\n" -X POST \
         "refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiUkVGUkVTSCIsImF1ZCI6WyI2YzQzNzIyM2UzYjA5NjJjMzFmMjllNzlmMGJmZGEyOWVhMWE2ODljIl0sInRva2VuIjoiQVlXMmR6TE9RZDZkdHExVFlsSFgwdHJReHg0RGVpaGJ3dGVlaG9MQmJ1UkJOeXhmMkIiLCJzdWIiOjE3ODcyLCJhenAiOiI2MzI2MzQzOSIsInNwaWQiOm51bGwsImFwcF9hdXRob3JpemF0aW9uX2lkIjoyNjcyLCJuYmYiOjE1NjU4MjI2NDAsImlhdCI6MTU2NTgyMjY1MCwiaXNzIjoiaHR0cHM6Ly9pZGVudGl0eS1hcGkudWF0MS5ibHVlc2NhcGUuY29tIn0.u13lw8kbQkHSYD5W_RP68z5zfsGcA2b_8Ofy9VdCSWs",
         "client_id":"60261A3D",
         "client_secret":"50bccef3a05f5433624ge8eb47a01c5d",
-        "redirect_uri":"http://localhost/callback"
+        "redirect_uri":"https://something.com"
     }'</pre>
 </p>
 
@@ -441,8 +441,8 @@ curl -w "%{http_code}\\n" -X POST \
                 For example, let's consider this Application:<br >
 
                 <img class="img-responsive center-block" src="/docs/assets/images/edit-application.png"><br />
-                For the image above, the correct value for <b>redirect_uri</b> is <b>http://localhost/callback</b>, and the full URL to trigger the Access Token generation would be:
-                <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=5d623442-7157-4c57-8102-7fa9e6989827&<b>redirect_uri</b>=<b>http://localhost/callback</b></pre>
+                For the image above, the correct value for <b>redirect_uri</b> is <b>https://something.com</b>, and the full URL to trigger the Access Token generation would be:
+                <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=9076e5d4-6a83-4233-a826-c1ec547c8a44&<b>redirect_uri</b>=<b>https://something.com</b></pre>
             
             </td>
         </tr>
