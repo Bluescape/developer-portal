@@ -13,7 +13,7 @@
     access to.
 </p>
 
-<h3>Content in this page:</h3>                           
+<h3>Content in this page:</h3>
 <ul style="list-style-type:none; padding-left: 0px;">
     <li><a href="#oauth-flow">OAuth Flow</a></li>
     <li><a href="#step-1_authorize">Step 1: Authorize</a></li>
@@ -127,6 +127,7 @@ When users arrive at the authorization page, they will be asked to log in to the
 </table>
     
 <a name="2.1-access-token-generated-manually"><h3>2.1. Access Token generated manually</h3></a>
+
 <p>
     The workflow of this option is presented in this image:<br />
     <center>
@@ -149,18 +150,15 @@ When users arrive at the authorization page, they will be asked to log in to the
     Both Application ID formats will work for generating Access Tokens.
 </p>
 <p>
-        Example, replace <b>&lt;client_id&gt;</b> with your Client ID (application ID) and <b>&lt;redirect_url&gt;</b> with the redirect URL you configured in your Application:<br />
-<pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>
-        
-        After the login and authorization of the application, you will be greeted with an error page in the browser; this is because you will have been redirected to a new URL, which will contain your token. Look at the the address bar of your browser (where you see your URL) to find your Token. This is an example of the expected return URL that contains the Token:<br />
-        <pre><script type="text/javascript">document.write(apiBaseStr);</script>/tools/access-token/callback#<b>access_token</b>=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6WyIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZiYjY5MTQ5MjliZjhjIiwiNmM0MzcyMjNlM2IwOTYyYzMxZjI5ZTc5ZjBiZmRhMjllYTFhNjg5YyIsIjM2ZjhjZjUxNzVlNGZhYWE0ZjA2NzE4NDA0YjdkZjk0ZGRjMGQ4YWUiLCIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZ1YjY5MTQ5MjljZTlkIl0sImV4cCI6MTU2NzAyNzE5NiwiYXpwIjoiODlhY2NlODIiLCJzY29wZXMiOl3idXNlciJdLCJhcHBfYXV0aG9yaXphdGlvbl9pZCI6MjA1MSwibmJmIPoxNTY1ODE3NTg8LCJpYXQiOjE1NjU4MTc1OTYsImlzcyI6Imh0dHBzOi8vaWRlbnRp4XktYXBpLmFwcHMudOMuYmx1ZXNjYXBlLmNvbSJ9.5N1SpTv1FmxzhQujEY5kqjzJBTrWWnts2r9ilbm9Jis&<b>token_type</b>=Bearer
-        </pre>
+    Example, replace <span class="pre">client_id</span> with your Client ID (application ID) and <span class="pre">redirect_url</span> with the redirect URL you configured in your Application:
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>
+    After the login and authorization of the application, you will be greeted with an error page in the browser; this is because you will have been redirected to a new URL, which will contain your token. Look at the the address bar of your browser (where you see your URL) to find your Token. This is an example of the expected return URL that contains the Token:<br />
+<pre><script type="text/javascript">document.write(apiBaseStr);</script>/tools/access-token/callback#<b>access_token</b>=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6WyIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZiYjY5MTQ5MjliZjhjIiwiNmM0MzcyMjNlM2IwOTYyYzMxZjI5ZTc5ZjBiZmRhMjllYTFhNjg5YyIsIjM2ZjhjZjUxNzVlNGZhYWE0ZjA2NzE4NDA0YjdkZjk0ZGRjMGQ4YWUiLCIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZ1YjY5MTQ5MjljZTlkIl0sImV4cCI6MTU2NzAyNzE5NiwiYXpwIjoiODlhY2NlODIiLCJzY29wZXMiOl3idXNlciJdLCJhcHBfYXV0aG9yaXphdGlvbl9pZCI6MjA1MSwibmJmIPoxNTY1ODE3NTg8LCJpYXQiOjE1NjU4MTc1OTYsImlzcyI6Imh0dHBzOi8vaWRlbnRp4XktYXBpLmFwcHMudOMuYmx1ZXNjYXBlLmNvbSJ9.5N1SpTv1FmxzhQujEY5kqjzJBTrWWnts2r9ilbm9Jis&<b>token_type</b>=Bearer
+</pre>
 From this URL, you need to retrieve the access_token value. This is your Token:<br />
 <pre>
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6WyIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZiYjY5MTQ5MjliZjhjIiwiNmM0MzcyMjNlM2IwOTYyYzMxZjI5ZTc5ZjBiZmRhMjllYTFhNjg5YyIsIjM2ZjhjZjUxNzVlNGZhYWE0ZjA2NzE4NDA0YjdkZjk0ZGRjMGQ4YWUiLCIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZ1YjY5MTQ5MjljZTlkIl0sImV4cCI6MTU2NzAyNzE5NiwiYXpwIjoiODlhY2NlODIiLCJzY29wZXMiOl3idXNlciJdLCJhcHBfYXV0aG9yaXphdGlvbl9pZCI6MjA1MSwibmJmIPoxNTY1ODE3NTg8LCJpYXQiOjE1NjU4MTc1OTYsImlzcyI6Imh0dHBzOi8vaWRlbnRp4XktYXBpLmFwcHMudOMuYmx1ZXNjYXBlLmNvbSJ9.5N1SpTv1FmxzhQujEY5kqjzJBTrWWnts2r9ilbm9Jis</pre>
 </p>
-
-    
 <a name="2.2-access-code-and-refresh-tokens"><h3>2.2. Access Token generated using Access Code and Refresh Token</h3></a>
 <p>
     The workflow of this option is in the image below:<br />
@@ -195,17 +193,14 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6
 <p> To generate this Refresh Token, you first need to generate an Access Code. In this first step, if Authenticating with Bluescape, do the following:<br />
     A) Use <span class="pre">response_type=code</span> as the <span class="pre">response_type</span>.<br />
     b) Set your <span class="pre">client_id</span> and <span class="pre">redirect_uri</span> into the example URL below, and paste it into a browser.<br />
-    <br />
 </p>
-
 <p>
-    Example, replace <b>&lt;client_id&gt;</b> with your Client ID and <b>&lt;redirect_url&gt;</b> with the redirect URL you configured in your Application:<br />
-    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=<b>code</b>&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>
-    
+    Example, replace <span class="pre">client_id</span> with your Client ID and <span class="pre">redirect_url</span> with the redirect URL you configured in your Application:<br />
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=<b>code</b>&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>  
     After the login and authorization of the application, you will be redirected to a new URL and greeted with an error page in the browser. The address bar (where you see your URL) contains the Access Code. Example:
 <pre><script type="text/javascript">document.write(apiBaseStr); </script>/tools/access-token/callback?code=BFyQPkmEYeSmWP1XYmeiXRJtdEgJLY</pre>
     
-    Here is the Access Code: <span class="pre">BFyQPkmEYeSmWP1XYmeiXRJtdEgJLY</span>            
+Here is the Access Code: <span class="pre">BFyQPkmEYeSmWP1XYmeiXRJtdEgJLY</span>            
 </p>
     
 <a name="2.2.2-generate-access-token-and-first-refresh-token"><h4> 2.2.2. Generate Access Token and first Refresh Token using Access Code</h4></a>
@@ -387,8 +382,7 @@ curl -w "%{http_code}\\n" -X POST \
         "client_secret":"<b>&lt;client_secret&gt;</b>",
         "redirect_uri":"<b>&lt;redirect_url&gt;</b>"
     }'
-    </pre>
-
+</pre>
     Please note the use of <span class="pre">"grant_type":"refresh_token"</span> to indicate this request is to issue a new Access Token and a new Refresh Token.  
 </p>
 
@@ -527,8 +521,8 @@ curl -w "%{http_code}\\n" -X POST \
     When initializing SDKs, the authorization parameter should contain the 'Bearer ' prefix.
 
     <pre>
-    const authorization = "Bearer " + accessToken;
-    const client = new Bluescape({ authorization });</pre>
+const authorization = "Bearer " + accessToken;
+const client = new Bluescape({ authorization });</pre>
 </p>
 
 <p>    
