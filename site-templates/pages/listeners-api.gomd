@@ -166,7 +166,7 @@
 </div>
 
 <pre class="lang lang-curl">
-curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/listeners \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v2/listeners \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -207,7 +207,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
 </div>
 
 <pre class="lang lang-curl">
-curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/listeners \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v2/listeners \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -248,7 +248,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
 </div>
 
 <pre class="lang lang-curl">
-curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/listeners \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v2/listeners \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -292,7 +292,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
 </div>
 
 <pre class="lang lang-curl">
-curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/listeners \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v2/listeners \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
   -d '{

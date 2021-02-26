@@ -140,9 +140,16 @@ When users arrive at the authorization page, they will be asked to log in to the
         <li>Set your <span class="pre">client_id</span> into the example URL below and paste it into a browser.</li>
     </ol>
 </p>
-
 <p>
-        Example, replace <b>&lt;client_id&gt;</b> with your Client ID and <b>&lt;redirect_url&gt;</b> with the redirect URL you configured in your Application:<br />
+   <b>IMPORTANT</b>: Please note that with the new changes in V3, the newly generate Applications will generate a longer ID. Difference in Applications IDs:  
+    <ul>
+        <li>Previous Application ID (example): 60261A3D</li>
+        <li>Newest Application ID (example): 70304a04-d522-45fe-8f8e-cb238845a9af </li>
+    </ul>
+    Both Application ID formats will work for generating Access Tokens.
+</p>
+<p>
+        Example, replace <b>&lt;client_id&gt;</b> with your Client ID (application ID) and <b>&lt;redirect_url&gt;</b> with the redirect URL you configured in your Application:<br />
 <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>
         
         After the login and authorization of the application, you will be greeted with an error page in the browser; this is because you will have been redirected to a new URL, which will contain your token. Look at the the address bar of your browser (where you see your URL) to find your Token. This is an example of the expected return URL that contains the Token:<br />
@@ -243,7 +250,6 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6
                                                         
     </table>
 </p>
-
 <p>
     The client request for Access Token and Refresh Token is:
 <pre>
@@ -259,7 +265,14 @@ curl -w "%{http_code}\\n" -X POST \
 }'
 </pre>
 </p>
-    
+<p>
+   <b>IMPORTANT</b>: Please note that with the new changes in V3, the newly generate Applications will generate a longer ID. Difference in Applications IDs:  
+    <ul>
+        <li>Previous Application ID (example): 60261A3D</li>
+        <li>Newest Application ID (example): 70304a04-d522-45fe-8f8e-cb238845a9af</li>
+    </ul>
+    Both Application ID formats will work for generating Access Tokens.
+</p>    
 <p>
     Example of the request: 
 <pre>curl -w "%{http_code}\\n" -X POST \
@@ -268,9 +281,9 @@ curl -w "%{http_code}\\n" -X POST \
     -d '{
     "grant_type":"authorization_code",
     "code":"AIT6zDsPGaB-46T2mHlU0DJ-kh-Vuz",
-    "client_id":"60261A3D",
+    "client_id":"70304a04-d522-45fe-8f8e-cb238845a9af",
     "client_secret":"50bccef3a05f5433624ge8eb47a01c5d",
-    "redirect_uri":"http://localhost/callback"
+    "redirect_uri":"https://something.com"
 }'
 </pre>    
 </p>
@@ -387,9 +400,9 @@ curl -w "%{http_code}\\n" -X POST \
         -d '{
         "grant_type":"refresh_token",  
         "refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiUkVGUkVTSCIsImF1ZCI6WyI2YzQzNzIyM2UzYjA5NjJjMzFmMjllNzlmMGJmZGEyOWVhMWE2ODljIl0sInRva2VuIjoiQVlXMmR6TE9RZDZkdHExVFlsSFgwdHJReHg0RGVpaGJ3dGVlaG9MQmJ1UkJOeXhmMkIiLCJzdWIiOjE3ODcyLCJhenAiOiI2MzI2MzQzOSIsInNwaWQiOm51bGwsImFwcF9hdXRob3JpemF0aW9uX2lkIjoyNjcyLCJuYmYiOjE1NjU4MjI2NDAsImlhdCI6MTU2NTgyMjY1MCwiaXNzIjoiaHR0cHM6Ly9pZGVudGl0eS1hcGkudWF0MS5ibHVlc2NhcGUuY29tIn0.u13lw8kbQkHSYD5W_RP68z5zfsGcA2b_8Ofy9VdCSWs",
-        "client_id":"60261A3D",
+        "client_id":"70304a04-d522-45fe-8f8e-cb238845a9af",
         "client_secret":"50bccef3a05f5433624ge8eb47a01c5d",
-        "redirect_uri":"http://localhost/callback"
+        "redirect_uri":"https://something.com"
     }'</pre>
 </p>
 
@@ -441,8 +454,8 @@ curl -w "%{http_code}\\n" -X POST \
                 For example, let's consider this Application:<br >
 
                 <img class="img-responsive center-block" src="/docs/assets/images/edit-application.png"><br />
-                For the image above, the correct value for <b>redirect_uri</b> is <b>http://localhost/callback</b>, and the full URL to trigger the Access Token generation would be:
-                <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=5d623442-7157-4c57-8102-7fa9e6989827&<b>redirect_uri</b>=<b>http://localhost/callback</b></pre>
+                For the image above, the correct value for <b>redirect_uri</b> is <b>https://something.com</b>, and the full URL to trigger the Access Token generation would be:
+                <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=9076e5d4-6a83-4233-a826-c1ec547c8a44&<b>redirect_uri</b>=<b>https://something.com</b></pre>
             
             </td>
         </tr>
@@ -521,10 +534,16 @@ curl -w "%{http_code}\\n" -X POST \
 <p>    
     Please remember that Access Tokens expire 2 weeks after they are issued. Requests made with expired access tokens will receive a <span class="pre">401 Unauthorized</span> response from the Bluescape API. The proper response in this case is to restart the authorization flow according to the method you have chosen to manage your Access Tokens.
 </p>
-
-
 <h3>Full Example</h3>
 <p> 
+<p>
+   <b>IMPORTANT</b>: Please note that with the new changes in V3, the newly generate Applications will generate a longer ID. Difference in Applications IDs:  
+    <ul>
+        <li>Previous Application ID (example): 60261A3D</li>
+        <li>Newest Application ID (example): 70304a04-d522-45fe-8f8e-cb238845a9af </li>
+    </ul>
+    Both Application ID formats will work for generating Access Tokens.
+</p>
     <b>Preconditions (example values)</b>
     <table class="table table-striped">
         <tr>
