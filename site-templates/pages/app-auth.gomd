@@ -554,7 +554,7 @@ const client = new Bluescape({ authorization });</pre>
         </tr>      
         <tr>
             <td>Application Client ID</td>
-            <td>a33e5f767</td>
+            <td>70304a04-d522-45fe-8f8e-cb238845a9af</td>
         </tr>  
         <tr>
             <td>Application Allowed Domains</td>
@@ -566,7 +566,7 @@ const client = new Bluescape({ authorization });</pre>
 <p>        
     Authorization URL
     
-    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=a33e5f767&redirect_uri=http%3A%2F%2Fmy-bluescape-app.io%2Foauth2%2Fcallback</pre>
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=70304a04-d522-45fe-8f8e-cb238845a9af&redirect_uri=http%3A%2F%2Fmy-bluescape-app.io%2Foauth2%2Fcallback</pre>
 </p>
 
 <p>
@@ -597,7 +597,7 @@ const client = new Bluescape({ authorization });</pre>
     <li>The new application is created: <br />
         <img class="img-responsive center-block" src="/docs/assets/images/applications.png">    
     </li>
-    <li>The main data points you will need from here are the <b>Client ID</b> and <b>Client Secret</b>. See <a href="#appendix2">Appendix 2</a> for retrieiving the <b>Client ID</b> and <b>Client Secret</b>.</li>      
+    <li>The main data points you will need from here are the <b>Client ID</b> and <b>Client Secret</b>. See <a href="#appendix2">Appendix 2</a> for retrieving the <b>Client ID</b> and <b>Client Secret</b>.</li>      
 </ul>
 <a name="appendix2"><h3>Appendix 2: How to get the Client ID and Client Secret</h3></a>
    How to get the Client Secret:   
@@ -618,9 +618,18 @@ const client = new Bluescape({ authorization });</pre>
         </ul>        
 </ul>
 <a name="appendix3"><h3>Appendix 3: Requirements for Refresh Tokens implementation</h3></a>
-You need to Allow the application you will use to generate the tokens. <br/>
-    
-An <b>ADMIN user</b> from your organization needs to run this one time process:
+<p>You need to Allow the application you will use to generate the tokens. </p>
+
+<p>
+   <b>IMPORTANT</b>: Please note that with the new changes in V3, the newly generate Applications will generate a longer ID. Difference in Applications IDs:  
+    <ul>
+        <li>Previous Application ID (example): 60261A3D</li>
+        <li>Newest Application ID (example): 70304a04-d522-45fe-8f8e-cb238845a9af </li>
+    </ul>
+    Both Application ID formats will work for generating Access Tokens.
+</p>
+
+<p>An <b>ADMIN user</b> from your organization needs to run this one time process:</p>
 
 <ul>
     <li>Request:<br />
@@ -628,7 +637,7 @@ An <b>ADMIN user</b> from your organization needs to run this one time process:
         where &lt;redirect_url&gt; is the redirect URL set in the configuration of the application.       
     </li>
     <li>Example:<br />
-        <pre><script type="text/javascript">document.write(apiBaseStr);</script>/authorize?response_type=code&client_id=4563bA3&redirect_uri=<script type="text/javascript">document.write(apiBaseStr); </script>/tools/access-token/callback</pre>        
+        <pre><script type="text/javascript">document.write(apiBaseStr);</script>/authorize?response_type=code&client_id=70304a04-d522-45fe-8f8e-cb238845a9af&redirect_uri=<script type="text/javascript">document.write(apiBaseStr); </script>/tools/access-token/callback</pre>        
     </li>
     <li>You will need to login and authorize the application, using the credentials of an <b>ADMIN user</b> for the organization specified in the URL</li>
     <li>You will get back an Access Code you can use to generate the Access Code and Refresh Token.</li>
