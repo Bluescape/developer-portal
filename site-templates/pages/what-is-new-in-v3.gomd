@@ -374,7 +374,7 @@ For the elements of the Image, Document or Video type, the width and height prop
   <tr>
     <td>How to get the content of a Canvas, for a specific object type</td>
     <td><pre>GET /v2/workspaces/{workspace_uid}/elements/canvas/{canvas_uid}/{object_type}</pre></td>
-    <td><pre>GET /v3/workspaces/{workspaceId}/elements<b>?type={object_type}&canvas={canvasID}</b></pre></td>
+    <td><pre>GET /v3/workspaces/{workspaceId}/elements<b>?canvas={canvasID}&type={object_type}</b></pre></td>
   </tr>
   <tr>
     <td>How to create an element, e.g. a Text element</td>
