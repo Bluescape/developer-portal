@@ -293,9 +293,9 @@ For the elements of the Image, Document or Video type, the width and height prop
  </td>
   </tr>
   <tr>
-    <td>In V3, when adding an element to a Canvas, the coordinates you specify are absolute for the workspace, not relative to the top-left corner of the canvas</td>
+    <td>In the currently available version of V3, when adding an element to a Canvas, the coordinates you specify are absolute for the workspace, not relative to the top-left corner of the canvas</td>
     <td>In V2, when you add an element to a canvas and specify a (x,y) set of coordinates, they are relative to the top-left corner of the Canvas.<br />If you do not specify the coordinates, it is assumed they are (0,0), and the new element will be added at the top-left corner of the Canvas</td>
-    <td>In V3, when you create a new element in a Canvas, the coordinates you specify are absolute for the workspace.<br />If you do not specify the coordinates, it is assumed they are (0,0), and will be created in the (0,0) coordinates of the workspace, not of the Canvas.</td>
+    <td>In the currently available version of V3, when you create a new element in a Canvas, the coordinates you specify are absolute for the workspace.<br />If you do not specify the coordinates, it is assumed they are (0,0), and will be created in the (0,0) coordinates of the workspace, not of the Canvas.</td>
   </tr>
   <tr>
     <td>
@@ -374,7 +374,7 @@ For the elements of the Image, Document or Video type, the width and height prop
   <tr>
     <td>How to get the content of a Canvas, for a specific object type</td>
     <td><pre>GET /v2/workspaces/{workspace_uid}/elements/canvas/{canvas_uid}/{object_type}</pre></td>
-    <td><pre>GET /v3/workspaces/{workspaceId}/elements<b>?type={object_type}&canvas={canvasID}</b></pre></td>
+    <td><pre>GET /v3/workspaces/{workspaceId}/elements<b>?canvas={canvasID}&type={object_type}</b></pre></td>
   </tr>
   <tr>
     <td>How to create an element, e.g. a Text element</td>
