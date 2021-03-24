@@ -1,4 +1,7 @@
 <h1>GraphQL vs REST APIs</h1>
+<p>
+Here we present a comparison of REST and GraphQL APIs. You can appreciate the advantages of each implementation, and maybe use this list to as a help to port your queries from REST to GraphQL.
+</p>
 <table class="table table-striped">
     <tr>
         <td><b>Subject</b></td>
@@ -7,7 +10,7 @@
     </tr>
     <tr>
         <td>Filter elements by Type</td>
-        <td>You can query just one type at a time, or you can pull all the elements of the workspace or Canvas and filter down the answer, later, in your script.<br />
+        <td>In REST APIs, you can query just one type at a time, or you can pull all the elements of the workspace or Canvas and filter down the answer, later, in your script.<br />
         e.g. If I need all the Canvases and Text elements in a workspace, I could run these 2 queries: <pre>/v3/workspaces/{workspace_id}/elements?type=Canvas</pre>
         <pre>/v3/workspaces/{workspace_id}/elements?type=Text</pre>
         </td>
@@ -24,6 +27,26 @@ query getTextAndCanvas{
 }
 </pre>
         </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
         <td></td>
