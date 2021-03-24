@@ -1,1 +1,35 @@
 <h1>GraphQL vs REST APIs</h1>
+<table class="table table-striped">
+    <tr>
+        <td><b>Subject</b></td>
+        <td><center><b>REST</b></center></td>
+        <td><center><b>GraphQL</b></center></td>
+    </tr>
+    <tr>
+        <td>Filter elements by Type</td>
+        <td>You can query just one type at a time, or you can pull all the elements of the workspace or Canvas and filter down the answer, later, in your script.<br />
+        e.g. If I need all the Canvases and Text elements in a workspace, I could run these 2 queries: <pre>/v3/workspaces/{workspace_id}/elements?type=Canvas</pre>
+        <pre>/v3/workspaces/{workspace_id}/elements?type=Text</pre>
+        </td>
+        <td>In GraphQL, you can specify one or more types at a time.
+<pre>
+query getTextAndCanvas{
+  elements(workspace: "G1N2bS42uGwMhL_fGfzW", <b>type: [Text,Canvas]</b>) {
+    type:__typename
+    id
+    transform {
+      x y
+    }
+  }
+}
+</pre>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+
