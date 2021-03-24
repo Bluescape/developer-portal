@@ -290,13 +290,22 @@ For the elements of the Image, Document or Video type, the width and height prop
     }</b>
   ...
 }</pre>   
- </td>
+ </td> 
   </tr>
   <tr>
+    <td>Differently than as in V2, in the currently available version of V3, you cannot create elements associated directly into a Canvas, but you can list all the elements within a Canvas.
+    </td>
+    <td>In V2 you can create elements directly into a Canvas. These elements will be displayed in the Canvas, using the top-left corner as the (0,0) point of reference for their coordinates . If no set of (x,y) coordinates are specified, then they will be placed in the top-left corner of the Canvas.<br /><br />
+    Example: Create Text in Canvas <pre>/v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/text</pre>
+    To list the elements inside a Canvas, in V2 you can use: <pre>GET /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/elements</pre>
+    </td>
+    <td>In the currently available version of V3, there is not a method to create an element into a Canvas, not even if you provide a parameter such as the one below to a POST call:<pre>?canvas={canvasID}</pre> But there is a way to list the elements inside a Canvas. In V3 you can use: <pre>GET /v3/workspaces/{workspace_id}/elements<b>?canvas={canvas_id}</b></pre></td>
+  </tr>
+  <!-- <tr>
     <td>In the currently available version of V3, when adding an element to a Canvas, the coordinates you specify are absolute for the workspace, not relative to the top-left corner of the canvas</td>
     <td>In V2, when you add an element to a canvas and specify a (x,y) set of coordinates, they are relative to the top-left corner of the Canvas.<br />If you do not specify the coordinates, it is assumed they are (0,0), and the new element will be added at the top-left corner of the Canvas</td>
     <td>In the currently available version of V3, when you create a new element in a Canvas, the coordinates you specify are absolute for the workspace.<br />If you do not specify the coordinates, it is assumed they are (0,0), and will be created in the (0,0) coordinates of the workspace, not of the Canvas.</td>
-  </tr>
+  </tr> -->
   <tr>
     <td>
       Let's see a summary example for how to specify the style properties of an object: position, height/width, color,
