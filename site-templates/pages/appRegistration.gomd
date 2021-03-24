@@ -1,0 +1,13 @@
+<div class="row">
+
+  <div class="col-md-8 content">
+  
+    <h1>Application Registration</h1>
+    <p><b>Warning:</b> You are about to exit Bluescape's developer portal. Would you like to proceed to Application Registration?</p>
+    
+    Please press the following link to proceed: <script type="text/javascript">document.write('<a href="' + applicationStr + '" target="_blank">Application Registration</a>');</script>
+
+    <p style="margin-bottom: 20rem;"></p>
+  </div>
+
+</div>
