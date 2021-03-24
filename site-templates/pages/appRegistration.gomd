@@ -6,14 +6,15 @@
 
     <h3>Overview</h3>
     <p>
-    Application Registration enables a user to register for a Bluescape's account and get started with using the Bluescape's APIs. To register for an account,
-    you will need to visit the Application Registration link indicated below. If you are interested in learning more about the Application Authorization process, please visit 
+    Application Registration enables a user to register for a Bluescape's account and get started on creating an application in the Bluescape. Upon creating an application,
+    the user is able to configure the application; such as, viewing the application details, regenerating client secrets, editing/deleting the application, etc.  
+    To register for an account, you will need to visit the Application Registration link indicated below. If you are interested in learning more about the Application Authorization process, please visit 
     <a href="/docs/page/app-auth">OAuth flow</a> for more information.
     </p>
 
     <p><b>Warning:</b> You are about to exit Bluescape's developer portal. Would you like to proceed to Application Registration?</p>
     
-    Please press the following link to proceed: <script type="text/javascript">document.write('<a href="' + applicationStr + '" target="_blank">Application Registration</a>');</script>
+    Please click on the following link to be redirected: <script type="text/javascript">document.write('<a href="' + applicationStr + '" target="_blank">Application Registration</a>');</script>
 
     <p style="margin-bottom: 16rem;"></p>
   </div>
