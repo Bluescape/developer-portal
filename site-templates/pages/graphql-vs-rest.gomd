@@ -95,7 +95,7 @@ Unions in GraphQL are specified using this format:
     </tr>
     <tr>
         <td>In REST APIs, for queries we use a GET. You can specify some filtering fields, but in general they are very easy to run. The results generally over fetch, they deliver all the fields available for those elements and you need to filter them later in tour script. </td>
-        <td>In GraphQL, all the requests are always an HTTP POST. You can specify exactly what fields will be returned, and in some cases those fields will need to be specified as <a target="_BLANK" href="https://graphql.org/learn/schema/#union-types">Unions</a>. For example, for a Line element, when you query the <b>start</b> and <b>end</b> fields, you need to specify them as a Union. Check the documentation on how to create a Shape (docs -> Query elements > Line implementation) <b>TODO ADD LINK TO PLAYGROUND</b>. See this example:<br />
+        <td>In GraphQL, all the requests are always an HTTP POST. You can specify exactly what fields will be returned, and in some cases those fields will need to be specified as <a target="_BLANK" href="https://graphql.org/learn/schema/#union-types">Unions</a>. For example, for a Line element, when you query the <b>start</b> and <b>end</b> fields, you need to specify them as a Union. Check the documentation on how to create a Shape (docs -> Query elements > Line implementation > start) <b>TODO ADD LINK TO PLAYGROUND</b>. See this example:<br />
 <pre>
 query GetLinesFromWorkspace($workspaceId: String!){
     elements(workspaceId: $workspaceId, type: Line) {        
