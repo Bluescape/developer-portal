@@ -1,0 +1,82 @@
+<h1>V3 APIs Tips and Tricks</h1>
+<h2>REST APIs</h2>
+<h2>GraphQL APIs</h2>
+<h3>GraphQL introspection: query the schema</h3>
+<p>
+One of the most interesting features of GraphQL is introspection. Introspection is the ability to query details about the current API’s schema. You can send queries to every GraphQL API that return data about a given API’s schema. See the following example:
+<table>
+<pre>
+query GetSchema{
+  __schema {
+    types {
+      name
+      description
+    }
+  }
+}
+</pre>
+</table>
+The query answer will be something like this:
+<pre>
+{
+    "data": {
+        "__schema": {
+            "types": [
+                {
+                    "name": "Browser",
+                    "description": "web browser"
+                },
+                {
+                    "name": "Element",
+                    "description": "Basic workspace building block"
+                },
+                ...
+        }
+    }
+}
+</pre>
+You can also specify a particular type to get its details:
+<pre>
+query ElementDetails {
+  __type(name:"Element") {
+    name
+    fields {
+      name
+      description
+      type {
+        name
+      }
+    }
+  }
+}
+</pre>
+
+And the answer is this, with the details of the specified type:
+<pre>
+{
+    "data": {
+        "__type": {
+            "name": "Element",
+            "fields": [
+                {
+                    "name": "id",
+                    "description": "Workspace-unique element id",
+                    "type": {
+                        "name": null
+                    }
+                },
+                {
+                    "name": "zIndex",
+                    "description": "Stack order, an element with a higher stack order is in front of a lower stack order",
+                    "type": {
+                        "name": null
+                    }
+                },
+                ...
+            ]
+        }
+    }
+}
+</pre>
+
+</p>
