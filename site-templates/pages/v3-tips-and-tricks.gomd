@@ -1,13 +1,53 @@
 <h1>V3 APIs Tips and Tricks</h1>
-<h2>REST APIs</h2>
-<h2>GraphQL APIs</h2>
+<h3>Manage your Tokens creation with Postman</h3>
+<p>
+In <a href="https://www.postman.com/" target="_BLANK">Postman</a>, you can easily manage the creation and renewal of your Access Tokens. Follow these instructions:
+<ol>
+  <li>Go to Postman and create a new request</li>
+    <ul>
+      <li>In the new Request, go to the <b>Authorization</b> tab and in <b>Type</b> choose <b>Oauth 2.0</b></li>
+      <li>Take note of the <b>Callback URL</b> value.</li>
+    </ul>
+  <li>Now, create a new Application in Bluescape </li>
+    <ul>
+      <li>Please see instructions in <a href="/docs/page/app-auth#appendix1" target="_BLANK">Application Authorization, Appendix 1</a></li>
+      <li>In the <b>Oauth redirect ui</b> field, use the the Postman <b>Callback URL</b> value.</li>
+      <li>Save and take note of the <b>Client ID</b> and <b>Client Secret</b></li>
+    </ul>
+  <li>Let's go back to Postman and fill out the <b>Oauth 2.0</b> Authorization utility. In <b>Configure New Token</b> use the following values: </li>
+    <ul>
+      <li>Verify that the <b>Authorize using browser</b> checkbox is checked.</li>
+      <li><b>Token Name</b>: Set name for the new Token</li>
+      <li><b>Auth URL</b>: <script type="text/javascript">document.write(apiBaseStr); </script>/authorize</li>
+      <li><b>Access Token URL</b>: <script type="text/javascript">document.write(identityStr); </script>/api/v2/oauth2/token</li>
+      <li><b>Client ID</b>: value of Bluescape Application <b>Client ID</b></li>
+      <li><b>Client Secret</b>: value of bluescape Application <b>Client Secret</b></li>
+    </ul>
+  <li>The next step is to create the Access Token.</li>
+    <ul>
+      <li>Scroll to the bottom of the Postman <b>Oauth 2.0</b> Authorization utility</li>
+      <li>If available (it depends on the version of Postman you are using), click the <b>Clear cookies</b> button to clear the cookies.</li>
+      <li>Now, click the <b>Get New Access Token</b> button</li>
+      <li>A new browser window will open, you will be required to follow these steps:</li>
+        <ul>
+          <li>Authenticate with Bluescape: use the same user that created the Bluescape Application. If you are already logged into Bluescape, this step will be skipped.</li>
+          <li>Authorize the Token Creation: click <b>Allow</b>.</li>
+          <li>Now Bluescape will redirect the process to the <b>Callback URL</b> for Postman, and your browser will ask you permission to pass the call to Postman, allow he link to be open. </li>
+        </ul>
+      <li>A new window will open in Postman, with the brand new Access Token.</li>
+      <li>Click the <b>Use Token</b> on the top-right corner.</li>
+    </ul>
+  <li>You new Access Token is ready to be used in Postman, or you can use it in your scripts.</li>
+  <li>When your Access Token expires, or you want to generate a new one, click the <b>Get New Access Token</b> button and follow the steps outlined above.</li>
+</ol> 
+</p>
 <h3>GraphQL introspection: query the schema</h3>
 <p>
 One of the most interesting features of GraphQL is introspection. Introspection is the ability to query details about the current API’s schema. You can send queries to every GraphQL API that return data about a given API’s schema. See the following example:
 <table>
 <pre>
 query GetSchema{
-  __schema {
+  ____schema__ {
     types {
       name
       description
@@ -20,7 +60,7 @@ The query answer will be something like this:
 <pre>
 {
     "data": {
-        "__schema": {
+        "____schema__": {
             "types": [
                 {
                     "name": "Browser",
@@ -38,7 +78,7 @@ The query answer will be something like this:
 You can also specify a particular type to get its details:
 <pre>
 query ElementDetails {
-  __type(name:"Element") {
+  ____type(name:"Element")__ {
     name
     fields {
       name
