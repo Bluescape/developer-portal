@@ -9,7 +9,7 @@
     {{end}}
   {{end}}
     <br />
-    {{if or (eq $.CurrentPage "reference") (eq $.CurrentPage "urls") (eq $.CurrentPage "pagination") (eq $.CurrentPage "listener-events") (eq $.CurrentPage "permissions") (eq $.CurrentPage "versioning") (eq $.CurrentService "elementary") (eq $.CurrentService "isam")}}
+    {{if or (eq $.CurrentPage "reference") (eq $.CurrentPage "urls") (eq $.CurrentPage "pagination") (eq $.CurrentPage "listener-events") (eq $.CurrentPage "permissions") (eq $.CurrentPage "versioning") (eq $.CurrentPage "v3-known-issues") (eq $.CurrentPage "v3-tips-and-tricks") (eq $.CurrentService "elementary") (eq $.CurrentService "isam")}}
     <div>
         <ul class="unindent-side-nav-ul">
             <li><a href="/docs/page/urls">URLs</a></li>
@@ -17,6 +17,10 @@
             <li><a href="/docs/page/listener-events">Listener Events</a></li>
             <li><a href="/docs/page/permissions">Permissions</a></li>
             <li><a href="/docs/page/versioning">Versioning</a></li>
+            <ul>
+                <li><a href="/docs/page/v3-known-issues">V3 Known Issues</a></li>
+                <li><a href="/docs/page/v3-tips-and-tricks">V3 Tips and Tricks</a></li>
+            </ul>
 
             {{/* <li><h3>API Reference</h3></li>
             {% include 'reference/api-toc' %} */}}
