@@ -56,7 +56,7 @@ Here we present a comparison of Bluescape REST and GraphQL APIs. You can appreci
 <pre>
 query getTextAndCanvas{
   elements(workspace: "G1N2bS42uGwMhL_fGfzW", <b>type: [Text,Canvas]</b>) {
-    type:__typename
+    type:____typename__
     id
     transform {
       x y
@@ -68,7 +68,7 @@ If you want to use a single Type, then remove the array brackets in the query. F
 <pre>
 query getTextAndCanvas{
   elements(workspace: "G1N2bS42uGwMhL_fGfzW", <b>type: Text</b>) {
-    type:__typename
+    type:____typename__
     id
     transform {
       x y
@@ -99,7 +99,7 @@ Unions in GraphQL are specified using this format:
 <pre>
 query GetLinesFromWorkspace($workspaceId: String!){
     elements(workspaceId: $workspaceId, type: Line) {        
-        type: __typename
+        type:__typename
         id
         ... on Line {
             start{
