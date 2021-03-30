@@ -14,7 +14,7 @@
 </p>
 
 <pre>
-mutation createCanvas($workspaceId: String!, $input: CreateCanvasInput!){
+mutation createCanvasExample($workspaceId: String!, $input: CreateCanvasInput!){
     createCanvas(workspaceId: $workspaceId, input: $input) {
         __typename
         name
@@ -67,7 +67,7 @@ mutation createCanvas($workspaceId: String!, $input: CreateCanvasInput!){
 </p>
 
 <pre>
-mutation createText($workspaceId: String!, $input: CreateTextInput!){
+mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
     createText(workspaceId: $workspaceId, input: $input) {
         __typename
         id
