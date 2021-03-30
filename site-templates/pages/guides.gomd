@@ -24,7 +24,7 @@
         Get the list of all Workspaces that you can access. With this, you can get the IDs and names of each Workspace.
 </p>
 
-<a href="/docs/page/get-list-of-workspaces" class="action">Open Guide</a>
+<a href="/docs/page/rest-get-list-of-workspaces" class="action">Open Guide</a>
 
 <h4>4. Get all images from a Workspace</h4>
     <p>

@@ -16,7 +16,7 @@
 <pre>
 <script type="text/javascript">
     document.write(apiBaseStr);
-</script>/graphql
+</script>/graphql/
 </pre>
 
 <p>
@@ -26,92 +26,86 @@
 
 <h3>Assembling a Query</h3>
 
-<p>The structure of a basic GraphQL query is as follows: </p>
-<pre>
-    {
-        elements(workspaceId: "G1N2zzX2uGwMLMfLkmi") {
-          __typename
-          id
-          transform {
-              x y
-          }
-        }
-    }      
-</pre>
-<p>
+<p> 
+    Queries can act as methods by naming them, which allows them to be called from anywhere, and even pass parameters to them in order to specify certain fields.
     This query is calling the <span class="pre">/workspace/{workspaceId}/elements</span>endpoint in order to retrieve all of the elemnts within that workspace,
-    while also specifying exactly the information that should be returned. In this case the query will return the <span class="pre">id</span> and 
-    <span class="pre">(x,y)</span> coordinates of all elements within the workspace.
+    while also specifying exactly the information that should be returned. In this case the query will return the <span class="pre">type</span>, <span class="pre">id</span>
+    and <span class="pre">(x,y)</span> coordinates of all elements within the workspace. The structure of a basic GraphQL query is as follows: 
+</p>
+
+<pre>
+query getElementsFromWorkspace($workspaceId: String!){
+  elements(workspaceId: $workspaceId) {
+    __typename
+    id
+    transform {
+      x y
+    }
+  }
+}   
+</pre>
+
+<p>
+    These queries can be ran as-is with a tool such as Postman, or even by directly pasting them into the <a href="blank">GraphQL PlaygroundNEEDSLINK</a>. 
 </p>
 
 <h4>Output</h4>
+
 <pre>
-    {
-        "data": {
-          "elements": [
-            {
-              "__typename": "Shape",
-              "id": "60340962fbfaf42d19ab103f",
-              "transform": {
-                "x": -2074.9296875,
-                "y": -538.6084806720415
-              }
-            },
-            {
-              "__typename": "Text",
-              "id": "6034096bfbfaf42d19ab1042",
-              "transform": {
-                "x": -3160.056219160557,
-                "y": 557.3029262622199
-              }
-            },
-          ]
+{
+  "data": {
+    "elements": [
+      {
+        "__typename": "Shape",
+        "id": "60340962fbfaf42d19ab103f",
+        "transform": {
+          "x": -2074.9296875,
+          "y": -538.6084806720415
         }
-      }
+      },
+      {
+        "__typename": "Text",
+        "id": "6034096bfbfaf42d19ab1042",
+        "transform": {
+          "x": -3160.056219160557,
+          "y": 557.3029262622199
+        }
+      },
+    ]
+  }
+}
 </pre>
 
 <p>
-    Quereies can be extended even further in order to drill down into the API in order to designate exactly what information the developer is looking
+    Queries can be extended even further in order to drill down into the API and detail exactly what information the developer is looking
     for. This is really where the benefits of GraphQL start to shine. The following depicts an example where the developer only wants to retrieve
     information on shapes in the workspace, and additionally, only wants the <span class="pre">id</span> fields of those shapes:
 </p>
+
 <pre>
-    {
-        elements(workspaceId:"lVbvis7g6m4X872j6ovj", type: Shape) {
-          __typename
-          id
-        }
-      }
+query getElementsFromWorkspace($workspaceId: String!){
+  elements(workspaceId: $workspaceId, type: Shape) {
+    __typename
+    id
+  }
+} 
 </pre>
 
 <h4>Output</h4>
 <pre>
-    {
-        "data": {
-          "elements": [
-            {
-              "__typename": "Shape",
-              "id": "60340962fbfaf42d19ab103f"
-            }
-          ]
-        }
+{
+  "data": {
+    "elements": [
+      {
+        "__typename": "Shape",
+        "id": "60340962fbfaf42d19ab103f"
       }
+    ]
+  }
+}
 </pre>
 
 <p>
-    This can even be taken one step further, by turning it into what is known as a Fragment, which is essentially creating a function from the query
-    that is able to be called, and even pass parameters to it.
-</p>
-<pre>
-    query getElementsFromWorkspace($workspaceId: String!){
-        elements(workspaceId: $workspaceId, type: Shape) {
-          __typename
-          id
-        }
-      }
-</pre>
-
-<p>
-    This is only the beginning of what is possible with GraphQL queries. To find out more about working with them in Bluescape 
-    continue on to the next guides page on <a href="blank">Create a Canvas with a Text Element</a>
+    This is only the surface of what is possible with GraphQL queries. To find out more about working with them in Bluescape, 
+    continue on to the next guides page on <a href="/docs/page/graphql-get-list-of-workspaces">Get List of Workspaces</a>.
 </p>

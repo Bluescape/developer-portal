@@ -6,7 +6,7 @@
 
 <h3>What is GraphQL?</h3>
 <p>
-    GraphQL is described as a query language for APIs. This makes it platform and language independent which makes it easy to incorporate
+    GraphQL is described as a query language for APIs. This means that it is platform and language independent which makes it easy to incorporate
     into any existing framework. GraphQL allows for the creation of complex queries which affords the user greater control of the requests
     that they make in order to combine functionality from several APIs, while also specifying exactly what data they would like to receive back.    
 <p>
@@ -16,8 +16,7 @@
     separate APIs, <span class="pre">GET workspace/{workspaceId}</span> and <span class="pre"> GET workspace/{workspaceId}/elements</span> 
     and then parse out the necessary information from the two resposnes. With GraphQL, developers are able to combine these two calls into a single query,
     while also being returned only the properties that they are interested in, reducing or even removing the amount of parsing required.
+    To learn more about GraphQL, please see their documentation at <a href="https://graphql.org/learn/">https://graphql.org/learn/</a>.
 </p>
-<p>
-    To learn more about GraphQL, please <a href="https://graphql.org/learn/">see here.</a>
-</p>
-<p>For more information on what you can do with GraphQL in Bluescape, please see our <a href="blank">Getting Started</a> guide.</p>
+
+<p>For more information on what you can do with GraphQL in Bluescape, please see our <a href="/docs/page/basic-graphql-requests">Basic GraphQL Requests</a> guide.</p>
