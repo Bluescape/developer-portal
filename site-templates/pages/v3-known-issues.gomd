@@ -15,6 +15,7 @@
     <li>POST: "create within canvas" functionality is not enabled as in V2 (COL-3981).</li>
     <li>Upload Assets paths in openapi.json documentation is incorrect (COL-3912).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
+    <li>Swagger documents include "/api/" in the APIs path, it needs to be removed (AD-9065).</li>
 </ul>
 <h4>GraphQL APIs</h4>
 <ul>
@@ -23,4 +24,8 @@
     <li>GraphQL upload of assets to workspace is not fully implemented (<b>TODO: ADD TICKET # </b>).</li>
     <li>addTraits mutation dryRun parameter should default to dryRun:false to enable addition of traits (COL-3879).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
+</ul>
+<h4>General Issues</h4>
+<ul>
+    <li>Only Organization Admins can access the Applications feature in Config Center.</li>
 </ul>
