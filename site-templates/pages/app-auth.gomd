@@ -159,8 +159,10 @@ From this URL, you need to retrieve the access_token value. This is your Token:<
 <pre>
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6WyIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZiYjY5MTQ5MjliZjhjIiwiNmM0MzcyMjNlM2IwOTYyYzMxZjI5ZTc5ZjBiZmRhMjllYTFhNjg5YyIsIjM2ZjhjZjUxNzVlNGZhYWE0ZjA2NzE4NDA0YjdkZjk0ZGRjMGQ4YWUiLCIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZ1YjY5MTQ5MjljZTlkIl0sImV4cCI6MTU2NzAyNzE5NiwiYXpwIjoiODlhY2NlODIiLCJzY29wZXMiOl3idXNlciJdLCJhcHBfYXV0aG9yaXphdGlvbl9pZCI6MjA1MSwibmJmIPoxNTY1ODE3NTg8LCJpYXQiOjE1NjU4MTc1OTYsImlzcyI6Imh0dHBzOi8vaWRlbnRp4XktYXBpLmFwcHMudOMuYmx1ZXNjYXBlLmNvbSJ9.5N1SpTv1FmxzhQujEY5kqjzJBTrWWnts2r9ilbm9Jis</pre>
 </p>
+
 <a name="2.2-access-code-and-refresh-tokens"><h3>2.2. Access Token generated using Access Code and Refresh Token</h3></a>
 <p>
+
     The workflow of this option is in the image below:<br />
     <center>
         <img class="img-responsive center-block" src="/docs/assets/images/refreshTokens.png" width="700">
@@ -582,7 +584,9 @@ const client = new Bluescape({ authorization });</pre>
 </p>
   
 <a name="appendices"><h2>Appendices</h2></a>
+
 <a name="appendix1"><h3>Appendix 1: Create a new Application</h3></a>
+
 <ul>
     <li>Go to your application list: <a href="../"><script type="text/javascript">document.write('<a href="' + applicationStr + '" target="_blank">Applications</a>');</script></a></li>
     <li>Sign in, if you haven't already.</li>
@@ -599,8 +603,12 @@ const client = new Bluescape({ authorization });</pre>
     </li>
     <li>The main data points you will need from here are the <b>Client ID</b> and <b>Client Secret</b>. See <a href="#appendix2">Appendix 2</a> for retrieving the <b>Client ID</b> and <b>Client Secret</b>.</li>      
 </ul>
+
 <a name="appendix2"><h3>Appendix 2: How to get the Client ID and Client Secret</h3></a>
-   How to get the Client Secret:   
+<p>
+   How to get the Client Secret: 
+</p>
+
 <ul>
     <li>Go to your application list: <a href="../"><script type="text/javascript">document.write('<a href="' + applicationStr + '" target="_blank">Applications</a>');</script></a></li>
     <li>Sign in, if you haven't already.</li>
@@ -617,7 +625,9 @@ const client = new Bluescape({ authorization });</pre>
             <li><span class="pre">client_secret</span>: value of Client Secret after clicking the Show button after clicking the eye icon <img class="img-responsive center-block" src="/docs/assets/images/eye.png"></li>
         </ul>        
 </ul>
+
 <a name="appendix3"><h3>Appendix 3: Requirements for Refresh Tokens implementation</h3></a>
+
 <p>You need to Allow the application you will use to generate the tokens. </p>
 
 <p>

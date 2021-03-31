@@ -16,7 +16,7 @@
 <pre>
 <script type="text/javascript">
     document.write(apiBaseStr);
-</script>/graphql/
+</script>/v3/graphql/
 </pre>
 
 <p>

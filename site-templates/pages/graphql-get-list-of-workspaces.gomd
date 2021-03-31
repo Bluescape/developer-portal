@@ -45,7 +45,7 @@ query getWorkspaces{
 </div>
 
 <pre class="lang lang-curl">
-curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/graphql/' \
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
 --header 'Authorization: Bearer &lt;&lt;TOKEN&gt;&gt;' \
 --header 'Content-Type: application/json' \
 --header 'Cookie: __cfduid=dfb617d0f055c3b4bee6bbb1a62eed3f01617039740; elementary.sid=s%3A6062117c50431ec920ee8b73.uXLfum7uSBXg%2FfpT%2FwI4lNk%2FqZ33gc2CUE7Njg4m5rQ' \
@@ -55,7 +55,7 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
 <pre class="lang lang-node">
 const axios = require('axios');
 
-const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/graphql/"
+const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
 const token = "&lt;SET_TOKEN&gt;"
 const query = 
     `query getWorkspaces{
@@ -90,7 +90,7 @@ getWorkspaces();
 import requests
 import pprint
 
-url = "<script type="text/javascript">document.write(apiBaseStr); </script>/graphql/"
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
 token = "&lt;SET_TOKEN&gt;"
 query = """
     query getWorkspaces{

@@ -115,7 +115,7 @@ mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
 <pre class="lang lang-node">
 const axios = require('axios');
 
-const url = "<script type="text/javascript">document.write(apiBaseStr);</script>/graphql/"
+const url = "<script type="text/javascript">document.write(apiBaseStr);</script>/v3/graphql/"
 const token = "&lt;SET_TOKEN&gt;"
 const workspaceId = "&lt;SET_WORKSPACEID&gt; silly text"
 
@@ -204,7 +204,7 @@ startProcess();
 import requests
 import pprint
 
-url = "<script type="text/javascript">document.write(apiBaseStr); </script>/graphql/"
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
 token = "&lt;SET_TOKEN&gt;"
 workspaceId = "&lt;SET_WORKSPACEID&gt;"
 
