@@ -9,7 +9,7 @@
     {{end}}
   {{end}}
     <br />
-    {{if or (eq $.CurrentPage "reference") (eq $.CurrentPage "urls") (eq $.CurrentPage "pagination") (eq $.CurrentPage "listener-events") (eq $.CurrentPage "permissions") (eq $.CurrentPage "versioning") (eq $.CurrentService "elementary") (eq $.CurrentService "isam")}}
+    {{if or (eq $.CurrentPage "reference") (eq $.CurrentPage "urls") (eq $.CurrentPage "pagination") (eq $.CurrentPage "listener-events") (eq $.CurrentPage "permissions") (eq $.CurrentPage "versioning") (eq $.CurrentPage "v3-known-issues") (eq $.CurrentPage "v3-tips-and-tricks") (eq $.CurrentService "elementary") (eq $.CurrentService "isam")}}
     <div>
         <ul class="unindent-side-nav-ul">
             <li><a href="/docs/page/urls">URLs</a></li>
@@ -17,6 +17,10 @@
             <li><a href="/docs/page/listener-events">Listener Events</a></li>
             <li><a href="/docs/page/permissions">Permissions</a></li>
             <li><a href="/docs/page/versioning">Versioning</a></li>
+            <ul>
+                <li><a href="/docs/page/v3-known-issues">V3 Known Issues</a></li>
+                <li><a href="/docs/page/v3-tips-and-tricks">V3 Tips and Tricks</a></li>
+            </ul>
 
             {{/* <li><h3>API Reference</h3></li>
             {% include 'reference/api-toc' %} */}}
@@ -108,7 +112,7 @@
     </div>
     <br />
     {{end}}
-    {{if or (eq $.CurrentPage "guides") (eq $.CurrentPage "app-auth") (eq $.CurrentPage "basic-api-requests") (eq $.CurrentPage "rest-get-list-of-workspaces") (eq $.CurrentPage "get-all-images-from-a-workspace") (eq $.CurrentPage "rest-create-canvas-and-add-text") (eq $.CurrentPage "rest-upload-from-local-drive-into-a-canvas")  (eq $.CurrentPage "traits-api") (eq $.CurrentPage "attachments-api") (eq $.CurrentPage "listeners-api") (eq $.CurrentPage "wall-apis") (eq $.CurrentPage "what-is-new-in-v3") (eq $.CurrentPage "what-is-graphql") (eq $.CurrentPage "basic-graphql-requests") (eq $.CurrentPage "graphql-get-list-of-workspaces") (eq $.CurrentPage "graphql-create-canvas-and-add-text") (eq $.CurrentPage "graphql-upload-from-local-drive-into-a-canvas")}}
+    {{if or (eq $.CurrentPage "guides") (eq $.CurrentPage "app-auth") (eq $.CurrentPage "basic-api-requests") (eq $.CurrentPage "rest-get-list-of-workspaces") (eq $.CurrentPage "get-all-images-from-a-workspace") (eq $.CurrentPage "rest-create-canvas-and-add-text") (eq $.CurrentPage "rest-upload-from-local-drive-into-a-canvas")  (eq $.CurrentPage "traits-api") (eq $.CurrentPage "attachments-api") (eq $.CurrentPage "listeners-api") (eq $.CurrentPage "wall-apis") (eq $.CurrentPage "what-is-new-in-v3") (eq $.CurrentPage "what-is-graphql") (eq $.CurrentPage "basic-graphql-requests") (eq $.CurrentPage "graphql-get-list-of-workspaces") (eq $.CurrentPage "graphql-create-canvas-and-add-text") (eq $.CurrentPage "graphql-upload-from-local-drive-into-a-canvas") (eq $.CurrentPage "compare-graphql-rest")}}
     <div>
         <strong>Guides</strong>
         <ul class="unindent-side-nav-ul">
@@ -137,6 +141,7 @@
             <li><a href="/docs/page/listeners-api">Listeners APIs</a></li>
             <li><a href="/docs/page/wall-apis">Wall APIs</a></li>
             <li><a href="/docs/page/what-is-new-in-v3">What is new in V3?</a></li>
+            <li><a href="/docs/page/compare-graphql-rest">Comparison of REST and GraphQL</a></li>
         </ul>
     </div>
     <br />
