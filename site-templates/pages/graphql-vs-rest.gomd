@@ -1,0 +1,135 @@
+<style>
+table td {
+    width: 320px;
+}
+</style>
+<h1>GraphQL compared to REST APIs</h1>
+<p>
+Here we present a comparison of Bluescape REST and GraphQL APIs. You can appreciate the advantages of each implementation, and maybe use this list to as a help to port your queries from REST to GraphQL.
+</p>
+<p><b>TODO</b>:<br/>
+1. Add fragments?
+</p>
+<h4>GraphQL always uses HTTP POST</h4>
+<p>See the details below regarding the different methods REST and GraphQL API use.</p>
+<table class="table table-striped">
+    <tr>
+        <td><center><b>REST</b></center></td>
+        <td><center><b>GraphQL</b></center></td>
+    </tr>
+    <tr>
+        <td>REST API calls use different methods for the HTTP calls, to implement specific operations, such as:
+        <ul>
+            <li>GET: Read</li>
+            <li>POST: Create</li>
+            <li>PATCH: Partial update/modification</li>
+            <li>PUT: Update/replace</li>
+            <li>DELETE: Delete</li>
+        </ul>
+        </td>
+        <td>In GraphQL, the API calls are always an HTTP POST, and operations are <i>queries</i> or <i>mutations</i>. For more details, read the Bluescape GraphQL Schema <b>(Add link to Schema? Or to page mentioning how to read the schema?)</b>. A summary of the equivalents to the REST methods is below :
+        <ul>
+            <li>REST GET: GraphQL <i>query</i></li>
+            <li>REST POST: GraphQL <i>mutation</i>, generally named create* (e.g. <b>createCanvas</b>, <b>createText</b>, etc.)</li>
+            <li>REST PATCH, PUT: GraphQL <i>mutation</i>, generally named update* (e.g. <b>updateCanvas</b>, <b>updateText</b>, etc.)</li>
+            <li>DELETE: GraphQL <i>mutation</i>, <b>delete</b></li>
+        </ul>
+        <br />
+        For details on each query and mutations, please see the documentation in the GraphQl Playground: 
+         </td>
+    </tr>
+</table>
+<h4>Filtering elements by Type</h4>
+<p>GraphQL provides a great flexibility to get just the data you need, and for taht you need to clearly specify what are the fields you want to be retrieved in each query</p>
+<table class="table table-striped">
+    <tr>
+        <td><center><b>REST</b></center></td>
+        <td><center><b>GraphQL</b></center></td>
+    </tr>
+    <tr>
+        <td>In REST APIs, you can query just one type at a time, or you can pull all the elements of the workspace or Canvas and filter down the answer, later, in your script.<br />
+        e.g. If I need all the Canvases and Text elements in a workspace, I could run these 2 queries:
+<pre>/v3/workspaces/{workspace_id}/elements<b>?type=Canvas</b></pre>
+<pre>/v3/workspaces/{workspace_id}/elements<b>?type=Text</b></pre>
+        </td>
+        <td>In GraphQL, you can specify one or more types at a time. This feature allows you to add great flexibility to your scripts.<br />
+<pre>
+query getTextAndCanvas{
+  elements(workspace: "G1N2bS42uGwMhL_fGfzW", <b>type: [Text,Canvas]</b>) {
+    type:____typename__
+    id
+    transform {
+      x y
+    }
+  }
+}
+</pre>
+If you want to use a single Type, then remove the array brackets in the query. For example, if you want only Test types:<br />
+<pre>
+query getTextAndCanvas{
+  elements(workspace: "G1N2bS42uGwMhL_fGfzW", <b>type: Text</b>) {
+    type:____typename__
+    id
+    transform {
+      x y
+    }
+  }
+}
+</pre> 
+        </td>
+    </tr>
+</table>
+<h4>For queries, some fields can be Unions in GraphQL</h4>
+<p>GraphQL provides great flexibility to get just the data you need, and for that you need to clearly specify what are the fields you want to be retrieved in each query. Sometimes the fields in the GraphQL are defined as <a target="_BLANK" href="https://graphql.org/learn/schema/#union-types">Unions</a>, not as a specific Type. Review the Bluescape GraphQl Schema for more details.<br />
+Unions in GraphQL are specified using this format:
+<pre>
+...on <b>{Type}</b> {
+    <b>{Fields-to-retrieve}</b>
+}</pre>
+</p>
+
+<table class="table table-striped">
+    <tr>
+        <td style="width: 50%;"><center><b>REST</b></center></td>
+        <td><center><b>GraphQL</b></center></td>
+    </tr>
+    <tr>
+        <td>In REST APIs, for queries we use a GET. You can specify some filtering fields, but in general they are very easy to run. The results generally over fetch, they deliver all the fields available for those elements and you need to filter them later in tour script. </td>
+        <td>In GraphQL, all the requests are always an HTTP POST. You can specify exactly what fields will be returned, and in some cases those fields will need to be specified as <a target="_BLANK" href="https://graphql.org/learn/schema/#union-types">Unions</a>. For example, for a Line element, when you query the <b>start</b> and <b>end</b> fields, you need to specify them as a Union. Check the documentation on how to create a Shape (docs -> Query elements > Line implementation > start) <b>TODO ADD LINK TO PLAYGROUND</b>. See this example:<br />
+<pre>
+query GetLinesFromWorkspace($workspaceId: String!){
+    elements(workspaceId: $workspaceId, type: Line) {        
+        type:__typename
+        id
+        ... on Line {
+            start{
+                <b>... on AbsoluteLinePoint{
+                    x y
+                }</b>
+            }
+            end{
+                <b>... on AbsoluteLinePoint{
+                    x y
+                }</b>
+            }
+        }
+    }
+}
+</pre>
+        </td>
+    </tr>
+</table>
+<h4>Changes in GraphQL are mutations</h4>
+<p>LOREM</p>
+<table class="table table-striped">
+    <tr>
+        <td style="width: 50%;"><center><b>REST</b></center></td>
+        <td><center><b>GraphQL</b></center></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+
