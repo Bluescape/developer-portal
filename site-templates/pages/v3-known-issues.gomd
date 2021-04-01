@@ -12,6 +12,7 @@
     <li>PATCH for Line: changes in request body are not applied to element (COL-3975).</li>
     <li>PATCH and POST for Canvas: cannot change/set color of border: "style: IsValidCanvasColor: ''" (COL-3980).</li>
     <li>POST traits has invalid payload example in openapi.json documentation (COL-3866).</li>
+    <li>POST for Browser: error is returned when "frameless" property is set to false (COL-3632).</li>
     <li>PATCH for Browser: cannot change value of "frameless" property (COL-3840).</li>
     <li>Upload Assets paths in openapi.json documentation is incorrect (COL-3912).</li>
     <li>GET for Stroke: does not return Traits (COL-3889).</li>
@@ -31,6 +32,7 @@
     <li>GraphQL upload of assets to workspace is not fully implemented (<b>TODO: ADD TICKET # </b>).</li>
     <li>addTraits mutation dryRun parameter should default to dryRun:false to enable addition of traits (COL-3879).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
+    <li>Query for Strokes: traits are returned empty (COL-3483).</li>
 </ul>
 <h4>General Issues</h4>
 <ul>
