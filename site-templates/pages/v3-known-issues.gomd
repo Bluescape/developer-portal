@@ -1,0 +1,26 @@
+<h1>V3 Known issues</h1>
+<p>Release: 21.04.1 (May 09, 2021)</p>
+<h4>REST APIs</h4>
+<ul>
+    <li>PATCH and POST for Text: cannot set background as transparent, it displays black (COL-3974).</li>
+    <li>PATCH for Image: when providing only "scale" field, image is repositioned at (0,0) (COL-3971).</li>
+    <li>PATCH Text: error code 500 is returned when setting background color properties b:0, a:0 (COL-3972).</li>
+    <li>POST and PARTCH for Shapes: kinds "arrow-left-curve" and "arrow-right-u" create wrong shapes (COL-3970).</li>
+    <li>PATCH for Browser: after modifying height/width, the preview image does not scale or changes (COL-3940).</li>
+    <li>PATCH for Video: change of (x,y) position resizes Video back to original height/width (COL-3956).</li>
+    <li>PATCH for Stroke: pinning does not work (COL-3955).</li>
+    <li>PATCH for Line: changes in request body are not applied to element (COL-3975).</li>
+    <li>PATCH and POST for Canvas: cannot change/set color of border: "style: IsValidCanvasColor: ''" (COL-3980).</li>
+    <li>POST traits has invalid payload example in openapi.json documentation (COL-3866).</li>
+    <li>POST: "create within canvas" functionality is not enabled as in V2 (COL-3981).</li>
+    <li>Upload Assets paths in openapi.json documentation is incorrect (COL-3912).</li>
+    <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
+</ul>
+<h4>GraphQL APIs</h4>
+<ul>
+    <li>Federated GraphQL is not fully implemented (AD-8755).</li>
+    <li>Subscriptions are not fully implemented (AD-8740).</li>
+    <li>GraphQL upload of assets to workspace is not fully implemented (<b>TODO: ADD TICKET # </b>).</li>
+    <li>addTraits mutation dryRun parameter should default to dryRun:false to enable addition of traits (COL-3879).</li>
+    <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
+</ul>

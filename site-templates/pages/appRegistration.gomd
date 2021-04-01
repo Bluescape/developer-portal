@@ -1,0 +1,19 @@
+<div class="row">
+
+  <div class="col-md-8 content">
+  
+    <h1>Application Registration</h1>
+
+    <h3>Overview</h3>
+    <p>
+    Application Registration is a platform that enables developers to generate and manage an API token in Bluescape. Applications that want to query the Bluescape API must be authorized to do so by an active Bluescape user. 
+    Applications obtain this authorization using the OAuth flow which enables users to share access to their account without divulging their password. Once authorized, applications receive access tokens from Bluescape which enable them to access Bluescape resources on behalf of the authorizing user.  
+    To create a Bluescape application, you will need to visit the Application Registration link indicated below. If you are interested in learning more about the Application Authorization process, please feel free to visit <a href="/docs/page/app-auth">OAuth flow</a> for more information.
+    </p>
+    
+    Please click on the following link to proceed: <script type="text/javascript">document.write('<a href="' + applicationStr + '" target="_blank">Application Registration</a>');</script>
+
+    <p style="margin-bottom: 16rem;"></p>
+  </div>
+
+</div>
