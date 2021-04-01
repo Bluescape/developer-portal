@@ -6,15 +6,22 @@
     <li>PATCH for Image: when providing only "scale" field, image is repositioned at (0,0) (COL-3971).</li>
     <li>PATCH Text: error code 500 is returned when setting background color properties b:0, a:0 (COL-3972).</li>
     <li>POST and PARTCH for Shapes: kinds "arrow-left-curve" and "arrow-right-u" create wrong shapes (COL-3970).</li>
-    <li>PATCH for Browser: after modifying height/width, the preview image does not scale or changes (COL-3940).</li>
+    <li>PATCH for Browser: after modifying height/width, the preview image does not scale or changes (COL-3826).</li>
     <li>PATCH for Video: change of (x,y) position resizes Video back to original height/width (COL-3956).</li>
     <li>PATCH for Stroke: pinning does not work (COL-3955).</li>
     <li>PATCH for Line: changes in request body are not applied to element (COL-3975).</li>
     <li>PATCH and POST for Canvas: cannot change/set color of border: "style: IsValidCanvasColor: ''" (COL-3980).</li>
     <li>POST traits has invalid payload example in openapi.json documentation (COL-3866).</li>
-    <li>POST: "create within canvas" functionality is not enabled as in V2 (COL-3981).</li>
+    <li>PATCH for Browser: cannot change value of "frameless" property (COL-3840).</li>
     <li>Upload Assets paths in openapi.json documentation is incorrect (COL-3912).</li>
+    <li>GET for Stroke: does not return Traits (COL-3889).</li>
+    <li>GET for Whiteboard: does not return Traits (COL-3878).</li>
+    <li>GET for Line: does not return Traits (COL-3799).</li>
+    <li>POST and DELETE for attachments: not working (COL-3870).</li>
+    <li>POST: "create within canvas" functionality is not enabled as in V2 (COL-3981).</li>
+    <li>DELETE: successful deletion returns "204 No Content" instead of "204 Element deleted successfully" (COL-3868).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
+    <li>Swagger document contains wrong payload example for Traits (COL-3866).</li>
     <li>Swagger documents include "/api/" in the APIs path, it needs to be removed (AD-9065).</li>
 </ul>
 <h4>GraphQL APIs</h4>
@@ -28,4 +35,6 @@
 <h4>General Issues</h4>
 <ul>
     <li>Only Organization Admins can access the Applications feature in Config Center.</li>
+    <li>Upload of asset from URL needs to be implemented (COL-3898).</li>
+    <li>GraphQL end REST response body ned to return object, not just ID (COL-3907).</li>
 </ul>
