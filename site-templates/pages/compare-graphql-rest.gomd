@@ -48,6 +48,7 @@ Here we present a comparison of Bluescape REST and GraphQL APIs. You can appreci
 <pre>/v3/workspaces/{workspace_id}/elements<b>?type=Text</b></pre>
         </td>
         <td>In GraphQL, you can specify one or more types at a time. This feature allows you to add great flexibility to your scripts.<br />
+
 <pre>
 query getTextAndCanvas{
   elements(workspace: "G1N2bS42uGwMhL_fGfzW", <b>type: [Text,Canvas]</b>) {
@@ -59,7 +60,9 @@ query getTextAndCanvas{
   }
 }
 </pre>
+
 If you want to use a single Type, then remove the array brackets in the query. For example, if you want only Test types:<br />
+
 <pre>
 query getTextAndCanvas{
   elements(workspace: "G1N2bS42uGwMhL_fGfzW", <b>type: Text</b>) {
@@ -91,6 +94,7 @@ Unions in GraphQL are specified using this format:
     <tr>
         <td>In REST APIs, for queries we use a GET. You can specify some filtering fields, but in general they are very easy to run. The results generally over fetch, they deliver all the fields available for those elements and you need to filter them later in tour script. </td>
         <td>In GraphQL, all the requests are always an HTTP POST. You can specify exactly what fields will be returned, and in some cases those fields will need to be specified as <a target="_BLANK" href="https://graphql.org/learn/schema/#union-types">Unions</a>. For example, for a Line element, when you query the <b>start</b> and <b>end</b> fields, you need to specify them as a Union (according to the current GraphQl Schema). See this example:<br />
+
 <pre>
 query GetLinesFromWorkspace($workspaceId: String!){
     elements(workspaceId: $workspaceId, type: Line) {        
