@@ -141,7 +141,7 @@ pprint.pprint(json_response)
 <h3>Assembling a GraphQL Query</h3>
 
 <p>
-    All GraphQL endpoints can be reached from the same url URL:
+    All GraphQL endpoints can be reached from the same URL:
 </p>
 
 <pre>
