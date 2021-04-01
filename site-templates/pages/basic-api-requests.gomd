@@ -6,11 +6,14 @@
         by completing the OAuth flow (see the <a href="/docs/page/app-auth">Application Authorization</a> guide).
     </em>
 </p>
+<p>
+  If you are looking for just the GraphQL section of this guide, click <a href="#working-with-graphql">here</a>.
+</p>
 
 <h3>The Base URL</h3>
 
 <p>
-    All API endpoints share the same base URL:
+    All API endpoints share the same base URL whether you are trying to access them through REST or GraphQL methods:
 </p>
 
 <pre>
@@ -19,7 +22,16 @@
 </script>
 </pre>
 
-<h3>Assembling a Request</h3>
+<h4>Authorization Header</h4>
+
+<p>
+    Lastly, all operations require an <strong>Authorization</strong> header based on the access tokens received from the
+    OAuth flow. The value of this header should match the format of <span class="pre">Bearer &lt;access-token&gt;</span>.
+</p>
+
+<h2>Working with REST</h2>
+
+<h3>Assembling a REST Request</h3>
 
 <h4>URL</h4>
 
@@ -71,13 +83,6 @@
 }
 </pre>
 
-<h4>Authorization Header</h4>
-
-<p>
-    Lastly, all operations require an <strong>Authorization</strong> header based on the access tokens received from the
-    OAuth flow. The value of this header should match the format of <span class="pre">Bearer &lt;access-token&gt;</span>.
-</p>
-
 <h4>Assembled Request</h4>
 
 <p>
@@ -89,6 +94,7 @@
     <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
 </div>
 
+<p>
 <pre class="lang lang-curl">
 curl -X POST <script type="text/javascript">document.write(apiBaseStr + "/v3/organizations/&lt;SET_ORGANIZATION_ID&gt;/members"); </script> \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
@@ -99,9 +105,9 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr + "/v3/org
     "organizationRoleId": "&lt;SET_ORGANIZATION_ROLE_ID&gt;"
   }'
 </pre>
+</p>
 
-<br />
-
+<p>
 <pre class="lang lang-python">
 import requests
 import pprint 
@@ -128,6 +134,105 @@ the_request = requests.post(
 json_response = the_request.json()
 pprint.pprint(json_response)
 </pre>
+</p>
+
+<a name="working-with-graphql" style="color:rgb(44, 45, 48)"><h2>Working with GraphQL</h2></a>
+
+<h3>Assembling a GraphQL Query</h3>
+
+<p>
+    All GraphQL endpoints can be reached from the same URL:
+</p>
+
+<pre>
+<script type="text/javascript">
+    document.write(apiBaseStr);
+</script>/v3/graphql/
+</pre>
+
+<p> 
+    Queries can act as methods by naming them, which allows them to be called from anywhere, and even pass parameters to them in order to specify certain fields.
+    This query is calling the <span class="pre">/workspace/{workspaceId}/elements</span>endpoint in order to retrieve all of the elemnts within that workspace,
+    while also specifying exactly the information that should be returned. In this case the query will return the <span class="pre">type</span>, <span class="pre">id</span>
+    and <span class="pre">(x,y)</span> coordinates of all elements within the workspace. The structure of a basic GraphQL query is as follows: 
+</p>
+
+<pre>
+query getElementsFromWorkspace($workspaceId: String!){
+  elements(workspaceId: $workspaceId) {
+    __typename
+    id
+    transform {
+      x y
+    }
+  }
+}   
+</pre>
+
+<p>
+    These queries can be ran as-is with a tool such as Postman, or even by directly pasting them into the <a href="blank">GraphQL PlaygroundNEEDSLINK</a>. 
+</p>
+
+<h4>Output</h4>
+
+<pre>
+{
+  "data": {
+    "elements": [
+      {
+        "__typename": "Shape",
+        "id": "60340962fbfaf42d19ab103f",
+        "transform": {
+          "x": -2074.9296875,
+          "y": -538.6084806720415
+        }
+      },
+      {
+        "__typename": "Text",
+        "id": "6034096bfbfaf42d19ab1042",
+        "transform": {
+          "x": -3160.056219160557,
+          "y": 557.3029262622199
+        }
+      },
+    ]
+  }
+}
+</pre>
+
+<p>
+    Queries can be extended even further in order to drill down into the API and detail exactly what information the developer is looking
+    for. This is really where the benefits of GraphQL start to shine. The following depicts an example where the developer only wants to retrieve
+    information on shapes in the workspace, and additionally, only wants the <span class="pre">id</span> fields of those shapes:
+</p>
+
+<pre>
+query getElementsFromWorkspace($workspaceId: String!){
+  elements(workspaceId: $workspaceId, type: Shape) {
+    __typename
+    id
+  }
+} 
+</pre>
+
+<h4>Output</h4>
+<pre>
+{
+  "data": {
+    "elements": [
+      {
+        "__typename": "Shape",
+        "id": "60340962fbfaf42d19ab103f"
+      }
+    ]
+  }
+}
+</pre>
+
+<p>
+    This is only the surface of what is possible with GraphQL queries. To find out more about working with them in Bluescape, 
+    continue on to the next guides page on <a href="/docs/page/get-list-of-workspaces">Get List of Workspaces</a>.
+</p>
 
 <br />
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.

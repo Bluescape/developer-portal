@@ -2,7 +2,10 @@
 
 <p>
 <b>Objective</b>: get a list of all the images in a Workspace. You will need the Workspace ID. This list will contain, for each image, details such as: image name, creation date, traits, comments, etc.
+If you are looking for just the GraphQL section of this guide, click <a href="#graphql">here</a>.
 </p>
+
+<h2>REST</h2>
 
 <table class="table table-striped">
         <tr>
@@ -26,11 +29,10 @@
 </table>
 
 <h2>Code sample</h2>
-    <p>
-        See below code samples in Python and Node.js.
-    </p>
-    
+
 <p>
+    See below code samples in Python and Node.js.
+</p>
 
 <div class="lang-selector">
     <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
@@ -38,6 +40,15 @@
     <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
 </div>
 
+<p>
+<pre class="lang lang-curl">
+curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/workspaces/&lt;&lt;workspaceId&gt;&gt;/elements?type=Image' \
+--header 'Authorization: Bearer &lt;&lt;TOKEN&gt;&gt;' \
+--header 'Cookie: __cfduid=dfb617d0f055c3b4bee6bbb1a62eed3f01617039740'
+</pre>
+</p>
+
+<p>
 <pre class="lang lang-python">
 # Python Code (python 3.5+)
 import requests
@@ -203,6 +214,113 @@ What you should get: JSON with the list of all images in the workspace
 } 
 </pre>
 
+<a name="graphql" style="color:rgb(44, 45, 48)"><h2>GraphQL</h2></a>
+
+<table class="table table-striped">
+    <tr>
+      <td><b>Query</b></td>
+      <td>elements</td>
+    </tr> 
+    <tr>
+      <td><b>Comments</b></td>
+      <td>You need to know the <span class="pre">workspaceId</span></td>
+    </tr>
+</table>
+
+<h3>Example Query:</h3>
+
+<pre>
+query getElementsFromWorkspace($workspaceId: String!){
+  elements(workspaceId: $workspaceId, type: Shape) {
+    __typename
+    id
+  }
+} 
+</pre>
+
+<h2>Code sample</h2>
+
+<p>
+    See below for full code examples of this implementation in Python and Node.js.
+</p>
+
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
+--header 'Authorization: Bearer &lt;&lt;TOKEN&gt;&gt;' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: __cfduid=dfb617d0f055c3b4bee6bbb1a62eed3f01617039740; elementary.sid=s%3A6062117c50431ec920ee8b73.uXLfum7uSBXg%2FfpT%2FwI4lNk%2FqZ33gc2CUE7Njg4m5rQ' \
+--data-raw '{"query":"query getElementsFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Shape) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"lVbvis7g6m4X872j6ovj"}}'
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+const axios = require('axios');
+
+const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
+const token = "&lt;SET_TOKEN&gt;"
+const query = 
+    `query getElementsFromWorkspace($workspaceId: String!){
+        elements(workspaceId: $workspaceId, type: Image) {
+    __  typename
+        id
+        name
+        }
+    } `
+const getWorkspaces = async () => {
+    try {
+        const response = await axios.post(url,
+            {query: query}, 
+            {headers: {"Authorization": "Bearer " + token}})
+        
+        console.log(response.data);
+        return response
+    }
+    catch(error) {
+        console.error(error)
+    }
+}
+
+getWorkspaces();
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+import requests
+import pprint
+
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
+token = "&lt;SET_TOKEN&gt;"
+query = """
+    query getElementsFromWorkspace($workspaceId: String!){
+        elements(workspaceId: $workspaceId, type: Image) {
+        __typename
+        id
+        name
+        }
+    } 
+    """
+def makeQuery():
+
+    response = requests.post(url, 
+    headers={"Authorization": "Bearer " + token
+    },
+    json={'query': query})
+
+    return response.json()
+
+if __name__ == "__main__":
+    response = makeQuery()
+    pprint.pprint(response)
+</pre>
 
 <br />
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
