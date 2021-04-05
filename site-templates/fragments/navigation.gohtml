@@ -112,7 +112,8 @@
     </div>
     <br />
     {{end}}
-    {{if or (eq $.CurrentPage "guides") (eq $.CurrentPage "app-auth") (eq $.CurrentPage "basic-api-requests") (eq $.CurrentPage "rest-get-list-of-workspaces") (eq $.CurrentPage "get-all-images-from-a-workspace") (eq $.CurrentPage "rest-create-canvas-and-add-text") (eq $.CurrentPage "rest-upload-from-local-drive-into-a-canvas")  (eq $.CurrentPage "traits-api") (eq $.CurrentPage "attachments-api") (eq $.CurrentPage "listeners-api") (eq $.CurrentPage "wall-apis") (eq $.CurrentPage "what-is-new-in-v3") (eq $.CurrentPage "what-is-graphql") (eq $.CurrentPage "basic-graphql-requests") (eq $.CurrentPage "graphql-get-list-of-workspaces") (eq $.CurrentPage "graphql-create-canvas-and-add-text") (eq $.CurrentPage "graphql-upload-from-local-drive-into-a-canvas") (eq $.CurrentPage "compare-graphql-rest") (eq $.CurrentPage "graphql-playground")}}
+    {{if or (eq $.CurrentPage "guides") (eq $.CurrentPage "app-auth") (eq $.CurrentPage "basic-api-requests") (eq $.CurrentPage "get-list-of-workspaces") (eq $.CurrentPage "get-all-images-from-a-workspace") (eq $.CurrentPage "create-canvas-and-add-text") (eq $.CurrentPage "upload-from-local-drive-into-a-canvas")  (eq $.CurrentPage "traits-api") (eq $.CurrentPage "attachments-api") (eq $.CurrentPage "listeners-api") (eq $.CurrentPage "wall-apis") (eq $.CurrentPage "what-is-new-in-v3") (eq $.CurrentPage "what-is-graphql") (eq $.CurrentPage "compare-graphql-rest") (eq $.CurrentPage "graphql-playground")}}
+
     <div>
         <strong>Guides</strong>
         <ul class="unindent-side-nav-ul">
@@ -121,19 +122,15 @@
             -->
 
             <!-- v2 Additions -->
-            
+            <li><a href="/docs/page/what-is-graphql">What is GraphQL?</a></li>
             <li><a href="/docs/page/guides">Getting Started</a></li>
             <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/app-auth">1. Application Authorization</a></li>
             <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/basic-api-requests">2. Basic API Requests</a></li>    
-            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/rest-get-list-of-workspaces">3. Get list of Workspaces</a></li>
+            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/get-list-of-workspaces">3. Get list of Workspaces</a></li>
             <!-- <li> - <a href="/reference/TBD">Add parameters to your API call</a></li> -->
             <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/get-all-images-from-a-workspace">4. Get all images from a Workspace</a></li>
-            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/rest-create-canvas-and-add-text">5. Create a Canvas and add a Text element</a></li>
-            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/rest-upload-from-local-drive-into-a-canvas">6. Upload content from local drive into a Canvas</a></li>
-            <li><a href="/docs/page/what-is-graphql">What is GraphQL?</a></li>
-            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/basic-graphql-requests">Basic GraphQL requests</a></li>
-            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/graphql-get-list-of-workspaces">Get list of Workspaces</a></li>
-            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/graphql-create-canvas-and-add-text">Create a Canvas and add a Text element</a></li>
+            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/create-canvas-and-add-text">5. Create a Canvas and add a Text element</a></li>
+            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/upload-from-local-drive-into-a-canvas">6. Upload content from local drive into a Canvas</a></li>
             <!-- <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/graphql-upload-from-local-drive-into-a-canvas">Not Done Yet</a></li> -->
             <li><a href="/docs/page/traits-api">Traits APIs</a></li>
             <li><a href="/docs/page/attachments-api">Attachments APIs</a></li>
