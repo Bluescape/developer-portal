@@ -119,17 +119,6 @@ query GetLinesFromWorkspace($workspaceId: String!){
         </td>
     </tr>
 </table>
-<h4>Changes in GraphQL are mutations</h4>
-<p>LOREM</p>
-<table class="table table-striped">
-    <tr>
-        <td style="width: 50%;"><center><b>REST</b></center></td>
-        <td><center><b>GraphQL</b></center></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
+
 
 
