@@ -39,6 +39,7 @@
         {{define "header"}}{{end}}
         {{if  eq .Ctx "landing"}}
         {{else if eq $.CurrentPage "overview"}}
+        {{else if eq $.CurrentPage "appRegistration"}}
         {{else}}
         {{template "navigation" $}}
         {{end}}
