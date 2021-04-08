@@ -21,7 +21,7 @@ There is no need to build the devportal service locally - it comes up automatica
 You can also work locally with the devportal without using docker. To do so, first clone the repo locally:
 >git clone git@github.com:Bluescape/developer-portal.git
 
-Next, cd into site-temaplates:
+Next, cd into site-templates:
 >cd developer-portal/site-templates
 
 Then, run the following:
