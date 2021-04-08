@@ -17,6 +17,9 @@ There is no need to build the devportal service locally - it comes up automatica
 You can also work locally with the devportal without using docker. To do so, first clone the repo locally:
     git clone git@github.com:Bluescape/developer-portal.git
 
+Next, cd into site-temapltes:
+    cd developer-portal/site-templates
+    
 Then, run the following:
     docker run -it --rm --volume $PWD:/content --publish 8877:8877 docker.io/datawire/ambassador_pro:local-devportal-0.11.0
 
