@@ -11,7 +11,7 @@
     <li>PATCH for Stroke: pinning does not work (COL-3955).</li>
     <li>PATCH for Line: changes in request body are not applied to element (COL-3975).</li>
     <li>PATCH and POST for Canvas: cannot change/set color of border: "style: IsValidCanvasColor: ''" (COL-3980).</li>
-    <li>POST traits has invalid payload example in openapi.json documentation (COL-3866).</li>
+    <li>POST for traits: you cannot add traits to an element already created (COL-3866).</li>
     <li>POST for Browser: error is returned when "frameless" property is set to false (COL-3632).</li>
     <li>PATCH for Browser: cannot change value of "frameless" property (COL-3840).</li>
     <li>Upload Assets paths in openapi.json documentation is incorrect (COL-3912).</li>
@@ -22,7 +22,7 @@
     <li>POST: "create within canvas" functionality is not enabled as in V2 (COL-3981).</li>
     <li>DELETE: successful deletion returns "204 No Content" instead of "204 Element deleted successfully" (COL-3868).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
-    <li>Swagger document contains wrong payload example for Traits (COL-3866).</li>
+    <li>Swagger document contains wrong payload example for Traits creation (COL-3866).</li>
     <li>Swagger documents include "/api/" in the APIs path, it needs to be removed (AD-9065).</li>
 </ul>
 <h4>GraphQL APIs</h4>
