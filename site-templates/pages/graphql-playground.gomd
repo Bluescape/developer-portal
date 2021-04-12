@@ -6,20 +6,12 @@
     <li><a href="#api-example">API Example using the GraphQL Playground</a></li>
 </ul>
 
-<<<<<<< Updated upstream
-<h3><a name="general-overview" style="color:rgb(44, 45, 48)">General Overview of the GraphQL Playground</a></h3>
-=======
 <h3><a name="general-overview" class="internal-anchor">General Overview of the GraphQL Playground</a></h3>
->>>>>>> Stashed changes
     The GraphQL Playground provides a frontend UI for using Bluescape GraphQL API calls. You can access the playground via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page. </br>
     To gain a better understanding of how Bluescape uses GraphQL, see the <a href="/docs/page/what-is-graphql">What is GraphQL?</a> page.</br></br>
     In the next section, we'll outline exactly how to use the GraphQL Playground.
 
-<<<<<<< Updated upstream
-<a name="how-to-graphql" style="color:rgb(44, 45, 48)"><h3>How to Use the GraphQL Playground</h3></a>
-=======
 <a name="how-to-graphql" class="internal-anchor"><h3>How to Use the GraphQL Playground</h3></a>
->>>>>>> Stashed changes
     In this section, we'll start with a general explanation of how to use the GraphQL Playground. In the next section, <a href="#api-example">API Example using the GraphQL Playground</a>, we'll go over a specific example. </br></br>
     You can access the playground via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page. </br></br>
     After accessing the link, you should see the main GraphQL Playground page: </br>
@@ -50,11 +42,7 @@
     <li><b>Box 13:</b> You can copy the GraphQL API request as a cURL request by clicking the <b>COPY CURL</b> button. This will allow you to run the API request as a cURL request from the command-line.</li> </br></br>
 
 
-<<<<<<< Updated upstream
-<a name="api-example" style="color:rgb(44, 45, 48)"><h2>API Example using the GraphQL Playground</h2></a>
-=======
 <a name="api-example" class="internal-anchor"><h2>API Example using the GraphQL Playground</h2></a>
->>>>>>> Stashed changes
 In this section, we'll go over an example Bluescape GraphQL API request using the GraphQL Playground. In this example, we will be retrieving a list of all the elements in a given workspace. We'll also utilize a key feature of GraphQL: the ability to only retrieve specific fields from a given API request. </br>
 Specifically, we'll retrieve only the <span class="pre">type</span>, <span class="pre">id</span> and <span class="pre">(x,y)</span> fields from the response of a call to the <span class="pre">/workspace/{workspaceId}/elements</span> endpoint. </br></br>
 We'll reference the screenshot below for the remainder of this section: </br>
