@@ -5,7 +5,7 @@
     <li>PATCH and POST for Text: cannot set background as transparent, it displays black (COL-3974).</li>
     <li>PATCH for Image: when providing only "scale" field, image is repositioned at (0,0) (COL-3971).</li>
     <li>PATCH Text: error code 500 is returned when setting background color properties b:0, a:0 (COL-3972).</li>
-    <li>POST and PARTCH for Shapes: kinds "arrow-left-curve" and "arrow-right-u" create wrong shapes (COL-3970).</li>
+    <li>POST and PATCH for Shapes: kinds "arrow-left-curve" and "arrow-right-u" create wrong shapes (COL-3970).</li>
     <li>PATCH for Browser: after modifying height/width, the preview image does not scale or changes (COL-3826).</li>
     <li>PATCH for Video: change of (x,y) position resizes Video back to original height/width (COL-3956).</li>
     <li>PATCH for Stroke: pinning does not work (COL-3955).</li>

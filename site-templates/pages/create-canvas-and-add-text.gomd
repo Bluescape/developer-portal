@@ -2,7 +2,7 @@
 
 <p>
 <b>Objective</b>: Create a new Canvas in your Workspace and add a Text element to this new Canvas. You will learn how to get the IDs of newly created objects within your Workspace, and how to use them to associate other objects with them. You will need the <span class="pre">workspaceId</span>.  
-If you are looking for just the GraphQL section of this guide, click <a href="#graphql">here</a>.
+If you are looking for the GraphQL section of this guide, click <a href="#graphql">here</a>.
 </p>
 
 <h2>REST</h2>
@@ -519,7 +519,7 @@ const makeQuery = async (query, params) => {
 async function startProcess() {
 
     const canvasQuery = 
-        `mutation createCanvas($workspaceId: String!, $input: CreateCanvasInput!){
+        `mutation createCanvasExample($workspaceId: String!, $input: CreateCanvasInput!){
             createCanvas(workspaceId: $workspaceId, input: $input) {
                 __typename
                 name
@@ -546,7 +546,7 @@ async function startProcess() {
     canvasY = canvasResponse.data.createCanvas.transform.y;
 
     const textQuery =
-        `mutation createText($workspaceId: String!, $input: CreateTextInput!){
+        `mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
             createText(workspaceId: $workspaceId, input: $input) {
             __typename
             id
@@ -603,7 +603,7 @@ def makeQuery(query, params):
 
 if __name__ == "__main__":
     canvasQuery = """
-    mutation createCanvas($workspaceId: String!, $input: CreateCanvasInput!){
+    mutation createCanvasExample($workspaceId: String!, $input: CreateCanvasInput!){
         createCanvas(workspaceId: $workspaceId, input: $input) {
             __typename
             name
@@ -631,7 +631,7 @@ if __name__ == "__main__":
     canvasY = canvasResponse['data']['createCanvas']['transform']['y']
 
     textQuery = """
-    mutation createText($workspaceId: String!, $input: CreateTextInput!){
+    mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
         createText(workspaceId: $workspaceId, input: $input) {
             __typename
             id

@@ -7,7 +7,7 @@
     </em>
 </p>
 <p>
-  If you are looking for just the GraphQL section of this guide, click <a href="#working-with-graphql">here</a>.
+  If you are looking for the GraphQL section of this guide, click <a href="#working-with-graphql">here</a>.
 </p>
 
 <h3>The Base URL</h3>
@@ -25,7 +25,7 @@
 <h4>Authorization Header</h4>
 
 <p>
-    Lastly, all operations require an <strong>Authorization</strong> header based on the access tokens received from the
+    All operations whether REST or GraphQL require an <strong>Authorization</strong> header based on the access tokens received from the
     OAuth flow. The value of this header should match the format of <span class="pre">Bearer &lt;access-token&gt;</span>.
 </p>
 
@@ -141,7 +141,7 @@ pprint.pprint(json_response)
 <h3>Assembling a GraphQL Query</h3>
 
 <p>
-    All GraphQL endpoints can be reached from the same URL:
+    All GraphQL endpoints can be reached from the same URL, only the body of the request changes:
 </p>
 
 <pre>
@@ -151,10 +151,11 @@ pprint.pprint(json_response)
 </pre>
 
 <p> 
-    Queries can act as methods by naming them, which allows them to be called from anywhere, and even pass parameters to them in order to specify certain fields.
-    This query is calling the <span class="pre">/workspace/{workspaceId}/elements</span>endpoint in order to retrieve all of the elemnts within that workspace,
-    while also specifying exactly the information that should be returned. In this case the query will return the <span class="pre">type</span>, <span class="pre">id</span>
-    and <span class="pre">(x,y)</span> coordinates of all elements within the workspace. The structure of a basic GraphQL query is as follows: 
+    Queries can act as methods by naming them, which allows them to be reused, and even pass parameters to them in order to specify certain fields.
+    This query is calling the <span class="pre">/workspace/{workspaceId}/elements</span>endpoint in order to retrieve all of the elements within that workspace,
+    while also specifying exactly the information that should be returned. In this case the query will return the <span class="pre">type</span>, 
+    <span class="pre">id</span>, and <span class="pre">(x,y)</span> coordinates of all elements within the workspace.
+    The structure of a basic GraphQL query is as follows: 
 </p>
 
 <pre>
@@ -170,7 +171,7 @@ query getElementsFromWorkspace($workspaceId: String!){
 </pre>
 
 <p>
-    These queries can be ran as-is with a tool such as Postman, or even by directly pasting them into the <a href="blank">GraphQL PlaygroundNEEDSLINK</a>. 
+    These queries can be ran as-is with a tool such as Postman, or even by directly pasting them into the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script>. 
 </p>
 
 <h4>Output</h4>
@@ -230,8 +231,8 @@ query getElementsFromWorkspace($workspaceId: String!){
 </pre>
 
 <p>
-    This is only the surface of what is possible with GraphQL queries. To find out more about working with them in Bluescape, 
-    continue on to the next guides page on <a href="/docs/page/get-list-of-workspaces">Get List of Workspaces</a>.
+    These are only the basics of what is possible with GraphQL queries. To find out more about working with them in Bluescape, 
+    continue on to the next guides page on <a href="/docs/page/get-list-of-workspaces">Getting a list of Workspaces</a>.
 </p>
 
 <br />

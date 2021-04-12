@@ -2,7 +2,7 @@
 
 <p>
 <b>Objective</b>: get a list of all the images in a Workspace. You will need the Workspace ID. This list will contain, for each image, details such as: image name, creation date, traits, comments, etc.
-If you are looking for just the GraphQL section of this guide, click <a href="#graphql">here</a>.
+If you are looking for the GraphQL section of this guide, click <a href="#graphql">here</a>.
 </p>
 
 <h2>REST</h2>
@@ -230,8 +230,8 @@ What you should get: JSON with the list of all images in the workspace
 <h3>Example Query:</h3>
 
 <pre>
-query getElementsFromWorkspace($workspaceId: String!){
-  elements(workspaceId: $workspaceId, type: Shape) {
+query getImagesFromWorkspace($workspaceId: String!){
+  elements(workspaceId: $workspaceId, type: Image) {
     __typename
     id
   }
@@ -256,7 +256,7 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
 --header 'Authorization: Bearer &lt;&lt;TOKEN&gt;&gt;' \
 --header 'Content-Type: application/json' \
 --header 'Cookie: __cfduid=dfb617d0f055c3b4bee6bbb1a62eed3f01617039740; elementary.sid=s%3A6062117c50431ec920ee8b73.uXLfum7uSBXg%2FfpT%2FwI4lNk%2FqZ33gc2CUE7Njg4m5rQ' \
---data-raw '{"query":"query getElementsFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Shape) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"lVbvis7g6m4X872j6ovj"}}'
+--data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"lVbvis7g6m4X872j6ovj"}}'
 </pre>
 </p>
 
@@ -267,7 +267,7 @@ const axios = require('axios');
 const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
 const token = "&lt;SET_TOKEN&gt;"
 const query = 
-    `query getElementsFromWorkspace($workspaceId: String!){
+    `query getImagesFromWorkspace($workspaceId: String!){
         elements(workspaceId: $workspaceId, type: Image) {
     __  typename
         id
@@ -300,7 +300,7 @@ import pprint
 url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
 token = "&lt;SET_TOKEN&gt;"
 query = """
-    query getElementsFromWorkspace($workspaceId: String!){
+    query getImagesFromWorkspace($workspaceId: String!){
         elements(workspaceId: $workspaceId, type: Image) {
         __typename
         id
@@ -321,6 +321,7 @@ if __name__ == "__main__":
     response = makeQuery()
     pprint.pprint(response)
 </pre>
+</p>
 
 <br />
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
