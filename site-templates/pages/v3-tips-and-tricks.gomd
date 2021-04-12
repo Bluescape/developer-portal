@@ -45,6 +45,7 @@ In <a href="https://www.postman.com/" target="_BLANK">Postman</a>, you can easil
 <p>
 One of the most interesting features of GraphQL is introspection. Introspection is the ability to query details about the current API’s schema. You can send queries to every GraphQL API that return data about a given API’s schema. See the following example:
 <table>
+
 <pre>
 query GetSchema{
   ____schema__ {
@@ -55,8 +56,11 @@ query GetSchema{
   }
 }
 </pre>
+
 </table>
+
 The query answer will be something like this:
+
 <pre>
 {
     "data": {
@@ -75,7 +79,9 @@ The query answer will be something like this:
     }
 }
 </pre>
+
 You can also specify a particular type to get its details:
+
 <pre>
 query ElementDetails {
   ____type(name:"Element")__ {
@@ -92,6 +98,7 @@ query ElementDetails {
 </pre>
 
 And the answer is this, with the details of the specified type:
+
 <pre>
 {
     "data": {
@@ -118,5 +125,4 @@ And the answer is this, with the details of the specified type:
     }
 }
 </pre>
-
 </p>

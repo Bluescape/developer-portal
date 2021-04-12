@@ -129,11 +129,13 @@ When users arrive at the authorization page, they will be asked to log in to the
 <a name="2.1-access-token-generated-manually"><h3>2.1. Access Token generated manually</h3></a>
 
 <p>
-    The workflow of this option is presented in this image:<br />
+    The workflow of this option is presented in this image:
+    <br />
     <center>
         <img class="img-responsive center-block" src="/docs/assets/images/token_use_general.png" width="700">
     </center>
 </p>
+
 <p>
     To generate this Token, please:
     <ol>
@@ -161,8 +163,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6
 </p>
 
 <a name="2.2-access-code-and-refresh-tokens"><h3>2.2. Access Token generated using Access Code and Refresh Token</h3></a>
-<p>
 
+<p>
     The workflow of this option is in the image below:<br />
     <center>
         <img class="img-responsive center-block" src="/docs/assets/images/refreshTokens.png" width="700">
