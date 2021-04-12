@@ -14,7 +14,7 @@ The main differences can be grouped in 3 sections:
   <li><a href="#changes-in-path-rest-apis">Changes in the path of the REST APIs</a></li>
 </ul>
 </p>
-<a name="changes-in-rest-api-verbs"></a><h2>Changes in REST API verbs</h2>
+<a name="changes-in-rest-api-verbs" class="internal-anchor"></a><h2>Changes in REST API verbs</h2>
 <table class="table table-striped">
 <td><b>Subject</b></td>
     <td><center><b>V2</b></center></td>
@@ -38,7 +38,7 @@ The main differences can be grouped in 3 sections:
     </td>
   </tr>
 </table>
-<a name="changes-in-request-response-body"></a><h2>Changes in Request and Response Body</h2>
+<a name="changes-in-request-response-body" class="internal-anchor"></a><h2>Changes in Request and Response Body</h2>
 <!-- REST APIs -->
 <table class="table table-striped">
   <tr>
@@ -359,7 +359,7 @@ For the elements of the Image, Document or Video type, the width and height prop
     </td>
   </tr>
 </table>
-<a name="changes-in-path-rest-apis"></a><h2>Changes in the path of the REST APIs</h2>
+<a name="changes-in-path-rest-apis" class="internal-anchor"></a><h2>Changes in the path of the REST APIs</h2>
 <table class="table table-striped">
 <td><b>Subject</b></td>
     <td><center><b>V2</b></center></td>

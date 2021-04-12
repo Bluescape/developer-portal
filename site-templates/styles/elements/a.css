@@ -6,3 +6,8 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+a.internal-anchor {
+  color:rgb(44, 45, 48);
+  text-decoration: none;
+}
