@@ -8,7 +8,7 @@
 
 <h2>API Examples</h2>
 
-<a name="get-walls"><h3>Get All Walls Owned By an Organization</h3></a>
+<a name="get-walls" class="internal-anchor"><h3>Get All Walls Owned By an Organization</h3></a>
         Authenticated User must have the <i>Can List Organization Walls</i> permission group to get all Walls in an organization. 
         The query parameter 'orderBy' supports the 'name' field. You can define multiple 'orderBy' values. You can also specify the order in which your name field is displayed through the use of 'asc' and 'desc'. The filter parameter 'filterBy' supports fields 'name', 'archived'. 
         Only one filter parameter may be provided at a time; any extras will be ignored. Example: 'filterBy=name:testwall'.
