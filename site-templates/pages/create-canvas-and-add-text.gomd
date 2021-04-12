@@ -384,7 +384,7 @@ From this response, you can obtain the newly created Canvas ID: ['data']['id']
 }
 </pre>
 
-<a name="graphql" style="color:rgb(44, 45, 48)"><h2>GraphQL</h2></a>
+<a name="graphql" class="internal-anchor"><h2>GraphQL</h2></a>
 
 <p>
     To begin, you will need to create a Canvas in your Workspace that can be used to group your elements in. To do this, you will need only the WorkspaceID

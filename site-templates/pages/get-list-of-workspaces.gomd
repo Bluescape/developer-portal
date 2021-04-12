@@ -190,7 +190,7 @@ What you should get: JSON with the list of the first 25 workspaces your user has
 }
 </pre>
 
-<a name="graphql" style="color:rgb(44, 45, 48)"><h2>GraphQL</h2></a>
+<a name="graphql" class="internal-anchor"><h2>GraphQL</h2></a>
 
 <table class="table table-striped">
     <tr>

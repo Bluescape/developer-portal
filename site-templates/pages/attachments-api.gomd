@@ -41,7 +41,7 @@
     <a href="#use-case-example">Use Case Example</a> <br />  
 </p>
 
-<a name="allowed-types"><h3>Allowed Element types for Attachments:</h3></a>
+<a name="allowed-types" class="internal-anchor"><h3>Allowed Element types for Attachments:</h3></a>
 <p>
 <table class="table table-striped">
     <tr>
@@ -121,9 +121,9 @@
 </p>
 <br />
 
-<a name="how-to-implement"><h2>How to Implement Attachments APIs</h2></a>
+<a name="how-to-implement" class="internal-anchor"><h2>How to Implement Attachments APIs</h2></a>
 
-<a name="create-attachment"><h3>Create: attach one element to another</h3></a>
+<a name="create-attachment" class="internal-anchor"><h3>Create: attach one element to another</h3></a>
     <p>
         <table class="table table-striped">
                 <tr>
@@ -270,7 +270,7 @@ Sample Response Body:
         
 </p>
 
-<a name="get-attachments"><h3>Get: list all attachments of an element</h3></a>
+<a name="get-attachments" class="internal-anchor"><h3>Get: list all attachments of an element</h3></a>
 <p>
 <table class="table table-striped">
         <tr>
@@ -396,7 +396,7 @@ Sample Response Body with the list of attachements an object has:
 </pre>
 </p>
 
-<a name="delete-attachment"><h3>Delete: remove an element's attachments</h3></a>
+<a name="delete-attachment" class="internal-anchor"><h3>Delete: remove an element's attachments</h3></a>
 <p>
 <table class="table table-striped">
         <tr>
@@ -513,7 +513,7 @@ Sample Response Body after deleting the attachments in an element:
 </p>
 
 
-<a name="use-case-example"><h3>Use Case Example</h3></a>
+<a name="use-case-example" class="internal-anchor"><h3>Use Case Example</h3></a>
 Below is a simple, end-to-end example of how someone might use the Attachments APIs. This example is one in which a user uploads
 content from a local directory into a Bluescape workspace, generates text fields corresponding to the names of the uploaded files, and 
 attaches the text fields to the files. An e-mail is then sent to the specified recipient notifying them of the changes that were 

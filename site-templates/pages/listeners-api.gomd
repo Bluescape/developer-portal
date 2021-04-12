@@ -42,7 +42,7 @@
 <p>
   Please remember that the term "Listener" must be understood from your perspective, as the API user interacting with a Workspace: you will set a Listener to listen to events that occur in that Workspace. 
 </p>
-<a name="requirements"><h3>Requirements</h3></a>
+<a name="requirements" class="internal-anchor"><h3>Requirements</h3></a>
 
 <p>
     Because listeners are notified of Bluescape activity as soon as it happens, applications that implement listeners
@@ -52,7 +52,7 @@
                                                                                          target="_blank">ngrok</a> and <a href="https://pagekite.net/" target="_blank">pagekite</a>.
 </p>
 
-<a name="use-case"><h3>Use Case: Notifications</h3></a>
+<a name="use-case" class="internal-anchor"><h3>Use Case: Notifications</h3></a>
 
 <p>
     Every project team has its established communication channels, and Bluescape Listeners are the perfect tool for
@@ -64,7 +64,7 @@
 
 <img class="img-responsive center-block" src="/docs/assets/images/diagrams/UseCaseSlack.png">
 
-<a name="event-types"><h3>Event Types</h3></a>
+<a name="event-types" class="internal-anchor"><h3>Event Types</h3></a>
 
 <p>
     All notifications sent to listeners contain an event type denoting what kind of activity occurred in the workspace
@@ -121,7 +121,7 @@
     removed and workspaces being created, deleted, published, and shared.
 </div>
 
-<a name="verification"><h3>Listener Verification</h3></a>
+<a name="verification" class="internal-anchor"><h3>Listener Verification</h3></a>
 
 <p>
     When the api to create a listener is called,
@@ -133,7 +133,7 @@
 </p>
 
 
-<a name="targets"><h3>Listener Targets</h3></a>
+<a name="targets" class="internal-anchor"><h3>Listener Targets</h3></a>
 
 <p>
     Listeners can be attached to workspaces in general or to specific objects within a workspace. When a listener is
@@ -143,7 +143,7 @@
     only receive notifications about that object.
 </p>
 
-<a name="alternate-event-types"><h3>Alternate eventType Listeners</h3></a>
+<a name="alternate-event-types" class="internal-anchor"><h3>Alternate eventType Listeners</h3></a>
 
 <p>
   Here are listed some variations of listeners that can be set by specifying what event types they
@@ -310,7 +310,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
   sendRequest(data_load)
 </pre>
 
-<a name="listener-states"><h3>Listener States</h3></a>
+<a name="listener-states" class="internal-anchor"><h3>Listener States</h3></a>
 
 <p>
     Listener states allow for existing listeners to be disabled without being deleted. When a listener is first created,
@@ -330,7 +330,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     In order to reactivate the listener, applications will need to set the listener's status back to <span class="pre">ACTIVE</span>.
 </p>
 
-<a name="full-example"><h2>Use Case Example:</h2></a>
+<a name="full-example" class="internal-anchor"><h2>Use Case Example:</h2></a>
 
 <p>
   Here is an example of a top to bottom implementation of listeners. This will cover creating the listener, setting up a server 
@@ -338,7 +338,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
   acting on the incoming listener events in order to send slack updates to a dedicated channel.
 </p>
 
-<a name="setup-server"><h4>Setting Up a Basic Server</h4></a>
+<a name="setup-server" class="internal-anchor"><h4>Setting Up a Basic Server</h4></a>
 
 <p>
   Before the listener can actually be set, we will need some way to receive the initial <span class="pre">TEST_HOOK</span>
@@ -437,7 +437,7 @@ app.post("/", (req, res, next) => {
   has been received and properly handled.
 </p>
 
-<a name="setup-proxy"><h4>Setting Up the Reverse Proxy</h4></a>
+<a name="setup-proxy" class="internal-anchor"><h4>Setting Up the Reverse Proxy</h4></a>
 
 <div class="well">
     <p>
@@ -464,7 +464,7 @@ app.post("/", (req, res, next) => {
   one of the addresses listed in the <span class="pre">Forwarding</span> section to be used for initializing our listeners.
 </p>
 
-<a name="create-listener"><h4>Creating the Listener</h4></a>
+<a name="create-listener" class="internal-anchor"><h4>Creating the Listener</h4></a>
 
 <p>
   Now that we've gotten all of the prep work out of the way, we can create our listener object!
@@ -581,7 +581,7 @@ app.post("/", (req, res, next) => {
       pprint.pprint(json_response)
 </pre>
 
-<a name="act-on-listener"><h4>Acting on Listener Events</h4></a>
+<a name="act-on-listener" class="internal-anchor"><h4>Acting on Listener Events</h4></a>
 <p>
   After running the code from the previous section we now have an active listener set up that is ready to broadcast any events related to it's eventType parameter, as well as
   a node server that will receive these events. Now all that's left to do is implement some sort of functionality for what should happen

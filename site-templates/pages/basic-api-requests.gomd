@@ -136,7 +136,7 @@ pprint.pprint(json_response)
 </pre>
 </p>
 
-<a name="working-with-graphql" style="color:rgb(44, 45, 48)"><h2>Working with GraphQL</h2></a>
+<a name="working-with-graphql" class="internal-anchor"><h2>Working with GraphQL</h2></a>
 
 <h3>Assembling a GraphQL Query</h3>
 
