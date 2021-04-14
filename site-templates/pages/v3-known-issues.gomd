@@ -6,7 +6,7 @@
     <li>PATCH for Image: when providing only "scale" field, image is repositioned at (0,0) (COL-3971).</li>
     <li>PATCH Text: error code 500 is returned when setting background color properties b:0, a:0 (COL-3972).</li>
     <li>POST and PATCH for Shapes: kinds "arrow-left-curve" and "arrow-right-u" create wrong shapes (COL-3970).</li>
-    <li>PATCH for Browser: after modifying height/width, the preview image does not scale or changes (COL-3826).</li>
+    <li>PATCH for Browser: after modifying height/width, the preview image does not scale or changes (WEBC-10223).</li>
     <li>PATCH for Video: change of (x,y) position resizes Video back to original height/width (COL-3956).</li>
     <li>PATCH for Stroke: pinning does not work (COL-3955).</li>
     <li>PATCH for Line: changes in request body are not applied to element (COL-3975).</li>
@@ -14,6 +14,7 @@
     <li>POST for traits: you cannot add traits to an element already created (COL-3866).</li>
     <li>POST for Browser: error is returned when "frameless" property is set to false (COL-3632).</li>
     <li>PATCH for Browser: cannot change value of "frameless" property (WEBC-10176).</li>
+    <li>POST and PATCH for Browser: if height or width are set to less than 640, the error is not clear about this lower limit (COL-4069)<li>
     <li>Upload Assets paths in openapi.json documentation is incorrect (COL-3912).</li>
     <li>GET for Stroke: does not return Traits (COL-3889).</li>
     <li>GET for Whiteboard: does not return Traits (COL-3878).</li>
