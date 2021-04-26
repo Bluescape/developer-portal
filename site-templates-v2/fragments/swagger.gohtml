@@ -3,11 +3,29 @@
     <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-standalone-preset.js"></script>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css" >
     <link rel="stylesheet" type="text/css" href="{{.Prefix}}styles/components/swagger.css" >
+    <style>
+        pre, span.pre {
+            background-color: transparent;
+            padding: 6px 10px;
+            margin: 10px 10px 20px 10px;
+            border: transparent;
+            }
+
+        th {
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            }
+
+        td {
+            border: none;
+        }
+    </style>
 {{end}}
 <span id="swagger-ui"></span>
 <script>
  const ui = SwaggerUIBundle({
-     url: "/openapi/services/{{.CurrentServicePath}}/openapi.json",
+     url: "/openapi/services/{{.CurrentNamespace}}/{{.CurrentService}}/openapi.json",
      dom_id: '#swagger-ui',
      deepLinking: true,
      presets: [
