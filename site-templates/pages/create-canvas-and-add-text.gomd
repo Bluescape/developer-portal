@@ -1,11 +1,11 @@
 <h1>Create a Canvas and add a Text Element to it</h1>
 
 <p>
-<b>Objective</b>: Create a new Canvas in your Workspace and add a Text element to this new Canvas. You will learn how to get the IDs of newly created objects within your Workspace, and how to use them to associate other objects with them. You will need the <span class="pre">workspaceId</span>.  
-If you are looking for the GraphQL section of this guide, click <a href="#graphql">here</a>.
+<b>Objective</b>: Create a new Canvas in your Workspace and add a Text element to this new Canvas. You will learn how to get the IDs of newly created objects within your Workspace, and how to use them to associate other objects with them. You will need the <span class="pre">workspaceId</span>.<br />  
+This page contains the implementation details for <a href="#rest">REST APIs</a> and for <a href="#graphql">GraphQL APIs</a>.
 </p>
 
-<h2>REST</h2>
+<a name="rest" class="internal-anchor"><h2>Implementation using REST APIs</h2></a>
 
 <h4>Create Canvas</h4>
 
@@ -384,14 +384,14 @@ From this response, you can obtain the newly created Canvas ID: ['data']['id']
 }
 </pre>
 
-<a name="graphql" class="internal-anchor"><h2>GraphQL</h2></a>
+<a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
 
 <p>
     To begin, you will need to create a Canvas in your Workspace that can be used to group your elements in. To do this, you will need only the WorkspaceID
     in which you want to create the Canvas. For information on how to get this, see our previous guide on <a href="/docs/page/graphql-get-list-of-workspaces">Getting a List of Workspaces</a>.
     The information you'll need returned from this call is only the (x,y) coordinates of where it is placed, so that you can
     add a Text element to the Canvas in the next step. Many additional properties can be given to the Canvas upon creation, but it will be kept simple
-    for the sake of this introduction. This can be specifcied in a relatively simple query as follows:
+    for the sake of this introduction. This can be specified in a relatively simple query as follows:
 </p>
 
 <pre>

@@ -7,7 +7,7 @@
     </em>
 </p>
 <p>
-  If you are looking for the GraphQL section of this guide, click <a href="#working-with-graphql">here</a>.
+  This page contains the details for <a href="#working-with-rest">REST APIs</a> and for <a href="#working-with-graphql">GraphQL APIs</a>.   
 </p>
 
 <h3>The Base URL</h3>
@@ -29,7 +29,7 @@
     OAuth flow. The value of this header should match the format of <span class="pre">Bearer &lt;access-token&gt;</span>.
 </p>
 
-<h2>Working with REST</h2>
+<a name="working-with-rest" class="internal-anchor"><h2>Implementation using REST APIs</h2></a>
 
 <h3>Assembling a REST Request</h3>
 
@@ -136,7 +136,7 @@ pprint.pprint(json_response)
 </pre>
 </p>
 
-<a name="working-with-graphql" class="internal-anchor"><h2>Working with GraphQL</h2></a>
+<a name="working-with-graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
 
 <h3>Assembling a GraphQL Query</h3>
 
