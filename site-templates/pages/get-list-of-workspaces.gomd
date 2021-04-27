@@ -135,9 +135,8 @@ axios(request_values)
 
 <p>
 <pre class="lang lang-curl">
-curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/workspaces/&lt;&lt;workspaceId&gt;&gt;' \
---header 'Authorization: Bearer &lt;&lt;TOKEN&gt;&gt;' \
---header 'Cookie: __cfduid=dfb617d0f055c3b4bee6bbb1a62eed3f01617039740'
+curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/users/me/workspaces' \
+--header 'Authorization: Bearer &lt;&lt;TOKEN&gt;&gt;' 
 </pre>
 </p>
 
