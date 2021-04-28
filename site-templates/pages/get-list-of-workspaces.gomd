@@ -135,9 +135,8 @@ axios(request_values)
 
 <p>
 <pre class="lang lang-curl">
-curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/workspaces/&lt;&lt;workspaceId&gt;&gt;' \
---header 'Authorization: Bearer &lt;&lt;TOKEN&gt;&gt;' \
---header 'Cookie: __cfduid=dfb617d0f055c3b4bee6bbb1a62eed3f01617039740'
+curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/users/me/workspaces' \
+--header 'Authorization: Bearer &lt;TOKEN&gt;' 
 </pre>
 </p>
 
@@ -232,9 +231,8 @@ query getWorkspaces{
 <p>
 <pre class="lang lang-curl">
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
---header 'Authorization: Bearer &lt;&lt;TOKEN&gt;&gt;' \
+--header 'Authorization: Bearer &lt;TOKEN&gt;' \
 --header 'Content-Type: application/json' \
---header 'Cookie: __cfduid=dfb617d0f055c3b4bee6bbb1a62eed3f01617039740; elementary.sid=s%3A6062117c50431ec920ee8b73.uXLfum7uSBXg%2FfpT%2FwI4lNk%2FqZ33gc2CUE7Njg4m5rQ' \
 --data-raw '{"query":"query getWorkspaces{\n  me {\n    workspaces {\n      totalItems\n      results {\n        name\n        id\n      }\n    }\n  }\n}","variables":{}}'
 </pre>
 </p>

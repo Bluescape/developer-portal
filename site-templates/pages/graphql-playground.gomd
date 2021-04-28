@@ -25,7 +25,7 @@
     <li><b>Box 4:</b> Clicking the <b>HTTP HEADERS</b> tab will allow you to input your HTTP headers in the input field beneath it.</li></br>
     <li><b>Box 5:</b> To run your query, press the Play button in the middle of the playground.</li></br>
     <li><b>Box 6:</b> After running the query, your API response will be displayed in this section.</li></br>
-    <li><b>Box 7:</b> You can open a new query tab by clicking the + icon (TODO: put + icon screenshot here). This will allow you to write separate queries in new tabs.</li> </br>
+    <li><b>Box 7:</b> You can open a new query tab by clicking the <span class="pre">+>/span> icon (TODO: put + icon screenshot here). This will allow you to write separate queries in new tabs.</li> </br>
     <li><b>Box 8:</b> You can prettify your JSON query if you click the <b>Prettify</b> button.</li></br>
     <li><b>Box 9:</b> To see a history of the requests you've ran in the playground, click on this <b>History</b> tab. An example of what gets displayed when expanding this tab is shown below:</li> </br>
     <img class="img-responsive left-block" src="/docs/assets/images/playground_history.png" height="300" width="300"></br>
