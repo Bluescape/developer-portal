@@ -23,7 +23,7 @@
             {{/* <li><h3>API Reference</h3></li>
             {% include 'reference/api-toc' %} */}}
         </ul>
-        <strong>API Reference</strong>
+        <strong>REST API Reference</strong>
         <ul class="unindent-side-nav-ul">
             {{range $i, $element := .S.K8sStore.Slice }}
                 {{$svc := $element.Service}}
@@ -68,7 +68,7 @@
             <li><a href="/docs/page/versioning-v2">Versioning</a></li>
             <li><a href="/docs/page/sso">SSO</a></li>
         </ul>
-        <strong>API Reference: /v2/</strong>
+        <strong>REST API Reference: /v2/</strong>
         <ul class="unindent-side-nav-ul">  
             <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference">Go to current API version</a></li>          
                     {{range $i, $element := .S.K8sStore.Slice }}
