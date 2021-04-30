@@ -1,9 +1,10 @@
-# Bluescape Ambassador V3 devportal-content
+# devportal-content V2, with SEARCH
 
-User content for Ambassador Edge Stack Dev Portal
+User content for Ambassador Edge Stack Dev Portal.
 
-Site for the Bluescape Developer Portal.
-Current site URL: https://developer.bluescape.com/
+V2 is compatible with Edge Stack 1.13+.
+
+If using an earlier version, use v1 of the DevPortal content [here](https://github.com/datawire/devportal-content).
 
 ## How to customize
 
@@ -11,7 +12,9 @@ Current site URL: https://developer.bluescape.com/
 
 - Update the `DEVPORTAL_CONTENT_URL` environment variable in your Ambassador Edge Stack deployment.
 
-## Kinds of content
+- Modify your fork. Note: for now it's necessary to restart ambassador to refresh the portal content. We'll fix this in the next release.
+
+## kinds of content
 
 Kinds of information you can put on dev portal:
 
@@ -24,37 +27,21 @@ Kinds of information you can put on dev portal:
 | CSS stylesheets    | `/styles/`                   |               | No           |
 | Assets             | `/assets/`                   |               | No           |
 
-## NOTE:
+## Golang Templating
 
-If you notice the devportal service not starting when you are running docker-compose up, you can ignore that unless you have some dependency on devportal. As of 04/08/2021, no other services have a dependency on the developer portal for local development.
-If you do need to run the developer portal, see the sections below.
+As shown in the table above, much of the content that you are able to customize supports Golang templating. You can see examples of this in [`layout.gohtml`](./layout.gohtml).
 
-## Running locally with docker-compose
+Templating allows you to customize how pages look, create variables to use in static content throughout the site, and use control loops to display multiple kinds of content.
 
-This section assumes you have already set up your docker-compose correctly, locally. If not, first follow the instructions here: https://confluence.common.bluescape.com/confluence/display/cip/Docker+Compose+Quick+Start
+### Variables
 
-First, clone the repo locally (at the same level as your infrastructure repo was cloned):
-
-> git clone git@github.com:Bluescape/developer-portal.git
-
-There is no need to build the devportal service locally - it comes up automatically if you bring up docker-compose:
-
-> docker-compose up
-
-## Running locally WITHOUT docker-compose
-
-You can also work locally with the devportal without using docker. To do so, first clone the repo locally:
-
-> git clone git@github.com:Bluescape/developer-portal.git
-
-Next, cd into site-templates:
-
-> cd developer-portal/site-templates
-
-Then, run the following:
-
-> docker run -it --rm --volume $PWD:/content --publish 8877:8877 docker.io/datawire/ambassador_pro:local-devportal-0.11.0
-
-Access the service in your browser at:
-
-> localhost:8877
+These variables are available in all template-able file types
+| Name | Description | Values (example) |
+| ------------------- | ------------------------------------------------------------------ | --------------------------- |
+| `.Ctx` | The current type of page being served | "landing", "page", or "doc" |
+| `.Prefix` | The url prefix of the current request | `/docs/` |
+| `.Pages` | List of static pages in the `pages/` directory | `[Content Introduction]` |
+| `.CurrentPage` | The current page being accessed | `Content` |
+| `.CurrentNamespace` | The namespace of the service for the current OpenAPI documentation | `default` |
+| `.CurrentService` | The name of the service for the current OpenAPI documentation | `quote` |
+| `.CurrentServicePath` | Relative service path for currently displayed service | `default/quote` |
