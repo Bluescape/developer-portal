@@ -1,4 +1,4 @@
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .o-page__header {
     position: fixed;
     top: 0;
@@ -31,11 +31,11 @@
     display: flex;
   }
 
-  .o-page__main > div> article {
+  .o-page__main > div > article {
     flex: 1 1 auto;
   }
 
-  .o-page__main > div> aside {
+  .o-page__main > div > aside {
     flex: 0 0 230px;
     margin-left: 2em;
     padding-left: 1em;
