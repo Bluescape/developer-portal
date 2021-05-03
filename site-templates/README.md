@@ -1,4 +1,5 @@
-# devportal-content
+# devportal-content V2, with SEARCH
+
 User content for Ambassador Edge Stack Dev Portal.
 
 V2 is compatible with Edge Stack 1.13+.
