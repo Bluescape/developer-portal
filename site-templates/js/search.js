@@ -7,7 +7,7 @@ $(document).ready(function() {
               url: '/docs/api/search?term={query}'
           },
           maxResults: 7,
-          minCharacters: 2,
+          minCharacters: 4,
       });
 });
 
