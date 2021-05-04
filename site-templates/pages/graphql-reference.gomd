@@ -1,0 +1,10 @@
+<h1>GraphQL Reference</h1>
+<p>
+You can access the GraphQL documentation and Schema via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page. <br />
+On the far right side of the screen you will find the links to the documentation and schema: 
+<img class="img-responsive center-block" src="/docs/assets/images/graphql-docs-schema.png" width="80">
+<p>
+
+<p style="margin-bottom: 16rem;">
+    Please <a href="/docs/page/support">let us know</a> if something is missing.
+</p>
