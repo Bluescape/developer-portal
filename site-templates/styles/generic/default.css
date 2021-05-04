@@ -754,6 +754,10 @@ ul.navbar-default li a {
 }
 
 /* elements */
+pre {
+    font-size: 14px !important;
+}
+
 pre, span.pre {
   background-color: #f7f8f9;
   padding: 6px 10px;
