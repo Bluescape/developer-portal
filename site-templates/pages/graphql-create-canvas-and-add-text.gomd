@@ -117,7 +117,7 @@ const axios = require('axios');
 
 const url = "<script type="text/javascript">document.write(apiBaseStr);</script>/v3/graphql/"
 const token = "&lt;SET_TOKEN&gt;"
-const workspaceId = "&lt;SET_WORKSPACEID&gt; silly text"
+const workspaceId = "&lt;SET_WORKSPACEID&gt;"
 
 const makeQuery = async (query, params) => {
     try {
