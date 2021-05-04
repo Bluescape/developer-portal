@@ -1,0 +1,209 @@
+<h1>Add new menu options using Traits, context menu traits</h1>
+<b>DRAFT</b>
+
+<p>
+<b>Objective</b>: Add new options to the menu of an object. These new menu options can include URLs to external sites.<br />
+The context menu can be added at the moment of creating the object, or later. Its creation is based on Traits.<br />  
+At this moment, this feature works only with V3 GraphQL.
+</p>
+
+<a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
+
+<table class="table table-striped">
+    <tr>
+      <td><b>Mutation</b></td>
+      <td>addTraits</td>
+    </tr> 
+    <tr>
+      <td><b>Comments</b></td>
+      <td>You need to know the <span class="pre">ID</span> of the object to which you will add the context menu</td>
+    </tr>
+</table>
+
+<h3>Example Mutation:</h3>
+
+<pre>
+mutation($workspace: String!, $id: String!) {
+    traits: addTraits(
+      workspaceId: $workspace
+      id: $id
+      input: {
+        context: "http://schema.org"
+        content: {
+          potentialAction: {
+            type: "ViewAction"
+            name: "Open In MY_APPLICATION"
+            target: {
+              type: "EntryPoint",
+              urlTemplate: "URL_TO_YOUR APPLICATION-PLUS_NEEDED_URL_PARAMETERS"
+            }
+          }
+        }
+      }
+      dryRun: false
+    )
+  }
+</pre>
+
+Which can be run with variables such as:
+
+<pre>
+{
+    "workspace": "&lt;your_workspaceId_here&gt;",
+    "id" : "&lt;objecID_here&gt;"
+}
+</pre>
+
+<h2>Code sample</h2>
+
+<p>
+    <b>TODO PYTHON</b>: See below for full code examples of this implementation in Python and Node.js.
+</p>
+
+<div class="lang-selector">
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-node">
+const axios = require('axios');
+
+const url = "<script type="text/javascript">document.write(apiBaseStr);</script>/v3/graphql/"
+const token = "&lt;SET_TOKEN&gt;"
+const workspaceId = "&lt;SET_WORKSPACEID&gt;"
+
+const makeQuery = async (query, params) => {
+    try {
+        const response = await axios.post(url,
+            {
+                query: query,
+                variables: params
+            }, 
+            {headers: {"Authorization": "Bearer " + token}
+        })
+        return response.data
+    }
+    catch(error) {
+        console.error(error)
+    }
+}
+
+async function startProcess() {
+
+    const addContextMenuTraits = 
+        `mutation($workspace: String!, $id: String!) {
+            traits: addTraits(
+            workspaceId: $workspace
+            id: $id
+            input: {
+                context: "http://schema.org"
+                content: {
+                    potentialAction: {
+                        type: "ViewAction"
+                        name: "Open In MY_APPLICATION"
+                        target: {
+                            type: "EntryPoint",
+                            urlTemplate: "URL_TO_YOUR APPLICATION-PLUS_NEEDED_URL_PARAMETERS"
+                        }
+                    }
+                }
+            }
+            dryRun: false
+            )
+        }`
+
+    const mutationParams = {
+        "workspace": "&lt;your_workspaceId_here&gt;",
+        "id" : "&lt;objecID_here&gt;"
+    }
+
+    const addContextMenu = await makeQuery(addContextMenuTraits, mutationParams);
+    console.log(addContextMenu);    
+}
+
+startProcess();
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+import requests
+import pprint
+
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
+token = "&lt;SET_TOKEN&gt;"
+workspaceId = "&lt;SET_WORKSPACEID&gt;"
+
+def makeQuery(query, params):
+
+    response = requests.post(url, 
+    headers={"Authorization": "Bearer " + token
+    },
+    json={'query': query,
+            'variables': params})
+
+    return response.json()
+
+if __name__ == "__main__":
+    canvasQuery = """
+    mutation createCanvasExample($workspaceId: String!, $input: CreateCanvasInput!){
+        createCanvas(workspaceId: $workspaceId, input: $input) {
+            __typename
+            name
+            id
+            transform { x y }
+        }
+    }
+    """
+
+    canvasParams = {
+    "workspaceId": workspaceId,
+    "input": {
+        "name": "Example Canvas",
+        "transform": {
+            "x": 100,
+            "y": 100
+            }
+        }
+    }
+
+    canvasResponse = makeQuery(canvasQuery, canvasParams)
+    pprint.pprint(canvasResponse)
+
+    canvasX = canvasResponse['data']['createCanvas']['transform']['x']
+    canvasY = canvasResponse['data']['createCanvas']['transform']['y']
+
+    textQuery = """
+    mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
+        createText(workspaceId: $workspaceId, input: $input) {
+            __typename
+            id
+            text
+            transform { x y }
+        }
+    }
+    """
+    textParams = {
+        "workspaceId": workspaceId,
+        "input": {
+            "text": "Example text inside canvas",
+            "transform": {
+                "x": canvasX + 50,
+                "y": canvasY + 50,
+                "scaleX": 1,
+                "scaleY": 1
+            },
+            "style": {
+                "height": 100,
+                "width": 300,
+                "fontFamily": "Helvetica",
+                "fontSize": 24
+            }
+        }
+    }
+    
+    textResponse = makeQuery(textQuery, textParams)
+    pprint.pprint(textResponse)
+</pre>
+</p>
