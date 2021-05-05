@@ -31,7 +31,7 @@
 <ul>
     <li>Federated GraphQL is not fully implemented (AD-8755).</li>
     <li>Subscriptions are not fully implemented (AD-8740).</li>
-    <li>GraphQL upload of assets to workspace is not fully implemented (<b>TODO: ADD TICKET # </b>).</li>
+    <li>GraphQL upload of assets to workspace is not implemented (COL-4127).</li>
     <li>addTraits mutation dryRun parameter should default to dryRun:false to enable addition of traits (COL-3879).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
     <li>Query for Strokes: traits are returned empty (COL-3483).</li>
@@ -41,4 +41,5 @@
     <li>Only Organization Admins can access the Applications feature in Config Center.</li>
     <li>Upload of asset from URL needs to be implemented (COL-3898).</li>
     <li>GraphQL end REST response body ned to return object, not just ID (COL-3907).</li>
+    <li>Organizations created with V3 REST and GraphQL are not accessible by a V2 GET /organizations/<org-id> (AD-9480).</li>
 </ul>
