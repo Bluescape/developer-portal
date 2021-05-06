@@ -23,7 +23,7 @@
             {{/* <li><h3>API Reference</h3></li>
             {% include 'reference/api-toc' %} */}}
         </ul>
-        <strong>REST API Reference</strong>
+        <strong>REST API</strong>
         <ul class="unindent-side-nav-ul">
             {{range $i, $element := .S.K8sStore.Slice }}
                 {{$svc := $element.Service}}
@@ -54,7 +54,7 @@
                 <li><samp>None</samp></li>
             {{end}}
             </ul>
-        <strong>GraphQL</strong>
+        <strong>GraphQL API</strong>
         <ul class="unindent-side-nav-ul">
             <li style="padding-left: 0.6em;" class="subitemguide"><a href="/docs/page/graphql-reference">GraphQL Reference</a></li>            
         </ul>
@@ -64,7 +64,7 @@
     {{end}}
     {{if or (eq $.CurrentPage "reference-v2") (eq $.CurrentPage "urls-v2") (eq $.CurrentPage "pagination-v2") (eq $.CurrentPage "listener-events-v2") (eq $.CurrentPage "permissions-v2") (eq $.CurrentPage "versioning-v2") (eq $.CurrentPage "sso") (eq $.CurrentService "listener-api") (eq $.CurrentService "collab") (eq $.CurrentService "portal-api")}}
     <div>
-        <strong>Reference: /v2/</strong>
+        <strong>Reference /v2/</strong>
         <ul class="unindent-side-nav-ul">
             <li><a href="/docs/page/urls-v2">URLs</a></li>
             <li><a href="/docs/page/pagination-v2">Pagination</a></li>
@@ -73,7 +73,7 @@
             <li><a href="/docs/page/versioning-v2">Versioning</a></li>
             <li><a href="/docs/page/sso">SSO</a></li>
         </ul>
-        <strong>REST API Reference: /v2/</strong>
+        <strong>REST API /v2/</strong>
         <ul class="unindent-side-nav-ul">  
             <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference">Go to current API version</a></li>          
                     {{range $i, $element := .S.K8sStore.Slice }}
