@@ -1,0 +1,39 @@
+<h1>GraphQL subscriptions</h1>
+<p>
+GraphQL Subscriptions enable clients to listen to real-time messages whenever important changes happen inside of Bluescape workspaces and organizations. The client connects to the server with a bi-directional communication channel using the WebSocket protocol and sends a subscription query that specifies which event it is interested in. When an event is triggered, the Bluescape server executes the stored GraphQL query, and the result is sent back to the client using the same communication channel.<br />
+
+The client can unsubscribe by sending a message to the Bluescape server. The Bluescape server can also unsubscribe at any time due to errors or timeouts.
+</p>
+<p>
+<h3>List of Subscriptions</h3>
+<p>You can access the playground via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page: click the Docs link on the far right border, and look for the list of currently available subscriptions in the SUBSCRIPTIONS section at the bottom of the column. 
+</p>
+
+<h3>Example of implementation</h3>
+<p>You can access the playground via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page.
+Here is an example of subscription for raw History events: <br />
+<b>TODO: REPLACE WITH WORKING EXAMPLE, THIS ONE BROKE TODAY</b>
+<pre>
+subscription ($workspace: String!) {
+  history(workspaceId: $workspace) {
+    actor {
+      id
+    }
+    ... on NewCommand {
+      new {
+        id
+        type: __typename
+      }
+    }
+    ... on RawCommand {
+      raw
+    }
+  }
+}
+</pre>
+</p>
+<p>
+When the subscription is running, please interact with an element in the workspace, for example, change its position.<br />
+After moving the element, you will see that a new event is reported to the subscription: <b>TODO: ADD IMAGE OF EVENTS RUNNING IN PLAYGROUND</b>
+</p>
+
