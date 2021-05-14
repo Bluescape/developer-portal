@@ -222,16 +222,22 @@ mutation createShapeWithTraits($ws: String! $textContent:String!) {
             width:2000 height:2000 strokeWidth: 5 
             fillColor: {
                 r:255 g:100 b:255 a:1}
-            strokeColor:{
-                r:255 g:0 b:0 a:1
-            }    
-                }
-        transform: {x:0 y:0}})
-    {id kind traits style {strokeWidth fillColor {r g b a}}}
+        }
+        transform: {x:0 y:0}
+        })
+    {id kind traits}
     }
 </pre>
 
-Response, see how the traits have been created:
+with the following variables:
+<pre>
+{
+    "workspace": "`<`workspaceId`>`",
+    "textContent" : "New shape, with traits!"
+}
+</pre>
+
+In the Response body, see how the traits have been created:
 <pre>
 {
     "data": {
@@ -256,10 +262,11 @@ Response, see how the traits have been created:
         </tr>
 </table>
 
+<b>TODO</>: Double check functionality  in federated graphql (works in elementary)
 <pre>
 mutation addTraitsToElement($workspace: String!, $id:String!) {
   traits: addTraits(
-    workspaceId: $workspace, 
+    workspaceId: $workspace,
     dryRun:false, 
     id: $id, 
     compactOutput:false,
@@ -267,7 +274,7 @@ mutation addTraitsToElement($workspace: String!, $id:String!) {
             context: "http://schema.org/", 
             content: {
                 project: "Special Project", 
-                ProjectId : "<SOME-VALUE>"
+                projectId : "`<`ADD-PROJECT-ID`>`"
                 }
             }
     )
@@ -276,8 +283,8 @@ mutation addTraitsToElement($workspace: String!, $id:String!) {
 with the following variables:
 <pre>
 {
-    "workspace": "<workspaceId>",
-    "id" : "<elementId>"
+    "workspace": "`<`workspaceId`>`",
+    "id" : "`<`elementId`>`"
 }
 </pre>
 <h3>Get a list of the Traits in an object, GraphQL API</h3>
@@ -293,8 +300,8 @@ query getTraitsOfElementById($workspaceId: String!, $id:String!){
 with the following variables: 
 <pre>
 {
-    "workspace": "<workspaceId>",
-    "id" : "<elementId>"
+    "workspace": "`<`workspaceId`>`",
+    "id" : "`<`elementId`>`"
 }
 </pre>
 <br />
