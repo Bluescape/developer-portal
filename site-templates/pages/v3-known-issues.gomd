@@ -21,7 +21,7 @@
     <li>GET for Line: does not return Traits (COL-3799).</li>
     <li>GET for Shapes: does not return attachments (COL-4083).</li>
     <li>POST and DELETE for attachments: not working (COL-3870).</li>
-    <li>POST: "create within canvas" functionality is not enabled as in V2 (COL-3981).</li>
+    <li>POST: "create within canvas" functionality is not enabled as in V2, you need to procide absolute position to new elements within canvas (COL-4120).</li>
     <li>DELETE: successful deletion returns "204 No Content" instead of "204 Element deleted successfully" (COL-3868).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
     <li>Swagger document contains wrong payload example for Traits creation (COL-3866).</li>
