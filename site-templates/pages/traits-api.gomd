@@ -58,11 +58,15 @@
 
     <h3>Trait structure</h3>
     <p>
+    <b>TODO: is the JSON-ld.org requirement only for for V2?</b></br>
+    <b>TODO: The ECMA-404 standard (referred in GraphQL) is just a JSON specification, right? Do we need to add the JSON-ld.org also in GraphQL documentation? </b></br>
+    <b>TODO: Do V3 traits need to resolve for URI and JSON-LD keyword? not more made-up stuff such as "http://mysite.superdooper.com/projectID"? If I add madeup URLs, or valid URLS with made up </b></br>
+    
             In every request and response of the Bluescape REST API operating on elements of the supported types, traits are represented as a JSON array. Each item in the array must conform to the JSON-LD specification (<a href="https://json-ld.org/" target="_blank">https://json-ld.org/</a>). While the JSON-LD specification contains a rich set of features for data modeling, their use is not necessary. The only relevant constraint imposed by the JSON-LD specification is that every JSON property name must either:
             <ul>
                 <li>be a Uniform Resource Locator (URI)</li>
                 <li>be a JSON-LD keyword - one of 13 reserved names starting with the "@" symbol</li>
-                <li>resolve to a URI, as directed by the "@context" keyword</li>
+                <li>resolve to a URI, as directed by the "@context" keyword</li> <b>TODO -- THIS IS NOT HAPPENING TODAY IN V2, we can add ANYTHING, DOES NOT NEED TO RESOLVE</b>
             </ul>
         <br />
         <b>IMPORTANT</b>: If traits do not conform to this structure, traits API calls will produce HTTP error response <span
@@ -188,17 +192,18 @@ This page contains the implementation details for <a href="#rest">REST APIs</a> 
     </p>
 
 
-<h3>Cannot Delete/Edit Traits: alternative</h3>
+<h3>Cannot Delete/Edit Traits in V2 REST APIs: alternative</h3>
    
 <p>       
         As previously mentioned, the traits of an element are never deleted during its lifetime, and all the traits association is cumulative. However, the API client is free to interpret cumulative traits associations as updates or deletions. For instance, another traits association may result in the traits array becoming this:
 <pre>
-[{ "http://acme.com/bluescape#assetId": "869C287E-59BB-4319-9261-F791F659C54A" },
+[
+    { "http://acme.com/bluescape#assetId": "869C287E-59BB-4319-9261-F791F659C54A" },
     { "http://ajax.com/bscp#assetId": "98d03812452e0b6cabdbde5eff14e89f" },
     { "http://acme.com/bluescape#assetId": null }]
 </pre>
     <br />
-        The API client using the <span class="pre">"http://acme.com"</span> prefix is free to interpret such associations as a deletion of the assetId property of the associated <span class="pre">bluescape#assetId</span> element by processing the values from older to newer (top to bottom in this example).
+        The API client using the <span class="pre">"http://acme.com"</span> prefix is free to interpret such associations as a deletion of the assetId property of the associated <span class="pre">bluescape#assetId</span> element by processing the values from older to newer (top to bottom in this example), being <span class="pre">null</span> the newest value to use.
 </p>  
 
 <a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
@@ -262,7 +267,7 @@ In the Response body, see how the traits have been created:
         </tr>
 </table>
 
-<b>TODO</>: Double check functionality  in federated graphql (works in elementary)
+<b>TODO</b>: Double check functionality  in federated graphql (works in elementary)
 <pre>
 mutation addTraitsToElement($workspace: String!, $id:String!) {
   traits: addTraits(
@@ -288,10 +293,11 @@ with the following variables:
 }
 </pre>
 <h3>Get a list of the Traits in an object, GraphQL API</h3>
+
 <pre>
 query getTraitsOfElementById($workspaceId: String!, $id:String!){
     elements(workspaceId: $workspaceId id:$id ) {
-        type: __typename        
+        type: `__`typename
         id
         traits        
     }
@@ -304,7 +310,82 @@ with the following variables:
     "id" : "`<`elementId`>`"
 }
 </pre>
-<br />
 <p>
+
+<p>
+The response body will show you the traits:
+<pre>
+{
+    "data": {
+        "elements": [
+            {
+                "__typename": "Canvas",
+                "id": "609ede3c8f071b0018495fd9",
+                "traits": {
+                    "http://acme.com/project": "Lorem Ipsum, The Return",
+                    "http://acme.com/project/review": "First Review, gathering Feedback",
+                    "@id": "brn:ws:GDUWtDvSZGt7868PBBk2:609ede3c8f071b0018495fd9",
+                    "http://schema.org/projectId": "SOME-ID 3",
+                    "http://schema.org/projectName": "mega project title 3",
+                    "http://acme2.com/project": "Lorem Ipsum, The Return 2",
+                    "http://acme2.com/project/review": "First Review, gathering Feedback 2"
+                }
+            }
+        ]
+    }
+}
+
+and 
+
+{
+    "canvas": {
+        "id": "609ede3c8f071b0018495fd9",
+        "workspace_id": "GDUWtDvSZGt7868PBBk2",
+        "order": 1,
+        "borderColor": "Yellow",
+        "name": "New Canvas",
+        "traits": [
+            {
+                "http://acme.com/project": "Lorem Ipsum, The Return"
+            },
+            {
+                "http://acme.com/project/review": "First Review, gathering Feedback"
+            },
+            {
+                "@id": "brn:ws:GDUWtDvSZGt7868PBBk2:609ede3c8f071b0018495fd9"
+            },
+            {
+                "http://schema.org/projectId": "SOME-ID"
+            },
+            {
+                "http://schema.org/projectName": "mega project title"
+            },
+            {
+                "http://acme2.com/project": "Lorem Ipsum, The Return 2"
+            },
+            {
+                "http://acme2.com/project/review": "First Review, gathering Feedback 2"
+            },
+            {
+                "@id": "brn:ws:GDUWtDvSZGt7868PBBk2:609ede3c8f071b0018495fd9"
+            },
+            {
+                "http://schema.org/projectId": "SOME-ID 3"
+            },
+            {
+                "http://schema.org/projectName": "mega project title 3"
+            }
+        ],
+        "x": 1000,
+        "y": 1000,
+        "width": 4000,
+        "height": 4000,
+        "children": []
+    }
+}
+
+
+</pre>
+</p>
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
 </p>
