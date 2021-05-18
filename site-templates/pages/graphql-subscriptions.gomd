@@ -11,29 +11,53 @@ The client can unsubscribe by sending a message to the Bluescape server. The Blu
 
 <h3>Example of implementation</h3>
 <p>You can access the playground via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page.
-Here is an example of subscription for raw History events: <br />
-<b>TODO: REPLACE WITH WORKING EXAMPLE, THIS ONE BROKE TODAY</b>
+Here is an example of subscription for history events for reporting the change in position (x,y) of Image elements: <br />
+<b>TODO: check if we can filter by TYPE, otherwise reports id, workdpaceId, etc. for ALL updated objects. How to specify I want to see only Image (new changes are in development)?</b>
 <pre>
-subscription ($workspace: String!) {
-  history(workspaceId: $workspace) {
-    actor {
+subscription imageElementUpdated($workspaceId: String!) {
+  history(workspaceId: $workspaceId) {
+    ... on UpdateElementCommand {
+      workspaceId
+      createdAt
+      sequenceNumber
       id
-    }
-    ... on NewCommand {
-      new {
-        id
-        type: __typename
+      data {
+        ... on UpdateImage {
+          transform {
+            x
+            y
+          }
+        }
       }
-    }
-    ... on RawCommand {
-      raw
     }
   }
 }
 </pre>
 </p>
 <p>
-When the subscription is running, please interact with an element in the workspace, for example, change its position.<br />
-After moving the element, you will see that a new event is reported to the subscription: <b>TODO: ADD IMAGE OF EVENTS RUNNING IN PLAYGROUND</b>
+Set the correct values for:
+<ul>
+  <li><b>QUERY VARIABLES</b>: 
+<pre>
+{
+    "workspaceId": "`<`workspaceId`>`"
+}
+</pre>  
+  </li>
+  <li>and <b>HTTP HEADERS</b>
+<pre>
+{
+  "Authorization":"Bearer `<`SET_TOKEN`>`"
+}
+</pre>
+  </li>
+</ul>  
+
+</p>
+
+<p>
+Hit the "Play" button in the top middle section of the screen. When the subscription is running, please interact with an element in the workspace, for example, change its position.<br />
+After moving the element, you will see that a new event is reported to the subscription: 
+<img width="500" class="img-responsive center-block" src="/docs/assets/images/graphql_subscription_events.png">
 </p>
 
