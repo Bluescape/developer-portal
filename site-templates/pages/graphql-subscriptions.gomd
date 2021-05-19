@@ -57,7 +57,7 @@ Set the correct values for:
 
 <p>
 Hit the "Play" button in the top middle section of the screen. When the subscription is running, please interact with an element in the workspace, for example, change its position.<br />
-After moving the element, you will see that a new event is reported to the subscription: 
+After moving the element, you will see that a new event is reported to the subscription, where the position (x,y) has changed : 
 <img width="500" class="img-responsive center-block" src="/docs/assets/images/graphql_subscription_events.png">
 </p>
 

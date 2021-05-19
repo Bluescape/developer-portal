@@ -21,7 +21,7 @@
     <li><b>Box 2:</b> You'll place your GraphQL API Request in the left-hand section of the playground: </li></br>
     <li><b>Box 3:</b> Clicking the <b>QUERY VARIABLES</b> tab will allow you to input your query parameters in the input field beneath it.</li></br>
     <li><b>Box 4:</b> Clicking the <b>HTTP HEADERS</b> tab will allow you to input your HTTP headers in the input field beneath it.</li></br>
-    <li><b>Box 5:</b> To run your query, press the Play button in the middle of the playground.</li></br>
+    <li><b>Box 5:</b> To run your query, press the Play button in the middle of the playground. Please note that if your query, mutation or subscription has syntax errors, you will not be able to run it, the Play button will not be active.</li></br>
     <li><b>Box 6:</b> After running the query, your API response will be displayed in this section.</li></br>
     <li><b>Box 7:</b> You can open a new query tab by clicking the <span class="pre">+</span> icon. This will allow you to write separate queries in new tabs.</li> </br>
     <li><b>Box 8:</b> You can prettify your JSON query if you click the <b>Prettify</b> button.</li></br>
