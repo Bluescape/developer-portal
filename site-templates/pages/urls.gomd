@@ -6,8 +6,12 @@
 
 <table style="margin-bottom: 16rem;" class="table table-striped">
     <tr>
-        <th>Base URL for API Requests</th>
+        <th>Base URL for REST API Requests</th>
         <td><script type="text/javascript">document.write(apiBaseStr); </script></td>
+    </tr>
+    <tr>
+        <th>Base URL for GraphQL API Requests</th>
+        <td><script type="text/javascript">document.write(graphQLStr); </script></td>
     </tr>
     <tr>
         <th>OAuth Authorization URL</th>
