@@ -267,7 +267,6 @@ In the Response body, see how the traits have been created:
 mutation addTraitsToElement($workspace: String!, $id:String!) {
   traits: addTraits(
     workspaceId: $workspace,
-    dryRun:false, 
     id: $id, 
     compactOutput:false,
     input: {
