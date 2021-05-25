@@ -11,11 +11,11 @@
 <a name="get-walls" class="internal-anchor"><h3>Get All Walls Owned By an Organization</h3></a>
         Authenticated User must have the <i>Can List Organization Walls</i> permission group to get all Walls in an organization. 
         The query parameter 'orderBy' supports the 'name' field. You can define multiple 'orderBy' values. You can also specify the order in which your name field is displayed through the use of 'asc' and 'desc'. The filter parameter 'filterBy' supports fields 'name', 'archived'. 
-        Only one filter parameter may be provided at a time; any extras will be ignored. Example: 'filterBy=name:testwall'.
+        Only one filter parameter may be provided at a time; any extras will be ignored. Example: <span class="pre">'filterBy=name:testwall'</span>.
     <table class="table table-striped">
             <tr>
                 <td><b>Endpoint</b></td>
-                <td>/v3/organizations/`<`organizationId`>`/walls</td>
+                <td>/v3/organizations/&lt;organizationId&gt;/walls</td>
                 <td></td>
             </tr>
             <tr>
@@ -70,7 +70,6 @@
 
         # From here you will need to parse your response to get the ID of the desired wall.
 </pre>
-
 <pre class="lang lang-node">
     // Node.js Javascript
     var axios = require('axios');
@@ -94,7 +93,7 @@
     const api_endpoint = '/organizations/' + organizationId + '/walls';
 
         const data_load = {
-        'filter_by=name' : 'NAME_TO_FILTER_BY' 
+        'filter_by=name' : '&lt;NAME_TO_FILTER_BY&gt;' 
         }
 
     request_values = {
