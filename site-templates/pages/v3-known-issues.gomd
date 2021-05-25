@@ -1,5 +1,5 @@
 <h1>V3 Known issues</h1>
-<p>Release: 21.04.1 (May 09, 2021)</p>
+<p>Release: 21.06.1 (Jun 11, 2021)</p>
 <h4>REST APIs</h4>
 <ul>
     <li>PATCH and POST for Text: cannot set background as transparent, it displays black (COL-3974).</li>
@@ -34,6 +34,10 @@
     <li>GraphQL upload of assets to workspace is not implemented (COL-4127).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
     <li>Query for Strokes: traits are returned empty (COL-3483).</li>
+</ul>
+<h4>GraphQL Subscriptions</h4>
+<ul>
+    <li>History subscription does not have an element type filter (COL-4200).</li>
 </ul>
 <h4>General Issues</h4>
 <ul>
