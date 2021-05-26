@@ -13,17 +13,21 @@
     </table>
 </p> 
 
-<h4> The following documentation is still valid for use with <span class="pre">v2</span> API endpoints: </h4>
 <p>
 <b>Objective</b>: Create a new Canvas and upload content from a local drive to this new Canvas.
 </p>
 <p>The currently supported file extensions for uploading content to a Workspace include:  png, jpeg, gif, tiff, pdf, docx, pptx, xlsx, doc, ppt, xls.<br />
-    The image may be uploaded as a binary attachment, multipart form data, or via a remote url.<br />
+This page contains the implementation details for <a href="#rest">REST APIs</a> and for <a href="#graphql">GraphQL APIs</a>.
 </p>
+<a name="rest" class="internal-anchor"><h2>Implementation using REST APIs</h2></a>
+<p>
+    In REST API V2, the image may be uploaded as a binary attachment, multipart form data, or via a remote url.<br />
+</p>
+
 <p>
     See below examples for the upload methods: multipart form data and via remote URL.
 </p>
-<p><b>NOTE:</b> You can use this same code to upload to a Workspace; just remove the <span class="pre">/elements</span> part of the API endpoint.</p>
+<p><b>NOTE:</b> You can use this same code to upload directly to a Workspace instead of into a Canvas, just remove the <span class="pre">/elements</span> part of the API endpoint.</p>
 
 <h4>Create Canvas</h4>
 
@@ -595,6 +599,8 @@ From this answer you can obtain the newly created Canvas ID: ['canvas']['id']
 }
 </pre>
 
+<a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
 
-<br />
+<p>
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
+</p>
