@@ -62,7 +62,7 @@
             <ul>
                 <li>be a Uniform Resource Locator (URI)</li>
                 <li>be a JSON-LD keyword - one of 13 reserved names starting with the "@" symbol</li>
-                <li>resolve to a URI, as directed by the "@context" keyword</li>
+                <li>resolve to a URI, this if you are using the "@context" keyword</li> 
             </ul>
         <br />
         <b>IMPORTANT</b>: If traits do not conform to this structure, traits API calls will produce HTTP error response <span
@@ -94,8 +94,8 @@ For V3:
     context: "http://schema.org/", 
     content: {
         name: "hello world", 
-        vlad: "other value"
-    }
+        id: "ID-1234"
+}
 </pre>
 
     </p>
@@ -188,20 +188,63 @@ This page contains the implementation details for <a href="#rest">REST APIs</a> 
     </p>
 
 
-<h3>Cannot Delete/Edit Traits: alternative</h3>
+<h3>Cannot Delete/Edit Traits in V2 REST APIs: alternative</h3>
    
 <p>       
         As previously mentioned, the traits of an element are never deleted during its lifetime, and all the traits association is cumulative. However, the API client is free to interpret cumulative traits associations as updates or deletions. For instance, another traits association may result in the traits array becoming this:
 <pre>
-[{ "http://acme.com/bluescape#assetId": "869C287E-59BB-4319-9261-F791F659C54A" },
+[
+    { "http://acme.com/bluescape#assetId": "869C287E-59BB-4319-9261-F791F659C54A" },
     { "http://ajax.com/bscp#assetId": "98d03812452e0b6cabdbde5eff14e89f" },
     { "http://acme.com/bluescape#assetId": null }]
 </pre>
     <br />
-        The API client using the <span class="pre">"http://acme.com"</span> prefix is free to interpret such associations as a deletion of the assetId property of the associated <span class="pre">bluescape#assetId</span> element by processing the values from older to newer (top to bottom in this example).
+        The API client using the <span class="pre">"http://acme.com"</span> prefix is free to interpret such associations as a deletion of the assetId property of the associated <span class="pre">bluescape#assetId</span> element by processing the values from older to newer (top to bottom in this example), being <span class="pre">null</span> the newest value to use.
 </p>  
 
 <a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
+
+<p>
+In V3 GraphQL traits, you have 2 options to specify the JSON-LD keyword in the Traits declaration: <span class="pre">context</span> and <span class="pre">vocab</span>. The table below provides more deatils about them.
+</p>
+<table class="table table-striped">
+                <tr>
+                  <td><b>JSON-LD keyword</b></td>
+                  <td><b>Details<b></td>
+                  <td><b>Example<b></td>
+                </tr>
+                <tr>
+                    <td>context</td>
+                    <td>URI to append as a prefix to the content to be specified.<br/>
+                    <b>MUST</b> resolve to an actual URL.</td>
+                    <td>
+<pre>
+{
+    context: "http://schema.org/", 
+    content: {
+        name: "Project - POC Data", 
+        id: "RSE-12333"
+}
+</pre>                    
+                    </td>
+                </tr>
+                <tr>
+                  <td><b>vocab</b></td>
+                  <td>URI to append as a prefix to the content to be specified. <br/>
+                  Must have a URI syntax, but does not need to resolve to an actual URL.<br />
+                  Useful when you want to add metadata that may not be associated with a specific URL.</td>
+                  <td>
+<pre>
+{
+    vocab: "http://POC-0001.org/", 
+    content: {
+        name: "Project - POC Data", 
+        id: "RSE-12333"
+}
+</pre>                    
+                    </td>
+                </tr>
+        </table>
 
 <h3>Add Traits when creating an element, GraphQL API</h3>
 
@@ -262,7 +305,6 @@ In the Response body, see how the traits have been created:
         </tr>
 </table>
 
-<b>TODO</>: Double check functionality  in federated graphql (works in elementary)
 <pre>
 mutation addTraitsToElement($workspace: String!, $id:String!) {
   traits: addTraits(
@@ -273,7 +315,7 @@ mutation addTraitsToElement($workspace: String!, $id:String!) {
             context: "http://schema.org/", 
             content: {
                 project: "Special Project", 
-                projectId : "`<`ADD-PROJECT-ID`>`"
+                projectId : "&lt;ADD-PROJECT-ID&gt;"
                 }
             }
     )
@@ -282,28 +324,103 @@ mutation addTraitsToElement($workspace: String!, $id:String!) {
 with the following variables:
 <pre>
 {
-    "workspace": "`<`workspaceId`>`",
-    "id" : "`<`elementId`>`"
+    "workspace": "&lt;workspaceId&gt;",
+    "id" : "&lt;elementId&gt;"
 }
 </pre>
+
+<h3>Overwrite the values of the Traits in an object, GraphQL API</h3>
+<p>
+    <b>New in V3 GraphQL Traits</b>: You can overwrite the values of the Traits.<br />
+    Previously, in v2, when you add a new value to a previously defined Trait, you got a list of all the values you have set for that specific value, and needed to loop through those values and select the newest one (the laters at the bottom of the list).<br />
+    Now, in V3 GraphQL Traits, you always get the latest value specified for a Trait, that simple.<br />
+    For example, if for the previous example of how to add traits to an object, you run a new mutation to change the name of the "project" Trait to <b>"Special Project - NEW CASE"</b>, by this mutation:
+<pre>
+mutation addTraitsToElement($workspace: String!, $id:String!) {
+  traits: addTraits(
+    workspaceId: $workspace,
+    id: $id, 
+    compactOutput:false,
+    input: {
+            context: "http://schema.org/", 
+            content: {
+                project: "Special Project - NEW CASE", 
+                }
+            }
+    )
+}
+</pre>
+    Then, when you examine the Traits values you will see that value as the new value of the Trait:
+<pre>
+{
+    "data": {
+        "elements": [
+            {
+                "id": "&lt;elementId&gt;",
+                "traits": {
+                    "@id": "brn:ws:GDUWtDvSZGt7868PBBk2:609ede3c8f071b0018495fd9",
+                    "http://schema.org/projectId": "Special Project - NEW CASE",
+                    "http://schema.org/projectName": "&lt;ADD-PROJECT-ID&gt;",
+                }
+            }
+        ]
+    }
+}
+</pre>
+Please note the new <span class="pre">"@id"</span> property. It specifies that a Traits has been updated.
+
+</pre>
+
+</p>
 <h3>Get a list of the Traits in an object, GraphQL API</h3>
+
+<table class="table table-striped">
+        <tr>
+            <td><b>Query</b></td>
+            <td>elements<td>
+        </tr>
+</table>
+<p>
+Example:
 <pre>
 query getTraitsOfElementById($workspaceId: String!, $id:String!){
     elements(workspaceId: $workspaceId id:$id ) {
-        type: __typename        
+        type: __typename
         id
         traits        
     }
 }
 </pre>
 with the following variables: 
+
 <pre>
 {
-    "workspace": "`<`workspaceId`>`",
-    "id" : "`<`elementId`>`"
+    "workspace": "&lt;workspaceId&gt;",
+    "id" : "&lt;elementId&gt;"
 }
 </pre>
-<br />
+</p>
+
 <p>
+The response body will show you the traits:
+<pre>
+{
+    "data": {
+        "elements": [
+            {
+                "__typename": "&lt;element-type&gt;",
+                "id": "&lt;elementId&gt;",
+                "traits": {
+                    "@id": "brn:ws:GDUWtDvSZGt7868PBBk2:609ede3c8f071b0018495fd9",
+                    "http://schema.org/projectId": "SOME-ID 3",
+                    "http://schema.org/projectName": "mega project title 3",
+                }
+            }
+        ]
+    }
+}
+</pre>
+
+</p>
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
 </p>
