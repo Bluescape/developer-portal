@@ -24,13 +24,15 @@ Here we present a comparison of Bluescape REST and GraphQL APIs. You can appreci
             <li>DELETE: Delete</li>
         </ul>
         </td>
-        <td>In GraphQL, the API calls are always an HTTP POST, and operations are <i>queries</i> or <i>mutations</i>. For more details, read the Bluescape GraphQL Schema <b>(Add link to Schema? Or to page mentioning how to read the schema?)</b>. A summary of the equivalents to the REST methods is below :
+        <td>In GraphQL, the API calls are always an HTTP POST, and operations are <i>queries</i> or <i>mutations</i>. For more details, read the Bluescape GraphQL Schema (please see details in the <a href="/docs/page/graphql-playground#schema">GraphQL Playground</a> page).<br /> 
+        A summary of the equivalents to the REST methods is below :
         <ul>
             <li>REST GET: GraphQL <i>query</i></li>
             <li>REST POST: GraphQL <i>mutation</i>, generally named create* (e.g. <b>createCanvas</b>, <b>createText</b>, etc.)</li>
             <li>REST PATCH, PUT: GraphQL <i>mutation</i>, generally named update* (e.g. <b>updateCanvas</b>, <b>updateText</b>, etc.)</li>
             <li>DELETE: GraphQL <i>mutation</i>, <b>delete</b></li>
         </ul>
+        <b>NOTE</b>: Technically, you can also use an HTTP GET, but there is a limit to the URL length. With POST you can use an arbitrarily sized payload.
          </td>
     </tr>
 </table>
@@ -118,3 +120,80 @@ query GetLinesFromWorkspace($workspaceId: String!){
         </td>
     </tr>
 </table>
+
+<h4>Run multiple queries or mutation in one call in GraphQL</h4>
+<p>
+GraphQL allows you to consolidate multiple queries and mutations in a single call. In the example below  you can see how 3 different mutations are grouped in a single call. You can add all the mutations you want. Please note some details:
+<ul>
+    <li>Each mutation is using an alias (canvas1, canvas2, text1) to identify them and to avoid GraphQL to merge them into a single mutation.</li>
+    <li>For the createCanvas mutations, we are using a fragment (canvasData) to consolidate what fields we want to be reported for all the newly created canvases.</li>
+</ul> 
+<pre>
+mutation createMultipleElementsInOneGroup($workspaceId: String!) {
+    canvas1: createCanvas(workspaceId: $workspaceId, input: {
+        transform : { x: 1000 y:1000}
+        name: "Canvas 1"
+    }) {
+        ... canvasData
+    } 
+
+    canvas2: createCanvas(workspaceId: $workspaceId, input: {
+        transform : { x: 1000 y:2000}
+        name: "Canvas 2"
+    }) {
+        ... canvasData
+    } 
+
+    text1: createText(workspaceId: $workspaceId, 
+        input: {
+            text: "New Text created!",
+            transform : { x:500 y:500}
+        }) {
+            id
+        }
+}
+
+fragment canvasData on Canvas {
+    name
+    id
+    transform {x y }
+}
+</pre> 
+with these variables:
+<pre>
+{
+    "workspaceId": "&lt;workspaceID&gt;"
+}
+</pre>
+
+and the output is (the values in the id field are just a reference, they will change every time you run the mutations):
+<pre>
+{
+    "data": {
+        "canvas1": {
+            "name": "Canvas 1",
+            "id": "60aeb666ea1ae5d10306fb00",
+            "transform": {
+                "x": 1000,
+                "y": 1000
+            }
+        },
+        "canvas2": {
+            "name": "Canvas 2",
+            "id": "60aeb667ea4aeA691906fb04",
+            "transform": {
+                "x": 1000,
+                "y": 2000
+            }
+        },
+        "text1": {
+            "id": "60aeb667eP4ae581cc060b08"
+        }
+    }
+}
+</pre>
+</p>
+
+<p>
+If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
+</p>
