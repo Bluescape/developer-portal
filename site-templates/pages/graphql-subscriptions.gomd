@@ -1,0 +1,149 @@
+<h1>GraphQL subscriptions</h1>
+<p>
+GraphQL Subscriptions enable clients to listen to real-time messages whenever important changes happen inside of Bluescape workspaces and organizations. The client connects to the server with a bi-directional communication channel using the WebSocket protocol and sends a subscription query that specifies which event it is interested in. When an event is triggered, the Bluescape server executes the stored GraphQL query, and the result is sent back to the client using the same communication channel.<br />
+
+The client can unsubscribe by sending a message to the Bluescape server. The Bluescape server can also unsubscribe at any time due to errors or timeouts.
+<img width="500"  class="img-responsive center-block" src="/docs/assets/images/graphql-subscription-workflow.png">
+</p>
+<p>
+<h3>List of Subscriptions</h3>
+<p>You can access the playground via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page: click the Docs link on the far right border, and look for the list of currently available subscriptions in the SUBSCRIPTIONS section at the bottom of the column. 
+</p>
+
+<h3>Example of implementation</h3>
+
+Below you can find 2 types of implementations: <a href="#playground_example">using the GraphQl Playground</a> to test and inspect the subscriptions, and <a href="#script_example">using a script</a> to capture an process the subscription events.
+
+<a name="playground_example" class="internal-anchor"><h4>Subscription implementation in GraphQL Playground</h4></a>
+<p>You can access the playground via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page.
+Here is an example of subscription for history events for reporting the change in position (x,y) of Image elements: <br />
+<b>TODO: check if we can filter by TYPE, otherwise reports id, workspaceId, etc. for ALL updated objects. How to specify I want to see only Image (new changes are in development)?</b>
+<pre>
+subscription imageElementUpdated($workspaceId: String!) {
+  history(workspaceId: $workspaceId) {
+    ... on UpdateElementCommand {
+      workspaceId
+      createdAt
+      sequenceNumber
+      id
+      data {
+        ... on UpdateImage {
+          transform {
+            x
+            y
+          }
+        }
+      }
+    }
+  }
+}
+</pre>
+</p>
+<p>
+Set the correct values for:
+<ul>
+  <li><b>QUERY VARIABLES</b>: 
+<pre>
+{
+    "workspaceId": "&lt;workspaceId&gt;"
+}
+</pre></li>
+  <li>and <b>HTTP HEADERS</b>
+<pre>
+{
+  "Authorization":"Bearer `<`SET_TOKEN`>`"
+}
+</pre></li>
+</ul>  
+</p>
+<p>
+Click the "Play" button in the top middle section of the screen. You should see a "Listening..." message at the bottom of the right panel in the Playground. Please interact with an image in the workspace: change its position.<br />
+After moving the image, you will see that a new event is reported to the subscription, where the position (x,y) has changed: 
+<img width="600" class="img-responsive center-block" src="/docs/assets/images/graphql_subscription_events.png">
+</p>
+<a name="script_example" class="internal-anchor"><h4>Subscription implementation in a script</h4></a>
+<p>
+The implementation in the GraphQL Playground shows us how the data for the subscription will be delivered. The next step is to use a script or an implementation to take specific actions based on the data of the events that we are receiving from the subscription.</br>
+Please inspect the examples below to implement a basic parser for the subscription events.  
+
+<pre>
+/*
+Requires the following libraries and versions:
+1) ws, version 7.4.5
+2) graphql-ws, version 4.5.1
+
+To install them, run:
+npm install &lt;library-name&gt;
+*/
+var ws = require('ws');
+var {createClient} = require('graphql-ws');
+const JWT_TOKEN = '<SET_TOKEN>';
+// Please note the 'wss' protocol
+const WS_URL = 'wss://<script type="text/javascript">document.write(graphQLStr); </script>';
+
+const observer = {
+  error(e) {
+    console.log('Observer.error', e);
+  },
+  next(eventData) {
+    console.log('Observer.next');
+    console.dir(eventData, {depth: null});
+    // Here you can inspect and process the incoming eventData to take specific actions 
+  },
+  complete() {
+    console.log('Observer.complete');
+  }
+}
+function subscribe(query, variables) {
+  const client = createClient({
+    url: WS_URL,
+    webSocketImpl: ws,
+    connectionParams: () => {
+      return {
+        Authorization: `Bearer ${JWT_TOKEN}`
+      }
+    },
+  });
+  client.subscribe({query, variables}, observer);
+}
+
+// Set the subscription
+subscribe(`subscription imageChangesSubscription($workspaceId: String!) {
+    history(workspaceId: $workspaceId) {
+      ... on UpdateElementCommand {
+        workspaceId
+        createdAt
+        id
+        data {
+          ... on UpdateImage {
+            transform {
+              x
+              y
+            }
+          }
+        }
+      }
+    }
+  }`, {
+    workspaceId: '&lt;workspaceId&gt;'
+  });
+</pre>
+
+</p>
+<p>
+When you move an image, this is the type of event you will receive: 
+ <pre>
+ Update received:
+{
+  data: {
+    history: {
+      workspaceId: '&lt;workspaceId&gt;',
+      createdAt: '2021-05-24T21:45:13.245Z',
+      id: '609abX787e69f2ca25b65262',
+      data: { transform: { x: 13599.666666666668, y: -8254.500000000004 } }
+    }
+  }
+}
+ </pre>
+ You can parse this data and trigger an action.
+ </p>

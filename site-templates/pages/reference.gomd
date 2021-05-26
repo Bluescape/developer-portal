@@ -12,7 +12,7 @@ You can access the GraphQL documentation and Schema via the <script type="text/j
 <img class="img-responsive center-block" src="/docs/assets/images/graphql-docs-schema.png" width="80">
 </p>
 
-<p style="margin-bottom: 16rem;">
+<p>
     We intend for this reference to contain all essential information application developers require to successfully
     build integrations with the Bluescape APIs. Please <a href="/docs/page/support">let us know</a> if something is missing.
 </p>

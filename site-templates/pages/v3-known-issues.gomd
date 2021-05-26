@@ -1,5 +1,5 @@
 <h1>V3 Known issues</h1>
-<p>Release: 21.04.1 (May 09, 2021)</p>
+<p>Release: 21.06.1 (Jun 11, 2021)</p>
 <h4>REST APIs</h4>
 <ul>
     <li>PATCH and POST for Text: cannot set background as transparent, it displays black (COL-3974).</li>
@@ -21,7 +21,7 @@
     <li>GET for Line: does not return Traits (COL-3799).</li>
     <li>GET for Shapes: does not return attachments (COL-4083).</li>
     <li>POST and DELETE for attachments: not working (COL-3870).</li>
-    <li>POST: "create within canvas" functionality is not enabled as in V2 (COL-3981).</li>
+    <li>POST: "create within canvas" functionality is not enabled as in V2, you need to procide absolute position to new elements within canvas (COL-4120).</li>
     <li>DELETE: successful deletion returns "204 No Content" instead of "204 Element deleted successfully" (COL-3868).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
     <li>Swagger document contains wrong payload example for Traits creation (COL-3866).</li>
@@ -31,14 +31,18 @@
 <ul>
     <li>Federated GraphQL is not fully implemented (AD-8755).</li>
     <li>Subscriptions are not fully implemented (AD-8740).</li>
-    <li>GraphQL upload of assets to workspace is not fully implemented (<b>TODO: ADD TICKET # </b>).</li>
-    <li>addTraits mutation dryRun parameter should default to dryRun:false to enable addition of traits (COL-3879).</li>
+    <li>GraphQL upload of assets to workspace is not implemented (COL-4127).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
     <li>Query for Strokes: traits are returned empty (COL-3483).</li>
+</ul>
+<h4>GraphQL Subscriptions</h4>
+<ul>
+    <li>History subscription does not have an element type filter (COL-4200).</li>
 </ul>
 <h4>General Issues</h4>
 <ul>
     <li>Only Organization Admins can access the Applications feature in Config Center.</li>
     <li>Upload of asset from URL needs to be implemented (COL-3898).</li>
     <li>GraphQL end REST response body ned to return object, not just ID (COL-3907).</li>
+    <li>Organizations created with V3 REST and GraphQL are not accessible by a V2 GET /organizations/<org-id> (AD-9480).</li>
 </ul>
