@@ -17,10 +17,10 @@
 <b>Objective</b>: Create a new Canvas and upload content from a local drive to this new Canvas.
 </p>
 <p>The currently supported file extensions for uploading content to a Workspace include:  png, jpeg, gif, tiff, pdf, docx, pptx, xlsx, doc, ppt, xls.<br />
-This page contains the implementation details for <a href="#rest">REST APIs</a> and for <a href="#graphql">GraphQL APIs</a>.
+This page contains the implementation details for <a href="#rest-v2">REST APIs V2</a>, <a href="#rest-v3">REST APIs V3</a> and for <a href="#graphql">GraphQL APIs</a>.
 </p>
 
-<a name="rest" class="internal-anchor"><h2>Implementation using REST APIs</h2></a>
+<a name="rest-v2" class="internal-anchor"><h2>Implementation using REST APIs V2</h2></a>
 <p>
     In REST API V2, the image may be uploaded as a binary attachment, multipart form data, or via a remote url.<br />
 </p>
@@ -596,8 +596,42 @@ From this answer you can obtain the newly created Canvas ID: ['canvas']['id']
 }
 </pre>
 
-<a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
+<a name="rest-v3" class="internal-anchor"><h2>Implementation using REST APIs V3</h2></a>
 
+<p>
+In REST APIs V3, the upload process from your local drive is divided in 3 steps:
+<ol>
+    <li>Create a zigote or placeholder for the file to upload. Here you will get the credentials to upload the file to a storage service, Amazon S3 in the example.</li>
+    <li>Upload the image to Amazon S3</li>
+    <li>Link the zigote or placeholder to the uploaded image: it finishes the upload into the workspace</li>
+</ol>
+</p>
+<p>
+STEP 1: create placeholder
+You need to specify the type of the file you will upload. Specify it in the "imageFormat" field: "png" or "jpeg"<br/>
+You will also need to assign, before hand, a "filename" and a "title" fields for the file to upload, set to 
+<pre>
+curl --location --request POST 'https://api.uat.alpha.dev.bluescape.io/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "type": "Image",
+    "filename": "ImageToUpload.png",
+    "title": "ImageToUpload.png",
+    "imageFormat": "png",
+    "transform": { "x": 300, "y": 100, "scale": 2 }
+  }'
+</pre>
+</p>
+<p>
+STEP 2: upload to Amazon S3
+</p>
+<p>
+STEP 3: Link uploaded file to placeholder
+</p>
+
+<a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs: TODO</h2></a>
+<b>TODO: verify if GraphQL is implemented on time for June release</b>
 <p>
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
 </p>
