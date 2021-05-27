@@ -10,7 +10,7 @@ This page contains the implementation details for <a href="#rest">REST APIs</a> 
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image</td>
+          <td>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements?type=Image</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -42,7 +42,7 @@ This page contains the implementation details for <a href="#rest">REST APIs</a> 
 
 <p>
 <pre class="lang lang-curl">
-curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
+curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/workspaces/&lt;SET_WORKSPACEID&gt;/elements?type=Image' \
 --header 'Authorization: Bearer &lt;TOKEN&gt;' 
 </pre>
 </p>
@@ -252,9 +252,9 @@ query getImagesFromWorkspace($workspaceId: String!){
 <p>
 <pre class="lang lang-curl">
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
---header 'Authorization: Bearer &lt;TOKEN&gt;' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
---data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"lVbvis7g6m4X872j6ovj"}}'
+--data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"<workspaceId>"}}'
 </pre>
 </p>
 
@@ -272,10 +272,16 @@ const query =
         name
         }
     } `
+const variables = {   
+    workspaceId: "&lt;SET_WORKSPACEID&gt;"
+}
 const getWorkspaces = async () => {
     try {
         const response = await axios.post(url,
-            {query: query}, 
+            {
+                query: query,
+                variables: variables
+            }, 
             {headers: {"Authorization": "Bearer " + token}})
         
         console.log(response.data);
@@ -306,12 +312,20 @@ query = """
         }
     } 
     """
+
+variables = {   
+    "workspaceId": "&lt;SET_WORKSPACEID&gt;"
+}
+
 def makeQuery():
 
     response = requests.post(url, 
     headers={"Authorization": "Bearer " + token
     },
-    json={'query': query})
+    json={
+        'query': query,
+        'variables': variables
+        })
 
     return response.json()
 
@@ -319,6 +333,7 @@ if __name__ == "__main__":
     response = makeQuery()
     pprint.pprint(response)
 </pre>
+
 </p>
 
 <br />

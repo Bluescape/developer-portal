@@ -12,7 +12,7 @@ This page contains the implementation details for <a href="#rest">REST APIs</a> 
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -45,7 +45,7 @@ This page contains the implementation details for <a href="#rest">REST APIs</a> 
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     workspaceId = '&lt;SET_WORKSPACE_ID&gt;'  # REMEMBER TO ADD WORKSPACE ID
 
     # Create new Canvas
-    # Path:     /v3/workspaces/&lt;workspaceId&gt;/elements
+    # Path:     /v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements
 
     API_endpoint = '/v3/workspaces/' + workspaceId + '/elements'
 
@@ -161,7 +161,7 @@ if __name__ == "__main__":
 
 
     # Add Text to a canvas  
-    # Path: 	/v3/workspaces/&lt;workspaceId&gt;/elements
+    # Path: 	/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements
 
     API_endpoint = '/v3/workspaces/' + workspaceId + '/elements'
     params = ''
@@ -411,7 +411,7 @@ mutation createCanvasExample($workspaceId: String!, $input: CreateCanvasInput!){
 
 <pre>
 {
-    "workspaceId": "your_workspaceId_here",
+    "workspaceId": "&lt;SET_WORKSPACEID&gt;",
     "input": {
         "name": "Example Canvas",
         "transform": {
@@ -462,7 +462,7 @@ mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
 </p>
 <pre>
 {
-    "workspaceId": "lVbvis7g6m4X872j6ovj",
+    "workspaceId": "&lt;SET_WORKSPACEID&gt;",
     "input": {
         "text": "Example text inside canvas",
         "transform": {
@@ -596,8 +596,10 @@ def makeQuery(query, params):
     response = requests.post(url, 
     headers={"Authorization": "Bearer " + token
     },
-    json={'query': query,
-            'variables': params})
+    json={
+            'query': query,
+            'variables': params
+        })
 
     return response.json()
 
