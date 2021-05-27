@@ -606,28 +606,148 @@ In REST APIs V3, the upload process from your local drive is divided in 3 steps:
     <li>Link the zigote or placeholder to the uploaded image: it finishes the upload into the workspace</li>
 </ol>
 </p>
+
+<h4>STEP 1: create placeholder</h4>
 <p>
-STEP 1: create placeholder
+<table class="table table-striped">
+        <tr>
+          <td><b>API</b></td>
+          <td>POST /workspaces/&lt;workspaceId&gt;/elements</td>
+        </tr>
+        <tr>
+          <td><b>Comments</b></td>
+          <td>HH</td>
+        </tr>
+</table>
+<br />
 You need to specify the type of the file you will upload. Specify it in the "imageFormat" field: "png" or "jpeg"<br/>
 You will also need to assign, before hand, a "filename" and a "title" fields for the file to upload, set to 
 <pre>
-curl --location --request POST 'https://api.uat.alpha.dev.bluescape.io/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements' \
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "type": "Image",
-    "filename": "ImageToUpload.png",
-    "title": "ImageToUpload.png",
-    "imageFormat": "png",
+    "filename": "myImageToUpload.jpg",
+    "title": "myImageToUpload.jpg",
+    "imageFormat": "jpeg",
     "transform": { "x": 300, "y": 100, "scale": 2 }
   }'
 </pre>
 </p>
+</p>
+OUTPUT:
+<pre>
+{
+    "data": {
+        "content": {
+            "uploadId": "60aed93111bf08bf22a2572a",
+            "url": "https://s3.us-east-1.amazonaws.com/acceptance-new.public-assets.bluescape.com",
+            "fields": {
+                "key": "sessions/objects/GDUWtDvSZGtE868PBBk2/60aed93111bf08bf22a2572a.jpg",
+                "bucket": "acceptance-new.public-assets.bluescape.com",
+                "X-Amz-Algorithm": "AWS4-HMAC-SHA256",
+                "X-Amz-Credential": "AKIZIVWWSYKG79KFMQJA/20210526/us-east-1/s3/aws4_request",
+                "X-Amz-Date": "20210526T232643Z",
+                "Policy": "eyJleHNpcmF0aW9uIjoiMjAyMS0wNS0yNlQyMzozMTo0MVoiLCJjb25kaXRpb25zIjpbWyJlcSIsIiRrZXkiLCJzZXNzaW9ucy9vYmplY3RzL0dEVVd0RHZTWkd0Nzg2OFBCQmsyLzYwYWVkOTMxMTdiZjA4YmYyMmEyNTcyYS5qcGciXSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDUyNDI4ODAwXSx7ImJ1Y2tldCI6ImFjY2VwdGFuY2UtbmV3LnB1YmxpYy1hc3NldHMuYmx1ZXNjYXBlLmNvbSJ9LHsiWC1BbXotQWxnb3JpdGhtIjoiQVdTNC1ITUFDLVNIQTI1NiJ9LHsiWC1BbXotQ3JlZGVudGlhbCI6IkFLSUFJVldXU1lLRzdES0ZNUUpBLzIwMjEwNTI2L3VzLWVhc3QtMS9zMy9hd3M0X3JlcXVlc3QifSx7IlgtQW16LURhdGUiOiIyMDIxMDUyNlQyMzI2NDFaIn1dfQ==",
+                "X-Amz-Signature": "fd521d7b3416a12a999732e1a10408f7P8427d9d0ae01A53e65a926f0f07a56d"
+            }
+        },
+        "image": {
+            "id": "60aed93111bf08bf22a2572a",
+            "zIndex": 1183,
+            "transform": {
+                "x": 300,
+                "y": 100,
+                "scaleX": 1,
+                "scaleY": 1
+            },
+            "traits": {
+                "http://bluescape.dev/zygote/v1/ingestionState": {
+                    "http://bluescape.dev/zygote/v1/ingestionState/timestamp": 1622071601170,
+                    "http://bluescape.dev/zygote/v1/ingestionState/stage": "transferring"
+                }
+            },
+            "pinned": false,
+            "comments": [],
+            "width": 1000,
+            "height": 1000,
+            "title": "myImageToUpload.jpg",
+            "filename": "myImageToUpload.jpg",
+            "ingestionState": "transferring",
+            "type": "Image",
+            "asset": {
+                "imageFormat": "jpeg"
+            }
+        }
+    }
+}
+</pre>
+From this output, you will need to use the following fields for the next step:
+<table class="table table-striped">
+        <tr>
+          <td><b>Field</b></td>
+          <td><b>Description</b></td>
+        </tr>
+        <tr>
+            <td>data/content/url</td>
+            <td>Destination URL to where the file will be uploaded.</td>
+        </tr> 
+        <tr>
+            <td>data/image/id</td>
+            <td>This is the Id of the cygote/placeholder created for the file to upload. It is the final Id of the uploaded file.</td>
+        </tr>        
+        <tr>
+          <td>data/content/fields</td>
+          <td>These fields are the ones you will need to authenticate with S3 and to upload the file.</td>
+        </tr>
+</table>
+
+At this moment, you will see a placeholder element in the workspace, in the position you specified, displaying a "transferring" message (as shown in the traits in the response body).
+</p>
+
+<h4>STEP 2: upload to Amazon S3</h4>
 <p>
-STEP 2: upload to Amazon S3
+
+In this step, you will use the S3 credentials generated in the previous step. You will use them to upload the file into S3.
+
+<pre>
+curl --location --request POST '&lt;SET-data/content/url&gt;' \
+--form 'key="&lt;SET-data/content/field/key&gt;' \
+--form 'bucket="&lt;SET-data/content/field/bucket&gt;"' \
+--form 'X-Amz-Algorithm="&lt;SET-data/content/field/X-Amz-Algorithm&gt;"' \
+--form 'X-Amz-Credential="&lt;SET-data/content/field/X-Amz-Credential&gt;"' \
+--form 'X-Amz-Date="&lt;SET-data/content/field/X-Amz-Date&gt;"' \
+--form 'Policy="&lt;SET-data/content/field/Policy&gt;"' \
+--form 'X-Amz-Signature="&lt;SET-data/content/field/X-Amz-Signature&gt;"' \
+--form 'file=@"&lt;SET_FULL_PATH_TO_LOCAL_FILE"'
+</pre>
+
 </p>
 <p>
-STEP 3: Link uploaded file to placeholder
+If the upload process is successful, you will get a return code <span class="pre">204</span>, then proceed to the last step of the upload.
+</p>
+
+<h4>STEP 3: Link uploaded file to placeholder</h4>
+<p>
+<table class="table table-striped">
+        <tr>
+          <td><b>API</b></td>
+          <td>PUT /workspaces/&lt;workspaceId&gt;/assets/uploads/&lt;uploadId&gt;</td>
+        </tr>
+        <tr>
+          <td><b>Comments</b></td>
+          <td>&lt;uploadId&gt; is the element Id created in the first step of the upload.</td>
+        </tr>
+</table>
+
+<pre>
+curl --location --request PUT '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/assets/uploads/&lt;uploadId&gt;' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{}'
+</pre>
+
 </p>
 
 <a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs: TODO</h2></a>
