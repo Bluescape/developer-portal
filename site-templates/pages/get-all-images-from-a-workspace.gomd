@@ -10,7 +10,7 @@ This page contains the implementation details for <a href="#rest">REST APIs</a> 
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image</td>
+          <td>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements?type=Image</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -42,7 +42,7 @@ This page contains the implementation details for <a href="#rest">REST APIs</a> 
 
 <p>
 <pre class="lang lang-curl">
-curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
+curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/workspaces/&lt;SET_WORKSPACEID&gt;/elements?type=Image' \
 --header 'Authorization: Bearer &lt;TOKEN&gt;' 
 </pre>
 </p>
@@ -273,13 +273,14 @@ const query =
         }
     } `
 const variables = {   
-    workspaceId: "&lt;workspaceId&gt;"
+    workspaceId: "&lt;SET_WORKSPACEID&gt;"
 }
 const getWorkspaces = async () => {
     try {
         const response = await axios.post(url,
-            {query: query,
-             variables: variables
+            {
+                query: query,
+                variables: variables
             }, 
             {headers: {"Authorization": "Bearer " + token}})
         
@@ -313,7 +314,7 @@ query = """
     """
 
 variables = {   
-    "workspaceId": "&lt;workspaceId&gt;"
+    "workspaceId": "&lt;SET_WORKSPACEID&gt;"
 }
 
 def makeQuery():
