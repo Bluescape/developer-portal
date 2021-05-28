@@ -17,7 +17,7 @@
 <b>Objective</b>: Create a new Canvas and upload content from a local drive to this new Canvas.
 </p>
 <p>The currently supported file extensions for uploading content to a Workspace include:  png, jpeg, gif, tiff, pdf, docx, pptx, xlsx, doc, ppt, xls.<br />
-This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a>, <a href="#graphql">GraphQL APIs</a> and for <a href="/docs/page/upload-from-local-drive-into-a-canvas-v2">REST APIs v2</a>, .
+This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a>, <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-from-local-drive-into-a-canvas-v2">REST APIs v2</a>.
 </p>
 
 <a name="rest-v3" class="internal-anchor"><h2>Implementation using REST APIs v3</h2></a>
@@ -181,8 +181,10 @@ curl --location --request POST 'https://s3.us-east-1.amazonaws.com/acceptance-ne
 <b>IMPORTANT</b>: If the upload process is successful, you will get a return code <span class="pre">204</span>, then proceed to the last step of the upload.
 </p>
 
-<h4>STEP 3: Link the uploaded file to the zygote or placeholder</h4>
+<h4>STEP 3: Link the zygote or placeholder to the uploaded file</h4>
 <p>
+The last step is to link the zygote or placeholder to the file we uploaded in the previous step. For this step we will need the id from <span class="pre">data/content/uploadId</span> generated in the response body in step 1.
+
 <table class="table table-striped">
         <tr>
           <td><b>API</b></td>
@@ -197,6 +199,9 @@ curl --location --request POST 'https://s3.us-east-1.amazonaws.com/acceptance-ne
           <td>&lt;uploadId&gt; is the element Id created in the first step of the upload.</td>
         </tr>
 </table>
+</p>
+<p>
+This is the command to run:
 
 <pre>
 curl --location --request PUT '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/assets/uploads/&lt;uploadId&gt;' \
