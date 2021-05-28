@@ -556,7 +556,7 @@ Each time you run a POST API, you will get back a Response Body with the propert
 
 <h4>Canvas creation</h4>
 
-From this answer you can obtain the newly created Canvas ID: ['canvas']['id']
+From this v2 response body you can obtain the newly created Canvas ID: ['canvas']['id']
 <pre>
 {'canvas': {'borderColor': 'Yellow',
             'height': 4000,
@@ -570,6 +570,9 @@ From this answer you can obtain the newly created Canvas ID: ['canvas']['id']
 </pre>
 
 <h4>Image Creation</h4>
+
+This is an example of the v2 response body for an image creation:
+
 <pre>
 { 'image': {'id': '6036f9fd2d1125001c3217d8',
             'workspace_id': 'Ol5vMRiojRoltkCYsPQB',
