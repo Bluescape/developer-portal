@@ -7,7 +7,7 @@ table td {
 <p>
 Here we present a comparison of Bluescape REST and GraphQL APIs. You can appreciate the advantages of each implementation, and maybe use this list to as a help to port your queries from REST to GraphQL.
 </p>
-<h4>GraphQL always uses HTTP POST</h4>
+<h4>Use HTTP POST for GraphQL</h4>
 <p>See the details below regarding the different methods REST and GraphQL API use.</p>
 <table class="table table-striped">
     <tr>
