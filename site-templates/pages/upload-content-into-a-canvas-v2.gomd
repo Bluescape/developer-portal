@@ -4,7 +4,7 @@
 <b>Objective</b>: Create a new Canvas and upload content from a local drive to this new Canvas.
 </p>
 <p>The currently supported file extensions for uploading content to a Workspace include:  png, jpeg, gif, tiff, pdf, docx, pptx, xlsx, doc, ppt, xls.<br />
-   You can also see the implementation details for <a href="/docs/page/upload-from-local-drive-into-a-canvas#rest-v3">REST APIs v3</a> or <a href="/docs/page/upload-from-local-drive-into-a-canvas#graphql">GraphQL APIs</a>
+   You can also see the implementation details for <a href="/docs/page/upload-content-into-a-canvas#rest-v3">REST APIs v3</a> or <a href="/docs/page/upload-content-into-a-canvas#graphql">GraphQL APIs</a>
 </p>    
 
 <a name="rest-v2" class="internal-anchor"><h2>Implementation using REST APIs V2</h2></a>
