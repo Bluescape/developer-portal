@@ -10,7 +10,7 @@ Here we present a comparison of Bluescape REST and GraphQL APIs. You can appreci
 <p><b>TODO</b>:<br/>
 1. Add fragments?
 </p>
-<h4>GraphQL always uses HTTP POST</h4>
+<h4>Use HTTP POST for GraphQL</h4>
 <p>See the details below regarding the different methods REST and GraphQL API use.</p>
 <table class="table table-striped">
     <tr>
