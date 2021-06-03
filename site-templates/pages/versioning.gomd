@@ -6,7 +6,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        The support for API version <span class="pre">/v3/</span> Beta is now available. This change went into effect with release version 21.05.1, on May 12, 2021. 
+                        API version v3 is available as a beta preview as part of the 21.06.1 release on June 11, 2021. This is a preview only and should not be used for mission critical production integrations until the GA release as it has the potential to change. 
                     <br /> <br />
                     </b>
             </td>
@@ -24,28 +24,30 @@
         <td><b>Status</b></td>
     </tr>
     <tr>
-        <td>3.0</td>
+        <td>3.0 Beta</td>
         <td><a href="/docs/page/reference">/v3/</a></td>
-        <td>21.05.1 (May 14, 2021) </td>
-        <td>Current</td>
+        <td>21.06.1 (June 11, 2021) </td>
+        <td>Beta</td>
     </tr>
     <tr>
         <td>2.0</td>
         <td><a href="/docs/page/reference-v2">/v2/</a></td>
         <td>19.11.1 (November 22, 2019) </td>
-        <td>Deprecated</td>
+        <td>Current</td>
     </tr>
 </table>
         
 <h2>FAQ</h2>
 
+<!--
 <p>   
-    <b>Q: Will my current scripts stop working after the 21.05.1 Release (released on May 14, 2021)?</b><br />
+    <b>Q: Will my current scripts stop working after the 21.06.1 Release (released on June 11, 2021)</b><br />
         
     <b>A</b>: There will be a short grace period after the time of the release where <span class="pre">v2</span> endpoints will still be active
     in order to give developers time to migrate their existing scripts to <span class="pre">v3</span> APIs instead. After this period, any scripts using the <span class="pre">/v2/</span> endpoint will no longer work. 
     You will need to update the version parameter pointing to the API endpoints from <span class="pre">/v2/</span> to <span class="pre">/v3/</span>.
 </p>
+-->
 
 <p>
     <b>Q: What's New in V3?</b><br />
