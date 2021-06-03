@@ -8,7 +8,11 @@
 
 <p>
 You can access the REST reference by selecting one of the openapi files linked under <b>REST API reference</b> on the left navigation.<br />
-You can access the GraphQL documentation and Schema via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page. On the far right side of the screen you will find the links to the documentation and schema: 
+</p>
+<p>
+<b>IMPORTANT</b>: API version v3 is available as a beta preview as part of the 21.06.1 release on June 11, 2021. This is a preview only and should not be used for mission critical production integrations until the GA release as it has the potential to change.
+<br />
+For the current v3 beta release, you can access the GraphQL documentation and Schema via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page. On the far right side of the screen you will find the links to the documentation and schema: 
 <img class="img-responsive center-block" src="/docs/assets/images/graphql-docs-schema.png" width="80">
 </p>
 
