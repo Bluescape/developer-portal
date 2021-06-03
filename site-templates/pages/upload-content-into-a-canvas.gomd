@@ -1,33 +1,19 @@
 <h1>Upload content into a Canvas</h1>
 <p>
-    <table style="background-color: #FFFFA5">
-        <tr>
-            <td style="padding:15px">   
-                    <b><center>NOTICE</center>
-                        <br />
-                        The version <span class="pre">/v3/</span> Beta release will not include REST API support for uploading from a local drive. REST API support for this will be included in a future release.
-                    <br /> <br />
-                    </b>
-            </td>
-        </tr>
-    </table>
-</p> 
-
-<p>
 <b>Objective</b>: Create a new Canvas and upload content from a local drive to this new Canvas.
 </p>
 <p>The currently supported file extensions for uploading content to a Workspace include:  png, jpeg, gif, tiff, pdf, docx, pptx, xlsx, doc, ppt, xls.<br />
 This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a>, <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">REST APIs v2</a>.
 </p>
 
-<a name="rest-v3" class="internal-anchor"><h2>Implementation using REST APIs v3</h2></a>
+<a name="rest-v3" class="internal-anchor"><h2>Upload from local using REST APIs v3</h2></a>
 
 <p>
 In REST APIs v3, the upload process from your local drive is divided in 3 steps:
 <ol>
-    <li>Create a zigote or placeholder for the file to upload. Here you will get the credentials to upload the file to a storage service, Amazon S3 in the example.</li>
+    <li>Create a zygote or placeholder for the file to upload. Here you will get the credentials to upload the file to a storage service, Amazon S3 in the example.</li>
     <li>Upload the image to Amazon S3</li>
-    <li>Link the zigote or placeholder to the uploaded image: it finishes the upload into the workspace</li>
+    <li>Link the zygote or placeholder to the uploaded image: it finishes the upload into the workspace</li>
 </ol>
 </p>
 <h4>STEP 1: Create zygote or placeholder for the file to upload</h4>
@@ -212,8 +198,74 @@ curl --location --request PUT '<script type="text/javascript">document.write(api
 
 </p>
 
-<a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs: TODO</h2></a>
-<b>TODO: verify if GraphQL is implemented on time for June release</b>
+<a name="graphql" class="internal-anchor"><h2>Upload by URL using GraphQL APIs: TODO</h2></a>
+<p>
+In GraphQL, you can use the URL pointing to a resource to upload it into a workspace.<br />
+When should we use this "upload by URL approach? When you integrate with external services that host images, videos and/or documents, and you want to access them (to view or download them),most of the time you are provided with a URL to those assets, not the actual binary object. Then, you can use that URL to access those assets to upload them directly into a workspace.<br />
+You can use the following mutations: <b>createDocument</b>, <b>createImage</b>, <b>createVideo</b>.
+</p>
+<p>
+Valid image formats: jpeg, jpg, gif, png, tiff, tif, jpegMime, gifMime, pngMime, tiffMime.
+</p>
+<p>
+Example of createImage mutation:
+<pre>
+mutation(
+        $workspace: String!,
+        $imageFormat: ImageFormatInput!
+        $sourceUrl: String!
+        $x: Float!, $y: Float!, $w: Float!, $h: Float!,
+        $shotgunUrl: String!
+        $transferId: String!
+        $server: String!, $entityId: String!, $entityType: String!
+      ) {
+        image: createImage(
+          workspaceId: $workspace
+          input: {
+            imageFormat: $imageFormat
+            sourceUrl: $sourceUrl
+            width: $w
+            height: $h
+            transform: {
+              x: $x
+              y: $y
+            }
+          }
+        ) {
+          image {
+            id
+            ingestionState
+          }
+        }
+      }
+</pre>
+variables:
+<pre>
+const shotgunUrl = `https://${server}/page/media_center?type=Version&id=${versionId}`
+{
+    workspace: "&lg;workspaceId&gt;",
+    imageFormat: "&lt;imageFormat&gt;",
+    sourceUrl: "&lt;URL_POINTING_TO_THE_IMAGE_TO_UPLOAD&gt;",
+    x: &lg;input.transform.x&gt;,
+    y: &lg;input.transform.y&gt;,
+    w: &lg;width&gt;,
+    h: &lg;input.height&gt;,
+    shotgunUrl,
+    transferId,
+    server
+}
+</pre>
+
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+
+
+
 <p>
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
 </p>

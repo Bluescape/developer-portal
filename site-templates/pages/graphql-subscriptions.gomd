@@ -23,8 +23,6 @@ subscription imageElementUpdated($workspaceId: String!) {
   history(workspaceId: $workspaceId) {
     ... on UpdateElementCommand {
       workspaceId
-      createdAt
-      sequenceNumber
       id
       data {
         ... on UpdateImage {
@@ -112,7 +110,6 @@ subscribe(`subscription imageChangesSubscription($workspaceId: String!) {
     history(workspaceId: $workspaceId) {
       ... on UpdateElementCommand {
         workspaceId
-        createdAt
         id
         data {
           ... on UpdateImage {
@@ -138,7 +135,6 @@ When you move an image, this is the type of event you will receive:
   data: {
     history: {
       workspaceId: '&lt;workspaceId&gt;',
-      createdAt: '2021-05-24T21:45:13.245Z',
       id: '609abX787e69f2ca25b65262',
       data: { transform: { x: 13599.666666666668, y: -8254.500000000004 } }
     }
