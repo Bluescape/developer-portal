@@ -210,53 +210,57 @@ Valid image formats: jpeg, jpg, gif, png, tiff, tif, jpegMime, gifMime, pngMime,
 <p>
 Example of createImage mutation:
 <pre>
-mutation(
-        $workspace: String!,
-        $imageFormat: ImageFormatInput!
-        $sourceUrl: String!
-        $x: Float!, $y: Float!, $w: Float!, $h: Float!,
-        $shotgunUrl: String!
-        $transferId: String!
-        $server: String!, $entityId: String!, $entityType: String!
-      ) {
-        image: createImage(
-          workspaceId: $workspace
+#create Video
+mutation uploadImageFromURL($workspaceId: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $url:String! $scale:Float) {
+    createImage(
+          workspaceId: $workspaceId
           input: {
+            title:$title
             imageFormat: $imageFormat
-            sourceUrl: $sourceUrl
-            width: $w
-            height: $h
+            sourceUrl: $url
             transform: {
               x: $x
               y: $y
+              scale:$scale
             }
-          }
-        ) {
-          image {
-            id
-            ingestionState
-          }
-        }
-      }
+    }) 
+    #return values after creation:    
+    {
+        content{ uploadId url fields}
+        preview{uploadId url fields}
+        image{id width height ingestionState}
+    }
+}
 </pre>
 variables:
 <pre>
-const shotgunUrl = `https://${server}/page/media_center?type=Version&id=${versionId}`
 {
-    workspace: "&lg;workspaceId&gt;",
-    imageFormat: "&lt;imageFormat&gt;",
-    sourceUrl: "&lt;URL_POINTING_TO_THE_IMAGE_TO_UPLOAD&gt;",
-    x: &lg;input.transform.x&gt;,
-    y: &lg;input.transform.y&gt;,
-    w: &lg;width&gt;,
-    h: &lg;input.height&gt;,
-    shotgunUrl,
-    transferId,
-    server
+    "workspaceId": "&lt;workspaceId&gt;",
+    "title":"&lt;title_or_filename&gt;",
+    "imageFormat":"jpeg",
+    "previewFormat":"jpeg",
+    "url":"&lt;URL_POINTING_TO_THE_IMAGE_TO_UPLOAD&gt;",
+    "x":&lt;X_COORDINATE&gt;,
+    "y":&lt;Y_COORDINATE&gt;,
+    "scale":&lt;SCALE_FACTOR&gt;
 }
 </pre>
 
 </p>
+Example of parameters to load an image:
+<pre>
+{
+    "ws": "{{workspaceID}}",
+    "title":"Yosemite, general view",
+    "imageFormat":"jpeg",
+    "previewFormat":"jpeg",
+    "url":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Yosemite_nat_park_valley_view.JPG/1200px-Yosemite_nat_park_valley_view.JPG",
+    "x":0,
+    "y":0,
+    "scale":1
+}
+</pre>
+
 <p>
 </p>
 <p>
