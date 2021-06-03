@@ -250,7 +250,7 @@ variables:
 Example of parameters to load an image:
 <pre>
 {
-    "ws": "{{workspaceID}}",
+    "ws": "&lt;workspaceID&gt;",
     "title":"Yosemite, general view",
     "imageFormat":"jpeg",
     "previewFormat":"jpeg",
