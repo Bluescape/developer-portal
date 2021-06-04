@@ -9,7 +9,7 @@
     {{end}}
   {{end}}
     <br />
-    {{if or (eq $.CurrentPage "urls") (eq $.CurrentPage "pagination") (eq $.CurrentPage "listener-events") (eq $.CurrentPage "permissions") (eq $.CurrentPage "versioning") (eq $.CurrentPage "v3-known-issues") (eq $.CurrentPage "v3-tips-and-tricks") (eq $.CurrentService "elementary") (eq $.CurrentService "isam") (eq $.CurrentPage "graphql-reference")}}
+    {{if or (eq $.CurrentPage "urls") (eq $.CurrentPage "reference") (eq $.CurrentPage "pagination") (eq $.CurrentPage "listener-events") (eq $.CurrentPage "permissions") (eq $.CurrentPage "v3-known-issues") (eq $.CurrentPage "v3-tips-and-tricks") (eq $.CurrentService "elementary") (eq $.CurrentService "isam") (eq $.CurrentPage "graphql-reference")}}
     <div>
         <ul class="unindent-side-nav-ul">
         <strong>Reference /v3/</strong>
@@ -18,14 +18,15 @@
             <li><a href="/docs/page/listener-events">Listener Events</a></li>
             <li><a href="/docs/page/permissions">Permissions</a></li>
             <li><a href="/docs/page/versioning">Versioning</a></li>
-            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/v3-known-issues">V3 Known Issues</a></li>
-            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/v3-tips-and-tricks">V3 Tips and Tricks</a></li>
+            <li><a href="/docs/page/v3-known-issues">V3 Known Issues</a></li>
+            <li><a href="/docs/page/v3-tips-and-tricks">V3 Tips and Tricks</a></li>
 
             {{/* <li><h3>API Reference</h3></li>
             {% include 'reference/api-toc' %} */}}
         </ul>
         <strong>REST API /v3/</strong>
         <ul class="unindent-side-nav-ul">
+            <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference-v2">Go to current REST API version</a></li>
             {{range $i, $element := .S.K8sStore.Slice }}
                 {{$svc := $element.Service}}
                 {{$class := ""}}
@@ -63,14 +64,14 @@
     </div>
     <br />
     {{end}}
-    {{if or (eq $.CurrentPage "reference") (eq $.CurrentPage "reference-v2") (eq $.CurrentPage "urls-v2") (eq $.CurrentPage "pagination-v2") (eq $.CurrentPage "listener-events-v2") (eq $.CurrentPage "permissions-v2") (eq $.CurrentPage "versioning-v2") (eq $.CurrentPage "sso") (eq $.CurrentService "listener-api") (eq $.CurrentService "collab") (eq $.CurrentService "portal-api")}}
+    {{if or  (eq $.CurrentPage "versioning") (eq $.CurrentPage "reference-v2") (eq $.CurrentPage "urls-v2") (eq $.CurrentPage "pagination-v2") (eq $.CurrentPage "listener-events-v2") (eq $.CurrentPage "permissions-v2") (eq $.CurrentPage "versioning-v2") (eq $.CurrentPage "sso") (eq $.CurrentService "listener-api") (eq $.CurrentService "collab") (eq $.CurrentService "portal-api")}}
     <div>
         <ul class="unindent-side-nav-ul">
             <li><a href="/docs/page/urls-v2">URLs</a></li>
             <li><a href="/docs/page/pagination-v2">Pagination</a></li>
             <li><a href="/docs/page/listener-events-v2">Listener Events</a></li>
             <li><a href="/docs/page/permissions-v2">Permissions</a></li>
-            <li><a href="/docs/page/versioning-v2">Versioning</a></li>
+            <li><a href="/docs/page/versioning">Versioning</a></li>
             <li><a href="/docs/page/sso">SSO</a></li>
         </ul>
         <strong>REST API</strong>
@@ -121,7 +122,7 @@
         <strong>Guides</strong>
         <ul class="unindent-side-nav-ul">
             <li><a href="/docs/page/what-is-new-in-v3">What is new in V3?</a></li>            
-            <li><a href="/docs/page/what-is-graphql">What is GraphQL?</a></li>
+            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/what-is-graphql">What is GraphQL in V3?</a></li>
             <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/compare-graphql-rest">Comparison of REST and GraphQL</a></li>
             <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/graphql-playground">GraphQL Playground</a></li>
             <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/graphql-subscriptions">GraphQL Subscriptions</a></li>
