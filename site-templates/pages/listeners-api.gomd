@@ -19,7 +19,7 @@
 Please note that Listeners are valid only for <span class="pre">v2</span> REST API endpoints. <br />
 In <span class="pre">v3</span> you will use <a href="/docs/page/graphql-subscriptions">GraphQL Subscriptions</a>.
 </p>
-<h4>The following documentation is still valid for use with <span class="pre">v2</span> API endpoints</h4>
+
 <p>
     Bluescape Listeners, commonly called webhooks, enable applications to receive notifications via HTTP POST whenever
     important changes happen inside of Bluescape workspaces and organizations. Applications register listeners by
