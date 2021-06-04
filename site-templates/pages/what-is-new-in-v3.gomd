@@ -6,8 +6,11 @@
 </style>
 
 <h1>What is new in V3?</h1>
-<p>This page covers the new features in V3, as a comparison with V2.<br />
-The main differences can be grouped in 3 sections:
+<p>This page covers the new features in v3, as a comparison with v2.<br />
+
+One new inclusion in v3 are the new <a href="/docs/page/what-is-graphql">GraphQL APIs</a>.<br />
+
+Regarding the REST APIs, the main differences can be grouped in 3 sections:
 <ul>
   <li><a href="#changes-in-rest-api-verbs">Changes in REST API verbs</a></li>
   <li><a href="#changes-in-request-response-body">Changes in Request and Response Body</a></li>
