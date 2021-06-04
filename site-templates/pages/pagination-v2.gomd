@@ -1,4 +1,4 @@
-<h1>Pagination for V2</h1>
+<h1>Pagination</h1>
 
 <p>
     API endpoints that can return large numbers of objects return their results using an offset-based paging mechanism
