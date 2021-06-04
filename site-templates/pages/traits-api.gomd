@@ -5,7 +5,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        The version <span class="pre">/v3/</span> Beta release will not include REST API support for Traits, they are currently implemented only by GraphQL APIs. Traits will be released with REST API support in a future release.
+                        The version <span class="pre">/v3/</span> Beta release does not include REST API support for Traits, they are currently implemented only by GraphQL APIs. Traits will be released with REST API support in a future release for <span class="pre">/v3/</span>.
                     <br /> <br />
                     </b>
             </td>
@@ -103,7 +103,7 @@ For V3:
 <h2>How to implement Traits?</h2>
 
 <p>
-This page contains the implementation details for <a href="#rest">REST APIs</a> and for <a href="#graphql">GraphQL APIs</a>.
+This page contains the implementation details for <a href="#rest">REST APIs</a> and for <a href="#graphql">v3 GraphQL APIs</a>.
 </p>
 
 <a name="rest" class="internal-anchor"><h2>Implementation using REST APIs</h2></a>
@@ -202,7 +202,7 @@ This page contains the implementation details for <a href="#rest">REST APIs</a> 
         The API client using the <span class="pre">"http://acme.com"</span> prefix is free to interpret such associations as a deletion of the assetId property of the associated <span class="pre">bluescape#assetId</span> element by processing the values from older to newer (top to bottom in this example), being <span class="pre">null</span> the newest value to use.
 </p>  
 
-<a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
+<a name="graphql" class="internal-anchor"><h2>Implementation using v3 GraphQL APIs</h2></a>
 
 <p>
 In V3 GraphQL traits, you have 2 options to specify the JSON-LD keyword in the Traits declaration: <span class="pre">context</span> and <span class="pre">vocab</span>. The table below provides more deatils about them.
