@@ -57,9 +57,6 @@ For this section, you'll also need to input an authorization token into the <b>H
 <li><b>Box D:</b> You can see the results of the request in this section. Notice that all of the elements in the workspace are returned showing only the parameters we specified: <span class="pre">type</span>, <span class="pre">id</span> and <span class="pre">(x,y)</span></li> </br>
 
 Keep in mind that you can still utilize all of the other features of the GraphQL Playground in this example. You can inspect the documentation, schema, etc. if you wish.</br>
-To get more information about GraphQL at Bluescape, refer to the documentation found in our other <a href="/docs/page/guides">Guides</a> pages.
-
-
-</br>
+To get more information about GraphQL at Bluescape, refer to the documentation found in our other <a href="/docs/page/guides">Guides</a> pages.</br>
 <br />
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
