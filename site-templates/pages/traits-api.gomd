@@ -88,6 +88,7 @@ For V2:
     "http://ajax.com/project/name": "Lorem Ipsum, the Return"
 }
 </pre>
+
 For V3:
 <pre>
 {
@@ -98,7 +99,7 @@ For V3:
 }
 </pre>
 
-    </p>
+</p>
 
 <h2>How to implement Traits?</h2>
 

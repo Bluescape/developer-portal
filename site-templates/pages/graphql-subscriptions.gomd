@@ -17,7 +17,6 @@ Below you can find 2 types of implementations: <a href="#playground_example">usi
 <a name="playground_example" class="internal-anchor"><h4>Subscription implementation in GraphQL Playground</h4></a>
 <p>You can access the playground via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page.
 Here is an example of subscription for history events for reporting the change in position (x,y) of Image elements: <br />
-<b>TODO: check if we can filter by TYPE, otherwise reports id, workspaceId, etc. for ALL updated objects. How to specify I want to see only Image (new changes are in development)?</b>
 <pre>
 subscription imageElementUpdated($workspaceId: String!) {
   history(workspaceId: $workspaceId) {
@@ -141,5 +140,5 @@ When you move an image, this is the type of event you will receive:
   }
 }
  </pre>
- You can parse this data and trigger an action.
+ You can parse this even data and trigger an action.
  </p>

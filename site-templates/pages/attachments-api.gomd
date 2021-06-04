@@ -12,7 +12,6 @@
         </tr>
     </table>
 </p> 
-<h4> The following documentation is still valid for use with <span class="pre">v2</span> API endpoints: </h4>
 
 <h2>What are Attachments?</h2>
 <p>Attachments allow the user to pair together two elements so that they act as a single, interactable object.</p>

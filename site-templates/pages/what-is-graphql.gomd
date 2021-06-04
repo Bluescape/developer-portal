@@ -11,12 +11,12 @@
     that they make in order to combine functionality from several APIs, while also specifying exactly what data they would like to receive back.    
 <p>
 <p>
-    For example: A simple and fairly common use case might be to query a workspace in order to retrieve both the owner of the workspace,
+    For example, a simple and fairly common use case might be to query a workspace in order to retrieve both the owner of the workspace,
     along with all the IDs of all elements within that workspace. Previously, this would have to have been accomplished by calling two 
     separate APIs, <span class="pre">GET workspace/{workspaceId}</span> and <span class="pre"> GET workspace/{workspaceId}/elements</span> 
-    and then parse out the necessary information from the two resposnes. With GraphQL, developers are able to combine these two calls into a single query,
+    and then parse out the necessary information from the two responses. With GraphQL, developers are able to combine these two calls into a single query,
     while also being returned only the properties that they are interested in, reducing or even removing the amount of parsing required.
     To learn more about GraphQL, please see their documentation at <a href="https://graphql.org/learn/">https://graphql.org/learn/</a>.
 </p>
 
-<p>For more information on what you can do with GraphQL in Bluescape, please see our <a href="/docs/page/basic-api-requests">Basic GraphQL Requests</a> guide.</p>
+<p>For more information on what you can do with GraphQL in Bluescape, please review our <b>Getting Started</b> pages in the <a href="/docs/page/guides">Guides section</a>, stating with the <a href="/docs/page/basic-api-requests">Basic GraphQL Requests</a> guide.</p>
