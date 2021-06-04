@@ -1,8 +1,25 @@
-<h1>Upload content into a Canvas</h1>
+<h1>Upload content into a Canvas, /v3/</h1>
 <p>
-<b>Objective</b>: Create a new Canvas and upload content from a local drive to this new Canvas.
+<b>Objective</b>: Upload content from a local drive into a workspace.
 </p>
-<p>The currently supported file extensions for uploading content to a Workspace include:  png, jpeg, gif, tiff, pdf, docx, pptx, xlsx, doc, ppt, xls.<br />
+<p>
+  The currently supported file extensions for uploading content to a Workspace are:
+
+<table class="table table-striped">
+        <tr>
+          <td>Images</td>
+          <td>png, jpeg, gif, tiff, pdf, docx, pptx, xlsx, doc, ppt, xls</td>
+        </tr>
+        <tr>
+            <td>Documents</td>
+            <td>doc, docx, ppt, pptx, xls, xlsx, pdf, docMime, docxMime, pptMime, pptxMime, xlsMime, xlsxMime, pdfMime</td>
+        </tr>        
+        <tr>
+          <td>Videos</td>
+          <td>mp4, mov, m4v, quicktime, mp4Mime, m4vMime, quicktimeMime</td>
+        </tr>
+</table>
+ 
 This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a>, <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">REST APIs v2</a>.
 </p>
 
@@ -198,19 +215,15 @@ curl --location --request PUT '<script type="text/javascript">document.write(api
 
 </p>
 
-<a name="graphql" class="internal-anchor"><h2>Upload by URL using GraphQL APIs: TODO</h2></a>
+<a name="graphql" class="internal-anchor"><h2>Upload by URL using GraphQL APIs</h2></a>
 <p>
 In GraphQL, you can use the URL pointing to a resource to upload it into a workspace.<br />
 When should we use this "upload by URL approach? When you integrate with external services that host images, videos and/or documents, and you want to access them (to view or download them),most of the time you are provided with a URL to those assets, not the actual binary object. Then, you can use that URL to access those assets to upload them directly into a workspace.<br />
-You can use the following mutations: <b>createDocument</b>, <b>createImage</b>, <b>createVideo</b>.
+You can use the following mutations: <span class="pre">createDocument</span>, <span class="pre">createImage</span>, <span class="pre">createVideo</span>.
 </p>
 <p>
-Valid image formats: jpeg, jpg, gif, png, tiff, tif, jpegMime, gifMime, pngMime, tiffMime.
-</p>
-<p>
-Example of createImage mutation:
+Example of <span class="pre">createImage</span> mutation:
 <pre>
-#create Video
 mutation uploadImageFromURL($workspaceId: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $url:String! $scale:Float) {
     createImage(
           workspaceId: $workspaceId
@@ -224,7 +237,7 @@ mutation uploadImageFromURL($workspaceId: String! $x:Float! $y:Float! $title:Str
               scale:$scale
             }
     }) 
-    #return values after creation:    
+    #return values after creation:
     {
         content{ uploadId url fields}
         preview{uploadId url fields}
@@ -232,13 +245,14 @@ mutation uploadImageFromURL($workspaceId: String! $x:Float! $y:Float! $title:Str
     }
 }
 </pre>
-variables:
+
+and these are the variables for the mutation above:
 <pre>
 {
     "workspaceId": "&lt;workspaceId&gt;",
     "title":"&lt;title_or_filename&gt;",
-    "imageFormat":"jpeg",
-    "previewFormat":"jpeg",
+    "imageFormat":"&lt;SEE_ALLOWED_TYPES_AT_THE_TOP_OF_THE_PAGE&gt;",
+    "previewFormat":"&lt;SEE_ALLOWED_TYPES_AT_THE_TOP_OF_THE_PAGE&gt;",
     "url":"&lt;URL_POINTING_TO_THE_IMAGE_TO_UPLOAD&gt;",
     "x":&lt;X_COORDINATE&gt;,
     "y":&lt;Y_COORDINATE&gt;,
@@ -250,8 +264,8 @@ variables:
 Example of parameters to load an image:
 <pre>
 {
-    "ws": "&lt;workspaceID&gt;",
-    "title":"Yosemite, general view",
+    "workspaceId": "&lt;workspaceID&gt;",
+    "title":"Yosemite, open view",
     "imageFormat":"jpeg",
     "previewFormat":"jpeg",
     "url":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Yosemite_nat_park_valley_view.JPG/1200px-Yosemite_nat_park_valley_view.JPG",
