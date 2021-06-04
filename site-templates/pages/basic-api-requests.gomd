@@ -7,7 +7,7 @@
     </em>
 </p>
 <p>
-  This page contains the details for <a href="#working-with-rest">REST APIs</a> and for <a href="#working-with-graphql">GraphQL APIs</a>.   
+  This page contains the details for <a href="#working-with-rest">REST APIs</a> and for <a href="#working-with-graphql">v3 GraphQL APIs</a>.   
 </p>
 
 <h3>The Base URL</h3>
@@ -37,15 +37,14 @@
 
 <p>
     A request URL is assembled from the base URL and the <strong>path</strong> information for an operation as found in
-    the reference. For example, Add a User
-    to an Organization is an operation with path <span
-        class="pre">/organizations/&lt;organizationId&gt;/members</span>. Combining this path with the base URL gives us
+    the reference. For example, Add a User to an Organization is an operation with path <span
+        class="pre">/organizations/&lt;organizationId&gt;/users</span>. Combining this path with the base URL gives us
     a request URL of:
 </p>
 
 <pre>
 <script type="text/javascript">
-    document.write(apiBaseStr + "/v3/organizations/&lt;organizationId&gt;/members");
+    document.write(apiBaseStr + "/v2/organizations/&lt;organizationId&gt;/users");
 </script>
 </pre>
 
@@ -55,14 +54,13 @@
     The path for the operation above, like many in the Bluescape API, contains a parameter. Adding a user to an
     organization requires we identify the organization to which the new user should be invited. To finish preparing this
     request URL, we must replace <span class="pre">&lt;organizationId&gt;</span> with a valid organization ID, such as
-    one obtained from the List a User's
-    Organizations operation. Replacing the parameter placeholder with a sample organization ID yields a request URL
+    one obtained from the List a User's Organizations operation. Replacing the parameter placeholder with a sample organization ID yields a request URL
     of:
 </p>
 
 <pre>
 <script type="text/javascript">
-    document.write(apiBaseStr + "/v3/organizations/eidzMVOsv4peKG-4DLKA/members");
+    document.write(apiBaseStr + "/v2/organizations/eidzMVOsv4peKG-4DLKA/users");
 </script>
 </pre>
 
@@ -96,7 +94,7 @@
 
 <p>
 <pre class="lang lang-curl">
-curl -X POST <script type="text/javascript">document.write(apiBaseStr + "/v3/organizations/&lt;SET_ORGANIZATION_ID&gt;/members"); </script> \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr + "/v2/organizations/&lt;SET_ORGANIZATION_ID&gt;/users"); </script> \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -114,8 +112,8 @@ import pprint
 
 portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
 organizationId = '&lt;SET_ORGANIZATION_ID&gt';
-API_version = 'v3'
-API_endpoint = '/' + API_version + '/organizations/' + organizationId + '/members'
+API_version = 'v2'
+API_endpoint = '/' + API_version + '/organizations/' + organizationId + '/users'
 token = '&lt;SET_TOKEN&gt';
 data_load = {
   "id": "&lt;SET_USER_ID&gt;",
@@ -136,7 +134,7 @@ pprint.pprint(json_response)
 </pre>
 </p>
 
-<a name="working-with-graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
+<a name="working-with-graphql" class="internal-anchor"><h2>Implementation using v3 GraphQL APIs</h2></a>
 
 <h3>Assembling a GraphQL Query</h3>
 
