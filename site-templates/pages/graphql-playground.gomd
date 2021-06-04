@@ -33,11 +33,11 @@
     <li><b>Box 11:</b> You can copy the GraphQL API request as a cURL request by clicking the <b>COPY CURL</b> button. This will allow you to run the API request as a cURL request from the command-line.</li> </br>
     <li><b>Box 12:</b> Opening the Docs tab will open up the documentation for all of the GraphQL APIs that are available to you in the playground. See the example below, which displays the documentation for the <b>id</b> field of an Element:</li> </br>
     <img class="img-responsive left-block" src="/docs/assets/images/playground_docs.png" height="600" width="600"></br>
-    <b>TODO</b>: possibly link to somewhere giving a full explanation of the Docs tab? </br></br>
+    <!-- <b>TODO</b>: possibly link to somewhere giving a full explanation of the Docs tab? </br></br> -->
     <li><a name="schema" class="internal-anchor"><b>Box 13:</b></a> Opening the Schema tab will open up the schema information for all of the GraphQL APIs available to you in the playground. See the example below:</li></br>
     <img class="img-responsive left-block" src="/docs/assets/images/playground_schema.png" height="600" width="600"></br>
     Notice the <b>Download</b> button in the top right. This will allow you to download the schema, to be used in other tools such as Postman, for autocompletion of the queries, mutations and subscriptions. </br>
-    <b>TODO</b>: possibly link to full explanation of Schema tab? Should this documentation be written by ourselves, or just a link to a graphql schema page?</br></br>
+    <!-- <b>TODO</b>: possibly link to full explanation of Schema tab? Should this documentation be written by ourselves, or just a link to a graphql schema page?</br></br> -->
 
 
 <a name="api-example" class="internal-anchor"><h2>API Example using the GraphQL Playground</h2></a>
