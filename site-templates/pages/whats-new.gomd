@@ -15,7 +15,7 @@
     <p>
         <ul>
             <li>The Application Registration process was moved from the Developer Portal to Bluescape Admin.</li>
-            <li>The link to the new Application Registration can be found <href="/docs/page/appRegistration">here</a></li>
+            <li>The link to the new Application Registration can be found <a href="/docs/page/appRegistration">here</a></li>
             <li>Details about the Application creation can be found <a href="/docs/page/app-auth#appendix1">here</a></li>
         </ul>
     </p>
