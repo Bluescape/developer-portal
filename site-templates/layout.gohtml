@@ -40,6 +40,7 @@
         {{if  eq .Ctx "landing"}}
         {{else if eq $.CurrentPage "overview"}}
         {{else if eq $.CurrentPage "appRegistration"}}
+        {{else if eq $.CurrentPage "whats-new"}}
         {{else}}
         {{template "navigation" $}}
         {{end}}
