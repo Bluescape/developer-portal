@@ -1,4 +1,8 @@
-<h1>What's New in the 19.11.1 Release</h1>
+<div class="row">
+
+<div class="col-md-8 content">
+
+<h1>What's new in the 21.06.1 Release</h1>
 
 <h3>Summary</h3>
 <p>
@@ -54,3 +58,6 @@
     <p> 
         See more details in the <a href="/docs/page/id-to-uid">id to uid migration page</a>.
     </p>
+</div>
+
+</div>
