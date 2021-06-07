@@ -1,4 +1,4 @@
-<h1>V3 Known issues</h1>
+<h1>v3 Known issues</h1>
 <p>Release: 21.06.1 (Jun 11, 2021)</p>
 
 <p><b>IMPORTANT</b>: API version v3 is available as a beta preview as part of the 21.06.1 release on June 11, 2021. This is a preview only and should not be used for mission critical production integrations until the GA release as it has the potential to change.
@@ -48,5 +48,5 @@
     <li>Only Organization Admins can access the Applications feature in Config Center.</li>
     <li>Upload of asset from URL needs to be implemented (COL-3898).</li>
     <li>GraphQL end REST response body ned to return object, not just ID (COL-3907).</li>
-    <li>Organizations created with V3 REST and GraphQL are not accessible by a V2 GET /organizations/<org-id> (AD-9480).</li>
+    <li>Organizations created with v3 REST and GraphQL are not accessible by a V2 GET /organizations/<org-id> (AD-9480).</li>
 </ul>

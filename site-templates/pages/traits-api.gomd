@@ -206,7 +206,7 @@ This page contains the implementation details for <a href="#rest">REST APIs</a> 
 <a name="graphql" class="internal-anchor"><h2>Implementation using v3 GraphQL APIs</h2></a>
 
 <p>
-In V3 GraphQL traits, you have 2 options to specify the JSON-LD keyword in the Traits declaration: <span class="pre">context</span> and <span class="pre">vocab</span>. The table below provides more deatils about them.
+In v3 GraphQL traits, you have 2 options to specify the JSON-LD keyword in the Traits declaration: <span class="pre">context</span> and <span class="pre">vocab</span>. The table below provides more deatils about them.
 </p>
 <table class="table table-striped">
                 <tr>
@@ -332,9 +332,9 @@ with the following variables:
 
 <h3>Overwrite the values of the Traits in an object, GraphQL API</h3>
 <p>
-    <b>New in V3 GraphQL Traits</b>: You can overwrite the values of the Traits.<br />
+    <b>New in v3 GraphQL Traits</b>: You can overwrite the values of the Traits.<br />
     Previously, in v2, when you add a new value to a previously defined Trait, you got a list of all the values you have set for that specific value, and needed to loop through those values and select the newest one (the laters at the bottom of the list).<br />
-    Now, in V3 GraphQL Traits, you always get the latest value specified for a Trait, that simple.<br />
+    Now, in v3 GraphQL Traits, you always get the latest value specified for a Trait, that simple.<br />
     For example, if for the previous example of how to add traits to an object, you run a new mutation to change the name of the "project" Trait to <b>"Special Project - NEW CASE"</b>, by this mutation:
 <pre>
 mutation addTraitsToElement($workspace: String!, $id:String!) {

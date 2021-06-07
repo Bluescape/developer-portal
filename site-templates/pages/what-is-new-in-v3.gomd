@@ -5,8 +5,8 @@
   
 </style>
 
-<h1>What is new in V3?</h1>
-<p>This page covers the new features in v3, as a comparison with v2.<br />
+<h1>What is new in v3 beta?</h1>
+<p>This page covers the new features in v3 beta, as a comparison with v2.<br />
 
 One new inclusion in v3 are the new <a href="/docs/page/what-is-graphql">GraphQL APIs</a>.<br />
 
@@ -21,7 +21,7 @@ Regarding the REST APIs, the main differences can be grouped in 3 sections:
 <table class="table table-striped">
 <td><b>Subject</b></td>
     <td><center><b>V2</b></center></td>
-    <td><center><b>V3</b></center></td>
+    <td><center><b>v3 beta</b></center></td>
   <tr>
     <td>In V3, when you want to modify a property of an object that is <br />already created (its position, color, text, etc.), the REST API verb to use is PATCH.</td>
     <td>REST API verb: <b>PUT</b><br /><br />
@@ -30,7 +30,7 @@ Regarding the REST APIs, the main differences can be grouped in 3 sections:
     <td>REST API verb: <b>PATCH</b> <br /><br />
     Specify the properties to change in the request body of the PATCH call.
     <br /><br >
-    Please note the following V3 REST APIs that still use the <b>PUT</b> verb to make a change:
+    Please note the following v3 REST APIs that still use the <b>PUT</b> verb to make a change:
     <ul>
       <li>Progress Asset Upload to processing: <pre>PUT /v3/workspaces/{workspace}/assets/uploads/{id}</pre></li>
       <li>Update the Member's Role:<pre>PUT /v3/organizations/{organizationId}/members/{memberId}/role</pre></li>
@@ -46,7 +46,7 @@ Regarding the REST APIs, the main differences can be grouped in 3 sections:
   <tr>
     <td><b>Subject</b></td>
     <td><center><b>V2</b></center></td>
-    <td><center><b>V3</b></center></td>
+    <td><center><b>v3 beta</b></center></td>
   </tr>
   <tr>
     <td>
@@ -128,7 +128,7 @@ Regarding the REST APIs, the main differences can be grouped in 3 sections:
       List of Types in V3: text, images, browsers, documents, grids, notes, strokes, videos, canvas.
     </td>
     <td>
-      V3 does not group the elements by type
+      v3 does not group the elements by type
       <ul>
         <li>
           the response body contains all the elements within this array: 
@@ -173,7 +173,7 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
   </tr>
   <tr>
     <td>
-      In V3 there is a new way specify the position of objects in the workspace.<br />
+      In v3 there is a new way specify the position of objects in the workspace.<br />
     </td>
     <td>
     In V2: <br/><br />
@@ -188,7 +188,7 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
 </pre>  
     </td>
     <td>
-      In V3 the position of an object is specified within the <b>transform</b> key:<br /><br />
+      In v3 the position of an object is specified within the <b>transform</b> key:<br /><br />
 <pre>
 {
   "type": "Text",
@@ -206,7 +206,7 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
   </tr>
 <tr>
     <td>
-      In V3 there is a new way to specify the dimensions (height and width) of an element, this except for elements of the Image, Document or Video type.
+      In v3 there is a new way to specify the dimensions (height and width) of an element, this except for elements of the Image, Document or Video type.
     </td>
     <td> In V2, all the elements specify the width and height properties this way:<br /><br />
 <pre>
@@ -220,7 +220,7 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
 </pre>
     </td>
     <td>
-      In V3 (except for elements of the Image, Document or Video type), the dimensions of an element are specified within the <b>style</b> key:<br /><br />
+      In v3 (except for elements of the Image, Document or Video type), the dimensions of an element are specified within the <b>style</b> key:<br /><br />
 <pre>
 {
   "type": "Text",
@@ -247,7 +247,7 @@ For the elements of the Image, Document or Video type, the width and height prop
   </tr>
 
   <tr>
-    <td>In V3 there is a new way to specify the color schema for elements.</td>
+    <td>In v3 there is a new way to specify the color schema for elements.</td>
     <td>In V2, this is the way the color is specified, for example, for a Text object:<br /><br />
 <pre>
 {
@@ -258,7 +258,7 @@ For the elements of the Image, Document or Video type, the width and height prop
 }
 </pre>   
     </td>
-    <td>In V3 the color scheme is defined using RGBA color model.<br />
+    <td>In v3 the color scheme is defined using RGBA color model.<br />
         What is RGBA? You can find a detailed explanation here: <a href="https://en.wikipedia.org/wiki/RGBA_color_model" target="_blank">RGBA Color Model</a> <br /><br />
         The color is defined by:
         <ul>
@@ -300,7 +300,7 @@ For the elements of the Image, Document or Video type, the width and height prop
     Example: Create Text in Canvas <pre>/v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/text</pre>
     To list the elements inside a Canvas, in V2 you can use: <pre>GET /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/elements</pre>
     </td>
-    <td>In the currently available version of V3, there is not a method to create an element into a Canvas, not even if you provide a parameter such as the one below to a POST call:<pre>?canvas={canvasID}</pre> But there is a way to list the elements inside a Canvas. In V3 you can use: <pre>GET /v3/workspaces/{workspace_id}/elements<b>?canvas={canvas_id}</b></pre></td>
+    <td>In the currently available version of V3, there is not a method to create an element into a Canvas, not even if you provide a parameter such as the one below to a POST call:<pre>?canvas={canvasID}</pre> But there is a way to list the elements inside a Canvas. In v3 you can use: <pre>GET /v3/workspaces/{workspace_id}/elements<b>?canvas={canvas_id}</b></pre></td>
   </tr>
   <!-- <tr>
     <td>In the currently available version of V3, when adding an element to a Canvas, the coordinates you specify are absolute for the workspace, not relative to the top-left corner of the canvas</td>
@@ -328,7 +328,7 @@ For the elements of the Image, Document or Video type, the width and height prop
 </pre>
     </td>
     <td>
-      In V3 the dimensions of an object are specified within the <b>style</b> key:<br />
+      In v3 the dimensions of an object are specified within the <b>style</b> key:<br />
 <pre>
 {
   "type": "Text",
@@ -364,7 +364,7 @@ For the elements of the Image, Document or Video type, the width and height prop
 <table class="table table-striped">
 <td><b>Subject</b></td>
     <td><center><b>V2</b></center></td>
-    <td><center><b>V3</b></center></td>
+    <td><center><b>v3 beta</b></center></td>
   <tr>
     <td>How to get the list of all objects of an object type in the workspace.<br /><br />
     <b>NOTE</b>: The object types are different in V2 and V3, see the difference sin casing and names</td>

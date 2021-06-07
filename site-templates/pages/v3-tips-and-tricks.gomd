@@ -1,4 +1,4 @@
-<h1>V3 APIs Tips and Tricks</h1>
+<h1>v3 APIs Tips and Tricks</h1>
 <h3>Manage your Tokens creation with Postman</h3>
 <p>
 In <a href="https://www.postman.com/" target="_BLANK">Postman</a>, you can easily manage the creation and renewal of your Access Tokens. Follow these instructions:
