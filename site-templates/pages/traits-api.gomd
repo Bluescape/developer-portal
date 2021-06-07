@@ -189,7 +189,7 @@ This page contains the implementation details for <a href="#rest">REST APIs</a> 
     </p>
 
 
-<h3>Cannot Delete/Edit Traits in V2 REST APIs: alternative</h3>
+<h3>Cannot Delete/Edit Traits in v2 REST APIs: alternative</h3>
    
 <p>       
         As previously mentioned, the traits of an element are never deleted during its lifetime, and all the traits association is cumulative. However, the API client is free to interpret cumulative traits associations as updates or deletions. For instance, another traits association may result in the traits array becoming this:

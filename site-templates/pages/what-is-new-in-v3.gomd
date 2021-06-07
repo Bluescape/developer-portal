@@ -103,7 +103,7 @@ Regarding the REST APIs, the main differences can be grouped in 3 sections:
   <tr>
     <td>In V3, the elements are not longer grouped by their type when running a GET API to get the list of elements the workspace.</td>
     <td>
-      V2 response body delivers the elements of the workspace grouped by type:
+      v2 response body delivers the elements of the workspace grouped by type:
       <br />
       <ul>
         <li>
@@ -296,9 +296,9 @@ For the elements of the Image, Document or Video type, the width and height prop
   <tr>
     <td>Differently than as in V2, in the currently available version of V3, you cannot create elements associated directly into a Canvas, but you can list all the elements within a Canvas.
     </td>
-    <td>In V2 you can create elements directly into a Canvas. These elements will be displayed in the Canvas, using the top-left corner as the (0,0) point of reference for their coordinates . If no set of (x,y) coordinates are specified, then they will be placed in the top-left corner of the Canvas.<br /><br />
+    <td>In v2 you can create elements directly into a Canvas. These elements will be displayed in the Canvas, using the top-left corner as the (0,0) point of reference for their coordinates . If no set of (x,y) coordinates are specified, then they will be placed in the top-left corner of the Canvas.<br /><br />
     Example: Create Text in Canvas <pre>/v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/text</pre>
-    To list the elements inside a Canvas, in V2 you can use: <pre>GET /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/elements</pre>
+    To list the elements inside a Canvas, in v2 you can use: <pre>GET /v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/elements</pre>
     </td>
     <td>In the currently available version of V3, there is not a method to create an element into a Canvas, not even if you provide a parameter such as the one below to a POST call:<pre>?canvas={canvasID}</pre> But there is a way to list the elements inside a Canvas. In v3 you can use: <pre>GET /v3/workspaces/{workspace_id}/elements<b>?canvas={canvas_id}</b></pre></td>
   </tr>
@@ -367,7 +367,7 @@ For the elements of the Image, Document or Video type, the width and height prop
     <td><center><b>v3 beta</b></center></td>
   <tr>
     <td>How to get the list of all objects of an object type in the workspace.<br /><br />
-    <b>NOTE</b>: The object types are different in V2 and V3, see the difference sin casing and names</td>
+    <b>NOTE</b>: The object types are different in v2 and V3, see the difference sin casing and names</td>
     <td>
     <pre>GET /v2/workspaces/{workspace_id}/elements/{object_type}</pre>
         List of Types in V3: text, images, browsers, documents, grids, notes, strokes, videos, canvas.
