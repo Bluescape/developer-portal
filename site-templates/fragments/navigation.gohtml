@@ -9,13 +9,12 @@
     {{end}}
   {{end}}
     <br />
-    {{if or (eq $.CurrentPage "urls") (eq $.CurrentPage "reference") (eq $.CurrentPage "pagination") (eq $.CurrentPage "listener-events") (eq $.CurrentPage "permissions") (eq $.CurrentPage "v3-known-issues") (eq $.CurrentPage "v3-tips-and-tricks") (eq $.CurrentService "elementary") (eq $.CurrentService "isam") (eq $.CurrentPage "graphql-reference")}}
+    {{if or (eq $.CurrentPage "urls") (eq $.CurrentPage "reference") (eq $.CurrentPage "pagination") (eq $.CurrentPage "permissions") (eq $.CurrentPage "v3-known-issues") (eq $.CurrentPage "v3-tips-and-tricks") (eq $.CurrentService "elementary") (eq $.CurrentService "isam") (eq $.CurrentPage "graphql-reference")}}
     <div>
         <ul class="unindent-side-nav-ul">
         <strong>Reference /v3/</strong>
             <li><a href="/docs/page/urls">URLs</a></li>
             <li><a href="/docs/page/pagination">Pagination</a></li>
-            <li><a href="/docs/page/listener-events">Listener Events</a></li>
             <li><a href="/docs/page/permissions">Permissions</a></li>
             <li><a href="/docs/page/versioning">Versioning</a></li>
             <li><a href="/docs/page/v3-known-issues">v3 Known Issues</a></li>
