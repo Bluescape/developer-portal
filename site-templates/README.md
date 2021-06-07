@@ -1,4 +1,4 @@
-# Bluescape Ambassador V3 devportal-content
+# Bluescape Ambassador v3 devportal-content
 
 User content for Ambassador Edge Stack Dev Portal
 
