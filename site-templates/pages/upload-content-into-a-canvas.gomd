@@ -20,7 +20,7 @@
         </tr>
 </table>
  
-This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a>, <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">REST APIs v2</a>.
+This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a>, <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">v2 REST APIs</a>.
 </p>
 
 <a name="rest-v3" class="internal-anchor"><h2>Upload from local using REST APIs v3</h2></a>

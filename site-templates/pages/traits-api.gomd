@@ -104,7 +104,7 @@ For V3:
 <h2>How to implement Traits?</h2>
 
 <p>
-This page contains the implementation details for <a href="#rest">REST APIs</a> and for <a href="#graphql">v3 GraphQL APIs</a>.
+This page contains the implementation details for <a href="#rest">v2 REST APIs</a> and for <a href="#graphql">v3 GraphQL APIs</a>.
 </p>
 
 <a name="rest" class="internal-anchor"><h2>Implementation using REST APIs</h2></a>
