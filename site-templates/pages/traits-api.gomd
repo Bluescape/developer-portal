@@ -206,7 +206,7 @@ This page contains the implementation details for <a href="#rest">v2 REST APIs</
 <a name="graphql" class="internal-anchor"><h2>Implementation using v3 GraphQL APIs</h2></a>
 
 <p>
-In v3 GraphQL traits, you have 2 options to specify the JSON-LD keyword in the Traits declaration: <span class="pre">context</span> and <span class="pre">vocab</span>. The table below provides more deatils about them.
+In v3 GraphQL traits, you have 2 options to specify the JSON-LD keyword in the Traits declaration: <span class="pre">context</span> and <span class="pre">vocab</span>. The table below provides more details about them.
 </p>
 <table class="table table-striped">
                 <tr>
