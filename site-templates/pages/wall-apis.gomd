@@ -13,7 +13,7 @@
     <a href="#send-to-wall">Send To Wall</a> <br />
     <a href="#unsend-from-wall">Unsend From Wall</a> <br />
     <a href="#permissions">Permissions</a> <br />
-    <a href="#get-walls-v3">Get All Walls Owned By an Organization, /v3/</a> <br />
+    <a href="#get-walls-v3">Get All Walls Owned By an Organization, v3</a> <br />
 </p>
 <br />
 
@@ -457,7 +457,7 @@ You can verify if your user has the required permissions by following these step
 </ul>
    
 
-<a name="get-walls-v3" class="internal-anchor"><h2>Get All Walls Owned By an Organization, /v3/</h2></a>
+<a name="get-walls-v3" class="internal-anchor"><h2>Get All Walls Owned By an Organization, v3</h2></a>
         Authenticated User must have the <i>Can List Organization Walls</i> permission group to get all Walls in an organization. 
         The query parameter 'orderBy' supports the 'name' field. You can define multiple 'orderBy' values. You can also specify the order in which your name field is displayed through the use of 'asc' and 'desc'. The filter parameter 'filterBy' supports fields 'name', 'archived'. 
         Only one filter parameter may be provided at a time; any extras will be ignored. Example: <span class="pre">'filterBy=name:testwall'</span>.
