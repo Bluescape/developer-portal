@@ -7,9 +7,9 @@
     <h3>API version v3 Beta</h3>
     <p>
         <ul>
-            <li>New API version v3 Beta is available for testing.</li>
+            <li>New API version <a href="/docs/page/reference">v3 Beta</a> is available for testing.</li>
             <li>Along with REST APIs, new <a href="/docs/page/what-is-graphql">GraphQL APIs</a> are available.</li>
-            <li>Examples for v3 REST APIs and GraphQL APIs have been added to the examples in the pages in the Getting Started pages in the <a href="/docs/page/guides">Guides</a> section.</li>
+            <li>Examples for v3 REST and GraphQL APIs have been added to the examples in the pages in the Getting Started pages in the <a href="/docs/page/guides">Guides</a> section.</li>
         </ul>
     </p>
     <h3>New Application Registration process</h3>
