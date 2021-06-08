@@ -12,7 +12,7 @@
     {{if or (eq $.CurrentPage "urls") (eq $.CurrentPage "reference") (eq $.CurrentPage "pagination") (eq $.CurrentPage "permissions") (eq $.CurrentPage "v3-known-issues") (eq $.CurrentPage "v3-tips-and-tricks") (eq $.CurrentService "elementary") (eq $.CurrentService "isam") (eq $.CurrentPage "graphql-reference")}}
     <div>
         <ul class="unindent-side-nav-ul">
-        <strong>Reference /v3/</strong>
+        <strong>Reference v3</strong>
             <li><a href="/docs/page/urls">URLs</a></li>
             <li><a href="/docs/page/pagination">Pagination</a></li>
             <li><a href="/docs/page/permissions">Permissions</a></li>
@@ -23,7 +23,7 @@
             {{/* <li><h3>API Reference</h3></li>
             {% include 'reference/api-toc' %} */}}
         </ul>
-        <strong>REST API /v3/</strong>
+        <strong>REST API v3</strong>
         <ul class="unindent-side-nav-ul">
             <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference-v2">Go to current REST API version</a></li>
             {{range $i, $element := .S.K8sStore.Slice }}
@@ -55,7 +55,7 @@
                 <li><samp>None</samp></li>
             {{end}}
             </ul>
-        <strong>GraphQL API /v3/</strong>
+        <strong>GraphQL API v3</strong>
         <ul class="unindent-side-nav-ul">
             <li style="padding-left: 0.6em;" class="subitemguide"><a href="/docs/page/graphql-reference">GraphQL Reference</a></li>            
         </ul>

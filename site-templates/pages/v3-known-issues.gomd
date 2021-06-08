@@ -18,7 +18,7 @@
     <li>POST for traits: you cannot add traits to an element already created (COL-3866).</li>
     <li>POST for Browser: error is returned when "frameless" property is set to false (COL-3632).</li>
     <li>PATCH for Browser: cannot change value of "frameless" property (WEBC-10176).</li>
-    <li>POST and PATCH for Browser: if height or width are set to less than 640, the error is not clear about this lower limit (COL-4069)<li>
+    <li>POST and PATCH for Browser: if height or width are set to less than 640, the error is not clear about this lower limit (COL-4069).<li>
     <li>Upload Assets paths in openapi.json documentation is incorrect (COL-3912).</li>
     <li>GET for Stroke: does not return Traits (COL-3889).</li>
     <li>GET for Whiteboard: does not return Traits (COL-3878).</li>
@@ -29,7 +29,6 @@
     <li>DELETE: successful deletion returns "204 No Content" instead of "204 Element deleted successfully" (COL-3868).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
     <li>Swagger document contains wrong payload example for Traits creation (COL-3866).</li>
-    <li>Swagger documents include "/api/" in the APIs path, it needs to be removed (AD-9065).</li>
 </ul>
 <h4>GraphQL APIs</h4>
 <ul>
@@ -47,6 +46,6 @@
 <ul>
     <li>Only Organization Admins can access the Applications feature in Config Center.</li>
     <li>Upload of asset from URL needs to be implemented (COL-3898).</li>
-    <li>GraphQL end REST response body ned to return object, not just ID (COL-3907).</li>
+    <li>GraphQL end REST response body need to return object, not just ID (COL-3907).</li>
     <li>Organizations created with v3 REST and GraphQL are not accessible by a v2 GET /organizations/<org-id> (AD-9480).</li>
 </ul>
