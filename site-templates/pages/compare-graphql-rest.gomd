@@ -37,7 +37,7 @@ Here we present a comparison of Bluescape <span class="pre">v3</span> REST and G
     </tr>
 </table>
 <h4>Filtering elements by Type</h4>
-<p>GraphQL provides a great flexibility to get just the data you need, and for taht you need to clearly specify what are the fields you want to be retrieved in each query</p>
+<p>GraphQL provides a great flexibility to get just the data you need, and for that you need to clearly specify what are the fields you want to be retrieved in each query</p>
 <table class="table table-striped">
     <tr>
         <td><center><b>REST</b></center></td>
