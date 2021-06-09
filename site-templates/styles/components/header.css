@@ -27,7 +27,7 @@
   text-transform: uppercase; */
   line-height: var(--header-height);
   height: var(--header-height);
-  padding: 0 10px;
+  padding: 17px 10px;
   display: block;
 }
 
