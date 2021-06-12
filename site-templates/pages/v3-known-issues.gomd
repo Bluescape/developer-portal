@@ -13,20 +13,14 @@
     <li>PATCH for Browser: after modifying height/width, the preview image does not scale or changes (WEBC-10223).</li>
     <li>PATCH for Video: change of (x,y) position resizes Video back to original height/width (COL-3956).</li>
     <li>PATCH for Stroke: pinning does not work (COL-3955).</li>
-    <li>PATCH for Line: changes in request body are not applied to element (COL-3975).</li>
     <li>PATCH and POST for Canvas: cannot change/set color of border: "style: IsValidCanvasColor: ''" (COL-3980).</li>
     <li>POST for traits: you cannot add traits to an element already created (COL-3866).</li>
-    <li>POST for Browser: error is returned when "frameless" property is set to false (COL-3632).</li>
-    <li>PATCH for Browser: cannot change value of "frameless" property (WEBC-10176).</li>
     <li>POST and PATCH for Browser: if height or width are set to less than 640, the error is not clear about this lower limit (COL-4069).<li>
-    <li>Upload Assets paths in openapi.json documentation is incorrect (COL-3912).</li>
     <li>GET for Stroke: does not return Traits (COL-3889).</li>
     <li>GET for Whiteboard: does not return Traits (COL-3878).</li>
     <li>GET for Line: does not return Traits (COL-3799).</li>
-    <li>GET for Shapes: does not return attachments (COL-4083).</li>
     <li>POST and DELETE for attachments: not working (COL-3870).</li>
     <li>POST: "create within canvas" functionality is not enabled as in V2, you need to provide absolute position to new elements within canvas (COL-4120).</li>
-    <li>DELETE: successful deletion returns "204 No Content" instead of "204 Element deleted successfully" (COL-3868).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
     <li>Swagger document contains wrong payload example for Traits creation (COL-3866).</li>
 </ul>
@@ -37,6 +31,7 @@
     <li>GraphQL upload of assets to workspace is not implemented (COL-4127).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
     <li>Query for Strokes: traits are returned empty (COL-3483).</li>
+    <li>createText and updateText: cannot set background as transparent, it displays black (COL-4275).</li>
 </ul>
 <h4>GraphQL Subscriptions</h4>
 <ul>
