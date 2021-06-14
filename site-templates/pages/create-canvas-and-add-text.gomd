@@ -383,7 +383,7 @@ From this response, you can obtain the newly created Canvas ID: ['data']['id']
 
 <p>
     To begin, you will need to create a Canvas in your Workspace that can be used to group your elements in. To do this, you will need only the WorkspaceID
-    in which you want to create the Canvas. For information on how to get this, see our previous guide on <a href="/docs/page/graphql-get-list-of-workspaces">Getting a List of Workspaces</a>.
+    in which you want to create the Canvas. For information on how to get this, see our previous guide on <a href="/docs/page/get-list-of-workspaces#graphql">Getting a List of Workspaces using GraphQL</a>.
     The information you'll need returned from this call is only the (x,y) coordinates of where it is placed, so that you can
     add a Text element to the Canvas in the next step. Many additional properties can be given to the Canvas upon creation, but it will be kept simple
     for the sake of this introduction. This can be specified in a relatively simple query as follows:
