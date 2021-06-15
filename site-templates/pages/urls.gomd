@@ -1,25 +1,17 @@
-<h1>URLs</h1>
-<p>
-    <table style="background-color: #FFFFA5">
-        <tr>
-            <td style="padding:15px">   
-                    <b><center>NOTICE</center>
-                        <br />
-                        The API Reference documentation currently shows API endpoints in the format <span class="pre">/api/v3/{endpoint}</span> This is just an abbreviation of the full API endpoint which is currently implemented at: <span class="pre"><script type="text/javascript">document.write(apiBaseStr);</script>/v3/{endpoint}</span>. </br></br>For example, the documented endpoint <span class="pre">/api/v3/organizations</span> would translate to an API call at <span class="pre"><script type="text/javascript">document.write(apiBaseStr);</script>/v3/organizations</span>. This discrepancy will be resolved in an upcoming release.
-                    <br /> <br />
-                    </b>
-            </td>
-        </tr>
-    </table>
-</p>  
+<h1>URLs for v3</h1>
+
 <p>
     Below is a list of the URLs you will need when developing applications using the Bluescape API.
 </p>
 
 <table style="margin-bottom: 16rem;" class="table table-striped">
     <tr>
-        <th>Base URL for API Requests</th>
+        <th>Base URL for REST API Requests</th>
         <td><script type="text/javascript">document.write(apiBaseStr); </script></td>
+    </tr>
+    <tr>
+        <th>Base URL for GraphQL API Requests</th>
+        <td><script type="text/javascript">document.write(graphQLStr); </script></td>
     </tr>
     <tr>
         <th>OAuth Authorization URL</th>

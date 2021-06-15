@@ -39,7 +39,7 @@
         Where do I start?
         <ul>
             <li>You can use the code samples provided in the <a href="/docs/page/guides">Guides section</a> to get familiarized with the way the Bluescape APIs work and learn about the authentication alternatives.</li>
-            <li>In particular, visit the example of how to <a href="/docs/page/upload-from-local-drive-into-a-canvas">upload content from a local drive into a Canvas</a>. This example explains the building blocks of how to upload content into a Workspace using the Bluescape APIs.</li>
+            <li>In particular, visit the example of how to <a href="/docs/page/upload-content-into-a-canvas">upload content from a local drive into a Canvas</a>. This example explains the building blocks of how to upload content into a Workspace using the Bluescape APIs.</li>
             <li></li>
         </ul>
     </p>

@@ -33,7 +33,7 @@
         <h4>API Reference</h4>
 
         <p>
-          View <a href="/docs/page/reference">reference</a> documentation for all of our APIs and authorization flows.
+          View <a href="/docs/page/reference-v2">reference</a> documentation for all of our APIs and authorization flows.
         </p>
       </div>
     </div>
@@ -50,7 +50,7 @@
        
         <h4>What's New?</h4>
         <p>
-            We have a new API release, V3. See details <a href="/docs/page/versioning">here</a>.
+            We have interesting new features on this 21.06.1 Release, see <a href="/docs/page/whats-new">what's new</a>.
         </p>
        
       </div>

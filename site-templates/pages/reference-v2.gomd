@@ -1,17 +1,32 @@
 <h1>Reference</h1>
 
-
-<h2>Version: /v2/ </h2>
-<a href="/docs/page/reference">Go to current API version</a>
+<p>
+    <table style="background-color: #FFFFA5">
+        <tr>
+            <td style="padding:15px">   
+                    <b><center>NOTICE</center>
+                        <br />
+                        API version v3 is available as a beta preview as part of the 21.06.1 release on June 11, 2021. This is a preview only and should not be used for mission critical production integrations until the GA release as it has the potential to change. 
+                    <br /> <br />
+                    </b>
+            </td>
+        </tr>
+    </table>
+</p> 
 
 <p>
-    The Bluescape API gives you access to a set of secure organization and content management features for use in your
-    own app. It strives to be RESTful and is organized around the main resources from the Bluescape wall and web
+    The Bluescape APIs give you access to a set of secure organization and content management features for use in your
+    own environment. You can use RESTful APIs that are organized around the main resources from the Bluescape wall and web
     interfaces.
 </p>
 
 <p>
+You can access the REST reference by selecting one of the openapi files linked under <b>REST API reference</b> on the left navigation.<br />
+The <a href="/docs/page/reference">reference page for v3</a> gives you access to the REST and GraphQL APIs.
+</p>
+
+<p>
     We intend for this reference to contain all essential information application developers require to successfully
-    build integrations with the Bluescape API. Please <a href="/docs/page/support">let us know</a> if something is missing.
+    build integrations with the Bluescape APIs. Please <a href="/docs/page/support">let us know</a> if something is missing.
 </p>
 

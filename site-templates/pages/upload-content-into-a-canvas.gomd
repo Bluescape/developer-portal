@@ -1,0 +1,289 @@
+<h1>Upload content into a Canvas, v3</h1>
+<p>
+<b>Objective</b>: Upload content from a local drive into a workspace.
+</p>
+<p>
+  The currently supported file extensions for uploading content to a Workspace are:
+
+<table class="table table-striped">
+        <tr>
+          <td>Images</td>
+          <td>png, jpeg, gif, tiff, pdf, docx, pptx, xlsx, doc, ppt, xls</td>
+        </tr>
+        <tr>
+            <td>Documents</td>
+            <td>doc, docx, ppt, pptx, xls, xlsx, pdf, docMime, docxMime, pptMime, pptxMime, xlsMime, xlsxMime, pdfMime</td>
+        </tr>        
+        <tr>
+          <td>Videos</td>
+          <td>mp4, mov, m4v, quicktime, mp4Mime, m4vMime, quicktimeMime</td>
+        </tr>
+</table>
+ 
+This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a>, <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">v2 REST APIs</a>.
+</p>
+
+<a name="rest-v3" class="internal-anchor"><h2>Upload from local using REST APIs v3</h2></a>
+
+<p>
+In REST APIs v3, the upload process from your local drive is divided in 3 steps:
+<ol>
+    <li>Create a zygote or placeholder for the file to upload. Here you will get the credentials to upload the file to a storage service, Amazon S3 in the example.</li>
+    <li>Upload the image to Amazon S3</li>
+    <li>Link the zygote or placeholder to the uploaded image: it finishes the upload into the workspace</li>
+</ol>
+</p>
+<h4>STEP 1: Create zygote or placeholder for the file to upload</h4>
+<p>
+This is the first step of three for the upload. You will need to create a zygote or placeholder, in the workspace, for the file to upload. This step will generate the Id of the object and the credentials for doing the actual upload of the file. See the details below.
+<table class="table table-striped">
+        <tr>
+          <td><b>API</b></td>
+          <td>/workspaces/&lt;workspaceId&gt;/elements</td>
+        </tr>
+        <tr>
+            <td><b>Method</b></td>
+            <td>POST</td>
+        </tr>  
+        <tr>
+          <td><b>Comments</b></td>
+          <td></td>
+        </tr>
+</table>
+</p>
+<p>
+You need to specify the type of the file you will upload. Specify it in the <span class="pre">imageFormat</span> field: <span class="pre">png</span> or <span class="pre">jpeg</span>.<br/>
+You will also need to assign, the values for the <span class="pre">filename</span> and a <span class="pre">title</span> fields, set as "myImageToUpload.jpg" in the following example:
+
+<pre>
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "type": "Image",
+    "filename": "myImageToUpload.jpg",
+    "title": "myImageToUpload.jpg",
+    "imageFormat": "jpeg",
+    "transform": { "x": 300, "y": 100, "scale": 2 }
+  }'
+</pre>
+</p>
+
+<p>
+The response body you will get should look like this:
+<pre>
+{
+    "data": {
+        "content": {
+            "uploadId": "60aed93111bf08bf22a2572a",
+            "url": "https://s3.us-east-1.amazonaws.com/acceptance-new.public-assets.bluescape.com",
+            "fields": {
+                "key": "sessions/objects/GDUWtDvSZGtE868PBBk2/60aed93111bf08bf22a2572a.jpg",
+                "bucket": "acceptance-new.public-assets.bluescape.com",
+                "X-Amz-Algorithm": "AWS4-HMAC-SHA256",
+                "X-Amz-Credential": "AKIZIVWWSYKG79KFMQJA/20210526/us-east-1/s3/aws4_request",
+                "X-Amz-Date": "20210526T232643Z",
+                "Policy": "eyJleHNpcmF0aW9uIjoiMjAyMS0wNS0yNlQyMzozMTo0MVoiLCJjb25kaXRpb25zIjpbWyJlcSIsIiRrZXkiLCJzZXNzaW9ucy9vYmplY3RzL0dEVVd0RHZTWkd0Nzg2OFBCQmsyLzYwYWVkOTMxMTdiZjA4YmYyMmEyNTcyYS5qcGciXSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDUyNDI4ODAwXSx7ImJ1Y2tldCI6ImFjY2VwdGFuY2Utbmv3LnB1YmxpYy1hc3NldHMuYmx1ZXNjYXBlLmNvbSJ9LHsiWC1BbXotQWxnb3JpdGhtIjoiQVdTNC1ITUFDLVNIQTI1NiJ9LHsiWC1BbXotQ3JlZGVudGlhbCI6IkFLSUFJVldXU1lLRzdES0ZNUUpBLzIwMjEwNTI2L3VzLWVhc3QtMS9zMy9hd3M0X3JlcXVlc3QifSx7IlgtQW16LURhdGUiOiIyMDIxMDUyNlQyMzI2NDFaIn1dfQ==",
+                "X-Amz-Signature": "fd521d7b3416a12a9997a2e1a10408f7P8427d9d0ae01A53e65a926f0f07a56d"
+            }
+        },
+        "image": {
+            "id": "60aed93111bf08bf22a2572a",
+            "zIndex": 1183,
+            "transform": {
+                "x": 300,
+                "y": 100,
+                "scaleX": 1,
+                "scaleY": 1
+            },
+            "traits": {
+                "http://bluescape.dev/zygote/v1/ingestionState": {
+                    "http://bluescape.dev/zygote/v1/ingestionState/timestamp": 1622071601170,
+                    "http://bluescape.dev/zygote/v1/ingestionState/stage": "transferring"
+                }
+            },
+            "pinned": false,
+            "comments": [],
+            "width": 1000,
+            "height": 1000,
+            "title": "myImageToUpload.jpg",
+            "filename": "myImageToUpload.jpg",
+            "ingestionState": "transferring",
+            "type": "Image",
+            "asset": {
+                "imageFormat": "jpeg"
+            }
+        }
+    }
+}
+</pre>
+
+</p>
+<p>
+At this moment, you will see a placeholder element in the workspace, in the position you specified, displaying a <i>"transferring"</i> message (as shown in the traits in the response body).<br />
+From the response body, you will need to use the following fields for the next step:
+<table class="table table-striped">
+        <tr>
+          <td><b>Field</b></td>
+          <td><b>Description</b></td>
+        </tr>
+        <tr>
+            <td>data/content/url</td>
+            <td>Destination URL to where the file will be uploaded.</td>
+        </tr> 
+        <tr>
+            <td>data/image/id</td>
+            <td>This is the Id of the cygote/placeholder created for the file to upload. It is the final Id of the uploaded file.</td>
+        </tr>        
+        <tr>
+          <td>data/content/fields</td>
+          <td>These fields are the ones you will need to authenticate with S3 (or the repository you are using) and to upload the file.</td>
+        </tr>
+</table>
+
+</p>
+
+<h4>STEP 2: Upload the file to S3</h4>
+<p>
+In this step, you will use the S3 credentials generated in the previous step. You will use them to upload the file into S3.<br />
+Please note that you will run an API call directly to  S3 (or the repository you are using), and the credentials for authentication and authorization for the upload are the ones provided in the previous step, in the <span class="pre">data/content/fields</span> block.
+</p>
+<p>
+This is the command to run the upload of the file:
+
+<pre>
+curl --location --request POST '&lt;SET-data/content/url&gt;' \
+--form 'key="&lt;SET-data/content/field/key&gt;' \
+--form 'bucket="&lt;SET-data/content/field/bucket&gt;"' \
+--form 'X-Amz-Algorithm="&lt;SET-data/content/field/X-Amz-Algorithm&gt;"' \
+--form 'X-Amz-Credential="&lt;SET-data/content/field/X-Amz-Credential&gt;"' \
+--form 'X-Amz-Date="&lt;SET-data/content/field/X-Amz-Date&gt;"' \
+--form 'Policy="&lt;SET-data/content/field/Policy&gt;"' \
+--form 'X-Amz-Signature="&lt;SET-data/content/field/X-Amz-Signature&gt;"' \
+--form 'file=@"&lt;SET_FULL_PATH_TO_LOCAL_FILE"'
+</pre>
+
+</p>
+<p>
+This is how the command will look when using the data from Step 1:
+
+<pre>
+curl --location --request POST 'https://s3.us-east-1.amazonaws.com/acceptance-new.public-assets.bluescape.com' \
+--form 'key="sessions/objects/GDUWtDvSZGtE868PBBk2/60aed93111bf08bf22a2572a.jpg"' \
+--form 'bucket="acceptance-new.public-assets.bluescape.com"' \
+--form 'X-Amz-Algorithm="AWS4-HMAC-SHA256"' \
+--form 'X-Amz-Credential="AKIZIVWWSYKG79KFMQJA/20210526/us-east-1/s3/aws4_request"' \
+--form 'X-Amz-Date="20210526T232643Z"' \
+--form 'Policy="eyJleHNpcmF0aW9uIjoiMjAyMS0wNS0yNlQyMzozMTo0MVoiLCJjb25kaXRpb25zIjpbWyJlcSIsIiRrZXkiLCJzZXNzaW9ucy9vYmplY3RzL0dEVVd0RHZTWkd0Nzg2OFBCQmsyLzYwYWVkOTMxMTdiZjA4YmYyMmEyNTcyYS5qcGciXSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDUyNDI4ODAwXSx7ImJ1Y2tldCI6ImFjY2VwdGFuY2Utbmv3LnB1YmxpYy1hc3NldHMuYmx1ZXNjYXBlLmNvbSJ9LHsiWC1BbXotQWxnb3JpdGhtIjoiQVdTNC1ITUFDLVNIQTI1NiJ9LHsiWC1BbXotQ3JlZGVudGlhbCI6IkFLSUFJVldXU1lLRzdES0ZNUUpBLzIwMjEwNTI2L3VzLWVhc3QtMS9zMy9hd3M0X3JlcXVlc3QifSx7IlgtQW16LURhdGUiOiIyMDIxMDUyNlQyMzI2NDFaIn1dfQ=="' \
+--form 'X-Amz-Signature="fd521d7b3416a12a9997a2e1a10408f7P8427d9d0ae01A53e65a926f0f07a56d"' \
+--form 'file=@"/Users/pj/temp/docs/araucaria.jpg"'
+</pre>
+
+</p>
+<p>
+<b>IMPORTANT</b>: If the upload process is successful, you will get a return code <span class="pre">204</span>, then proceed to the last step of the upload.
+</p>
+
+<h4>STEP 3: Link the zygote or placeholder to the uploaded file</h4>
+<p>
+The last step is to link the zygote or placeholder to the file we uploaded in the previous step. For this step we will need the id from <span class="pre">data/content/uploadId</span> generated in the response body in step 1.
+
+<table class="table table-striped">
+        <tr>
+          <td><b>API</b></td>
+          <td>/workspaces/&lt;workspaceId&gt;/assets/uploads/&lt;uploadId&gt;</td>
+        </tr>
+        <tr>
+            <td><b>Method</b></td>
+            <td>PUT</td>
+        </tr>  
+        <tr>
+          <td><b>Comments</b></td>
+          <td>&lt;uploadId&gt; is the element Id created in the first step of the upload.</td>
+        </tr>
+</table>
+</p>
+<p>
+This is the command to run:
+
+<pre>
+curl --location --request PUT '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/assets/uploads/&lt;uploadId&gt;' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{}'
+</pre>
+
+</p>
+
+<a name="graphql" class="internal-anchor"><h2>Upload by URL using GraphQL APIs</h2></a>
+<p>
+In GraphQL, you can use the URL pointing to a resource to upload it into a workspace.<br />
+When should we use this "upload by URL approach? When you integrate with external services that host images, videos and/or documents, and you want to access them (to view or download them),most of the time you are provided with a URL to those assets, not the actual binary object. Then, you can use that URL to access those assets to upload them directly into a workspace.<br />
+You can use the following mutations: <span class="pre">createDocument</span>, <span class="pre">createImage</span>, <span class="pre">createVideo</span>.
+</p>
+<p>
+Example of <span class="pre">createImage</span> mutation:
+<pre>
+mutation uploadImageFromURL($workspaceId: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $url:String! $scale:Float) {
+    createImage(
+          workspaceId: $workspaceId
+          input: {
+            title:$title
+            imageFormat: $imageFormat
+            sourceUrl: $url
+            transform: {
+              x: $x
+              y: $y
+              scale:$scale
+            }
+    }) 
+    #return values after creation:
+    {
+        content{ uploadId url fields}
+        preview{uploadId url fields}
+        image{id width height ingestionState}
+    }
+}
+</pre>
+
+and these are the variables for the mutation above:
+<pre>
+{
+    "workspaceId": "&lt;workspaceId&gt;",
+    "title":"&lt;title_or_filename&gt;",
+    "imageFormat":"&lt;SEE_ALLOWED_TYPES_AT_THE_TOP_OF_THE_PAGE&gt;",
+    "previewFormat":"&lt;SEE_ALLOWED_TYPES_AT_THE_TOP_OF_THE_PAGE&gt;",
+    "url":"&lt;URL_POINTING_TO_THE_IMAGE_TO_UPLOAD&gt;",
+    "x":&lt;X_COORDINATE&gt;,
+    "y":&lt;Y_COORDINATE&gt;,
+    "scale":&lt;SCALE_FACTOR&gt;
+}
+</pre>
+
+</p>
+Example of parameters to load an image:
+<pre>
+{
+    "workspaceId": "&lt;workspaceID&gt;",
+    "title":"Yosemite, open view",
+    "imageFormat":"jpeg",
+    "previewFormat":"jpeg",
+    "url":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Yosemite_nat_park_valley_view.JPG/1200px-Yosemite_nat_park_valley_view.JPG",
+    "x":0,
+    "y":0,
+    "scale":1
+}
+</pre>
+
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+
+
+
+<p>
+If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
+</p>

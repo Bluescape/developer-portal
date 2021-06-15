@@ -35,7 +35,6 @@
   color: var(--primary-color);
   font-weight: bold;
   position: relative;
-  background: white;
 }
 
 .c-nav__selected:before {
@@ -45,5 +44,4 @@
   bottom: 0;
   left: 0;
   width: 3px;
-  background-color: var(--brand-color);
 }
