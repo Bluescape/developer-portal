@@ -61,7 +61,7 @@
 </p>
 
 <p>
-    <b><a name="v2New"></a>Q: What's New in V2?</b><br /> 
+    <b><a name="v2New" class="internal-anchor"></a>Q: What's New in V2?</b><br /> 
 
     <b>A</b>: With the <span class="pre">/v2/</span> endpoint, scripts previously using the id field will need to be replaced with the uid field. Before updating to <span class="pre">/v2/</span>, check all scripts that are potentially impacted by the migration of id to uid fields in API bodies and responses</a>.
 </p>

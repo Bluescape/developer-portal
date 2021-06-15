@@ -1,4 +1,4 @@
-{{if or (eq .Ctx "landing") (eq $.CurrentPage "overview")}}
+{{if or (eq .Ctx "landing") (eq $.CurrentPage "overview") (eq $.CurrentPage "appRegistration") (eq $.CurrentPage "whats-new")}}
 <footer class="o-page__footer c-footer" style="margin-left: 0px">
 {{else}}
 <footer class="o-page__footer c-footer">
@@ -31,7 +31,7 @@
                         <h5>Links</h5><br>
 
                         <p><a href="https://www.bluescape.com/" target="_blank">Bluescape</a></p>
-                        <p><a href="https://community.bluescape.com/s/" target="_blank">Bluescape Support</a></p>
+                        <p><a href="https://support.bluescape.com/" target="_blank">Bluescape Support</a></p>
                     </div>
                     <div class="col-md-2">
                         <h5>Legal</h5><br>
