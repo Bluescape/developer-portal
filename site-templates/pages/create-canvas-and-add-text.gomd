@@ -433,18 +433,18 @@ mutation createCanvasExample($workspaceId: String!, $input: CreateCanvasInput!){
     }
 }
 </pre>
-
 <p>
-    With this you are able to extract the <span class="pre">x,y</span> coordinates which were returned in the previous response. You can now create a
-    Text element within the newly created Canvas. To do this, construct another query to create a Text element, and specify these parameters.
-    You will need to ensure that the Text position and size fit within the canvas. This can be done by defining the <span class="pre">transform</span>
-    parameter, which allows you to specify the position of the Text element, as well as the <span class="pre">style</span> parameter which gives the ability
-    to define additional properties such as <span class="pre">height</span>, <span class="pre">width</span>, and <span class="pre">font</span>.
+In the output above, the value of "id" will change every time that you run the <span class="pre">createCanvas</span> mutation.
+</p>
+<p>
+    You can now create a Text element within the newly created Canvas. To do this, construct another query to create a Text element.
+    You will need to ensure that the Text position and size fit within the canvas. For that, we can provide de ID of the Canvas we just created as the value for <span class="pre">relativeToOriginOf</span> in the new mutation. We will use that Canvas as the starting point for the <span class="pre">x,y</span> position in <span class="pre">transform</span>, where the position will be relative to the top-left corner of the Canvas. If you do not use the <span class="pre">relativeToOriginOf</span> parameter, then the <span class="pre">x,y</span> position is absolute to the center of the workspace.<br/>
+    Also, the <span class="pre">style</span> parameters give you the ability to define additional properties such as <span class="pre">height</span>, <span class="pre">width</span>, and <span class="pre">font</span>.
 </p>
 
 <pre>
 mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
-    createText(workspaceId: $workspaceId, input: $input) {
+    createText(workspaceId: $workspaceId, relativeToOriginOf: $idRelativeTo, input: $input) {
         __typename
         id
         text
@@ -458,6 +458,7 @@ mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
 <pre>
 {
     "workspaceId": "&lt;SET_WORKSPACEID&gt;",
+    "idRelativeTo" : "&lt;SET_CANVAS_ID&gt;"
     "input": {
         "text": "Example text inside canvas",
         "transform": {
@@ -537,12 +538,11 @@ async function startProcess() {
     const canvasResponse = await makeQuery(canvasQuery, canvasParams);
     console.log(canvasResponse);
 
-    canvasX = canvasResponse.data.createCanvas.transform.x;
-    canvasY = canvasResponse.data.createCanvas.transform.y;
+    canvasID = canvasResponse.data.id; 
 
     const textQuery =
         `mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
-            createText(workspaceId: $workspaceId, input: $input) {
+            createText(workspaceId: $workspaceId, relativeToOriginOf: $idRelativeTo, input: $input) {
             __typename
             id
             text
@@ -552,11 +552,12 @@ async function startProcess() {
 
     const textParams = {
         "workspaceId": workspaceId,
+        "idRelativeTo" : canvasID,
         "input": {
             "text": "Example text inside canvas",
             "transform": {
-                "x": canvasX + 50,
-                "y": canvasY + 50,
+                "x": 50,
+                "y": 50,
                 "scaleX": 1,
                 "scaleY": 1
             },
@@ -624,12 +625,11 @@ if __name__ == "__main__":
     canvasResponse = makeQuery(canvasQuery, canvasParams)
     pprint.pprint(canvasResponse)
 
-    canvasX = canvasResponse['data']['createCanvas']['transform']['x']
-    canvasY = canvasResponse['data']['createCanvas']['transform']['y']
+    canvasID = canvasResponse['data']['id']
 
     textQuery = """
     mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
-        createText(workspaceId: $workspaceId, input: $input) {
+        createText(workspaceId: $workspaceId, relativeToOriginOf: $idRelativeTo, input: $input) {
             __typename
             id
             text
@@ -639,11 +639,12 @@ if __name__ == "__main__":
     """
     textParams = {
         "workspaceId": workspaceId,
+        "idRelativeTo" : canvasID,
         "input": {
             "text": "Example text inside canvas",
             "transform": {
-                "x": canvasX + 50,
-                "y": canvasY + 50,
+                "x": 50,
+                "y": 50,
                 "scaleX": 1,
                 "scaleY": 1
             },
