@@ -2,12 +2,12 @@
 
 <div class="col-md-8 content">
 
-    <h1>What's new in the 21.06.1 Release</h1>
+    <h1>What's new in the 21.07.1 Release</h1>
 
-    <h3>API version v3 Beta</h3>
+    <h3>New API version v3</h3>
     <p>
         <ul>
-            <li>New API version <a href="/docs/page/reference">v3 Beta</a> is available for testing.</li>
+            <li>New API version <a href="/docs/page/reference">v3</a> is available.</li>
             <li>Along with REST APIs, new <a href="/docs/page/what-is-graphql">GraphQL APIs</a> are available.</li>
             <li>Examples for v3 REST and GraphQL APIs have been added to the examples in the pages in the Getting Started pages in the <a href="/docs/page/guides">Guides</a> section.</li>
         </ul>

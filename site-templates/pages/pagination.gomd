@@ -1,4 +1,4 @@
-<h1>Pagination for v3</h1>
+<h1>Pagination</h1>
 
 <p>
     <table style="background-color: #FFFFA5">
@@ -85,7 +85,7 @@
     }
   ],
   "prev": "WOsxk6rPfmJ82bLCnweOF1iZz4fJcU0RURgyGjgsPJ5b7RUgg",     // previous cursor points to the last request
-  "next": "wFkZLNx+jnly3wRUMfUjzGV2gEMEpKWXDyHjCGtwRQ7IG",         // next cursor navigates to subsequent requests
+  "next": "wFkZLNx+jnly3wRUMfUjzGv2gEMEpKWXDyHjCGtwRQ7IG",         // next cursor navigates to subsequent requests
   "totalItems": 1                                                  // the total number of items that match the query
 }
 </pre>

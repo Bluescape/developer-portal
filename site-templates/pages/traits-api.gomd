@@ -73,7 +73,7 @@
     </p>
     <p>
         Example of the data load: </br>
-For V2:
+For v2:
 <pre>
 {
     // trait from framework A

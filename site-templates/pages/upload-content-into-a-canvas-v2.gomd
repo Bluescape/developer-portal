@@ -7,9 +7,9 @@
    You can also see the implementation details for <a href="/docs/page/upload-content-into-a-canvas#rest-v3">REST APIs v3</a> or <a href="/docs/page/upload-content-into-a-canvas#graphql">GraphQL APIs</a>
 </p>    
 
-<a name="rest-v2" class="internal-anchor"><h2>Implementation using REST APIs V2</h2></a>
+<a name="rest-v2" class="internal-anchor"><h2>Implementation using REST APIs v2</h2></a>
 <p>
-    In REST API V2, the image may be uploaded as a binary attachment, multipart form data, or via a remote url.<br />
+    In REST API v2, the image may be uploaded as a binary attachment, multipart form data, or via a remote url.<br />
 </p>
 <p><b>NOTE:</b> You can use this same code to upload directly to a Workspace instead of into a Canvas, just remove the <span class="pre">/elements</span> part of the API endpoint.</p>
 

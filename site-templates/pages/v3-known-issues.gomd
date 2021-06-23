@@ -1,8 +1,5 @@
 <h1>v3 Known issues</h1>
-<p>Release: 21.06.1 (Jun 11, 2021)</p>
-
-<p><b>IMPORTANT</b>: API version v3 is available as a beta preview as part of the 21.06.1 release on June 11, 2021. This is a preview only and should not be used for mission critical production integrations until the GA release as it has the potential to change.
-</p>
+<p>Release: 21.07.1 (July 09, 2021)</p>
 
 <h4>REST APIs</h4>
 <ul>
@@ -20,7 +17,7 @@
     <li>GET for Whiteboard: does not return Traits (COL-3878).</li>
     <li>GET for Line: does not return Traits (COL-3799).</li>
     <li>POST and DELETE for attachments: not working (COL-3870).</li>
-    <li>POST: "create within canvas" functionality is not enabled as in V2, you need to provide absolute position to new elements within canvas (COL-4120).</li>
+    <li>POST: "create within canvas" functionality is not enabled as in v2, you need to provide absolute position to new elements within canvas (COL-4120).</li>
     <li>Organization hard delete query parameter is not documented properly, needs to detail and clarify hard deletion operations (AD-9268).</li>
     <li>Swagger document contains wrong payload example for Traits creation (COL-3866).</li>
 </ul>

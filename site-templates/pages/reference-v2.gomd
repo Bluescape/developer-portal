@@ -6,7 +6,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        API version v3 is available as a beta preview as part of the 21.06.1 release on June 11, 2021. This is a preview only and should not be used for mission critical production integrations until the GA release as it has the potential to change. 
+                        API version v3 is available as GA as part of the 21.07.1 release on Jul 09, 2021.
                     <br /> <br />
                     </b>
             </td>
