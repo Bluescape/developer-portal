@@ -14,12 +14,13 @@
     </table>
 </p> 
 
-<a href="/docs/page/reference-v2">Go to previous v2 API version</a>
-
 <p>
     The Bluescape APIs give you access to a set of secure organization and content management features for use in your
     own environment. You can choose to use RESTful and GraphQL APIs that are organized around the main resources from the Bluescape wall and web
     interfaces.
+</p>
+<p>
+For v2 REST APIS, please go to <a href="/docs/page/reference-v2">reference page for v2</a>.
 </p>
 
 <p>
