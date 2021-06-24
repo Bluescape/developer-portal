@@ -15,6 +15,8 @@
     <li>GET for Stroke: does not return Traits (COL-3889).</li>
     <li>GET for Whiteboard: does not return Traits (COL-3878).</li>
     <li>GET for Line: does not return Traits (COL-3799).</li>
+    <li>GET for image URL returns invalid URL to see/download image (COL-4305)</li>
+    <li>Images uploaded using URL create invalid URL to see/download image (COL-4310)</li>
 </ul>
 <h4>GraphQL APIs</h4>
 <ul>
@@ -23,6 +25,8 @@
     <li>createText and updateText: cannot set background as transparent, it displays black (COL-4275).</li>
     <li>GraphQL upload of video by URL does not set title of video in workspace (COL-4238)</li>
     <li>GraphQL upload of image by URL does not set title of image in workspace (COL-4307)</li>
+    <li>Query for Images: image URL returns invalid URL to see/download image(COL-4305)</li>
+    <li>Images uploaded using URL create invalid URL to see/download image (COL-4310)</li>
 </ul>
 <h4>GraphQL Subscriptions</h4>
 <ul>
