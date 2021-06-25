@@ -223,7 +223,7 @@ Here is the Access Code: <span class="pre">BFyQPkmEYeSmWP1XYmeiXRJtdEgJLY</span>
         <tr>
                 <td>authorization-token-endpoint</td>
                 <td>Required</td>
-                <td>For this example, use: <script type="text/javascript">document.write(identityStr); </script>/api/v2/oauth2/token<br />
+                <td>For this example, use: <script type="text/javascript">document.write(identityStr); </script>/api/v3/oauth2/token<br />
 
                         For Private Instances, check your Developer Portal Website > Reference> URLs for the OAuth Authorization URL.</td>
             </tr>
@@ -276,7 +276,7 @@ curl -w "%{http_code}\\n" -X POST \
 <p>
     Example of the request: 
 <pre>curl -w "%{http_code}\\n" -X POST \
-<script type="text/javascript">document.write(identityStr);</script>/api/v2/oauth2/token \
+<script type="text/javascript">document.write(identityStr);</script>/api/v3/oauth2/token \
     -H 'Content-Type: application/json' \
     -d '{
     "grant_type":"authorization_code",
@@ -349,7 +349,7 @@ curl -w "%{http_code}\\n" -X POST \
     <tr>
             <td>authorization-token-endpoint</td>
             <td>Required</td>
-            <td>For this example, use: <script type="text/javascript">document.write(identityStr); </script>/api/v2/oauth2/token<br />
+            <td>For this example, use: <script type="text/javascript">document.write(identityStr); </script>/api/v3/oauth2/token<br />
                     For Private Instances, check your Developer Portal Website > Reference> URLs for the OAuth Authorization URL.</td>
         </tr>
         <tr>
@@ -394,7 +394,7 @@ curl -w "%{http_code}\\n" -X POST \
 <p>
     Example of request to get Access Token using Refresh Tokens: 
     <pre>curl -w "%{http_code}\\n" -X POST \
-    <script type="text/javascript">document.write(identityStr);</script>/api/v2/oauth2/token \
+    <script type="text/javascript">document.write(identityStr);</script>/api/v3/oauth2/token \
         -H 'Content-Type: application/json' \
         -d '{
         "grant_type":"refresh_token",  
