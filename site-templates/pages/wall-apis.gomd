@@ -9,17 +9,176 @@
 
 <h2>Table of Contents:</h2>
 <p>
-    <a href="#get-walls">Get All Walls Owned By an Organization</a> <br />
+    <a href="#get-walls-v3">Get All Walls Owned By an Organization, v3</a> <br />
+    <a href="#get-walls">Get All Walls Owned By an Organization, v2</a> <br />
     <a href="#send-to-wall">Send To Wall</a> <br />
     <a href="#unsend-from-wall">Unsend From Wall</a> <br />
     <a href="#permissions">Permissions</a> <br />
-    <a href="#get-walls-v3">Get All Walls Owned By an Organization, v3</a> <br />
 </p>
 <br />
 
 <h2>API Examples</h2>
 
-<a name="get-walls" class="internal-anchor"><h3>Get All Walls Owned By an Organization</h3></a>
+<a name="get-walls-v3" class="internal-anchor"><h2>Get All Walls Owned By an Organization, v3</h2></a>
+        Authenticated User must have the <i>Can List Organization Walls</i> permission group to get all Walls in an organization. 
+        The query parameter 'orderBy' supports the 'name' field. You can define multiple 'orderBy' values. You can also specify the order in which your name field is displayed through the use of 'asc' and 'desc'. The filter parameter 'filterBy' supports fields 'name', 'archived'. 
+        Only one filter parameter may be provided at a time; any extras will be ignored. Example: <span class="pre">'filterBy=name:testwall'</span>.
+    <table class="table table-striped">
+            <tr>
+                <td><b>Endpoint</b></td>
+                <td>/v3/organizations/organizationId/walls</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>Method</b></td>
+                <td>GET</td>
+                <td></td>
+            </tr>
+    </table>
+
+<h4>Request</h4>
+
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-python">
+# Python Code (python 3.5+)
+import requests
+from requests.exceptions import HTTPError
+import pprint
+
+token = '&lt;SET_TOKEN&gt;'
+portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
+organizationId = '&lt;SET_ORGANIZATION_ID&gt;'
+
+
+if __name__ == "__main__":
+
+    API_endpoint = '/v3/organizations/' + organizationId + '/walls'
+
+    data_load = {                  # Example showing how to use the filter_by field
+        'filter_by=name' : '&lt;NAME_TO_FILTER_BY&gt;' 
+    }
+
+    the_request = requests.get(
+            portal + API_endpoint,
+            headers={"Authorization": "Bearer " + token,
+                        "Content-Type": "application/json"
+                    },
+            params = data_load
+        )
+
+    if the_request.status_code != 200:
+        # Error found        
+        print("Error found:")
+        pprint.pprint(the_request)
+    else:
+        json_response = the_request.json()
+        pprint.pprint(json_response)    
+
+    # From here you will need to parse your response to get the ID of the desired wall.
+</pre>
+</p>
+
+<pre class="lang lang-node">
+// Node.js Javascript
+var axios = require('axios');
+/*
+How to run:
+node this_script_name.js
+
+Requires "axios" module (0.19.0), run:
+npm install axios
+
+website: https://github.com/axios/axios
+*/
+
+const token = '&lt;SET_TOKEN&gt;';
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
+const api_version = 'v3';
+const organizationId = '&lt;SET_ORGANIZATION_ID&gt;';
+const api_endpoint = '/organizations/' + organizationId + '/walls';
+
+    const data_load = {
+    'filter_by=name' : '&lt;NAME_TO_FILTER_BY&gt;' 
+    }
+
+request_values = {
+    method: 'GET',
+    url: portal + '/' + api_version + api_endpoint,
+    headers : {
+        'Authorization': "Bearer " + token,
+        'Content-Type' : 'application/json'    
+    },
+    data: data_load
+};
+
+axios(request_values)
+    .then(function (response) {
+    if (response.status == 200)
+    {
+        console.log("Success");
+        console.log(response.data);
+    }
+    })
+    .catch (function (error) {
+        console.log('Error: ' + error.message);
+    });
+    // From here you will need to parse the response to get the ID of the desired wall.
+</pre>
+
+
+<h4>Response</h4>
+    If no extra parameters are used, a list of the top 25 results will be returned.
+    <table class="table table-striped">
+        <tr>
+          <td><b>Element</b></td>
+          <td><b>Json</b></td>
+          <td><b>Comments</b></td>
+        </tr>
+        <tr>
+            <td>Wall ID</td>
+            <td>['walls'][N]['id']</td>
+            <td>Where N is the N-th Wall in the list.</td>
+        </tr>
+        <tr>
+            <td>Wall Name</td>
+            <td>['walls'][N]['name']</td>
+            <td>Where N is the N-th wall name in the list</td>
+        </tr>   
+    </table>
+<h4>Example JSON Output:</h4>
+<pre>
+{
+    "walls": [
+        {
+            "id": "cf0k2DmIcgk-Rdyd-Skw",
+            "name": "org-1-testwall-1",
+            "defaultWorkspaceId": null,
+            "currentWorkspaceId": null,
+            "archived": false,
+            "organizationId": "5JIGySFmJpgen2Jnozqx"
+        },
+        {
+            "id": "xOr1oAGHWce6ttS5_Qe_",
+            "name": "org-1-testwall-2",
+            "defaultWorkspaceId": null,
+            "currentWorkspaceId": null,
+            "archived": false,
+            "organizationId": "5JIGySFmJpgen2Jnozqx"
+        }
+    ],
+    "prev": null,
+    "next": null,
+    "totalItems": 2
+}
+</pre>
+
+<a name="get-walls" class="internal-anchor"><h3>Get All Walls Owned By an Organization, v2</h3></a>
         Authenticated User must have the <i>Can List Organization Walls</i> permission group to get all Walls in an organization. 
         The query parameter 'order_by' supports fields 'name' and 'location'. You can define multiple 'order_by' and 'order_direction' values. Example: '[ASC, DESC]'. The filter parameter 'filter_by' supports fields 'name', 'location'. 
         Only one filter parameter may be provided at a time, any extras will be ignored. Example: 'filter_by=name:testwall'.
@@ -457,164 +616,7 @@ You can verify if your user has the required permissions by following these step
 </ul>
    
 
-<a name="get-walls-v3" class="internal-anchor"><h2>Get All Walls Owned By an Organization, v3</h2></a>
-        Authenticated User must have the <i>Can List Organization Walls</i> permission group to get all Walls in an organization. 
-        The query parameter 'orderBy' supports the 'name' field. You can define multiple 'orderBy' values. You can also specify the order in which your name field is displayed through the use of 'asc' and 'desc'. The filter parameter 'filterBy' supports fields 'name', 'archived'. 
-        Only one filter parameter may be provided at a time; any extras will be ignored. Example: <span class="pre">'filterBy=name:testwall'</span>.
-    <table class="table table-striped">
-            <tr>
-                <td><b>Endpoint</b></td>
-                <td>/v3/organizations/organizationId/walls</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><b>Method</b></td>
-                <td>GET</td>
-                <td></td>
-            </tr>
-    </table>
 
-<h4>Request</h4>
-
-<div class="lang-selector">
-    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
-    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
-    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
-</div>
-
-<p>
-<pre class="lang lang-python">
-# Python Code (python 3.5+)
-import requests
-from requests.exceptions import HTTPError
-import pprint
-
-token = '&lt;SET_TOKEN&gt;'
-portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
-organizationId = '&lt;SET_ORGANIZATION_ID&gt;'
-
-
-if __name__ == "__main__":
-
-    API_endpoint = '/v3/organizations/' + organizationId + '/walls'
-
-    data_load = {                  # Example showing how to use the filter_by field
-        'filter_by=name' : '&lt;NAME_TO_FILTER_BY&gt;' 
-    }
-
-    the_request = requests.get(
-            portal + API_endpoint,
-            headers={"Authorization": "Bearer " + token,
-                        "Content-Type": "application/json"
-                    },
-            params = data_load
-        )
-
-    if the_request.status_code != 200:
-        # Error found        
-        print("Error found:")
-        pprint.pprint(the_request)
-    else:
-        json_response = the_request.json()
-        pprint.pprint(json_response)    
-
-    # From here you will need to parse your response to get the ID of the desired wall.
-</pre>
-</p>
-
-<pre class="lang lang-node">
-// Node.js Javascript
-var axios = require('axios');
-/*
-How to run:
-node this_script_name.js
-
-Requires "axios" module (0.19.0), run:
-npm install axios
-
-website: https://github.com/axios/axios
-*/
-
-const token = '&lt;SET_TOKEN&gt;';
-const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
-const api_version = 'v3';
-const organizationId = '&lt;SET_ORGANIZATION_ID&gt;';
-const api_endpoint = '/organizations/' + organizationId + '/walls';
-
-    const data_load = {
-    'filter_by=name' : '&lt;NAME_TO_FILTER_BY&gt;' 
-    }
-
-request_values = {
-    method: 'GET',
-    url: portal + '/' + api_version + api_endpoint,
-    headers : {
-        'Authorization': "Bearer " + token,
-        'Content-Type' : 'application/json'    
-    },
-    data: data_load
-};
-
-axios(request_values)
-    .then(function (response) {
-    if (response.status == 200)
-    {
-        console.log("Success");
-        console.log(response.data);
-    }
-    })
-    .catch (function (error) {
-        console.log('Error: ' + error.message);
-    });
-    // From here you will need to parse the response to get the ID of the desired wall.
-</pre>
-
-
-<h4>Response</h4>
-    If no extra parameters are used, a list of the top 25 results will be returned.
-    <table class="table table-striped">
-        <tr>
-          <td><b>Element</b></td>
-          <td><b>Json</b></td>
-          <td><b>Comments</b></td>
-        </tr>
-        <tr>
-            <td>Wall ID</td>
-            <td>['walls'][N]['id']</td>
-            <td>Where N is the N-th Wall in the list.</td>
-        </tr>
-        <tr>
-            <td>Wall Name</td>
-            <td>['walls'][N]['name']</td>
-            <td>Where N is the N-th wall name in the list</td>
-        </tr>   
-    </table>
-<h4>Example JSON Output:</h4>
-<pre>
-{
-    "walls": [
-        {
-            "id": "cf0k2DmIcgk-Rdyd-Skw",
-            "name": "org-1-testwall-1",
-            "defaultWorkspaceId": null,
-            "currentWorkspaceId": null,
-            "archived": false,
-            "organizationId": "5JIGySFmJpgen2Jnozqx"
-        },
-        {
-            "id": "xOr1oAGHWce6ttS5_Qe_",
-            "name": "org-1-testwall-2",
-            "defaultWorkspaceId": null,
-            "currentWorkspaceId": null,
-            "archived": false,
-            "organizationId": "5JIGySFmJpgen2Jnozqx"
-        }
-    ],
-    "prev": null,
-    "next": null,
-    "totalItems": 2
-}
-</pre>
 
 <br />
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.

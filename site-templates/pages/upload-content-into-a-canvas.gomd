@@ -1,4 +1,4 @@
-<h1>Upload content into a Canvas, v3</h1>
+<h1>Upload content into a Canvas</h1>
 <p>
 <b>Objective</b>: Upload content from a local drive into a workspace.
 </p>
@@ -20,12 +20,15 @@
         </tr>
 </table>
  
-This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a>, <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">v2 REST APIs</a>.
+This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a> and for <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">v2 REST APIs</a>.
 </p>
-
-<a name="rest-v3" class="internal-anchor"><h2>Upload from local using REST APIs v3</h2></a>
-
+<a name="rest-v3" class="internal-anchor"></a>
 <p>
+The upload of content into a workspace by APIs can be done in 2 ways: <a href="#rest-upload-from-local-drive">upload from local drive</a> or <a href="#rest-upload-using-URL">upload by a URL</a>.
+
+<a name="rest-upload-from-local-drive" class="internal-anchor"><h2>Upload from local using REST APIs</h2></a>
+<p>
+Upload from local
 In REST APIs v3, the upload process from your local drive is divided in 3 steps:
 <ol>
     <li>Create a zygote or placeholder for the file to upload. Here you will get the credentials to upload the file to a storage service, Amazon S3 in the example.</li>
@@ -39,7 +42,7 @@ This is the first step of three for the upload. You will need to create a zygote
 <table class="table table-striped">
         <tr>
           <td><b>API</b></td>
-          <td>/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -52,7 +55,7 @@ This is the first step of three for the upload. You will need to create a zygote
 </table>
 </p>
 <p>
-You need to specify the type of the file you will upload. Specify it in the <span class="pre">imageFormat</span> field: <span class="pre">png</span> or <span class="pre">jpeg</span>.<br/>
+You need to specify the type of the file you will upload. Specify it in the <span class="pre">imageFormat</span> field, according to the specific type of image you are uploading.<br/>
 You will also need to assign, the values for the <span class="pre">filename</span> and a <span class="pre">title</span> fields, set as "myImageToUpload.jpg" in the following example:
 
 <pre>
@@ -63,7 +66,7 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
     "type": "Image",
     "filename": "myImageToUpload.jpg",
     "title": "myImageToUpload.jpg",
-    "imageFormat": "jpeg",
+    "imageFormat": "jpg",
     "transform": { "x": 300, "y": 100, "scale": 2 }
   }'
 </pre>
@@ -191,7 +194,7 @@ The last step is to link the zygote or placeholder to the file we uploaded in th
 <table class="table table-striped">
         <tr>
           <td><b>API</b></td>
-          <td>/workspaces/&lt;workspaceId&gt;/assets/uploads/&lt;uploadId&gt;</td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/assets/uploads/&lt;uploadId&gt;</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -215,10 +218,66 @@ curl --location --request PUT '<script type="text/javascript">document.write(api
 
 </p>
 
+<a name="rest-upload-using-URL" class="internal-anchor"><h2>Upload by URL using REST APIs</h2></a>
+<p>
+You can use the URL pointing to a resource to upload it into a workspace.<br />
+When should we use this "upload by URL" approach? When you integrate with external services that host images, videos and/or documents, and you want to access them (to view or download them),most of the time you are provided with a URL to those assets, not the actual binary object. Then, you can use that URL to access those assets to upload them directly into a workspace.
+<table class="table table-striped">
+        <tr>
+          <td><b>API</b></td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
+        </tr>
+        <tr>
+            <td><b>Method</b></td>
+            <td>POST</td>
+        </tr>  
+        <tr>
+          <td><b>Comments</b></td>
+          <td></td>
+        </tr>
+</table>
+</p>
+<p>
+See the example below to learn how to upload an image by URL.
+
+<pre>
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "type": "Image",
+    "transform": {
+        "x": 12000,
+        "y": 200
+    },
+    "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Yosemite_nat_park_valley_view.JPG/1200px-Yosemite_nat_park_valley_view.JPG",
+    "imageFormat": "jpg"
+}'
+</pre>
+
+To upload video you will use the same API, but slightly different payload. THe example below is set to upload a .mov video:
+
+<pre>
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "type": "Video",
+    "transform": {
+        "x": 12000,
+        "y": 200
+    },
+    "sourceUrl": "&lt;ADD_URL_TO_MOV_MOVIE&gt;",
+    "videoFormat": "mov"
+   
+}'
+</pre>
+</p>
+
 <a name="graphql" class="internal-anchor"><h2>Upload by URL using GraphQL APIs</h2></a>
 <p>
-In GraphQL, you can use the URL pointing to a resource to upload it into a workspace.<br />
-When should we use this "upload by URL approach? When you integrate with external services that host images, videos and/or documents, and you want to access them (to view or download them),most of the time you are provided with a URL to those assets, not the actual binary object. Then, you can use that URL to access those assets to upload them directly into a workspace.<br />
+You can use the URL pointing to a resource to upload it into a workspace.<br />
+When should we use this "upload by URL" approach? When you integrate with external services that host images, videos and/or documents, and you want to access them (to view or download them),most of the time you are provided with a URL to those assets, not the actual binary object. Then, you can use that URL to access those assets to upload them directly into a workspace.<br />
 You can use the following mutations: <span class="pre">createDocument</span>, <span class="pre">createImage</span>, <span class="pre">createVideo</span>.
 </p>
 <p>
@@ -281,8 +340,6 @@ Example of parameters to load an image:
 </p>
 <p>
 </p>
-
-
 
 <p>
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
