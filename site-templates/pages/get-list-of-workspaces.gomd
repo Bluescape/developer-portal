@@ -2,7 +2,7 @@
 
 <p>
 <b>Objective</b>: get a list of all Workspaces you can access. You do not need to know your userId to perform this operation. From this list you can retrieve the workspace IDs to use on other APIs that require you to have the Workspace ID. This is a good test to verify the functionality of your Access Token.<br />
-This page contains the implementation details for <a href="#rest">v3 REST APIs</a> and for <a href="#graphql">v3 GraphQL APIs</a>. You can also see the example for <a href="/docs/page/get-list-of-workspaces-v2">v2 REST APIs</a>
+This page contains the implementation details for <a href="#rest">v3 REST APIs</a> and for <a href="#graphql">v3 GraphQL APIs</a>. You can also see the example for <a href="/docs/page/get-list-of-workspaces-v2">v2 REST APIs</a>.
 </p>
 
 <p>
