@@ -20,7 +20,8 @@
         </tr>
 </table>
  
-This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a> and for <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">v2 REST APIs</a>.
+This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a> and for <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">v2 REST APIs</a>.<br />
+Please check the previous guide in <a href="/docs/page/create-canvas-and-add-text" target="_BLANK">how to create a Canvas and add a Text Element</a> to see how to create a Canvas and obtain this new Canvas Id. You will need the Canvas Id to position the content to upload inside this Canvas.
 </p>
 <a name="rest-v3" class="internal-anchor"></a>
 <p>
@@ -50,7 +51,7 @@ This is the first step of three for the upload. You will need to create a zygote
         </tr>  
         <tr>
           <td><b>Comments</b></td>
-          <td></td>
+          <td>&lt;CANVAS_ID&gt; is the ID of the preciously created canvas. This is the canvas where you want to add the uploaded content. The position of the content to upload will be in reference to the top-left corner of this Canvas.</td>
         </tr>
 </table>
 </p>
@@ -59,7 +60,7 @@ You need to specify the type of the file you will upload. Specify it in the <spa
 You will also need to assign, the values for the <span class="pre">filename</span> and a <span class="pre">title</span> fields, set as "myImageToUpload.jpg" in the following example:
 
 <pre>
-curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements' \
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -67,7 +68,7 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
     "filename": "myImageToUpload.jpg",
     "title": "myImageToUpload.jpg",
     "imageFormat": "jpg",
-    "transform": { "x": 300, "y": 100, "scale": 2 }
+    "transform": { "x": 100, "y": 100, "scale": 1 }
   }'
 </pre>
 </p>
@@ -277,7 +278,10 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
 <a name="graphql" class="internal-anchor"><h2>Upload by URL using GraphQL APIs</h2></a>
 <p>
 You can use the URL pointing to a resource to upload it into a workspace.<br />
-When should we use this "upload by URL" approach? When you integrate with external services that host images, videos and/or documents, and you want to access them (to view or download them),most of the time you are provided with a URL to those assets, not the actual binary object. Then, you can use that URL to access those assets to upload them directly into a workspace.<br />
+When should we use this "upload by URL" approach? When you integrate with external services that host images, videos and/or documents, and you want to access them (to view or download them),most of the time you are provided with a URL to those assets, not the actual binary object. Then, you can use that URL to access those assets to upload them directly into a workspace.
+</p>
+<p>
+Please note that &lt;CANVAS_ID&gt; is the ID of the preciously created canvas. This is the canvas where you want to add the uploaded content. The position of the content to upload will be in reference to the top-left corner of this Canvas.
 You can use the following mutations: <span class="pre">createDocument</span>, <span class="pre">createImage</span>, <span class="pre">createVideo</span>.
 </p>
 <p>
@@ -285,7 +289,7 @@ Example of <span class="pre">createImage</span> mutation:
 <pre>
 mutation uploadImageFromURL($workspaceId: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $url:String! $scale:Float) {
     createImage(
-          workspaceId: $workspaceId
+          workspaceId: $workspaceId, relativeToOriginOf: $idCanvasRelativeTo
           input: {
             title:$title
             imageFormat: $imageFormat
@@ -309,6 +313,7 @@ and these are the variables for the mutation above:
 <pre>
 {
     "workspaceId": "&lt;workspaceId&gt;",
+    "idCanvasRelativeTo": "&lt;CANVAS_ID&gt;",
     "title":"&lt;title_or_filename&gt;",
     "imageFormat":"&lt;SEE_ALLOWED_TYPES_AT_THE_TOP_OF_THE_PAGE&gt;",
     "previewFormat":"&lt;SEE_ALLOWED_TYPES_AT_THE_TOP_OF_THE_PAGE&gt;",
