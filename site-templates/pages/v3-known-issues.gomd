@@ -1,8 +1,5 @@
 <h1>v3 Known issues</h1>
-<p>Release: 21.06.1 (Jun 11, 2021)</p>
-
-<p><b>IMPORTANT</b>: API version v3 is available as a beta preview as part of the 21.06.1 release on June 11, 2021. This is a preview only and should not be used for mission critical production integrations until the GA release as it has the potential to change.
-</p>
+<p>Release: 21.07.1 (July 09, 2021)</p>
 
 <h4>REST APIs</h4>
 <ul>

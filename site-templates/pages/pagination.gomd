@@ -1,4 +1,4 @@
-<h1>Pagination for v3</h1>
+<h1>Pagination</h1>
 
 <p>
     <table style="background-color: #FFFFA5">
@@ -6,7 +6,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        In the current <span class="pre">/v3/</span> Beta version, the pagination mechanism has been changed. The new cursor based pagination uses different URL query parameters depending on whether it is the initial request for a collection or a subsequent request. 
+                        In the current <span class="pre">/v3/</span> GA version, the pagination mechanism has changed. The new cursor based pagination uses different URL query parameters depending on whether it is the initial request for a collection or a subsequent request. 
                         For pagination information related to <span class="pre">/v2/</span> endpoints, please see <a href="/docs/page/pagination-v2">here</a>.
                     <br /> <br />
                     </b>
@@ -85,7 +85,7 @@
     }
   ],
   "prev": "WOsxk6rPfmJ82bLCnweOF1iZz4fJcU0RURgyGjgsPJ5b7RUgg",     // previous cursor points to the last request
-  "next": "wFkZLNx+jnly3wRUMfUjzGV2gEMEpKWXDyHjCGtwRQ7IG",         // next cursor navigates to subsequent requests
+  "next": "wFkZLNx+jnly3wRUMfUjzGv2gEMEpKWXDyHjCGtwRQ7IG",         // next cursor navigates to subsequent requests
   "totalItems": 1                                                  // the total number of items that match the query
 }
 </pre>

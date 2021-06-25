@@ -6,7 +6,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        API version v3 is available as a beta preview as part of the 21.06.1 release on June 11, 2021. This is a preview only and should not be used for mission critical production integrations until the GA release as it has the potential to change. 
+                        API version v3 is available now as part of the 21.07.1 release on July 09, 2021. 
                     <br /> <br />
                     </b>
             </td>
@@ -24,16 +24,16 @@
         <td><b>Status</b></td>
     </tr>
     <tr>
-        <td>3.0 Beta</td>
+        <td>3.0</td>
         <td><a href="/docs/page/reference">/v3/</a></td>
-        <td>21.06.1 (June 11, 2021) </td>
-        <td>Beta</td>
+        <td>21.07.1 (July 09, 2021) </td>
+        <td>Current</td>
     </tr>
     <tr>
         <td>2.0</td>
         <td><a href="/docs/page/reference-v2">/v2/</a></td>
         <td>19.11.1 (November 22, 2019) </td>
-        <td>Current</td>
+        <td>Deprecated</td>
     </tr>
 </table>
         
@@ -41,9 +41,9 @@
 
 
 <p>   
-    <b>Q: Will my current scripts stop working after the 21.06.1 Release (released on June 11, 2021)</b><br />
+    <b>Q: Will my current scripts using the <span class="pre">v2</span> version stop working after the 21.07.1 Release (released on July 09, 2021)?</b><br />
         
-    <b>A</b>: No, the current release of <span class="pre">v3</span> is Beta, it does not replace the current <span class="pre">v2</span> version of the Bluescape APIs.
+    <b>A</b>: No, the current release of <span class="pre">v3</span> does not mean that the <span class="pre">v2</span> version of the Bluescape APIs will be removed. The scripts running the <span class="pre">v2</span> version will continue running for a period of time of <b>TBD</b>.
 </p>
 
 <p>
@@ -51,7 +51,7 @@
 
     <b>A</b>: Amongst the several new features coming with <span class="pre">v3</span>, we can highlight the new <a href="/docs/page/what-is-graphql">GraphQL APIs</a>. For a detailed list you can go to the <a href="/docs/page/what-is-new-in-v3">What is new in v3</a> page. 
 </p>
-<!--
+
 <p>
     As With the <span class="pre">/v3/</span> endpoint, scripts previously using the <b>UID</b> field will need to be replaced (e.g., change the id field in the API endpoint 
     from <span class="pre">v2/users/{user_uid}</span> to <span class="pre">v3/users/{userId}</span>). 
@@ -83,20 +83,13 @@
     <b>New format (note the addition of <span class="pre">type</span> and updated <span class="pre">Id</span> field in the path):</b><br />
     <pre><script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;<b>workspaceId</b>&gt;/elements?type=Canvas</pre>
 </p>
--->
+
 <p>
     <b>Q: Why does Bluescape use versioning with their APIs?</b><br />
     
-    <b>A</b>: Bluescape has adopted the use of Semantic Versioning 2.0.0 for our APIs, see <a href="https://semver.org/" target="_blank">https://semver.org/</a> for full details. Previously there were no guarantees which APIs would break in any release -- if your code stopped working because we changed our APIs, you had to call us to confirm. With the adoption of semantic versioning, there will be clear communication about any incompatible changes, which can only happen in a major release. Major releases will be clearly announced, like the release Version 20.04.1. Within a major version, we commit to introducing only backwards-compatible changes. If you are using Bluescape APIs, you can now be confident that a minor or patch release to our APIs will not invalidate your hard work.<br /><br />
+    <b>A</b>: Bluescape has adopted the use of Semantic Versioning 2.0.0 for our APIs, see <a href="https://semver.org/" target="_blank">https://semver.org/</a> for full details. Previously there were no guarantees which APIs would break in any release. If your code stopped working because we changed our APIs, you had to call us to confirm. With the adoption of semantic versioning, there will be clear communication about any incompatible changes, which can only happen in a major release. Major releases will be clearly announced, like the release Version 20.04.1. Within a major version, we commit to introducing only backwards-compatible changes. If you are using Bluescape APIs, you can now be confident that a minor or patch release to our APIs will not invalidate your hard work.<br /><br />
 </p>
 
 <p>
     <b>Still have questions?</b> If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>
 </p>
-
-<!--
-<h2>Previous versions</h2>
-    <ul>
-        <li><a href="/v0/reference">/v0/ : version documentation</a></li>
-    </ul> 
--->
