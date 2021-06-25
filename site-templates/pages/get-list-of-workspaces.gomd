@@ -2,7 +2,7 @@
 
 <p>
 <b>Objective</b>: get a list of all Workspaces you can access. You do not need to know your userId to perform this operation. From this list you can retrieve the workspace IDs to use on other APIs that require you to have the Workspace ID. This is a good test to verify the functionality of your Access Token.<br />
-This page contains the implementation details for <a href="#rest">v2 REST APIs</a> and for <a href="#graphql">v3 GraphQL APIs</a>.
+This page contains the implementation details for <a href="#rest">v3 REST APIs</a> and for <a href="#graphql">v3 GraphQL APIs</a>. You can also see the example for <a href="/docs/page/get-list-of-workspaces-v2">v2 REST APIs</a>
 </p>
 
 <p>
@@ -22,7 +22,7 @@ After you receive the authentication token, you can get a list of all the worksp
 <table class="table table-striped">
   <tr>
     <td><b>Endpoint</b></td>
-    <td>/v2/users/me/workspaces</td>
+    <td>/v3/users/me/workspaces</td>
   </tr>
   <tr>
       <td><b>Method</b></td>
@@ -68,7 +68,7 @@ if __name__ == "__main__":
    portal = "<script type="text/javascript">document.write(apiBaseStr); </script>"
 
    # Get all the workspaces for your user
-   API_version = 'v2'
+   API_version = 'v3'
 
    API_endpoint = '/' + API_version + '/users/me/workspaces'
 
@@ -106,7 +106,7 @@ website: https://github.com/axios/axios
 
 const token = '&lt;SET_TOKEN&gt;';
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
-const api_version = 'v2';
+const api_version = 'v3';
 const api_endpoint = '/users/me/workspaces';
 
 request_values = {
@@ -135,7 +135,7 @@ axios(request_values)
 
 <p>
 <pre class="lang lang-curl">
-curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/v2/users/me/workspaces' \
+curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>users/me/workspaces' \
 --header 'Authorization: Bearer &lt;TOKEN&gt;' 
 </pre>
 </p>
@@ -168,71 +168,6 @@ What you should get: JSON with the list of the first 25 workspaces your user has
 
 <h3>Output Json sample</h3>
 <pre>
-{'limit': 25,
-'offset': 0,
-'paging': {'next': '/v2/users/me/workspaces?offset=25&limit=25',
-            'prev': None,
-            'self': '/v2/users/me/workspaces?offset=0&limit=25'},
-'size': 25,
-'total': 121,
-'workspaces': [{'active_users_count': 0,
-            'created_at': '2016-11-18T01:34:10.000Z',
-            'default_role_uid': None,
-            'description': '',
-            'favorite': 0,
-            'has_meeting': False,
-            'name': 'Hello',
-            'organization': {'default_public_workspace_role_uid': 'mmFwoDayeaLnPGx3QTcZ',
-                            'name': 'Bluescape',
-                            'uid': '2M-EiUhza9MZgrw2CJ31'},
-            'organization_uid': '2M-EiUhza9MZgrw2CJ31',
-            'public': True,
-            'publish_state': 'published',
-            'publish_state_at': '2016-11-18T01:35:38.000Z',
-            'published_at': '2016-11-18T01:35:38.000Z',
-            'published_url': 'https://viewer.bluescape.com/9r1UGKtsoxRfv_x3kd-E',
-            'uid': '9r1UGKtsoxRfv_x3kd-E',
-            'updated_at': '2019-10-07T21:59:03.000Z',
-            'users_count': 2,
-            'workspace_owner': {'avatar_url': None,
-                                'created_at': '2016-06-27T23:41:14.000Z',
-                                'email': 'indiana.jones@bluescape.com',
-                                'first_name': 'Indiana',
-                                'industry': 'Other - not listed',
-                                'last_name': 'Jones',
-                                'locked_at': None,
-                                'phone_number': '4085553848',
-                                'title': None,
-                                'uid': 'JnPiG6qd2EtFCjipWRE1',
-                                'updated_at': '2019-02-04T11:11:32.000Z'},
-            'workspace_role': {'can_at_mention': True,
-                                'can_comment': True,
-                                'can_download_assets': True,
-                                'can_edit_workspace_content': True,
-                                'can_list_collaborators': True,
-                                'can_send_message': True,
-                                'can_send_to_wall': True,
-                                'can_view_workspace_content': True,
-                                'can_view_workspace_settings': True,
-                                'description': 'Editor can view workspace '
-                                            'settings, can view, '
-                                            'comment and edit '
-                                            'workspaces content, and '
-                                            'can view collaborators',
-                                'display_order': 3,
-                                'is_custom': False,
-                                'name': 'Editor',
-                                'type': 'user',
-                                'uid': 'mmFwoDayeaLnPGx9QTcZ'}},
-            {'active_users_count': 0,
-            'created_at': '2016-12-12T20:32:57.000Z',
-            'default_role_uid': None,  
-            ... 
-            ... 
-</pre>
-
-<!-- v3 output
-<pre>
 {
   "workspaces": [
       {
@@ -243,17 +178,16 @@ What you should get: JSON with the list of the first 25 workspaces your user has
           "defaultRoleId": "JuTasisnG_LWZ6VyE-d5",
           "organizationId": "ugNVBeehXBSc8wV3BzTG",
           "contentUpdatedAt": null,
+          "createdAt": "2021-02-02T00:30:38.000Z",
           "updatedAt": "2021-02-25T19:51:12.000Z"
       }
   ],
   "prev": null,
-  "next": null,
-  "totalItems": 1
+  "next": null
 }
 </pre>
--->
 
-<a name="graphql" class="internal-anchor"><h2>Implementation using v3 GraphQL APIs</h2></a>
+<a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
 
 <table class="table table-striped">
     <tr>
