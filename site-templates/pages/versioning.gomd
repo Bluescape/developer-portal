@@ -43,7 +43,7 @@
 <p>   
     <b>Q: Will my current scripts using the <span class="pre">v2</span> version stop working after the 21.07.1 Release (released on July 09, 2021)?</b><br />
         
-    <b>A</b>: No, the current release of <span class="pre">v3</span> does not mean that the <span class="pre">v2</span> version of the Bluescape APIs will be removed. The scripts running the <span class="pre">v2</span> version will continue running for a period of time of <b>TODO: how long?</b>
+    <b>A</b>: No, the current release of <span class="pre">v3</span> does not mean that the <span class="pre">v2</span> version of the Bluescape APIs will be removed. The scripts running the <span class="pre">v2</span> version will continue running for a period of time of <b>TBD</b>.
 </p>
 
 <p>

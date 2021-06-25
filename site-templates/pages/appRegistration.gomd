@@ -6,13 +6,13 @@
 
     <h3>Overview</h3>
     <p>
-        Application Registration is a platform that enables developers to generate and manage an API token in Bluescape.<br /> 
+        Application Registration is a platform that enables developers to generate and manage an API token in Bluescape.<br /><br />
         To create an application integration with Bluescape that consumes the Bluescape APIs, you first need to register an application with Bluescape. 
         This process grants the application the permissions and roles associated with the user who completes the process. Any changes to the roles or permissions of that user will automatically be applied to all active applications for that user. The user that registered the application is 
-        also the only user who can manage the application.<br /> 
-        The application registration process also generates the <b>client ID</b> and <b>Client Secret</b> needed 
+        also the only user who can manage the application.<br /><br />
+        The application registration process also generates the <b>Client ID</b> and <b>Client Secret</b> needed 
         to perform the OAuth authentication flow. Applications obtain this authorization using the OAuth flow, which enables users to share access to 
-        their account without divulging their password.<br /> 
+        their account without divulging their password.<br /><br /> 
         Once authorized, applications receive Access Tokens from Bluescape that enable them to access Bluescape resources on behalf of the authorizing user. To learn more about the Application Authorization process, please visit the 
         <a href="/docs/page/app-auth">OAuth flow</a> guide. 
     </p>

@@ -13,7 +13,7 @@
 <p>
     For example, a simple and fairly common use case might be to query a workspace in order to retrieve both the owner of the workspace,
     along with all the IDs of all elements within that workspace. Previously, this would have to have been accomplished by calling two 
-    separate APIs, <span class="pre">GET workspace/&lt;workspaceId&gt;</span> and <span class="pre"> GET workspace/&lt;workspaceId&gt;/elements</span> 
+    separate APIs, <span class="pre">GET workspace/{workspaceId}</span> and <span class="pre"> GET workspace/{workspaceId}/elements</span> 
     and then parse out the necessary information from the two responses. With GraphQL, developers are able to combine these two calls into a single query,
     while also being returned only the properties that they are interested in, reducing or even removing the amount of parsing required.
     To learn more about GraphQL, please see their documentation at <a href="https://graphql.org/learn/" target="_blank">graphql.org/learn/</a>.
