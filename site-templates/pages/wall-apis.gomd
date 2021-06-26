@@ -26,7 +26,7 @@
     <table class="table table-striped">
             <tr>
                 <td><b>Endpoint</b></td>
-                <td>/v3/organizations/organizationId/walls</td>
+                <td>/v3/organizations/{organizationId}/walls</td>
                 <td></td>
             </tr>
             <tr>
@@ -185,7 +185,7 @@ axios(request_values)
     <table class="table table-striped">
             <tr>
                 <td><b>Endpoint</b></td>
-                <td>/v2/organizations/organization_uid/walls</td>
+                <td>/v2/organizations/{organization_uid}/walls</td>
                 <td></td>
             </tr>
             <tr>
@@ -328,7 +328,7 @@ axios(request_values)
     <table class="table table-striped">
             <tr>
                 <td><b>Endpoint</b></td>
-                <td>/v2/workspaces/workspace_uid/session/send_to_wall</td>
+                <td>/v2/workspaces/{workspace_uid}/session/send_to_wall</td>
                 <td></td>
             </tr>
             <tr>
@@ -447,7 +447,7 @@ axios(request_values)
     <table class="table table-striped">
             <tr>
                 <th>Endpoint</th>
-                <td>/v2/workspaces/&lt;workspace_uid&gt;/session/unsend_from_wall</td>
+                <td>/v2/workspaces/{workspace_uid}/session/unsend_from_wall</td>
             </tr>
             <tr>
                 <th>Method</th>
