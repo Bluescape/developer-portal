@@ -36,7 +36,7 @@ This page contains the implementation details for <a href="#rest">v3 REST APIs</
         </tr>
         <tr>
           <td><b>Comments</b></td>
-          <td>&lt;CANVAS_ID&gt; is the ID of the preciously created canvas. This is the canvas where you want to add the uploaded content. The position of the content to upload will be in reference to the top-left corner of this Canvas.</td>
+          <td>You need to know the workspace ID.</td>
         </tr>
 </table>
 
