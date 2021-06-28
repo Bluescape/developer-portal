@@ -78,7 +78,8 @@ This page contains the implementation details for <a href="#rest">v3 REST APIs</
 &nbsp;&nbsp;&nbsp;&nbsp; "style": {"width": "&lt;SET_WIDTH&gt", "height": "&lt;SET_HEIGHT&gt"}
 }</pre>
               
-              <b>To change the position of the Text, the body should look like this: </b></br>
+              By specifying the <b>relativeToOriginOf</b> query parameter in the endpoint, /v3/workspaces/{workspaceId}/elements<b>?relativeToOriginOf={CANVAS_ID}</b>, the position of the text content will be relative to the top-left corner of the Canvas.</br>
+              <b>To change the position of the Text, the body should look like this:</b></br>
             <pre> 
 {
 &nbsp;&nbsp;&nbsp;&nbsp; "type": "Text",
@@ -163,7 +164,7 @@ if __name__ == "__main__":
     # Add Text to a canvas  
     # Path: 	/v3/workspaces/&lt;workspaceId&gt;/elements
 
-    API_endpoint = '/v3/workspaces/' + workspaceId + '/elements'
+    API_endpoint = '/v3/workspaces/' + workspaceId + '/elements' + '?relativeToOriginOf=' + canvasId
     params = ''
 
     timestamp = datetime.datetime.now()
@@ -258,7 +259,7 @@ async function runAPIRequests() {
 
         currtime = new Date().toISOString().slice(0,16).replace('T',' ');
 
-        api_endpoint = '/workspaces/' + workspaceId + '/elements'
+        api_endpoint = '/workspaces/' + workspaceId + '/elements' + '?relativeToOriginOf=' + canvasId
         method = 'POST';
         data_load = {
             "type": "Text",
