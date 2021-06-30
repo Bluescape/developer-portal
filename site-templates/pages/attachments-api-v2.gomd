@@ -1,4 +1,4 @@
-<h1>Attachments APIs</h1>
+<h1>Attachments APIs for v2</h1>
 
 <h2>What are Attachments?</h2>
 <p>Attachments allow the user to pair together two elements so that they act as a single, interactable object.</p>
@@ -16,9 +16,8 @@
     newly attached object. When deleting an Attachment, the user will see a blue border around the element that was unattached to signify the operation is complete.
 </p>
 <p>
-    Please review the page for <a href="/docs/page/attachments-api-v2">attachment APIs in v2</a>.
+    You can see the page for <a href="/docs/page/attachments-api">attachment APIs in v3</a>.
 </p>
-
 <h2>Table of Contents:</h2>
 
 <p>
@@ -30,23 +29,83 @@
     <a href="#use-case-example">Use Case Example</a> <br />  
 </p>
 
-<a name="allowed-types" class="internal-anchor"><h3>Allowed Element types for Attachments (TODO: UPDATE FOR V3)</h3></a>
+<a name="allowed-types" class="internal-anchor"><h3>Allowed Element types for Attachments:</h3></a>
 <p>
-    The elements to which you can attach other elements are in the following list:
-<ul>
-    <li>Text</li>
-    <li>LegacyNote</li>
-    <li>Image</li>
-    <li>Document</li>
-    <li>Browser</li>
-    <li>Video</li>
-    <li>Stroke</li>
-    <li>Shape</li>
-    <li>Line</li>
-    <li>Window</li>
-    <li>Whiteboard</li>
-    <li>LinkedDocument</li>
-</ul>
+<table class="table table-striped">
+    <tr>
+        <td><b>ELEMENT</b></td>
+        <td><b>ALLOWED ATTACHMENTS</b></td>
+    </tr>
+    <tr>
+        <td><b>Notes</b></td>
+        <td>
+            <ul>
+                <li>Notes</li>
+                <li>Images</li>
+                <li>Browsers</li>
+                <li>Documents</li>
+                <li>Text</li>
+                <li>Videos</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><b>Images</b></td>
+        <td>
+                <ul>
+                        <li>Notes</li>
+                        <li>Images</li>
+                        <li>Browsers</li>
+                        <li>Documents</li>
+                        <li>Text</li>
+                        <li>Videos</li>
+                    </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><b>Documents</b></td>
+        <td>
+                <ul>
+                        <li>Notes</li>
+                        <li>Images</li>
+                        <li>Browsers</li>
+                        <li>Documents</li>
+                        <li>Text</li>
+                        <li>Videos</li>
+                    </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><b>Browsers</b></td>
+        <td> <ul>
+                <li>Notes</li>
+                <li>Images</li>
+                <li>Browsers</li>
+                <li>Documents</li>
+                <li>Text</li>
+                <li>Videos</li>
+            </ul></td>
+    </tr>
+    <tr>
+        <td><b>Videos</b></td>
+        <td> <ul>
+                <li>Notes</li>
+                <li>Images</li>
+                <li>Browsers</li>
+                <li>Documents</li>
+                <li>Text</li>
+                <li>Videos</li>
+            </ul></td>
+    </tr>
+    <tr>
+        <td><b>Text</b></td>
+        <td>No elements can be attached to text, but text can be attached to other elements.</td>
+    </tr>
+    <tr>
+        <td><b>Canvas</b></td>
+        <td>No elements can be attached to canvas. Elements that are posted inside canvas creates membership, not adhesion.</td>
+    </tr>
+</table>
 </p>
 <br />
 
@@ -57,7 +116,7 @@
         <table class="table table-striped">
                 <tr>
                     <td><b>Endpoint</b></td>
-                    <td>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_id&gt;/attachments</td>
+                    <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments</td>
                 </tr>
                 <tr>
                     <td><b>Method</b></td>
@@ -65,7 +124,7 @@
                 </tr>
                 <tr>
                 <td><b>Comments</b></td>
-                <td>Specify in the payload the Id of the element you want to attach to the element indicated with &lt;surface_id&gt;.</td>
+                <td></td>
                 </tr>
         </table>
     </p>
@@ -84,8 +143,8 @@ var request = require('request');
 const token = &lt;SET_TOKEN&gt;;
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
-const api_version = 'v3';
-var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/';
+const api_version = 'v2';
+var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;';
 
 function runRequest(portal,api_endpoint,method,data_load) {
     return new Promise((resolve, reject) => {
@@ -114,7 +173,7 @@ function runRequest(portal,api_endpoint,method,data_load) {
 }
 
 async function runAPIRequests() {
-    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments'
+    api_endpoint = '/v2' + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;/&lt;SURFACE_ID&gt;/attachments'
 
     data_load = {
         'sourceId': "&lt;SET_SOURCE_ID&gt;"
@@ -142,11 +201,11 @@ token = '&lt;SET_TOKEN&gt;'
 portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
 
 workspace_uid = '&lt;SET_WORKSPACE_UID&gt;'
-api_version = '/v3/'
+api_version = '/v2/'
 
 if __name__ == "__main__":
 
-    API_endpoint = API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments'
+    API_endpoint = API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;/&lt;SURFACE_ID&gt;/attachments'
 
     data_load = {
         'sourceId': '&lt;SET_SOURCE_ID&gt;',     # Example showing how to use the filter_by field
@@ -167,30 +226,35 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_id&gt;/attachments \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments \
 -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' \
 -d '{
-    "attachment" : "&lt;SET_ID_OF_ELEMENT_TO_ATTACH_TO_SURFACE_ID&gt;",
-    "transform" : {
-        "x": 10,
-        "y": 10
-    }
-
+    "x" : 10,
+    "y" : 10,
+    "sourceId": "YYYYYYYYY"
 }'
 </pre>    
 
 <br/>
 Sample Response Body:
+    <ul>
+        <li>Note the <span class='pre'>sourceId</span> being placed at coordinates [10,10]</li>
+    </ul>
 <pre>
 {
-    "data": {
-        "id": "&lt;ID_OF_ATTACHED_ELEMENT&gt;"
+    "workspace_id": "&lt;WORKSPACE_ID&gt;",
+    "x": 10,
+    "y": 10,
+    "source": {
+        "id": "&lt;SET_SOURCE_ID&gt;",
+        "type": "note"
+    },
+    "surface": {
+        "id": "&lt;SET_SURFACE_ID&gt;",
+        "type": "image"
     }
-}
-</pre>
-
-
+}</pre>
         
 </p>
 
@@ -199,7 +263,7 @@ Sample Response Body:
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_id&gt;/attachments</td>
+          <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -227,8 +291,8 @@ var request = require('request');
 const token = &lt;SET_TOKEN&gt;;
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
-const api_version = 'v3';
-var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/attachments';
+const api_version = 'v2';
+var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;';
 
 function runRequest(portal,api_endpoint,method,data_load) {
     return new Promise((resolve, reject) => {
@@ -257,7 +321,7 @@ function runRequest(portal,api_endpoint,method,data_load) {
 }
 
 async function runAPIRequests() {
-    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments'
+    api_endpoint = '/v2' + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;/&lt;SURFACE_ID&gt;/attachments'
 
     method = 'GET';
 
@@ -279,11 +343,11 @@ import pprint
 token = '&lt;SET_TOKEN&gt;'
 portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
 workspace_uid = '&lt;SET_WORKSPACE_UID&gt;'
-api_version = '/v3/'
+api_version = '/v2/'
 
 
 if __name__ == "__main__":
-    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments'
+    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;/&lt;SURFACE_ID&gt;/attachments'
 
     the_request = requests.get(
             API_endpoint,
@@ -296,41 +360,26 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X GET <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_id&gt;/attachments \
+curl -X GET <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments \
 -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' 
 </pre>
 <br />
 
-Sample Response Body with the list of attachments an object has:
-    <ul>
-        <li>This is the list of elements attached to the element &lt;surface_id&gt;:</li>
-    </ul>
-<pre>
-{
-    "data": [
-        {
-            "id": "&lt;ID_OF_ATTACHED_ELEMENT&gt;",
-            "zIndex": 1357,
-            "transform": {
-                "x": 10,
-                "y": 10,
-                "scaleX": 1,
-                "scaleY": 1
-            },
-            "pinned": false,
-            "comments": [],
-            "surface": "&lt;surface_id&gt;",
-            "type": "Text",
-            "text": "Text to Attach",
-            "style": {
-                ...
-            },
-            "blocks": [
-                ...
-            ]
-        }
-    ]
+Sample Response Body with the list of attachements an object has:
+<pre>{
+    "attachments": [{
+    "id": "46degdftjd887d",
+    "type": "note"
+    },
+    {
+    "id": "jfhy5yttut89aa",
+    "type": "image"
+    },
+    {
+    "id": "ysrethdutr2ej",
+    "type": "text"
+    }]
 }
 </pre>
 </p>
@@ -340,7 +389,7 @@ Sample Response Body with the list of attachments an object has:
 <table class="table table-striped">
         <tr>
           <td><b>Endpoint</b></td>
-          <td>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_id&gt;/attachments/&lt;source_id&gt;</td>
+          <td>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments/&lt;source_id&gt;</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -366,8 +415,8 @@ var request = require('request');
 const token = &lt;SET_TOKEN&gt;;
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
-const api_version = 'v3';
-var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/attachments';
+const api_version = 'v2';
+var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;';
 
 function runRequest(portal,api_endpoint,method,data_load) {
     return new Promise((resolve, reject) => {
@@ -394,7 +443,7 @@ function runRequest(portal,api_endpoint,method,data_load) {
     });
 }
 async function runAPIRequests() {
-    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments/&lt;ATTACHMENT_ID&gt;'
+    api_endpoint = '/v2' + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;/&lt;SURFACE_ID&gt;/attachments/&lt;TARGET_ID&gt;'
 
     method = 'DELETE';
 
@@ -416,11 +465,11 @@ import pprint
 token = '&lt;SET_TOKEN&gt;'
 portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
 workspace_uid = '&lt;SET_WORKSPACE_UID&gt;'
-api_version = '/v3/'
+api_version = '/v2/'
 
 
 if __name__ == "__main__":
-    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments/&lt;ATTACHMENT_ID&gt;'
+    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_TYPE&gt;/&lt;SURFACE_ID&gt;/attachments/&lt;TARGET_ID&gt;'
 
     the_request = requests.delete(
             API_endpoint,
@@ -433,7 +482,7 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X DELETE <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_id&gt;/attachments/&lt;attachment_id&gt; \
+curl -X DELETE <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments/&lt;target_id&gt; \
 -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' 
 </pre>
@@ -450,6 +499,7 @@ Sample Response Body after deleting the attachments in an element:
 }  
 </pre>
 </p>
+
 
 <a name="use-case-example" class="internal-anchor"><h3>Use Case Example</h3></a>
 Below is a simple, end-to-end example of how someone might use the Attachments APIs. This example is one in which a user uploads
@@ -494,7 +544,7 @@ This script:
 const token = &lt;SET_TOKEN&gt;;
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
-const api_version = 'v3';
+const api_version = 'v2';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/images';
 var method = '';
 
@@ -572,7 +622,7 @@ async function runAPIRequests() {
     *****************************/
 
     try {           
-        api_endpoint = '/v3/workspaces/' + workspace_uid + '/elements/canvas';
+        api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas';
         method = 'POST';
         var currtime = new Date().toISOString().slice(0,16).replace('T',' ');
 
@@ -616,10 +666,10 @@ async function runAPIRequests() {
 
                 // Check if the file is a supported one for uploading.
                 if (allowedDocExtensions.test(filename) ){
-                    api_endpoint = '/v3/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/documents';
+                    api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/documents';
                     file_type_key = 'document';
                 } else if (allowedImageExtensions.test(filename)) {
-                    api_endpoint = '/v3/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/images';
+                    api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/images';
                     file_type_key = 'image';
                 } else {
                     is_supported_extension = false;
@@ -655,7 +705,7 @@ async function runAPIRequests() {
                     **    3) Create text field containing file_name:   ** 
                     ****************************************************/
 
-                    api_endpoint = '/v3/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/text';
+                    api_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/text';
                     
                     data_load = {
                         'text': file_name,
@@ -680,7 +730,7 @@ async function runAPIRequests() {
                     **    4) Attach new text field to file:   ** 
                     ********************************************/
 
-                    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/'+file_type_key+'s/'+file_id+'/attachments'
+                    api_endpoint = '/v2' + '/workspaces/' + workspace_uid + '/elements/'+file_type_key+'s/'+file_id+'/attachments'
 
                     data_load = {
                         'sourceId': text_id
@@ -778,7 +828,7 @@ if __name__ == "__main__":
     portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
     workspace_uid = '&lt;SET_WORKSPACE_UID&gt;'
     user_uid = ''
-    API_version = 'v3'
+    API_version = 'v2'
     API_endpoint = '/' + API_version + '/workspaces/' + workspace_uid + '/elements/canvas'
     parameters = ''
     id_dict = {}
@@ -894,7 +944,7 @@ if __name__ == "__main__":
             #   3) Create text field containing file_name:    #
             ###################################################
 
-            API_endpoint = '/v3/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/text'
+            API_endpoint = '/v2/workspaces/' + workspace_uid + '/elements/canvas/' + canvas_id + '/text'
             params = ''
 
             data_load = {
