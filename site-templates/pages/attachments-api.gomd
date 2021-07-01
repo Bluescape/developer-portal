@@ -1022,8 +1022,8 @@ Sample Request:
 const axios = require('axios');
 
 const url = "<script type="text/javascript">document.write(graphQLStr); </script>/v3/graphql"
-const token = "<SET_TOKEN>"
-const workspaceId = "<SET_WORKSPACEID>"
+const token = "&lt;SET_TOKEN&gt;"
+const workspaceId = "&lt;SET_WORKSPACEID&gt;"
 
 const textMutation = 
     `mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
@@ -1038,7 +1038,7 @@ const variables = {
     "workspaceId": workspaceId,
     "input": {
         "text": "This text is attached",
-        "surface": "<SET_SURFACE_ID>"
+        "surface": "&lt;SET_SURFACE_ID&gt;"
         "transform": {
             "x": 10,
             "y": 10
@@ -1096,7 +1096,7 @@ if __name__ == "__main__":
         "workspaceId": workspaceId,
         "input": {
             "text": "This text is attached",
-            "surface": "<SET_SURFACE_ID>",
+            "surface": "&lt;SET_SURFACE_ID&gt;",
             "transform": {
                 "x": 10,
                 "y": 10
