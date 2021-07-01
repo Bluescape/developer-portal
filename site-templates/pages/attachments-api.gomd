@@ -25,8 +25,8 @@
     <a href="#allowed-types">Allowed Element Types for Attachments</a> <br />
     <a href="#how-to-implement">How to Implement Attachments APIs</a> <br />
         <a href="#create-attachment">1. Create: attachment an element to another element</a> <br />
-        <a href="#get-attachments">2. Get the list of attachments for an element</a> <br />
-        <a href="#delete-attachment">3. Delete attachments in an element</a> <br />
+        <a href="#get-attachments">2. Get: list all attachments of an element</a> <br />
+        <a href="#delete-attachment">3. Delete: remove an element's attachments</a> <br />
     <a href="#use-case-example">Use Case Example</a> <br />  
 </p>
 
@@ -65,7 +65,7 @@
                 </tr>
                 <tr>
                 <td><b>Comments</b></td>
-                <td>Specify in the payload the Id of the element you want to attach to the element indicated with &lt;surface_id&gt;.</td>
+                <td>Specify in the payload the Id of the element you want to attach to, the element indicated with &lt;surface_id&gt;.</td>
                 </tr>
         </table>
     </p>
@@ -189,9 +189,6 @@ Sample Response Body:
     }
 }
 </pre>
-
-
-        
 </p>
 
 <a name="get-attachments" class="internal-anchor"><h3>Get: list all attachments of an element</h3></a>
@@ -965,6 +962,180 @@ if __name__ == "__main__":
                 yy = 200
                 xx += delta
 </pre>
+
+
+
+<a name="create-attachment-graphql" class="internal-anchor"><h3>Create: attach one element to another, GraphQL</h3></a>
+    <p>
+    In graphQL, you perform the attachment of an element to another element (surface) by setting the ID of the surface element in the <span class="pre">surface</span> field when creating or updating an element.<br />
+    The example below shows hot to attach a Text element to another element on creation, using the <span class="pre">createText</span> mutation, or later by updating it with the <span class="pre">updateText</span> mutation.
+        <table class="table table-striped">
+                <tr>
+                    <td><b>mutation</b></td>
+                    <td>createText or updateText</td>
+                </tr>
+                <tr>
+                    <td><b>Method</b></td>
+                    <td>POST</td>
+                </tr>
+                <tr>
+                <td><b>Comments</b></td>
+                <td><ul>
+                    <li>Specify in the payload the Id of the element you want to attach to, the element indicated with &lt;surface_id&gt;.</li>
+                    <li>The positioning of attachment is relative to top-left corner of the surface</li> 
+                    </td>
+                </tr>
+        </table>
+    </p>
+<p>
+<p>
+Here is the example for an attachment when creating a Text element:
+<pre>
+mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
+    createText(workspaceId: $workspaceId, input: $input) {
+        id
+    }
+}    
+</pre>
+
+using these variables:
+<pre>
+{
+    "workspaceId" : "&lt;SET_WORKSPACE_UID&gt;",
+    "input" : {       
+        "transform" : { "x": 10, "y":10 },
+        "text" : "This text is attached",
+        "surface": "&lt;SET_SURFACE_ID&gt;"
+    }
+}
+</pre>
+</p>
+    
+Sample Request:
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<pre class="lang lang-node">
+const axios = require('axios');
+
+const url = "<script type="text/javascript">document.write(graphQLStr); </script>/v3/graphql"
+const token = "<SET_TOKEN>"
+const workspaceId = "<SET_WORKSPACEID>"
+
+const textMutation = 
+    `mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
+            createText(workspaceId: $workspaceId, input: $input) {
+            __typename
+            id
+            text
+            transform { x y }
+            }
+        }`
+const variables = {   
+    "workspaceId": workspaceId,
+    "input": {
+        "text": "This text is attached",
+        "surface": "<SET_SURFACE_ID>"
+        "transform": {
+            "x": 10,
+            "y": 10
+        }
+    }
+}
+
+const attachText = async () => {
+    try {
+        const response = await axios.post(url,
+            {
+                query: textMutation,
+                variables: variables
+            }, 
+            {headers: {"Authorization": "Bearer " + token}})
+        
+        console.log(response.data);
+        return response
+    }
+    catch(error) {
+        console.error(error)
+    }
+}
+
+attachText();
+    
+</pre>
+
+<pre class="lang lang-python">
+import requests
+from requests.exceptions import HTTPError
+import pprint
+
+token = '&lt;SET_TOKEN&gt;'
+portal = '<script type="text/javascript">document.write(graphQLStr); </script>/v3/graphql'
+
+workspace_uid = '&lt;SET_WORKSPACE_UID&gt;'
+
+if __name__ == "__main__":
+
+    API_endpoint = portal
+
+    textMutation = """
+    mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
+        createText(workspaceId: $workspaceId, input: $input) {
+            __typename
+            id
+            text
+            transform { x y }
+        }
+    }
+    """
+
+    graphqlVariables = {
+        "workspaceId": workspaceId,
+        "input": {
+            "text": "This text is attached",
+            "surface": "<SET_SURFACE_ID>",
+            "transform": {
+                "x": 10,
+                "y": 10
+            }
+    }
+
+    the_request = requests.post(
+            API_endpoint,
+            headers={"Authorization": "Bearer " + token,
+                        "Content-Type": "application/json"
+                    },
+            json = json={
+            'query': textMutation,
+            'variables': graphqlVariables
+        }
+        )
+
+    json_response = the_request.json()
+    pprint.pprint(json_response)
+</pre>
+
+<pre class="lang lang-curl">
+curl -X POST <script type="text/javascript">document.write(graphQLStr); </script>/v3/graphql
+-H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+-H 'Content-Type: application/json' \
+--data-raw '{"query":"mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){\n    createText(workspaceId: $workspaceId, input: $input) {\n        id\n    }\n}    ","variables":{"workspaceId":"&lt;SET_WORKSPACE_UID&gt;","input":{"transform":{"x":10,"y":10},"text":"This text is attached","surface":"&lt;SET_SURFACE_ID&gt;"}}}''
+</pre>    
+
+Sample Response Body:
+<pre>
+{
+    "data": {
+        "id": "&lt;ID_OF_ATTACHED_ELEMENT&gt;"
+    }
+}
+</pre>
+</p>
+
+
 
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
 
