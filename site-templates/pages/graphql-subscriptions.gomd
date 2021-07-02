@@ -16,10 +16,10 @@ Below you can find 2 types of implementations: <a href="#playground_example">usi
 
 <a name="playground_example" class="internal-anchor"><h4>Subscription implementation in GraphQL Playground</h4></a>
 <p>You can access the playground via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page.
-Here is an example of subscription for history events for reporting the change in position (x,y) of Image elements: <br />
+Here is an example of subscription for events, for reporting the change in position (x,y) of Image elements, using the <span class="pre">commands</span> subscription: <br />
 <pre>
 subscription imageElementUpdated($workspaceId: String!) {
-  history(workspaceId: $workspaceId) {
+  commands(workspaceId: $workspaceId) {
     ... on UpdateElementCommand {
       workspaceId
       id
@@ -106,7 +106,7 @@ function subscribe(query, variables) {
 
 // Set the subscription
 subscribe(`subscription imageChangesSubscription($workspaceId: String!) {
-    history(workspaceId: $workspaceId) {
+    commands(workspaceId: $workspaceId) {
       ... on UpdateElementCommand {
         workspaceId
         id
@@ -132,7 +132,7 @@ When you move an image, this is the type of event you will receive:
  Update received:
 {
   data: {
-    history: {
+    commands: {
       workspaceId: '&lt;workspaceId&gt;',
       id: '609abX787e69f2ca25b65262',
       data: { transform: { x: 13599.666666666668, y: -8254.500000000004 } }
