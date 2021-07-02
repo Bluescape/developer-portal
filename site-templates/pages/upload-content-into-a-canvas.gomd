@@ -58,8 +58,16 @@ This is the first step of three for the upload. You will need to create a zygote
 <p>
 You need to specify the type of the file you will upload. Specify it in the <span class="pre">imageFormat</span> field, according to the specific type of image you are uploading.<br/>
 You will also need to assign, the values for the <span class="pre">filename</span> and a <span class="pre">title</span> fields, set as "myImageToUpload.jpg" in the following example:
+</p>
 
-<pre>
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
@@ -70,6 +78,79 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
     "imageFormat": "jpg",
     "transform": { "x": 100, "y": 100, "scale": 1 }
   }'
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+const request = require('request-promise');
+const fs = require('fs');
+
+const token = '&lt;SET_TOKEN&gt;'
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
+const workspaceId = '&lt;WORKSPACE_ID&gt;';
+const api_version = '/v3';
+const filePath = '&lt;PATH_TO_IMAGE&gt;';
+
+const request_headers = {
+    'Authorization': "Bearer " + token,
+    'Content-Type' : 'application/json'    
+};
+
+const zygote_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;';
+    const zygote_body = {
+        "type": "Image",
+        "filename": "myImageToUpload.jpg",
+        "title": "myImageToUpload.jpg",
+        "imageFormat": "jpg",
+        "transform": { "x": 100, "y": 100, "scale": 1 }
+    }
+    const zygote_options = {
+        headers: request_headers,
+        uri: zygote_endpoint,
+        method: 'POST',
+        json: zygote_body
+    }
+
+    const zygote_response = await request(zygote_options)
+    .catch(err => console.log(err))
+
+    console.log(zygote_response)
+    const zygote_data = zygote_response.data.content;
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+import requests
+import pprint
+
+token = '&lt;SET_TOKEN&gt;'
+portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
+workspaceId = '&lt;WORKSPACE_ID&gt;';
+api_version = '/v3';
+filePath = '&lt;PATH_TO_IMAGE&gt;';
+
+request_headers = {
+    'Authorization': "Bearer " + token,
+    'Content-Type' : 'application/json'    
+}
+
+if __name__ == "__main__":
+    zygote_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;'
+    zygote_body = {
+        "type": "Image",
+        "filename": "myImageToUpload.jpg",
+        "title": "myImageToUpload.jpg",
+        "imageFormat": "jpg",
+        "transform": { "x": 100, "y": 100, "scale": 1 }
+    }
+
+    zygote_request = requests.post(zygote_endpoint, headers = request_headers, json = zygote_body)
+    zygote_response = zygote_request.json()
+    pprint.pprint(zygote_response)
+
+    zygote_data = zygote_response['data']['content']
 </pre>
 </p>
 
@@ -121,8 +202,8 @@ The response body you will get should look like this:
     }
 }
 </pre>
-
 </p>
+
 <p>
 At this moment, you will see a placeholder element in the workspace, in the position you specified, displaying a <i>"transferring"</i> message (as shown in the traits in the response body).<br />
 From the response body, you will need to use the following fields for the next step:
@@ -154,8 +235,16 @@ Please note that you will run an API call directly to  S3 (or the repository you
 </p>
 <p>
 This is the command to run the upload of the file:
+</p>
 
-<pre>
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl>
 curl --location --request POST '&lt;SET-data/content/url&gt;' \
 --form 'key="&lt;SET-data/content/field/key&gt;' \
 --form 'bucket="&lt;SET-data/content/field/bucket&gt;"' \
@@ -166,8 +255,8 @@ curl --location --request POST '&lt;SET-data/content/url&gt;' \
 --form 'X-Amz-Signature="&lt;SET-data/content/field/X-Amz-Signature&gt;"' \
 --form 'file=@"&lt;SET_FULL_PATH_TO_LOCAL_FILE"'
 </pre>
-
 </p>
+
 <p>
 This is how the command will look when using the data from Step 1:
 
@@ -182,8 +271,63 @@ curl --location --request POST 'https://s3.us-east-1.amazonaws.com/acceptance-ne
 --form 'X-Amz-Signature="fd521d7b3416a12a9997a2e1a10408f7P8427d9d0ae01A53e65a926f0f07a56d"' \
 --form 'file=@"/Users/pj/temp/docs/araucaria.jpg"'
 </pre>
-
 </p>
+
+<p>
+<pre class="lang lang-node">
+const uploadToBucket = async (upload_data, file) => {
+    const uri = upload_data.url;
+    console.log(`Uploading to bucket with url: ${uri}`);
+    const formData = {
+        key: upload_data.fields.key,
+        bucket: upload_data.fields.bucket,
+        'X-Amz-Algorithm': upload_data.fields['X-Amz-Algorithm'],
+        'X-Amz-Credential': upload_data.fields['X-Amz-Credential'],
+        'X-Amz-Date': upload_data.fields['X-Amz-Date'],
+        Policy: upload_data.fields.Policy,
+        'X-Amz-Signature': upload_data.fields['X-Amz-Signature'],
+        file: {
+        value: fs.createReadStream(filePath),
+        options: {
+            filename: file.filename,
+            contentType: file.type + '/' + file.imageFormat
+            },
+        },
+    };
+    const options = {
+        uri,
+        method: 'POST',
+        formData,
+        resolveWithFullResponse: true
+        };
+    return await request(options)
+};
+
+const s3upload_response = await uploadToBucket(zygote_data, zygote_body)
+    .catch(err => console.log(err))
+    console.log(s3upload_response.statusCode)
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python>
+print('Updateing to bucket with url: ' + zygote_data['url'])
+    formData = {
+        'key': zygote_data['fields']['key'],
+        'bucket': zygote_data['fields']['bucket'],
+        'X-Amz-Algorithm': zygote_data['fields']['X-Amz-Algorithm'],
+        'X-Amz-Credential': zygote_data['fields']['X-Amz-Credential'],
+        'X-Amz-Date': zygote_data['fields']['X-Amz-Date'],
+        'Policy': zygote_data['fields']['Policy'],
+        'X-Amz-Signature': zygote_data['fields']['X-Amz-Signature'],
+    }
+
+    files = {'file': open(filePath, 'rb')}
+    s3upload_response = requests.post(zygote_data['url'], data=formData, files=files)
+    pprint.pprint(s3upload_response.status_code)
+</pre>
+</p>
+
 <p>
 <b>IMPORTANT</b>: If the upload process is successful, you will get a return code <span class="pre">204</span>, then proceed to the last step of the upload.
 </p>
@@ -207,17 +351,53 @@ The last step is to link the zygote or placeholder to the file we uploaded in th
         </tr>
 </table>
 </p>
+
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
 <p>
 This is the command to run:
+</p>
 
-<pre>
+<p>
+<pre class="lang lang-curl">
 curl --location --request PUT '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/assets/uploads/&lt;uploadId&gt;' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{}'
 </pre>
-
 </p>
+
+<p>
+<pre class="lang lang-node">
+const upload_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/assets/uploads/' + zygote_response.data.content.uploadId
+    const upload_options = {
+        headers: request_headers,
+        uri: upload_endpoint,
+        method: 'PUT',
+        json: {},
+        resolveWithFullResponse: true
+    }
+    
+    const upload_response = await request(upload_options)
+    .catch(err => console.log(err))
+
+    console.log(upload_response.statusCode)
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+upload_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/assets/uploads/' + zygote_data['uploadId']
+upload_response = requests.put(upload_endpoint, headers= request_headers, json={})
+pprint.pprint(upload_response.status_code)
+</pre>
+</p>
+
+
 
 <a name="rest-upload-using-URL" class="internal-anchor"><h2>Upload by URL using REST APIs</h2></a>
 <p>
@@ -238,11 +418,20 @@ When should we use this "upload by URL" approach? When you integrate with extern
         </tr>
 </table>
 </p>
+
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
 <p>
 See the example below to learn how to upload an image by URL.
+</p>
 
-<pre>
-curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements' \
+<p>
+<pre class="lang lang-curl">
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -255,8 +444,92 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
     "imageFormat": "jpg"
 }'
 </pre>
+</p>
 
-To upload video you will use the same API, but slightly different payload. THe example below is set to upload a .mov video:
+<p>
+<pre class="lang lang-node">
+ /*
+
+How to run:
+node this_script_name.js
+
+Requires "axios" module (0.19.0), run:
+npm install request-promise
+npm install fs
+
+*/
+
+const request = require('request-promise');
+const fs = require('fs');
+
+const token = '&lt;SET_TOKEN&gt;'
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
+const workspaceId = '&lt;WORKSPACE_ID&gt;';
+const api_version = '/v3';
+
+const request_headers = {
+    'Authorization': "Bearer " + token,
+    'Content-Type' : 'application/json'    
+};
+
+async function main() {
+    const zygote_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;';
+    const zygote_body = {
+        "type": "Image",
+        "title": "Nachooooo.jpg",
+        "imageFormat": "jpg",
+        "transform": { "x": 100, "y": 100, "scale": 1 },
+        "sourceUrl": "https://i.imgur.com/k66EOEe.jpeg"
+    }
+    const zygote_options = {
+        headers: request_headers,
+        uri: zygote_endpoint,
+        method: 'POST',
+        json: zygote_body
+    }
+
+    const zygote_response = await request(zygote_options)
+    .catch(err => console.log(err))
+
+    console.log(zygote_response)
+}
+
+main();
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+import requests
+import pprint
+
+token = '&lt;SET_TOKEN&gt;'
+portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
+workspaceId = '&lt;WORKSPACE_ID&gt;';
+api_version = '/v3';
+
+request_headers = {
+    'Authorization': "Bearer " + token,
+    'Content-Type' : 'application/json'    
+}
+
+if __name__ == "__main__":
+    zygote_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;'
+    zygote_body = {
+        "type": "Image",
+        "title": "Nachooooo.jpg",
+        "imageFormat": "jpg",
+        "transform": { "x": 100, "y": 100, "scale": 1 },
+        "sourceUrl": "https://i.imgur.com/k66EOEe.jpeg"
+    }
+
+    zygote_request = requests.post(zygote_endpoint, headers = request_headers, json = zygote_body)
+    zygote_response = zygote_request.json()
+    pprint.pprint(zygote_response)
+</pre>
+</p>
+
+To upload video you will use the same API, but slightly different payload. The example below is set to upload a .mov video:
 
 <pre>
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements' \
