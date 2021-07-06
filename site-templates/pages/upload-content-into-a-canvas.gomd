@@ -98,25 +98,25 @@ const request_headers = {
 };
 
 const zygote_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;';
-    const zygote_body = {
-        "type": "Image",
-        "filename": "myImageToUpload.jpg",
-        "title": "myImageToUpload.jpg",
-        "imageFormat": "jpg",
-        "transform": { "x": 100, "y": 100, "scale": 1 }
-    }
-    const zygote_options = {
-        headers: request_headers,
-        uri: zygote_endpoint,
-        method: 'POST',
-        json: zygote_body
-    }
+const zygote_body = {
+    "type": "Image",
+    "filename": "myImageToUpload.jpg",
+    "title": "myImageToUpload.jpg",
+    "imageFormat": "jpg",
+    "transform": { "x": 100, "y": 100, "scale": 1 }
+}
+const zygote_options = {
+    headers: request_headers,
+    uri: zygote_endpoint,
+    method: 'POST',
+    json: zygote_body
+}
 
-    const zygote_response = await request(zygote_options)
-    .catch(err => console.log(err))
+const zygote_response = await request(zygote_options)
+.catch(err => console.log(err))
 
-    console.log(zygote_response)
-    const zygote_data = zygote_response.data.content;
+console.log(zygote_response)
+const zygote_data = zygote_response.data.content;
 </pre>
 </p>
 
@@ -244,9 +244,9 @@ This is the command to run the upload of the file:
 </div>
 
 <p>
-<pre class="lang lang-curl>
+<pre class="lang lang-curl">
 curl --location --request POST '&lt;SET-data/content/url&gt;' \
---form 'key="&lt;SET-data/content/field/key&gt;' \
+--form 'key="&lt;SET-data/content/field/key&gt;"' \
 --form 'bucket="&lt;SET-data/content/field/bucket&gt;"' \
 --form 'X-Amz-Algorithm="&lt;SET-data/content/field/X-Amz-Algorithm&gt;"' \
 --form 'X-Amz-Credential="&lt;SET-data/content/field/X-Amz-Credential&gt;"' \
@@ -254,22 +254,6 @@ curl --location --request POST '&lt;SET-data/content/url&gt;' \
 --form 'Policy="&lt;SET-data/content/field/Policy&gt;"' \
 --form 'X-Amz-Signature="&lt;SET-data/content/field/X-Amz-Signature&gt;"' \
 --form 'file=@"&lt;SET_FULL_PATH_TO_LOCAL_FILE"'
-</pre>
-</p>
-
-<p>
-This is how the command will look when using the data from Step 1:
-
-<pre>
-curl --location --request POST 'https://s3.us-east-1.amazonaws.com/acceptance-new.public-assets.bluescape.com' \
---form 'key="sessions/objects/GDUWtDvSZGtE868PBBk2/60aed93111bf08bf22a2572a.jpg"' \
---form 'bucket="acceptance-new.public-assets.bluescape.com"' \
---form 'X-Amz-Algorithm="AWS4-HMAC-SHA256"' \
---form 'X-Amz-Credential="AKIZIVWWSYKG79KFMQJA/20210526/us-east-1/s3/aws4_request"' \
---form 'X-Amz-Date="20210526T232643Z"' \
---form 'Policy="eyJleHNpcmF0aW9uIjoiMjAyMS0wNS0yNlQyMzozMTo0MVoiLCJjb25kaXRpb25zIjpbWyJlcSIsIiRrZXkiLCJzZXNzaW9ucy9vYmplY3RzL0dEVVd0RHZTWkd0Nzg2OFBCQmsyLzYwYWVkOTMxMTdiZjA4YmYyMmEyNTcyYS5qcGciXSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDUyNDI4ODAwXSx7ImJ1Y2tldCI6ImFjY2VwdGFuY2Utbmv3LnB1YmxpYy1hc3NldHMuYmx1ZXNjYXBlLmNvbSJ9LHsiWC1BbXotQWxnb3JpdGhtIjoiQVdTNC1ITUFDLVNIQTI1NiJ9LHsiWC1BbXotQ3JlZGVudGlhbCI6IkFLSUFJVldXU1lLRzdES0ZNUUpBLzIwMjEwNTI2L3VzLWVhc3QtMS9zMy9hd3M0X3JlcXVlc3QifSx7IlgtQW16LURhdGUiOiIyMDIxMDUyNlQyMzI2NDFaIn1dfQ=="' \
---form 'X-Amz-Signature="fd521d7b3416a12a9997a2e1a10408f7P8427d9d0ae01A53e65a926f0f07a56d"' \
---form 'file=@"/Users/pj/temp/docs/araucaria.jpg"'
 </pre>
 </p>
 
@@ -310,29 +294,46 @@ const s3upload_response = await uploadToBucket(zygote_data, zygote_body)
 </p>
 
 <p>
-<pre class="lang lang-python>
+<pre class="lang lang-python">
 print('Updateing to bucket with url: ' + zygote_data['url'])
-    formData = {
-        'key': zygote_data['fields']['key'],
-        'bucket': zygote_data['fields']['bucket'],
-        'X-Amz-Algorithm': zygote_data['fields']['X-Amz-Algorithm'],
-        'X-Amz-Credential': zygote_data['fields']['X-Amz-Credential'],
-        'X-Amz-Date': zygote_data['fields']['X-Amz-Date'],
-        'Policy': zygote_data['fields']['Policy'],
-        'X-Amz-Signature': zygote_data['fields']['X-Amz-Signature'],
-    }
+formData = {
+    'key': zygote_data['fields']['key'],
+    'bucket': zygote_data['fields']['bucket'],
+    'X-Amz-Algorithm': zygote_data['fields']['X-Amz-Algorithm'],
+    'X-Amz-Credential': zygote_data['fields']['X-Amz-Credential'],
+    'X-Amz-Date': zygote_data['fields']['X-Amz-Date'],
+    'Policy': zygote_data['fields']['Policy'],
+    'X-Amz-Signature': zygote_data['fields']['X-Amz-Signature'],
+}
 
-    files = {'file': open(filePath, 'rb')}
-    s3upload_response = requests.post(zygote_data['url'], data=formData, files=files)
-    pprint.pprint(s3upload_response.status_code)
+files = {'file': open(filePath, 'rb')}
+s3upload_response = requests.post(zygote_data['url'], data=formData, files=files)
+pprint.pprint(s3upload_response.status_code)
 </pre>
 </p>
 
 <p>
-<b>IMPORTANT</b>: If the upload process is successful, you will get a return code <span class="pre">204</span>, then proceed to the last step of the upload.
+This is how the command will look when using the data from Step 1:
+
+<pre>
+curl --location --request POST 'https://s3.us-east-1.amazonaws.com/acceptance-new.public-assets.bluescape.com' \
+--form 'key="sessions/objects/GDUWtDvSZGtE868PBBk2/60aed93111bf08bf22a2572a.jpg"' \
+--form 'bucket="acceptance-new.public-assets.bluescape.com"' \
+--form 'X-Amz-Algorithm="AWS4-HMAC-SHA256"' \
+--form 'X-Amz-Credential="AKIZIVWWSYKG79KFMQJA/20210526/us-east-1/s3/aws4_request"' \
+--form 'X-Amz-Date="20210526T232643Z"' \
+--form 'Policy="eyJleHNpcmF0aW9uIjoiMjAyMS0wNS0yNlQyMzozMTo0MVoiLCJjb25kaXRpb25zIjpbWyJlcSIsIiRrZXkiLCJzZXNzaW9ucy9vYmplY3RzL0dEVVd0RHZTWkd0Nzg2OFBCQmsyLzYwYWVkOTMxMTdiZjA4YmYyMmEyNTcyYS5qcGciXSxbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwwLDUyNDI4ODAwXSx7ImJ1Y2tldCI6ImFjY2VwdGFuY2Utbmv3LnB1YmxpYy1hc3NldHMuYmx1ZXNjYXBlLmNvbSJ9LHsiWC1BbXotQWxnb3JpdGhtIjoiQVdTNC1ITUFDLVNIQTI1NiJ9LHsiWC1BbXotQ3JlZGVudGlhbCI6IkFLSUFJVldXU1lLRzdES0ZNUUpBLzIwMjEwNTI2L3VzLWVhc3QtMS9zMy9hd3M0X3JlcXVlc3QifSx7IlgtQW16LURhdGUiOiIyMDIxMDUyNlQyMzI2NDFaIn1dfQ=="' \
+--form 'X-Amz-Signature="fd521d7b3416a12a9997a2e1a10408f7P8427d9d0ae01A53e65a926f0f07a56d"' \
+--form 'file=@"/Users/pj/temp/docs/araucaria.jpg"'
+</pre>
+</p>
+
+<p>
+    <b>IMPORTANT</b>: If the upload process is successful, you will get a return code <span class="pre">204</span>, then proceed to the last step of the upload.
 </p>
 
 <h4>STEP 3: Link the zygote or placeholder to the uploaded file</h4>
+
 <p>
 The last step is to link the zygote or placeholder to the file we uploaded in the previous step. For this step we will need the id from <span class="pre">data/content/uploadId</span> generated in the response body in step 1.
 
@@ -359,10 +360,6 @@ The last step is to link the zygote or placeholder to the file we uploaded in th
 </div>
 
 <p>
-This is the command to run:
-</p>
-
-<p>
 <pre class="lang lang-curl">
 curl --location --request PUT '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/assets/uploads/&lt;uploadId&gt;' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
@@ -374,18 +371,18 @@ curl --location --request PUT '<script type="text/javascript">document.write(api
 <p>
 <pre class="lang lang-node">
 const upload_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/assets/uploads/' + zygote_response.data.content.uploadId
-    const upload_options = {
-        headers: request_headers,
-        uri: upload_endpoint,
-        method: 'PUT',
-        json: {},
-        resolveWithFullResponse: true
-    }
-    
-    const upload_response = await request(upload_options)
-    .catch(err => console.log(err))
+const upload_options = {
+    headers: request_headers,
+    uri: upload_endpoint,
+    method: 'PUT',
+    json: {},
+    resolveWithFullResponse: true
+}
 
-    console.log(upload_response.statusCode)
+const upload_response = await request(upload_options)
+.catch(err => console.log(err))
+
+console.log(upload_response.statusCode)
 </pre>
 </p>
 
@@ -532,7 +529,7 @@ if __name__ == "__main__":
 To upload video you will use the same API, but slightly different payload. The example below is set to upload a .mov video:
 
 <pre>
-curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements' \
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{
