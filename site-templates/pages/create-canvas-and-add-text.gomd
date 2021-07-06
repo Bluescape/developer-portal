@@ -1,4 +1,4 @@
-<h1>Create a Canvas and add a Text Element to it</h1>
+<h1>Create a Canvas and add a Text Element to it for v3</h1>
 
 <p>
 <b>Objective</b>: Create a new Canvas in your Workspace and add a Text element to this new Canvas. You will learn how to get the IDs of newly created objects within your Workspace, and how to use them to associate other objects with them. You will need the <span class="pre">workspaceId</span>.<br />  
