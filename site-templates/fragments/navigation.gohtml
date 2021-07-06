@@ -11,6 +11,7 @@
     <br />
     {{if or (eq $.CurrentPage "urls") (eq $.CurrentPage "reference") (eq $.CurrentPage "pagination") (eq $.CurrentPage "permissions") (eq $.CurrentPage "v3-known-issues") (eq $.CurrentPage "v3-tips-and-tricks") (eq $.CurrentService "elementary") (eq $.CurrentService "isam") (eq $.CurrentPage "graphql-reference")}}
     <div>
+        <strong>Reference v3</strong>
         <ul class="unindent-side-nav-ul">        
             <li><a href="/docs/page/urls">URLs</a></li>
             <li><a href="/docs/page/pagination">Pagination</a></li>
@@ -24,6 +25,7 @@
         </ul>
         <strong>REST API v3</strong>
         <ul class="unindent-side-nav-ul">
+            <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference">Go to current API version</a></li>
             {{range $i, $element := .S.K8sStore.Slice }}
                 {{$svc := $element.Service}}
                 {{$class := ""}}
@@ -63,7 +65,7 @@
     {{end}}
     {{if or (eq $.CurrentPage "versioning") (eq $.CurrentPage "reference-v2") (eq $.CurrentPage "urls-v2") (eq $.CurrentPage "pagination-v2") (eq $.CurrentPage "listener-events-v2") (eq $.CurrentPage "permissions-v2") (eq $.CurrentPage "sso") (eq $.CurrentService "listener-api") (eq $.CurrentService "collab") (eq $.CurrentService "portal-api")}}
     <div>
-    <strong>Reference v2</strong>
+    <!-- <strong>Reference v2</strong> -->
         <ul class="unindent-side-nav-ul">
             <li><a href="/docs/page/urls-v2">URLs</a></li>
             <li><a href="/docs/page/pagination-v2">Pagination</a></li>
@@ -74,8 +76,10 @@
         </ul>
         <strong>REST API v2</strong>
         <ul class="unindent-side-nav-ul">  
-            <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference">Go to current API version</a></li>
-                    {{range $i, $element := .S.K8sStore.Slice }}
+            <!-- 
+                <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference">Go to current API version</a></li>
+             -->
+            {{range $i, $element := .S.K8sStore.Slice }}           
             {{$svc := $element.Service}}
             {{$class := ""}}
             {{if and (eq $.CurrentService $svc.Name) (eq $.CurrentNamespace $svc.Namespace)}}
