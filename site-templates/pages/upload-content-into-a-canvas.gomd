@@ -1,4 +1,4 @@
-<h1>Upload content into a Canvas, v3</h1>
+<h1>Upload content into a Canvas for v3</h1>
 <p>
 <b>Objective</b>: Upload content from a local drive into a workspace.
 </p>
@@ -20,12 +20,16 @@
         </tr>
 </table>
  
-This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a>, <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">v2 REST APIs</a>.
+This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a> and for <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">v2 REST APIs</a>.<br />
+Please check the previous guide in <a href="/docs/page/create-canvas-and-add-text" target="_BLANK">how to create a Canvas and add a Text Element</a> to see how to create a Canvas and obtain this new Canvas Id. You will need the Canvas Id to position the content to upload inside this Canvas.
 </p>
-
-<a name="rest-v3" class="internal-anchor"><h2>Upload from local using REST APIs v3</h2></a>
-
+<a name="rest-v3" class="internal-anchor"></a>
 <p>
+The upload of content into a workspace by APIs can be done in 2 ways: <a href="#rest-upload-from-local-drive">upload from local drive</a> or <a href="#rest-upload-using-URL">upload by a URL</a>.
+
+<a name="rest-upload-from-local-drive" class="internal-anchor"><h2>Upload from local using REST APIs</h2></a>
+<p>
+Upload from local
 In REST APIs v3, the upload process from your local drive is divided in 3 steps:
 <ol>
     <li>Create a zygote or placeholder for the file to upload. Here you will get the credentials to upload the file to a storage service, Amazon S3 in the example.</li>
@@ -39,7 +43,7 @@ This is the first step of three for the upload. You will need to create a zygote
 <table class="table table-striped">
         <tr>
           <td><b>API</b></td>
-          <td>/workspaces/&lt;workspaceId&gt;/elements</td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -47,25 +51,106 @@ This is the first step of three for the upload. You will need to create a zygote
         </tr>  
         <tr>
           <td><b>Comments</b></td>
-          <td></td>
+          <td>&lt;CANVAS_ID&gt; is the ID of the preciously created canvas. This is the canvas where you want to add the uploaded content. The position of the content to upload will be in reference to the top-left corner of this Canvas.</td>
         </tr>
 </table>
 </p>
 <p>
-You need to specify the type of the file you will upload. Specify it in the <span class="pre">imageFormat</span> field: <span class="pre">png</span> or <span class="pre">jpeg</span>.<br/>
+You need to specify the type of the file you will upload. Specify it in the <span class="pre">imageFormat</span> field, according to the specific type of image you are uploading.<br/>
 You will also need to assign, the values for the <span class="pre">filename</span> and a <span class="pre">title</span> fields, set as "myImageToUpload.jpg" in the following example:
+</p>
 
-<pre>
-curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements' \
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "type": "Image",
     "filename": "myImageToUpload.jpg",
     "title": "myImageToUpload.jpg",
-    "imageFormat": "jpeg",
-    "transform": { "x": 300, "y": 100, "scale": 2 }
+    "imageFormat": "jpg",
+    "transform": { "x": 100, "y": 100, "scale": 1 }
   }'
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+const request = require('request-promise');
+const fs = require('fs');
+
+const token = '&lt;SET_TOKEN&gt;'
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
+const workspaceId = '&lt;WORKSPACE_ID&gt;';
+const api_version = '/v3';
+const filePath = '&lt;PATH_TO_IMAGE&gt;';
+
+const request_headers = {
+    'Authorization': "Bearer " + token,
+    'Content-Type' : 'application/json'    
+};
+
+const zygote_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;';
+const zygote_body = {
+    "type": "Image",
+    "filename": "myImageToUpload.jpg",
+    "title": "myImageToUpload.jpg",
+    "imageFormat": "jpg",
+    "transform": { "x": 100, "y": 100, "scale": 1 }
+}
+const zygote_options = {
+    headers: request_headers,
+    uri: zygote_endpoint,
+    method: 'POST',
+    json: zygote_body
+}
+
+const zygote_response = await request(zygote_options)
+.catch(err => console.log(err))
+
+console.log(zygote_response)
+const zygote_data = zygote_response.data.content;
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+import requests
+import pprint
+
+token = '&lt;SET_TOKEN&gt;'
+portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
+workspaceId = '&lt;WORKSPACE_ID&gt;';
+api_version = '/v3';
+filePath = '&lt;PATH_TO_IMAGE&gt;';
+
+request_headers = {
+    'Authorization': "Bearer " + token,
+    'Content-Type' : 'application/json'    
+}
+
+if __name__ == "__main__":
+    zygote_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;'
+    zygote_body = {
+        "type": "Image",
+        "filename": "myImageToUpload.jpg",
+        "title": "myImageToUpload.jpg",
+        "imageFormat": "jpg",
+        "transform": { "x": 100, "y": 100, "scale": 1 }
+    }
+
+    zygote_request = requests.post(zygote_endpoint, headers = request_headers, json = zygote_body)
+    zygote_response = zygote_request.json()
+    pprint.pprint(zygote_response)
+
+    zygote_data = zygote_response['data']['content']
 </pre>
 </p>
 
@@ -117,8 +202,8 @@ The response body you will get should look like this:
     }
 }
 </pre>
-
 </p>
+
 <p>
 At this moment, you will see a placeholder element in the workspace, in the position you specified, displaying a <i>"transferring"</i> message (as shown in the traits in the response body).<br />
 From the response body, you will need to use the following fields for the next step:
@@ -150,10 +235,18 @@ Please note that you will run an API call directly to  S3 (or the repository you
 </p>
 <p>
 This is the command to run the upload of the file:
+</p>
 
-<pre>
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
 curl --location --request POST '&lt;SET-data/content/url&gt;' \
---form 'key="&lt;SET-data/content/field/key&gt;' \
+--form 'key="&lt;SET-data/content/field/key&gt;"' \
 --form 'bucket="&lt;SET-data/content/field/bucket&gt;"' \
 --form 'X-Amz-Algorithm="&lt;SET-data/content/field/X-Amz-Algorithm&gt;"' \
 --form 'X-Amz-Credential="&lt;SET-data/content/field/X-Amz-Credential&gt;"' \
@@ -162,8 +255,63 @@ curl --location --request POST '&lt;SET-data/content/url&gt;' \
 --form 'X-Amz-Signature="&lt;SET-data/content/field/X-Amz-Signature&gt;"' \
 --form 'file=@"&lt;SET_FULL_PATH_TO_LOCAL_FILE"'
 </pre>
-
 </p>
+
+<p>
+<pre class="lang lang-node">
+const uploadToBucket = async (upload_data, file) => {
+    const uri = upload_data.url;
+    console.log(`Uploading to bucket with url: ${uri}`);
+    const formData = {
+        key: upload_data.fields.key,
+        bucket: upload_data.fields.bucket,
+        'X-Amz-Algorithm': upload_data.fields['X-Amz-Algorithm'],
+        'X-Amz-Credential': upload_data.fields['X-Amz-Credential'],
+        'X-Amz-Date': upload_data.fields['X-Amz-Date'],
+        Policy: upload_data.fields.Policy,
+        'X-Amz-Signature': upload_data.fields['X-Amz-Signature'],
+        file: {
+        value: fs.createReadStream(filePath),
+        options: {
+            filename: file.filename,
+            contentType: file.type + '/' + file.imageFormat
+            },
+        },
+    };
+    const options = {
+        uri,
+        method: 'POST',
+        formData,
+        resolveWithFullResponse: true
+        };
+    return await request(options)
+};
+
+const s3upload_response = await uploadToBucket(zygote_data, zygote_body)
+    .catch(err => console.log(err))
+    console.log(s3upload_response.statusCode)
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+print('Updateing to bucket with url: ' + zygote_data['url'])
+formData = {
+    'key': zygote_data['fields']['key'],
+    'bucket': zygote_data['fields']['bucket'],
+    'X-Amz-Algorithm': zygote_data['fields']['X-Amz-Algorithm'],
+    'X-Amz-Credential': zygote_data['fields']['X-Amz-Credential'],
+    'X-Amz-Date': zygote_data['fields']['X-Amz-Date'],
+    'Policy': zygote_data['fields']['Policy'],
+    'X-Amz-Signature': zygote_data['fields']['X-Amz-Signature'],
+}
+
+files = {'file': open(filePath, 'rb')}
+s3upload_response = requests.post(zygote_data['url'], data=formData, files=files)
+pprint.pprint(s3upload_response.status_code)
+</pre>
+</p>
+
 <p>
 This is how the command will look when using the data from Step 1:
 
@@ -178,20 +326,21 @@ curl --location --request POST 'https://s3.us-east-1.amazonaws.com/acceptance-ne
 --form 'X-Amz-Signature="fd521d7b3416a12a9997a2e1a10408f7P8427d9d0ae01A53e65a926f0f07a56d"' \
 --form 'file=@"/Users/pj/temp/docs/araucaria.jpg"'
 </pre>
-
 </p>
+
 <p>
-<b>IMPORTANT</b>: If the upload process is successful, you will get a return code <span class="pre">204</span>, then proceed to the last step of the upload.
+    <b>IMPORTANT</b>: If the upload process is successful, you will get a return code <span class="pre">204</span>, then proceed to the last step of the upload.
 </p>
 
 <h4>STEP 3: Link the zygote or placeholder to the uploaded file</h4>
+
 <p>
 The last step is to link the zygote or placeholder to the file we uploaded in the previous step. For this step we will need the id from <span class="pre">data/content/uploadId</span> generated in the response body in step 1.
 
 <table class="table table-striped">
         <tr>
           <td><b>API</b></td>
-          <td>/workspaces/&lt;workspaceId&gt;/assets/uploads/&lt;uploadId&gt;</td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/assets/uploads/&lt;uploadId&gt;</td>
         </tr>
         <tr>
             <td><b>Method</b></td>
@@ -203,22 +352,206 @@ The last step is to link the zygote or placeholder to the file we uploaded in th
         </tr>
 </table>
 </p>
-<p>
-This is the command to run:
 
-<pre>
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
 curl --location --request PUT '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/assets/uploads/&lt;uploadId&gt;' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{}'
 </pre>
+</p>
 
+<p>
+<pre class="lang lang-node">
+const upload_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/assets/uploads/' + zygote_response.data.content.uploadId
+const upload_options = {
+    headers: request_headers,
+    uri: upload_endpoint,
+    method: 'PUT',
+    json: {},
+    resolveWithFullResponse: true
+}
+
+const upload_response = await request(upload_options)
+.catch(err => console.log(err))
+
+console.log(upload_response.statusCode)
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+upload_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/assets/uploads/' + zygote_data['uploadId']
+upload_response = requests.put(upload_endpoint, headers= request_headers, json={})
+pprint.pprint(upload_response.status_code)
+</pre>
+</p>
+
+
+
+<a name="rest-upload-using-URL" class="internal-anchor"><h2>Upload by URL using REST APIs</h2></a>
+<p>
+You can use the URL pointing to a resource to upload it into a workspace.<br />
+When should we use this "upload by URL" approach? When you integrate with external services that host images, videos and/or documents, and you want to access them (to view or download them),most of the time you are provided with a URL to those assets, not the actual binary object. Then, you can use that URL to access those assets to upload them directly into a workspace.
+<table class="table table-striped">
+        <tr>
+          <td><b>API</b></td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
+        </tr>
+        <tr>
+            <td><b>Method</b></td>
+            <td>POST</td>
+        </tr>  
+        <tr>
+          <td><b>Comments</b></td>
+          <td></td>
+        </tr>
+</table>
+</p>
+
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+See the example below to learn how to upload an image by URL.
+</p>
+
+<p>
+<pre class="lang lang-curl">
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "type": "Image",
+    "transform": {
+        "x": 12000,
+        "y": 200
+    },
+    "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Yosemite_nat_park_valley_view.JPG/1200px-Yosemite_nat_park_valley_view.JPG",
+    "imageFormat": "jpg"
+}'
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+ /*
+
+How to run:
+node this_script_name.js
+
+Requires "axios" module (0.19.0), run:
+npm install request-promise
+npm install fs
+
+*/
+
+const request = require('request-promise');
+const fs = require('fs');
+
+const token = '&lt;SET_TOKEN&gt;'
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
+const workspaceId = '&lt;WORKSPACE_ID&gt;';
+const api_version = '/v3';
+
+const request_headers = {
+    'Authorization': "Bearer " + token,
+    'Content-Type' : 'application/json'    
+};
+
+async function main() {
+    const zygote_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;';
+    const zygote_body = {
+        "type": "Image",
+        "title": "Nachooooo.jpg",
+        "imageFormat": "jpg",
+        "transform": { "x": 100, "y": 100, "scale": 1 },
+        "sourceUrl": "https://i.imgur.com/k66EOEe.jpeg"
+    }
+    const zygote_options = {
+        headers: request_headers,
+        uri: zygote_endpoint,
+        method: 'POST',
+        json: zygote_body
+    }
+
+    const zygote_response = await request(zygote_options)
+    .catch(err => console.log(err))
+
+    console.log(zygote_response)
+}
+
+main();
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+import requests
+import pprint
+
+token = '&lt;SET_TOKEN&gt;'
+portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
+workspaceId = '&lt;WORKSPACE_ID&gt;';
+api_version = '/v3';
+
+request_headers = {
+    'Authorization': "Bearer " + token,
+    'Content-Type' : 'application/json'    
+}
+
+if __name__ == "__main__":
+    zygote_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;'
+    zygote_body = {
+        "type": "Image",
+        "title": "Nachooooo.jpg",
+        "imageFormat": "jpg",
+        "transform": { "x": 100, "y": 100, "scale": 1 },
+        "sourceUrl": "https://i.imgur.com/k66EOEe.jpeg"
+    }
+
+    zygote_request = requests.post(zygote_endpoint, headers = request_headers, json = zygote_body)
+    zygote_response = zygote_request.json()
+    pprint.pprint(zygote_response)
+</pre>
+</p>
+
+To upload video you will use the same API, but slightly different payload. The example below is set to upload a .mov video:
+
+<pre>
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "type": "Video",
+    "transform": {
+        "x": 12000,
+        "y": 200
+    },
+    "sourceUrl": "&lt;ADD_URL_TO_MOV_MOVIE&gt;",
+    "videoFormat": "mov"
+   
+}'
+</pre>
 </p>
 
 <a name="graphql" class="internal-anchor"><h2>Upload by URL using GraphQL APIs</h2></a>
 <p>
-In GraphQL, you can use the URL pointing to a resource to upload it into a workspace.<br />
-When should we use this "upload by URL approach? When you integrate with external services that host images, videos and/or documents, and you want to access them (to view or download them),most of the time you are provided with a URL to those assets, not the actual binary object. Then, you can use that URL to access those assets to upload them directly into a workspace.<br />
+You can use the URL pointing to a resource to upload it into a workspace.<br />
+When should we use this "upload by URL" approach? When you integrate with external services that host images, videos and/or documents, and you want to access them (to view or download them),most of the time you are provided with a URL to those assets, not the actual binary object. Then, you can use that URL to access those assets to upload them directly into a workspace.
+</p>
+<p>
+Please note that &lt;CANVAS_ID&gt; is the ID of the preciously created canvas. This is the canvas where you want to add the uploaded content. The position of the content to upload will be in reference to the top-left corner of this Canvas.
 You can use the following mutations: <span class="pre">createDocument</span>, <span class="pre">createImage</span>, <span class="pre">createVideo</span>.
 </p>
 <p>
@@ -226,7 +559,7 @@ Example of <span class="pre">createImage</span> mutation:
 <pre>
 mutation uploadImageFromURL($workspaceId: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $url:String! $scale:Float) {
     createImage(
-          workspaceId: $workspaceId
+          workspaceId: $workspaceId, relativeToOriginOf: $idCanvasRelativeTo
           input: {
             title:$title
             imageFormat: $imageFormat
@@ -250,6 +583,7 @@ and these are the variables for the mutation above:
 <pre>
 {
     "workspaceId": "&lt;workspaceId&gt;",
+    "idCanvasRelativeTo": "&lt;CANVAS_ID&gt;",
     "title":"&lt;title_or_filename&gt;",
     "imageFormat":"&lt;SEE_ALLOWED_TYPES_AT_THE_TOP_OF_THE_PAGE&gt;",
     "previewFormat":"&lt;SEE_ALLOWED_TYPES_AT_THE_TOP_OF_THE_PAGE&gt;",
@@ -281,8 +615,6 @@ Example of parameters to load an image:
 </p>
 <p>
 </p>
-
-
 
 <p>
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.

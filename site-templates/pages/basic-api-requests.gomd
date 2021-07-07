@@ -235,4 +235,3 @@ query getElementsFromWorkspace($workspaceId: String!){
 
 <br />
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
-

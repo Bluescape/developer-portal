@@ -5,8 +5,8 @@
   
 </style>
 
-<h1>What is new in v3 beta?</h1>
-<p>This page covers the new features in v3 beta, as a comparison with v2.<br />
+<h1>What is new in v3?</h1>
+<p>This page covers the new features in v3, as a comparison with v2.<br />
 
 One new inclusion in v3 are the new <a href="/docs/page/what-is-graphql">GraphQL APIs</a>.<br />
 
@@ -20,8 +20,8 @@ Regarding the REST APIs, the main differences can be grouped in 3 sections:
 <a name="changes-in-rest-api-verbs" class="internal-anchor"></a><h2>Changes in REST API verbs</h2>
 <table class="table table-striped">
 <td><b>Subject</b></td>
-    <td><center><b>V2</b></center></td>
-    <td><center><b>v3 beta</b></center></td>
+    <td><center><b>v2</b></center></td>
+    <td><center><b>v3</b></center></td>
   <tr>
     <td>In V3, when you want to modify a property of an object that is <br />already created (its position, color, text, etc.), the REST API verb to use is PATCH.</td>
     <td>REST API verb: <b>PUT</b><br /><br />
@@ -45,8 +45,8 @@ Regarding the REST APIs, the main differences can be grouped in 3 sections:
 <table class="table table-striped">
   <tr>
     <td><b>Subject</b></td>
-    <td><center><b>V2</b></center></td>
-    <td><center><b>v3 beta</b></center></td>
+    <td><center><b>v2</b></center></td>
+    <td><center><b>v3</b></center></td>
   </tr>
   <tr>
     <td>
@@ -176,7 +176,7 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
       In v3 there is a new way specify the position of objects in the workspace.<br />
     </td>
     <td>
-    In V2: <br/><br />
+    In v2: <br/><br />
 <pre>
 {
   "text": "Hello there!", 
@@ -208,7 +208,7 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
     <td>
       In v3 there is a new way to specify the dimensions (height and width) of an element, this except for elements of the Image, Document or Video type.
     </td>
-    <td> In V2, all the elements specify the width and height properties this way:<br /><br />
+    <td> In v2, all the elements specify the width and height properties this way:<br /><br />
 <pre>
 {
   "text": "Hello there!", 
@@ -234,7 +234,7 @@ List of Types in V3: Text, Note, Image, Document, Grid, Browser, Video, Stroke, 
     }</b>
   ...
 }</pre>
-For the elements of the Image, Document or Video type, the width and height properties are specified as in V2:<br /><br />
+For the elements of the Image, Document or Video type, the width and height properties are specified as in v2:<br /><br />
 <pre>
 {
   "type": "Image",
@@ -248,7 +248,7 @@ For the elements of the Image, Document or Video type, the width and height prop
 
   <tr>
     <td>In v3 there is a new way to specify the color schema for elements.</td>
-    <td>In V2, this is the way the color is specified, for example, for a Text object:<br /><br />
+    <td>In v2, this is the way the color is specified, for example, for a Text object:<br /><br />
 <pre>
 {
     "text": "Hello, new text!",
@@ -294,7 +294,7 @@ For the elements of the Image, Document or Video type, the width and height prop
  </td> 
   </tr>
   <tr>
-    <td>Differently than as in V2, in the currently available version of V3, you cannot create elements associated directly into a Canvas, but you can list all the elements within a Canvas.
+    <td>Differently than as in v2, in the currently available version of V3, you cannot create elements associated directly into a Canvas, but you can list all the elements within a Canvas.
     </td>
     <td>In v2 you can create elements directly into a Canvas. These elements will be displayed in the Canvas, using the top-left corner as the (0,0) point of reference for their coordinates . If no set of (x,y) coordinates are specified, then they will be placed in the top-left corner of the Canvas.<br /><br />
     Example: Create Text in Canvas <pre>/v2/workspaces/{workspace_id}/elements/canvas/{canvas_id}/text</pre>
@@ -304,7 +304,7 @@ For the elements of the Image, Document or Video type, the width and height prop
   </tr>
   <!-- <tr>
     <td>In the currently available version of V3, when adding an element to a Canvas, the coordinates you specify are absolute for the workspace, not relative to the top-left corner of the canvas</td>
-    <td>In V2, when you add an element to a canvas and specify a (x,y) set of coordinates, they are relative to the top-left corner of the Canvas.<br />If you do not specify the coordinates, it is assumed they are (0,0), and the new element will be added at the top-left corner of the Canvas</td>
+    <td>In v2, when you add an element to a canvas and specify a (x,y) set of coordinates, they are relative to the top-left corner of the Canvas.<br />If you do not specify the coordinates, it is assumed they are (0,0), and the new element will be added at the top-left corner of the Canvas</td>
     <td>In the currently available version of V3, when you create a new element in a Canvas, the coordinates you specify are absolute for the workspace.<br />If you do not specify the coordinates, it is assumed they are (0,0), and will be created in the (0,0) coordinates of the workspace, not of the Canvas.</td>
   </tr> -->
   <tr>
@@ -312,7 +312,7 @@ For the elements of the Image, Document or Video type, the width and height prop
       Let's see a summary example for how to specify the style properties of an object: position, height/width, color,
       background color. This is applied to a new Text element.
     </td>
-    <td>In V2: <br /><br />
+    <td>In v2: <br /><br />
 <pre>
 {
   "text": "Hello there!", 
@@ -363,8 +363,8 @@ For the elements of the Image, Document or Video type, the width and height prop
 <a name="changes-in-path-rest-apis" class="internal-anchor"></a><h2>Changes in the path of the REST APIs</h2>
 <table class="table table-striped">
 <td><b>Subject</b></td>
-    <td><center><b>V2</b></center></td>
-    <td><center><b>v3 beta</b></center></td>
+    <td><center><b>v2</b></center></td>
+    <td><center><b>v3</b></center></td>
   <tr>
     <td>How to get the list of all objects of an object type in the workspace.<br /><br />
     <b>NOTE</b>: The object types are different in v2 and V3, see the difference sin casing and names</td>
@@ -408,7 +408,7 @@ For the elements of the Image, Document or Video type, the width and height prop
   </tr>
   <tr>
     <td>How to get a my user's list of organizations</td>
-    <td>In V2, this data is displayed in the response body of <br />
+    <td>In v2, this data is displayed in the response body of <br />
     <pre>GET /v2/users/me</pre> or <pre>GET /v2/users/me/organizations</pre>
     </td>
     <td>In V3, this data is only available as the response of <br />
