@@ -35,14 +35,14 @@
                 {{if $element.Metadata.HasDoc}}
                     {{if or (eq $svc.Name "elementary") (eq $svc.Name "isam")}}
                         {{if (eq $svc.Name "elementary")}}
-                            <li>
+                            <li class="service-documentation">
                             <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
                                 Workspace Content APIs
                             </a>
                         </li>
                         {{end}}
                         {{if (eq $svc.Name "isam")}}
-                            <li>
+                            <li class="service-documentation">
                             <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
                                 Management APIs
                             </a>
@@ -88,21 +88,21 @@
             {{if $element.Metadata.HasDoc}}
                 {{if or (eq $svc.Name "collab") (eq $svc.Name "portal-api") (eq $svc.Name "listener-api")}}
                     {{if (eq $svc.Name "collab")}}
-                        <li>
+                        <li class="service-documentation">
                         <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
                             Workspace Content APIs
                         </a>
                     </li>
                     {{end}}
                     {{if (eq $svc.Name "portal-api")}}
-                        <li>
+                        <li class="service-documentation">
                         <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
                             Management APIs
                         </a>
                     </li>
                     {{end}}
                     {{if (eq $svc.Name "listener-api")}}
-                        <li>
+                        <li class="service-documentation">
                         <a class="{{$class}}" href="{{$.Prefix}}doc/{{$svc.Namespace}}/{{$svc.Name}}">
                             Listener APIs
                         </a>
