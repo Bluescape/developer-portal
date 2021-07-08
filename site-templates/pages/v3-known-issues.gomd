@@ -21,7 +21,6 @@
     <li>Subscriptions are not fully implemented (AD-8740).</li>
     <li>Query for Strokes: traits are returned empty (COL-3483).</li>
     <li>createText and updateText: cannot set background as transparent, it displays black (COL-4275).</li>
-    <li>GraphQL upload of video by URL does not set title of video in workspace (COL-4238).</li>
     <li>GraphQL upload of image by URL does not set title of image in workspace (COL-4307).</li>
     <li>Query for Images: image URL returns invalid URL to see/download image(COL-4305).</li>
     <li>Images uploaded using URL create invalid URL to see/download image (COL-4310).</li>
