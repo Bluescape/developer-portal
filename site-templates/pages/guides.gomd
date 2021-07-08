@@ -29,28 +29,28 @@
         Get the list of all Workspaces that you can access. With this, you can get the IDs and names of each Workspace.
 </p>
 
-<a href="/docs/page/get-list-of-workspaces" class="action">Open Guide</a>
+<a href="/docs/page/get-list-of-workspaces-v2" class="action">Open Guide</a>
 
 <h4>4. Get all images from a Workspace</h4>
     <p>
         Get the information for all the images uploaded in your Workspace. You can easily extend this script to download documents, notes, etc.
     </p>
 
-<a href="/docs/page/get-all-images-from-a-workspace" class="action">Open Guide</a>
+<a href="/docs/page/get-all-images-from-a-workspace-v2" class="action">Open Guide</a>
 
 <h4>5. Create a Canvas and add a note to it</h4>
     <p>
         Here you will learn how to create a new Canvas and how to add a Note to it. Creating a Canvas is very useful for organizing elements in a Workspace.
     </p>
 
-<a href="/docs/page/create-canvas-and-add-note" class="action">Open Guide</a>
+<a href="/docs/page/create-canvas-and-add-text-v2" class="action">Open Guide</a>
 
 <h4>6. Upload content from local drive in a Canvas</h4>
     <p>
         Learn how to automate the uploading of documents and images from a local folder on your hard drive to a new Canvas. 
     </p>
 
-<a href="/docs/page/upload-content-into-a-canvas" class="action">Open Guide</a>
+<a href="/docs/page/upload-content-into-a-canvas-v2" class="action">Open Guide</a>
 
 <h2>Listeners</h2>
 <p>
