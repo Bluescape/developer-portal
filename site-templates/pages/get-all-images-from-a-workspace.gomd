@@ -42,8 +42,8 @@ This page contains the implementation details for <a href="#rest">v3 REST APIs</
 
 <p>
 <pre class="lang lang-curl">
-curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/workspaces/&lt;&lt;workspaceId&gt;&gt;/elements?type=Image' \
---header 'Authorization: Bearer &lt;&lt;TOKEN&gt;&gt;' \
+curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
+--header 'Authorization: Bearer &lt;TOKEN&gt;' \
 --header 'Cookie: __cfduid=dfb617d0f055c3b4bee6bbb1a62eed3f01617039740'
 </pre>
 </p>
