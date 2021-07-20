@@ -6,14 +6,19 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        In the current <span class="pre">/v3/</span> Beta version, listeners are not available. 
-                        This functionality will be replaced with GraphQL subscriptions in a future release.
+                        In the current <span class="pre">/v3/</span> GA version, listeners are not available. 
+                        This functionality has been replaced with GraphQL subscriptions.
                     <br /><br />
                     </b>
             </td>
         </tr>
     </table>
 </p>    
+
+<p>
+Please note that Listeners are valid only for <span class="pre">v2</span> REST API endpoints. <br />
+In <span class="pre">v3</span> you will use <a href="/docs/page/graphql-subscriptions">GraphQL Subscriptions</a>.
+</p>
 
 <p>
     Below is a table of the event types that can be subscribed to when creating listeners. More details about Listeners can be found in the <a href="/docs/page/listeners-api">Listeners page</a>.
