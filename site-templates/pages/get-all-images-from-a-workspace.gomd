@@ -1,4 +1,4 @@
-<h1>Get all the images from a workspace for v3</h1>
+<h1>Get all the images from a workspace</h1>
 
 <p>
 <b>Objective</b>: get a list of all the images in a Workspace. You will need the Workspace ID. This list will contain, for each image, details such as: image name, creation date, traits, comments, etc.<br />

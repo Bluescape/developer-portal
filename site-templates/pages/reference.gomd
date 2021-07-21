@@ -6,7 +6,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        API version v3 is available as Beta as part of the 21.07.1 release on July 09, 2021. 
+                        API version v3 is available as GA as part of the 21.08.1 release on Aug 13, 2021. 
                     <br /> <br />
                     </b>
             </td>
@@ -27,7 +27,7 @@ For v2 REST APIS, please go to <a href="/docs/page/reference-v2">reference page 
 You can access the REST reference by selecting one of the openapi files linked under <b>REST API reference</b> on the left navigation.<br />
 </p>
 <p>
-For the current v3 Beta release, you can access the GraphQL documentation and Schema via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page. On the far right side of the screen you will find the links to the documentation and schema: 
+For the current v3 GA release, you can access the GraphQL documentation and Schema via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page. On the far right side of the screen you will find the links to the documentation and schema: 
 <img class="img-responsive center-block" src="/docs/assets/images/graphql-docs-schema.png" width="80">
 </p>
 

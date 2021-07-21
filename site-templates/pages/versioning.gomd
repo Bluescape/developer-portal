@@ -6,7 +6,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        API version v3 is available as a Beta preview as part of the 21.07.1 release on July 09, 2021. This is a preview only and should not be used for mission critical production integrations until the GA release as it has the potential to change. 
+                        API version v3 is available as a GA as part of the 21.08.1 release on August 13, 2021. 
                     <br /> <br />
                     </b>
             </td>
@@ -24,16 +24,16 @@
         <td><b>Status</b></td>
     </tr>
     <tr>
-        <td>3.0 Beta</td>
+        <td>3.0</td>
         <td><a href="/docs/page/reference">/v3/</a></td>
-        <td>21.06.1 (June 11, 2021) </td>
-        <td>Beta</td>
+        <td>21.08.1 (August 13, 2021) </td>
+        <td>GA</td>
     </tr>
     <tr>
         <td>2.0</td>
         <td><a href="/docs/page/reference-v2">/v2/</a></td>
         <td>19.11.1 (November 22, 2019) </td>
-        <td>Current</td>
+        <td>Deprecated</td>
     </tr>
 </table>
         
