@@ -5,6 +5,16 @@
 This page contains the implementation details for <a href="#rest">v3 REST APIs</a> and for <a href="#graphql">v3 GraphQL APIs</a>. You can also see the example for <a href="/docs/page/get-all-images-from-a-workspace-v2">v2 REST APIs</a>.
 </p>
 
+<pre><code data-language="python">def openFile(path):
+    file = open(path, "r")
+    content = file.read()
+    file.close()
+    return content</code></pre>
+
+<pre><code class="language-html">&lt;html&gt;</code></pre>
+
+
+ <br />   
 <a name="rest" class="internal-anchor"><h2>Implementation using REST APIs</h2></a>
 
 <table class="table table-striped">
