@@ -6,7 +6,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        The version <span class="pre">/v3/</span> GA release does not include REST API support for Traits, they are currently implemented only by GraphQL APIs. Traits will be released with REST API support in a future release for <span class="pre">/v3/</span>.
+                        The version <span class="pre">/v3/</span> Beta release does not include REST API support for Traits, they are currently implemented only by GraphQL APIs. Traits will be released with REST API support in a future release for <span class="pre">/v3/</span>.
                     <br /> <br />
                     </b>
             </td>
