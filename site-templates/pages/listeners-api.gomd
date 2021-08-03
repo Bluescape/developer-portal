@@ -7,7 +7,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        The version <span class="pre">/v3/</span> GA release does not include Listeners. This functionality has been replaced with GraphQL subscriptions.
+                        The version <span class="pre">/v3/</span> Beta release does not include Listeners. This functionality has been replaced with GraphQL subscriptions.
                     <br /> <br />
                     </b>
             </td>
