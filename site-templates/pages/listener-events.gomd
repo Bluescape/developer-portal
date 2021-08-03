@@ -6,7 +6,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        In the current <span class="pre">/v3/</span> GA version, listeners are not available. 
+                        In the current <span class="pre">/v3/</span> Beta version, listeners are not available. 
                         This functionality has been replaced with GraphQL subscriptions.
                     <br /><br />
                     </b>
