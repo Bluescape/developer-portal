@@ -23,9 +23,10 @@
             {{/* <li><h3>API Reference</h3></li>
             {% include 'reference/api-toc' %} */}}
         </ul>
-        <strong>REST API v3</strong>
+        <strong>REST API v3</strong>        
         <ul class="unindent-side-nav-ul">
-            <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference">Go to current API version</a></li>
+            <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference-v2">Go to current API version</a></li>
+
             {{range $i, $element := .S.K8sStore.Slice }}
                 {{$svc := $element.Service}}
                 {{$class := ""}}
@@ -65,7 +66,7 @@
     {{end}}
     {{if or (eq $.CurrentPage "versioning") (eq $.CurrentPage "reference-v2") (eq $.CurrentPage "urls-v2") (eq $.CurrentPage "pagination-v2") (eq $.CurrentPage "listener-events-v2") (eq $.CurrentPage "permissions-v2") (eq $.CurrentPage "sso") (eq $.CurrentService "listener-api") (eq $.CurrentService "collab") (eq $.CurrentService "portal-api")}}
     <div>
-    <!-- <strong>Reference v2</strong> -->
+    <strong>Reference v2</strong> 
         <ul class="unindent-side-nav-ul">
             <li><a href="/docs/page/urls-v2">URLs</a></li>
             <li><a href="/docs/page/pagination-v2">Pagination</a></li>
@@ -75,10 +76,8 @@
             <li><a href="/docs/page/sso">SSO</a></li>
         </ul>
         <strong>REST API v2</strong>
-        <ul class="unindent-side-nav-ul">  
-            <!-- 
-                <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference">Go to current API version</a></li>
-             -->
+        <ul class="unindent-side-nav-ul">              
+               <!-- <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference">Go to current API version</a></li> -->
             {{range $i, $element := .S.K8sStore.Slice }}           
             {{$svc := $element.Service}}
             {{$class := ""}}
@@ -119,7 +118,7 @@
     <br />
     {{end}}
     
-    {{if or (eq $.CurrentPage "guides") (eq $.CurrentPage "app-auth") (eq $.CurrentPage "basic-api-requests") (eq $.CurrentPage "get-list-of-workspaces") (eq $.CurrentPage "get-all-images-from-a-workspace") (eq $.CurrentPage "create-canvas-and-add-text") (eq $.CurrentPage "upload-content-into-a-canvas")  (eq $.CurrentPage "traits-api") (eq $.CurrentPage "attachments-api") (eq $.CurrentPage "listeners-api") (eq $.CurrentPage "wall-apis") (eq $.CurrentPage "what-is-new-in-v3") (eq $.CurrentPage "what-is-graphql") (eq $.CurrentPage "compare-graphql-rest") (eq $.CurrentPage "graphql-playground") (eq $.CurrentPage "graphql-subscriptions") (eq $.CurrentPage "upload-content-into-a-canvas-v2") (eq $.CurrentPage "get-list-of-workspaces-v2") (eq $.CurrentPage "get-all-images-from-a-workspace-v2") (eq $.CurrentPage "create-canvas-and-add-text-v2") (eq $.CurrentPage "attachments-api-v2")}} 
+    {{if or (eq $.CurrentPage "guides") (eq $.CurrentPage "app-auth") (eq $.CurrentPage "basic-api-requests") (eq $.CurrentPage "get-list-of-workspaces") (eq $.CurrentPage "get-all-images-from-a-workspace") (eq $.CurrentPage "create-canvas-and-add-text") (eq $.CurrentPage "upload-content-into-a-canvas")  (eq $.CurrentPage "traits-api") (eq $.CurrentPage "attachments-api") (eq $.CurrentPage "listeners-api") (eq $.CurrentPage "wall-apis") (eq $.CurrentPage "what-is-new-in-v3") (eq $.CurrentPage "what-is-graphql") (eq $.CurrentPage "compare-graphql-rest") (eq $.CurrentPage "graphql-playground") (eq $.CurrentPage "graphql-subscriptions") (eq $.CurrentPage "upload-content-into-a-canvas-v2") (eq $.CurrentPage "get-list-of-workspaces-v2") (eq $.CurrentPage "get-all-images-from-a-workspace-v2") (eq $.CurrentPage "create-canvas-and-add-text-v2") (eq $.CurrentPage "attachments-api-v2") (eq $.CurrentPage "basic-api-requests-v2") }} 
 
     <div>
         <strong>Guides</strong>
@@ -131,7 +130,7 @@
             <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/graphql-subscriptions">GraphQL Subscriptions</a></li>
             <li><a href="/docs/page/guides">Getting Started</a></li>
             <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/app-auth">1. Application Authorization</a></li>
-            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/basic-api-requests">2. Basic API Requests</a></li>    
+            <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/basic-api-requests-v2">2. Basic API Requests</a></li>    
             <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/get-list-of-workspaces-v2">3. Get list of Workspaces</a></li>
             <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/get-all-images-from-a-workspace-v2">4. Get all images from a Workspace</a></li>
             <li style="padding-left:20px" class="subitemguide"><a href="/docs/page/create-canvas-and-add-text-v2">5. Create a Canvas and add a Text element</a></li>

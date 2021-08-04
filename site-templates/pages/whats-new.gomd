@@ -2,13 +2,12 @@
 
 <div class="col-md-8 content">
 
-    <h1>What's new in the 21.07.1, July 2021, Release</h1>
+    <h1>What's new in the 21.08.1, August 13th 2021, Release</h1>
 
-    <h3>New API v3 Beta examples</h3>
+    <h3>New API v3 GA</h3>
     <p>
-        <ul>
-            <li>We added new examples for uploading content from your local drive into a workspace, for the <a href="/docs/page/upload-content-into-a-canvas">v3 Beta API</a>, including <a href="/docs/page/upload-content-into-a-canvas#rest-upload-using-URL">upload by URL</a>.</li>
-            <li>Examples for v3 Beta REST and GraphQL APIs have been added to the examples in the pages in the Getting Started pages in the <a href="/docs/page/guides">Guides</a> section.</li>
+        <ul>           
+            <li>We added new examples for uploading content from your local drive into a workspace, for the <a href="/docs/page/upload-content-into-a-canvas">v3 API</a>, including <a href="/docs/page/upload-content-into-a-canvas#rest-upload-using-URL">upload by URL</a>.</li>
         </ul>
     </p>
     <h3>New Application Registration process</h3>
