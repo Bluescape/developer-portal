@@ -49,7 +49,6 @@ curl --location --request GET '<script type="text/javascript">document.write(api
 </p>
 
 <p>
-<code>
 <pre class="lang lang-python">
 # Python Code (python 3.5+)
 import requests
@@ -84,23 +83,10 @@ if __name__ == "__main__":
 
 </pre>
 </p>
-</code>
 
-<code>
 <p>
+<code>
 <pre class="lang lang-node">
-// Node.js Javascript   
-/*
-
-How to run:
-node this_script_name.js
-
-Requires "axios" module (0.19.0), run:
-npm install axios
-
-website: https://github.com/axios/axios
-
-*/
 
 var axios = require('axios');
 
