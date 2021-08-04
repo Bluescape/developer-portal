@@ -42,11 +42,11 @@ This page contains the implementation details for <a href="#rest">v3 REST APIs</
 
 <p>
 <pre class="lang lang-curl">
-<code class="curl">
+<code><code>
 curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
 --header 'Authorization: Bearer &lt;TOKEN&gt;' \
 --header 'Cookie: __cfduid=dfb617d0f055c3b4bee6bbb1a62eed3f01617039740'
-</code>
+</code></code>
 </pre>
 </p>
 
@@ -89,7 +89,7 @@ if __name__ == "__main__":
 
 <p>
 <pre class="lang lang-node">
-<code>
+<code><code>
 // Node.js Javascript   
 /*
 
@@ -131,7 +131,7 @@ axios(request_values)
     .catch (function (error) {
         console.log('Error: ' + error.message);
     });
-</code>
+</code></code>
 </pre>
 </p>
 
@@ -257,18 +257,18 @@ query getImagesFromWorkspace($workspaceId: String!){
 
 <p>
 <pre class="lang lang-curl">
-<code>
+<code><code>
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"<workspaceId>"}}'
-</code>
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
-<code>
+<code><code>
 const axios = require('axios');
 
 const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
@@ -302,7 +302,7 @@ const getWorkspaces = async () => {
 }
 
 getWorkspaces();
-</code>
+</code></code>
 </pre>
 </p>
 
