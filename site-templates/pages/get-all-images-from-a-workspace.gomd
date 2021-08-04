@@ -49,6 +49,7 @@ curl --location --request GET '<script type="text/javascript">document.write(api
 </p>
 
 <p>
+<code>
 <pre class="lang lang-python">
 # Python Code (python 3.5+)
 import requests
@@ -83,7 +84,9 @@ if __name__ == "__main__":
 
 </pre>
 </p>
+</code>
 
+<code>
 <p>
 <pre class="lang lang-node">
 // Node.js Javascript   
@@ -129,6 +132,7 @@ axios(request_values)
     });               
 </pre>        
 </p>
+</code>
 
 <p>
 You can modify this script to return a list of each specific object from the workspace by changing the last element in the API entrypoint:
@@ -259,6 +263,7 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
 </pre>
 </p>
 
+<code>
 <p>
 <pre class="lang lang-node">
 const axios = require('axios');
@@ -296,7 +301,9 @@ const getWorkspaces = async () => {
 getWorkspaces();
 </pre>
 </p>
+</code>
 
+<code>
 <p>
 <pre class="lang lang-python">
 import requests
@@ -336,6 +343,7 @@ if __name__ == "__main__":
 </pre>
 
 </p>
+</code>
 
 <br />
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
