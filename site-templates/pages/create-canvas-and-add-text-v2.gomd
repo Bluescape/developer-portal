@@ -58,6 +58,7 @@ This page contains the implementation details for v2 REST APIs. You can also see
 
 <p>
 <pre class="lang lang-python">
+<code>
 ## Python Code (python 3.5+)
 import requests
 import datetime
@@ -133,11 +134,13 @@ if __name__ == "__main__":
     pprint.pprint(json_response)
 
     text_id = json_response['text']['id']
+</code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
+<code>
 // Node.js Javascript
 /*
 
@@ -232,6 +235,7 @@ async function runAPIRequests() {
 
 // Run the requests
 runAPIRequests();
+</code>
 </pre>
 </p>
 
