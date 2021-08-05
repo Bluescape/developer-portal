@@ -42,17 +42,9 @@ This page contains the implementation details for <a href="#rest">v3 REST APIs</
 
 <p>
 <pre class="lang lang-curl">
-<<<<<<< HEAD
-<code><code>
 curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
 --header 'Authorization: Bearer &lt;TOKEN&gt;' \
 --header 'Cookie: __cfduid=dfb617d0f055c3b4bee6bbb1a62eed3f01617039740'
-</code></code>
-=======
-curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
---header 'Authorization: Bearer &lt;TOKEN&gt;' \
---header 'Cookie: __cfduid=dfb617d0f055c3b4bee6bbb1a62eed3f01617039740'
->>>>>>> parent of d8d6d2e... poc for highlightjs styling code snippets (#250)
 </pre>
 </p>
 
@@ -94,10 +86,6 @@ if __name__ == "__main__":
 
 <p>
 <pre class="lang lang-node">
-<<<<<<< HEAD
-<code><code>
-=======
->>>>>>> parent of d8d6d2e... poc for highlightjs styling code snippets (#250)
 // Node.js Javascript   
 /*
 
@@ -138,14 +126,8 @@ axios(request_values)
     })
     .catch (function (error) {
         console.log('Error: ' + error.message);
-<<<<<<< HEAD
-    });
-</code></code>
-</pre>
-=======
     });               
 </pre>        
->>>>>>> parent of d8d6d2e... poc for highlightjs styling code snippets (#250)
 </p>
 
 <p>
@@ -270,27 +252,15 @@ query getImagesFromWorkspace($workspaceId: String!){
 
 <p>
 <pre class="lang lang-curl">
-<<<<<<< HEAD
-<code><code>
-=======
->>>>>>> parent of d8d6d2e... poc for highlightjs styling code snippets (#250)
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"<workspaceId>"}}'
-<<<<<<< HEAD
-</code></code>
-=======
->>>>>>> parent of d8d6d2e... poc for highlightjs styling code snippets (#250)
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
-<<<<<<< HEAD
-<code><code>
-=======
->>>>>>> parent of d8d6d2e... poc for highlightjs styling code snippets (#250)
 const axios = require('axios');
 
 const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
@@ -324,10 +294,6 @@ const getWorkspaces = async () => {
 }
 
 getWorkspaces();
-<<<<<<< HEAD
-</code></code>
-=======
->>>>>>> parent of d8d6d2e... poc for highlightjs styling code snippets (#250)
 </pre>
 </p>
 
