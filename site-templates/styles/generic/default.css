@@ -758,12 +758,12 @@ pre {
     font-size: 14px !important;
 }
 
-pre, span.pre {
+/* pre, span.pre {
   background-color: #f7f8f9;
   padding: 6px 10px;
   margin: 10px 10px 20px 10px;
   border: 1px solid #cfd2d6;
-}
+} */
 
 span.pre {
   padding: 0px 5px;
