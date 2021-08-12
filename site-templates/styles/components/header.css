@@ -43,7 +43,7 @@
 .c-header__misc {
   margin-left: auto;
   display: inline-flex;
-  align-items: center
+  align-items: center;
 }
 
 .c-header__misc > * {
