@@ -21,29 +21,6 @@
     <link rel="stylesheet" type="text/css" media="screen" href="//stackpath.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" />
     <link rel="stylesheet" href="{{.Prefix}}styles/master.css" type="text/css" media="all">
-    <!--this is required so the deep linking in the swagger docs works-->
-    <!--i had no success making this an imported stylesheet, so that's why it is inline-->
-    <style>
-      html
-      {
-        box-sizing: border-box;
-        overflow: -moz-scrollbars-vertical;
-        overflow-y: scroll;
-      }
-
-      *,
-      *:before,
-      *:after
-      {
-        box-sizing: inherit;
-      }
-
-      body
-      {
-        margin:0;
-        background: #fafafa;
-      }
-    </style>
     {{if eq .Ctx "landing"}} {{template "landing-head" $}}
     {{else if eq .Ctx "page"}} {{template "page-magic-head" $}}
     {{else if eq .Ctx "doc"}} {{template "swagger-head" $}}
