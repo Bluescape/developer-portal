@@ -1,0 +1,297 @@
+<h1>Create Rich Text in a Workspace</h1>
+
+<p>
+<b>Objective</b>: Create Rich Text elements which can be customized and stylized at creation time in order to add more depth to the Workspace. To perform this, the user only needs
+the <b>workspaceId</b> of where they want the text Element to be added.
+</p>
+
+<p>
+    All GraphQL API endpoints share the same base URL:
+</p>
+
+<pre>
+<script type="text/javascript">document.write(apiBaseStr); </script>/graphql
+</pre>
+
+<a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
+
+<table class="table table-striped">
+    <tr>
+      <td><b>Query</b></td>
+      <td>createText</td>
+    </tr> 
+    <tr>
+      <td><b>Comments</b></td>
+      <td>Only workspaceId is needed for this call</td>
+    </tr>
+</table>
+
+<h3>Example Query:</h3>
+<pre>
+mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {
+        createText(workspaceId: $workspaceId, input: $input) {
+            ... on Text {
+            id
+            transform {x y scaleX scaleY}
+            pinned
+            zIndex
+            text
+            style { textTransform fontSize fontFamily verticalAlign color {r g b a }}
+            blocks {
+                ...on TextBlock {
+                align content}}
+                }
+            }
+    }
+</pre>
+
+<p>
+This mutation can be called with the following example payload: 
+</p>
+
+<pre>
+"workspaceId": workspaceId,
+    "input": {
+        "blocks": {
+            "block": {
+            "align": "left",
+            "content": {
+                "span": {
+                    "text": "Rich Text Example!",
+                    "fontSize": 30,
+                    "fontFamily": "Helvetica",
+                    "fontWeight": "normal",
+                    "fontStyle": "italic",
+                    "textDecoration": "underline",
+                    "color": { "r": 23, "g": 56, "b": 100, "a": 1},
+                    "backgroundColor": { "r": 223, "g": 156, "b": 200, "a": 1}
+                        }
+                    }
+                }
+            } 
+        }
+    }
+</pre>
+
+<h2>Code sample</h2>
+
+<p>
+    See below for full code examples of this implementation in Python and Node.js.
+</p>
+
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
+--header 'csrf-token: &lt;CSRF_TOKEN&gt;' \
+--header 'Authorization: Bearer &lt;TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {\n        createText(workspaceId: $workspaceId, input: $input) {\n            ... on Text {\n            id\n            transform {x y scaleX scaleY}\n            pinned\n            zIndex\n            text\n            style { textTransform fontSize fontFamily verticalAlign color {r g b a }}\n            blocks {\n                ...on TextBlock {\n                align content}}\n                }\n            }\n    }","variables":{"workspaceId":{workspaceId},"input":{"blocks":{"block":{"align":"left","content":{"span":{"text":"NoahText2","fontSize":30,"fontFamily":"Helvetica","fontWeight":"normal","fontStyle":"italic","textDecoration":"underline","color":{"r":23,"g":56,"b":100,"a":1},"backgroundColor":{"r":223,"g":156,"b":200,"a":1}}}}}}}}'
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+const axios = require('axios');
+
+const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
+const token = "&lt;SET_TOKEN&gt;"
+const workspaceId = "&lt;WORKSPACE_ID&gt";
+const createTextQuery = 
+    `mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {
+        createText(workspaceId: $workspaceId, input: $input) {
+            ... on Text {
+              id
+              transform {x y scaleX scaleY}
+              pinned
+              zIndex
+              text
+              style { textTransform fontSize fontFamily verticalAlign color {r g b a }}
+              blocks {
+                ...on TextBlock {
+                  align content}}
+                }
+              }
+            }`
+
+const textParams = {
+    "workspaceId": workspaceId,
+    "input": {
+        "blocks": {
+            "block": {
+            "align": "left",
+            "content": {
+                "span": {
+                    "text": "Rich Text Example!",
+                    "fontSize": 30,
+                    "fontFamily": "Helvetica",
+                    "fontWeight": "normal",
+                    "fontStyle": "italic",
+                    "textDecoration": "underline",
+                    "color": { "r": 23, "g": 56, "b": 100, "a": 1},
+                    "backgroundColor": { "r": 223, "g": 156, "b": 200, "a": 1}
+                        }
+                    }
+                }
+            } 
+        }
+    }
+const createText = async () => {
+    try {
+        const response = await axios.post(url,
+            {query: createTextQuery, variables: textParams}, 
+            {headers: {"Authorization": "Bearer " + token}})
+        
+        console.log(response.data);
+        return response
+    }
+    catch(error) {
+        console.error(error)
+    }
+}
+
+createText();
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+import requests
+import pprint
+
+url = "https://elementary.stg1.bluescape.com/graphql/"
+workspaceId = "N-DUJ6t1OAopxsQQqTi7"
+token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImswIn0.eyJleHAiOjE2MzEyMTIxMjcsInNwaWQiOm51bGwsIm5iZiI6MTYzMTEyNTcxNywiaWF0IjoxNjMxMTI1NzI3LCJqdGkiOiJBQTVYd0dHODJZR0hydloyOW1abng1TEZyRDdvZ0JJallDemNKYm54em93NklWaFUiLCJzdWIiOiJ0ZTRESVRUNmo0NlJ6bkVWVDF5bCIsInVzZXJUeXBlIjoicmVnaXN0ZXJlZCIsImF1ZCI6WyJpc2FtZG5qSnNrakdHNER6ZWQyWnZJZFRYU0E4bkRVNjRQS3NhIiwiMzZmOGNmNTE3NWU0ZmFhYTRmMDY3MTg0MDRiN2RmOTRkZGMwZDhhZSIsIjAxNWY0ODFhY2ZlNDAyYzliYWU0MzUzODllZmJiNjkxNDkyOWNlOWQiLCIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZiYjY5MTQ5MjliZjhjIiwiVkpCdGlhSmRuakota2pHRzREemVkMlp2SWRUWFNBOG5EVTY0UEswYyJdLCJpc3MiOiJodHRwczovL2lkZW50aXR5LWFwaS5zdGcxLmJsdWVzY2FwZS5jb20ifQ.CnOIGsEWuFjRKyIv-LVMKf7dNco9f8qHzsKpK0TOHPk"
+query = """
+    mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {
+        createText(workspaceId: $workspaceId, input: $input) {
+            ... on Text {
+            id
+            transform {x y scaleX scaleY}
+            pinned
+            zIndex
+            text
+            style { textTransform fontSize fontFamily verticalAlign color {r g b a }}
+            blocks {
+                ...on TextBlock {
+                align content}}
+                }
+            }
+    }
+    """
+
+params = {
+    "workspaceId": workspaceId,
+    "input": {
+        "blocks": {
+            "block": {
+            "align": "left",
+            "content": {
+                "span": {
+                    "text": "Rich Text Example!",
+                    "fontSize": 30,
+                    "fontFamily": "Helvetica",
+                    "fontWeight": "normal",
+                    "fontStyle": "italic",
+                    "textDecoration": "underline",
+                    "color": { "r": 23, "g": 56, "b": 100, "a": 1},
+                    "backgroundColor": { "r": 223, "g": 156, "b": 200, "a": 1}
+                        }
+                    }
+                }
+            } 
+        }
+    }
+def makeQuery():
+    try:
+        response = requests.post(url, 
+        headers={"Authorization": "Bearer " + token},
+        json={'query': query,
+            'variables': params})
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        raise SystemExit(err)
+    
+    return response.json()
+    
+
+if __name__ == "__main__":
+    response = makeQuery()
+    pprint.pprint(response)
+</pre>
+</p>
+
+<h3>Output</h3>
+<pre>
+{
+    "data": {
+        "createText": {
+            "id": "613ba16421acb112a55a5753",
+            "transform": {
+                "x": 0,
+                "y": 0,
+                "scaleX": 1,
+                "scaleY": 1
+            },
+            "pinned": false,
+            "zIndex": 4,
+            "text": "Rich Text Example!",
+            "style": {
+                "textTransform": "none",
+                "fontSize": 64,
+                "fontFamily": "Dosis",
+                "verticalAlign": "top",
+                "color": {
+                    "r": 255,
+                    "g": 255,
+                    "b": 255,
+                    "a": 1
+                }
+            },
+            "blocks": [
+                {
+                    "align": "left",
+                    "content": [
+                        {
+                            "span": {
+                                "fontFamily": "Helvetica",
+                                "fontSize": 30,
+                                "fontStyle": "italic",
+                                "textDecoration": [
+                                    "underline"
+                                ],
+                                "color": {
+                                    "r": 23,
+                                    "g": 56,
+                                    "b": 100,
+                                    "a": 1
+                                },
+                                "backgroundColor": {
+                                    "r": 223,
+                                    "g": 156,
+                                    "b": 200,
+                                    "a": 1
+                                },
+                                "content": [
+                                    {
+                                        "text": "NoahText2"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
+</pre>
+
+<br />
+If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
+
