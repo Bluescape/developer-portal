@@ -46,11 +46,11 @@ mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {
 </pre>
 
 <p>
-This mutation can be called with the following example payload: 
+This mutation can be called with the following variables: 
 </p>
 
 <pre>
-"workspaceId": workspaceId,
+"workspaceId": &lt;workspaceId&gt;,
     "input": {
         "blocks": {
             "block": {
@@ -164,9 +164,9 @@ createText();
 import requests
 import pprint
 
-url = "https://elementary.stg1.bluescape.com/graphql/"
-workspaceId = "N-DUJ6t1OAopxsQQqTi7"
-token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImswIn0.eyJleHAiOjE2MzEyMTIxMjcsInNwaWQiOm51bGwsIm5iZiI6MTYzMTEyNTcxNywiaWF0IjoxNjMxMTI1NzI3LCJqdGkiOiJBQTVYd0dHODJZR0hydloyOW1abng1TEZyRDdvZ0JJallDemNKYm54em93NklWaFUiLCJzdWIiOiJ0ZTRESVRUNmo0NlJ6bkVWVDF5bCIsInVzZXJUeXBlIjoicmVnaXN0ZXJlZCIsImF1ZCI6WyJpc2FtZG5qSnNrakdHNER6ZWQyWnZJZFRYU0E4bkRVNjRQS3NhIiwiMzZmOGNmNTE3NWU0ZmFhYTRmMDY3MTg0MDRiN2RmOTRkZGMwZDhhZSIsIjAxNWY0ODFhY2ZlNDAyYzliYWU0MzUzODllZmJiNjkxNDkyOWNlOWQiLCIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZiYjY5MTQ5MjliZjhjIiwiVkpCdGlhSmRuakota2pHRzREemVkMlp2SWRUWFNBOG5EVTY0UEswYyJdLCJpc3MiOiJodHRwczovL2lkZW50aXR5LWFwaS5zdGcxLmJsdWVzY2FwZS5jb20ifQ.CnOIGsEWuFjRKyIv-LVMKf7dNco9f8qHzsKpK0TOHPk"
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
+token = "&lt;SET_TOKEN&gt;"
+workspaceId = "&lt;WORKSPACE_ID&gt";
 query = """
     mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {
         createText(workspaceId: $workspaceId, input: $input) {
@@ -231,7 +231,7 @@ if __name__ == "__main__":
 {
     "data": {
         "createText": {
-            "id": "613ba16421acb112a55a5753",
+            "id": "&lt;object_ID&gt;",
             "transform": {
                 "x": 0,
                 "y": 0,
@@ -279,7 +279,7 @@ if __name__ == "__main__":
                                 },
                                 "content": [
                                     {
-                                        "text": "NoahText2"
+                                        "text": "Rich Text Example!"
                                     }
                                 ]
                             }
@@ -291,6 +291,51 @@ if __name__ == "__main__":
     }
 }
 </pre>
+
+<p>
+After this, the Rich Text element will be added to the workspace. It can then be queried at a later time to retrieve various information on it.
+Example Query:
+</p>
+
+<pre>
+query getTextElementsfromWorkspace ($workspaceId: String!){
+    elements(workspaceId: $workspaceId type: Text ) {
+        type: __typename        
+        id
+        
+        ... on Text {
+              id
+            transform {
+              x y
+            }
+            style {
+                color { r g b a}
+            } 
+          blocks {
+            ... on TextBlock {
+              align            
+              content               
+            }
+            ... on TextList {
+              align
+              kind
+              items {
+                align
+                indent
+                content
+              }
+            }
+            
+          }
+              
+        } 
+    }
+}
+</pre>
+
+<p>
+This query returns a large amount of information on the text element, however it can be altered to return more or less details depending on what is needed.
+</p>
 
 <br />
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
