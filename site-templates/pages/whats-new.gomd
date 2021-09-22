@@ -2,12 +2,16 @@
 
 <div class="col-md-8 content">
 
-    <h1>What's new in the 21.08.1, August 13th 2021, Release</h1>
+    <h1>What's new in the 21.10.1, October 08th 2021, Release</h1>
 
-    <h3>API v3 Beta</h3>
+    <h3>API v3 is GA</h3>
     <p>
-        <ul>           
-            <li>We added new examples for uploading content from your local drive into a workspace, for the <a href="/docs/page/upload-content-into-a-canvas">v3 API</a>, including <a href="/docs/page/upload-content-into-a-canvas#rest-upload-using-URL">upload by URL</a>.</li>
+        <ul>  
+            <li>v3 API version is GA!</li>
+            <li>We have <a href="/docs/page/reference">REST</a> and <a href="/docs/page/what-is-graphql">GraphQl</a> APIs for v3.</li>
+            <li>Please review the v3 documentation pages, such as <a href="/docs/page/what-is-new-in-v3">What is new in v3</a></li> and <a href="/docs/page/compare-graphql-rest">differences between GraphQL and REST APIs</a></li>. See more content in the <a href="/docs/page/guides">Guides</a> section.         
+            <li>New GraphQL APIs are available to <a href="/docs/page/graphql-rich-text">add Rich Text to a workspace</a>.</li>
+
         </ul>
     </p>
     <h3>New Application Registration process</h3>
