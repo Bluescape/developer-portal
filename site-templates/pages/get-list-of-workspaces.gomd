@@ -137,7 +137,7 @@ axios(request_values)
 <p>
 <pre class="lang lang-curl">
 curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/users/me/workspaces' \
---header 'Authorization: Bearer &lt;TOKEN&gt;' 
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
 </pre>
 </p>
 
@@ -233,7 +233,7 @@ query getMyWorkspaces{
 <p>
 <pre class="lang lang-curl">
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
---header 'Authorization: Bearer &lt;TOKEN&gt;' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"query getMyWorkspaces{\n  me {\n   workspaces (myWorkspace: true) {\n    totalItems\n    results {\n      name\n      description\n      isPublic\n      owner {email firstName lastName}\n    }\n  }\n  }\n}","variables":{}}'
 </pre>
