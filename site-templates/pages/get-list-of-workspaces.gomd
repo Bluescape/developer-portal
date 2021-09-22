@@ -203,16 +203,18 @@ What you should get: JSON with the list of the first 25 workspaces your user has
 
 <h3>Example Query:</h3>
 <pre>
-query getWorkspaces{
-    me {
-        workspaces {
-        totalItems
-        results {
-            name
-            id
-            }
-        }
+query getMyWorkspaces{
+  me {
+   workspaces (myWorkspace: true) {
+    totalItems
+    results {
+      name
+      description
+      isPublic
+      owner {email firstName lastName}
     }
+  }
+  }
 }
 </pre>
 
@@ -233,7 +235,7 @@ query getWorkspaces{
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
 --header 'Authorization: Bearer &lt;TOKEN&gt;' \
 --header 'Content-Type: application/json' \
---data-raw '{"query":"query getWorkspaces{\n  me {\n    workspaces {\n      totalItems\n      results {\n        name\n        id\n      }\n    }\n  }\n}","variables":{}}'
+--data-raw '{"query":"query getMyWorkspaces{\n  me {\n   workspaces (myWorkspace: true) {\n    totalItems\n    results {\n      name\n      description\n      isPublic\n      owner {email firstName lastName}\n    }\n  }\n  }\n}","variables":{}}'
 </pre>
 </p>
 
