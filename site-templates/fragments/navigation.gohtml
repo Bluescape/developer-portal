@@ -25,8 +25,9 @@
         </ul>
         <strong>REST API v3</strong>        
         <ul class="unindent-side-nav-ul">
+            <!--
             <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference-v2">Go to current API version</a></li>
-
+            -->
             {{range $i, $element := .S.K8sStore.Slice }}
                 {{$svc := $element.Service}}
                 {{$class := ""}}
@@ -77,7 +78,7 @@
         </ul>
         <strong>REST API v2</strong>
         <ul class="unindent-side-nav-ul">              
-               <!-- <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference">Go to current API version</a></li> -->
+            <li style="margin-left:15px; margin-top: -10px;"><a href="/docs/page/reference">Go to current API version</a></li> 
             {{range $i, $element := .S.K8sStore.Slice }}           
             {{$svc := $element.Service}}
             {{$class := ""}}
