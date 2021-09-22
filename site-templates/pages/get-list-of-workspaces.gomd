@@ -232,7 +232,7 @@ query getMyWorkspaces{
 
 <p>
 <pre class="lang lang-curl">
-curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
 --header 'Authorization: Bearer &lt;TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"query getMyWorkspaces{\n  me {\n   workspaces (myWorkspace: true) {\n    totalItems\n    results {\n      name\n      description\n      isPublic\n      owner {email firstName lastName}\n    }\n  }\n  }\n}","variables":{}}'
@@ -243,20 +243,21 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
 <pre class="lang lang-node">
 const axios = require('axios');
 
-const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
+const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
 const token = "&lt;SET_TOKEN&gt;"
-const query = 
-    `query getWorkspaces{
+const query = `query getMyWorkspaces{
         me {
-            workspaces {
+          workspaces (myWorkspace: true) {
             totalItems
             results {
-                name
-                id
-                }
+            name
+            description
+            isPublic
+            owner {email firstName lastName}
             }
+          }
         }
-    }`
+}`
 const getWorkspaces = async () => {
     try {
         const response = await axios.post(url,
@@ -280,18 +281,20 @@ getWorkspaces();
 import requests
 import pprint
 
-url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
 token = "&lt;SET_TOKEN&gt;"
 query = """
-    query getWorkspaces{
+    query getMyWorkspaces{
         me {
-            workspaces {
+          workspaces (myWorkspace: true) {
             totalItems
             results {
-                name
-                id
-                }
+            name
+            description
+            isPublic
+            owner {email firstName lastName}
             }
+          }
         }
     }
     """
@@ -313,23 +316,34 @@ if __name__ == "__main__":
 <h3>Output</h3>
 <pre>
 {
-    "data": {
-        "me": {
-            "workspaces": {
-                "totalItems": 2,
-                "results": [
-                    {
-                        "name": "test ONE",
-                        "id": "7nAUfna7R97bTo1l2i3N"
-                    },
-                    {
-                        "name": "workspace - example 1",
-                        "id": "k03Mis4g6m4X872j6ovj"
-                    }
-                ]
+  "data": {
+    "me": {
+      "workspaces": {
+        "totalItems": 2,
+        "results": [
+          {
+            "name": "workspace 1",
+            "description": "",
+            "isPublic": true,
+            "owner": {
+              "email": "littlejohnny@someplace.org",
+              "firstName": "Little",
+              "lastName": "Johnny"
             }
+          },
+          {
+            "name": "workspace 2 - meetings",
+            "description": "For our meetings",
+            "isPublic": true,
+            "owner": {
+              "email": "jopsephusmiller@someplace.org",
+              "firstName": "Josephus",
+              "lastName": "miller"
+            }
+          }
         }
     }
+  }
 }
 </pre>
 
