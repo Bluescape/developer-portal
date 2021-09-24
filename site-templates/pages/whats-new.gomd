@@ -7,7 +7,7 @@
     <h3>API v3 is GA</h3>
     <p>
         <ul>  
-            <li>v3 API version is GA!</li>
+            <li>v3 API version is GA! See more details in the <a href="/docs/page/versioning">versioning page</a>.</li>
             <li>We have <a href="/docs/page/reference">REST</a> and <a href="/docs/page/what-is-graphql">GraphQl</a> APIs for v3.</li>
             <li>Please review the v3 documentation pages, such as <a href="/docs/page/what-is-new-in-v3">What is new in v3</a></li> and <a href="/docs/page/compare-graphql-rest">differences between GraphQL and REST APIs</a></li>. See more content in the <a href="/docs/page/guides">Guides</a> section.         
             <li>New GraphQL APIs are available to <a href="/docs/page/graphql-rich-text">add Rich Text to a workspace</a>.</li>
