@@ -88,8 +88,7 @@ This mutation can be called with the following variables:
 <p>
 <pre class="lang lang-curl">
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
---header 'csrf-token: &lt;CSRF_TOKEN&gt;' \
---header 'Authorization: Bearer &lt;TOKEN&gt;' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {\n        createText(workspaceId: $workspaceId, input: $input) {\n            ... on Text {\n            id\n            transform {x y scaleX scaleY}\n            pinned\n            zIndex\n            text\n            style { textTransform fontSize fontFamily verticalAlign color {r g b a }}\n            blocks {\n                ...on TextBlock {\n                align content}}\n                }\n            }\n    }","variables":{"workspaceId":{workspaceId},"input":{"blocks":{"block":{"align":"left","content":{"span":{"text":"NoahText2","fontSize":30,"fontFamily":"Helvetica","fontWeight":"normal","fontStyle":"italic","textDecoration":"underline","color":{"r":23,"g":56,"b":100,"a":1},"backgroundColor":{"r":223,"g":156,"b":200,"a":1}}}}}}}}'
 </pre>

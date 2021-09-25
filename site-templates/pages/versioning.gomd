@@ -6,7 +6,7 @@
             <td style="padding:15px">   
                     <b><center>NOTICE</center>
                         <br />
-                        API version v3 is available as a Beta preview as part of the 21.08.1 release on August 13, 2021. This is a preview only and should not be used for mission critical production integrations until the GA release as it has the potential to change.  
+                        API version v3 is available as GA as part of the 21.10.1 release on October 08, 2021.  
                     <br /> <br />
                     </b>
             </td>
@@ -24,33 +24,37 @@
         <td><b>Status</b></td>
     </tr>
     <tr>
-        <td>3.0 Beta</td>
+        <td>3.0</td>
         <td><a href="/docs/page/reference">/v3/</a></td>
-        <td>21.06.1 (June 11, 2021) </td>
-        <td>Beta</td>
+        <td>21.10.1 (October 08, 2021) </td>
+        <td>Current</td>
     </tr>
     <tr>
         <td>2.0</td>
         <td><a href="/docs/page/reference-v2">/v2/</a></td>
         <td>19.11.1 (November 22, 2019) </td>
-        <td>Current</td>
+        <td>Deprecated</td>
     </tr>
 </table>
         
 <h2>FAQ</h2>
 
-<!--
 <p>   
-    <b>Q: Will my current scripts stop working after the 21.06.1 Release (released on June 11, 2021)</b><br />
+    <b>Q: Will my current scripts stop working after the <span class="pre">/v3/</span> is GA on the 21.10.1 Release (released on October 08, 2021)</b><br />
         
     <b>A</b>: There will be a short grace period after the time of the release where <span class="pre">v2</span> endpoints will still be active
     in order to give developers time to migrate their existing scripts to <span class="pre">v3</span> APIs instead. After this period, any scripts using the <span class="pre">/v2/</span> endpoint will no longer work. 
     You will need to update the version parameter pointing to the API endpoints from <span class="pre">/v2/</span> to <span class="pre">/v3/</span>.
 </p>
--->
 
 <p>
-    <b>Q: What's New in V3 Beta?</b><br />
+    <b>Q: If I want to upgrade my scripts, could I simply replace the version number, from <span class="pre">v2</span> to <span class="pre">v3</span>?</b><br />
+    
+    <b>A</b>: No. The new <span class="pre">v3</span> APIs include functionality and response formats that are different from the ones in <span class="pre">v2</span>. If you simply change the version to <span class="pre">v3</span>, your scripts will break. Please review the examples in the Guides section, where we have examples of how <span class="pre">v2</span> and <span class="pre">v3</span> APIs are used to accomplish the solution for a specific requirement.
+</p>
+
+<p>
+    <b>Q: What's New in V3?</b><br />
 
     <b>A</b>: With the <span class="pre">/v3/</span> endpoint, scripts previously using the <b>UID</b> field will need to be replaced (e.g., change the id field in the API endpoint 
     from <span class="pre">v2/users/{user_uid}</span> to <span class="pre">v3/users/{userId}</span>). 

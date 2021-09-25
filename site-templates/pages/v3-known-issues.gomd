@@ -5,21 +5,14 @@
 
 <ul>
     <li>PATCH for Browser: after modifying height/width, the preview image does not scale or changes (WEBC-10223).</li>
-    <li>PATCH for Video: change of (x,y) position resizes Video back to original height/width (COL-3956).</li>
-    <li>PATCH and POST for Canvas: cannot change/set color of border: "style: IsValidCanvasColor: ''" (COL-3980).</li>
-    <li>POST and PATCH for Browser: if height or width are set to less than 640, the error message is not clear about this lower limit (COL-4069).</li>
-    <li>GET for Stroke: does not return Traits (COL-3889).</li>
     <li>GET for Whiteboard: does not return Traits (COL-3878).</li>
-    <li>GET for Line: does not return Traits (COL-3799).</li>
 </ul>
 <h4>GraphQL APIs</h4>
 <ul>
-    <li>Subscriptions are not fully implemented (AD-8740).</li>
     <li>Query for Strokes: traits are returned empty (COL-3483).</li>
 </ul>
 <h4>GraphQL Subscriptions</h4>
 <ul>
-    <li>commands subscription does not have an element type filter (COL-4200).</li>
     <li>Rich text elements are not sized properly when no width/height is provided on instantiation (COL-4374).</li>
 </ul>
 <!-- 
