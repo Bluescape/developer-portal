@@ -140,6 +140,7 @@ axios(request_values)
 <p>
 <pre class="lang lang-curl">
 <code>
+CHECK HERE
 curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/users/me/workspaces' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
 </code>
