@@ -68,6 +68,9 @@ You will also need to assign, the values for the <span class="pre">filename</spa
 
 <p>
 <pre class="lang lang-curl">
+# The default "width" and "height" value is 1000. 
+# If your image is smaller than 1000x1000 pixels, and "width" and "height" are not specified, 
+# your image will be vertically and horizontally centered within a 1000x1000 placeholder space. 
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
@@ -98,6 +101,9 @@ const request_headers = {
 };
 
 const zygote_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;';
+// The default "width" and "height" value is 1000. 
+// If your image is smaller than 1000x1000 pixels, and "width" and "height" are not specified, 
+// your image will be vertically and horizontally centered within a 1000x1000 placeholder space.  
 const zygote_body = {
     "type": "Image",
     "filename": "myImageToUpload.jpg",
@@ -138,6 +144,9 @@ request_headers = {
 
 if __name__ == "__main__":
     zygote_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;'
+    # The default "width" and "height" value is 1000. 
+    # If your image is smaller than 1000x1000 pixels, and "width" and "height" are not specified, 
+    # your image will be vertically and horizontally centered within a 1000x1000 placeholder space. 
     zygote_body = {
         "type": "Image",
         "filename": "myImageToUpload.jpg",
