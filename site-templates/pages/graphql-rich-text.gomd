@@ -28,6 +28,7 @@ the <b>workspaceId</b> of where they want the text Element to be added.
 
 <h3>Example Query:</h3>
 <pre>
+<code><code>
 mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {
         createText(workspaceId: $workspaceId, input: $input) {
             ... on Text {
@@ -43,6 +44,7 @@ mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {
                 }
             }
     }
+</code></code>
 </pre>
 
 <p>
@@ -50,6 +52,7 @@ This mutation can be called with the following variables:
 </p>
 
 <pre>
+<code><code>
 "workspaceId": &lt;workspaceId&gt;,
     "input": {
         "blocks": {
@@ -71,6 +74,7 @@ This mutation can be called with the following variables:
             } 
         }
     }
+</code></code>
 </pre>
 
 <h2>Code sample</h2>
@@ -87,15 +91,18 @@ This mutation can be called with the following variables:
 
 <p>
 <pre class="lang lang-curl">
+<code><code>
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {\n        createText(workspaceId: $workspaceId, input: $input) {\n            ... on Text {\n            id\n            transform {x y scaleX scaleY}\n            pinned\n            zIndex\n            text\n            style { textTransform fontSize fontFamily verticalAlign color {r g b a }}\n            blocks {\n                ...on TextBlock {\n                align content}}\n                }\n            }\n    }","variables":{"workspaceId":{workspaceId},"input":{"blocks":{"block":{"align":"left","content":{"span":{"text":"NoahText2","fontSize":30,"fontFamily":"Helvetica","fontWeight":"normal","fontStyle":"italic","textDecoration":"underline","color":{"r":23,"g":56,"b":100,"a":1},"backgroundColor":{"r":223,"g":156,"b":200,"a":1}}}}}}}}'
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
+<code><code>
 const axios = require('axios');
 
 const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
@@ -155,11 +162,13 @@ const createText = async () => {
 }
 
 createText();
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-python">
+<code><code>
 import requests
 import pprint
 
@@ -222,11 +231,13 @@ def makeQuery():
 if __name__ == "__main__":
     response = makeQuery()
     pprint.pprint(response)
+</code></code>
 </pre>
 </p>
 
 <h3>Output</h3>
 <pre>
+<code><code>
 {
     "data": {
         "createText": {
@@ -289,6 +300,7 @@ if __name__ == "__main__":
         }
     }
 }
+</code></code>
 </pre>
 
 <p>
@@ -297,6 +309,7 @@ Example Query:
 </p>
 
 <pre>
+<code><code>
 query getTextElementsfromWorkspace ($workspaceId: String!){
     elements(workspaceId: $workspaceId type: Text ) {
         type: __typename        
@@ -330,6 +343,7 @@ query getTextElementsfromWorkspace ($workspaceId: String!){
         } 
     }
 }
+</code></code>
 </pre>
 
 <p>

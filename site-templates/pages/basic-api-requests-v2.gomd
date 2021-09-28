@@ -74,11 +74,13 @@
 </p>
 
 <pre>
+<code><code>
 {
   "id": "&lt;SET_USER_ID&gt;",
   "type": "&lt;SET_MEMBER_TYPE&gt;", #example: User
   "organizationRoleId": "&lt;SET_ORGANIZATION_ROLE_ID&gt;"
 }
+</code></code>
 </pre>
 
 <h4>Assembled Request</h4>
@@ -94,6 +96,7 @@
 
 <p>
 <pre class="lang lang-curl">
+<code><code>
 curl -X POST <script type="text/javascript">document.write(apiBaseStr + "/v2/organizations/&lt;SET_ORGANIZATION_ID&gt;/users"); </script> \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
@@ -102,11 +105,13 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr + "/v2/org
     "type": "&lt;SET_MEMBER_TYPE&gt;", #example: User
     "organizationRoleId": "&lt;SET_ORGANIZATION_ROLE_ID&gt;"
   }'
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-python">
+<code><code>
 import requests
 import pprint 
 
@@ -131,6 +136,7 @@ the_request = requests.post(
 
 json_response = the_request.json()
 pprint.pprint(json_response)
+</code></code>
 </pre>
 </p>
 

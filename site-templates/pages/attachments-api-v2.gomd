@@ -138,6 +138,7 @@ Sample Request:
 </div>
 
 <pre class="lang lang-node">
+<code><code>
 var request = require('request');
 
 const token = &lt;SET_TOKEN&gt;;
@@ -189,10 +190,11 @@ async function runAPIRequests() {
     }
 }
 runAPIRequests();
-    
+</code></code>
 </pre>
 
 <pre class="lang lang-python">
+<code><code>
 import requests
 from requests.exceptions import HTTPError
 import pprint
@@ -223,9 +225,11 @@ if __name__ == "__main__":
 
     json_response = the_request.json()
     pprint.pprint(json_response)
+</code></code>
 </pre>
 
 <pre class="lang lang-curl">
+<code><code>
 curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments \
 -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' \
@@ -234,6 +238,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     "y" : 10,
     "sourceId": "YYYYYYYYY"
 }'
+</code></code>
 </pre>    
 
 <br/>
@@ -242,6 +247,7 @@ Sample Response Body:
         <li>Note the <span class='pre'>sourceId</span> being placed at coordinates [10,10]</li>
     </ul>
 <pre>
+<code><code>
 {
     "workspace_id": "&lt;WORKSPACE_ID&gt;",
     "x": 10,
@@ -254,7 +260,8 @@ Sample Response Body:
         "id": "&lt;SET_SURFACE_ID&gt;",
         "type": "image"
     }
-}</pre>
+}</code></code>
+</pre>
         
 </p>
 
@@ -286,6 +293,7 @@ Sample Response Body:
 </div></p>
 
 <pre class="lang lang-node">
+<code><code>
 var request = require('request');
 
 const token = &lt;SET_TOKEN&gt;;
@@ -333,9 +341,11 @@ async function runAPIRequests() {
     }
 }
 runAPIRequests();  
+</code></code>
 </pre>
 
 <pre class="lang lang-python">
+<code><code>
 import requests
 from requests.exceptions import HTTPError
 import pprint
@@ -357,9 +367,11 @@ if __name__ == "__main__":
 
     json_response = the_request.json()
     pprint.pprint(json_response)
+</code></code>
 </pre>
 
 <pre class="lang lang-curl">
+<code><code>
 curl -X GET <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments \
 -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' 
@@ -381,6 +393,7 @@ Sample Response Body with the list of attachements an object has:
     "type": "text"
     }]
 }
+</code></code>
 </pre>
 </p>
 
@@ -410,6 +423,7 @@ Sample Response Body with the list of attachements an object has:
 </div></p>
 
 <pre class="lang lang-node">
+<code><code>
 var request = require('request');
 
 const token = &lt;SET_TOKEN&gt;;
@@ -455,9 +469,11 @@ async function runAPIRequests() {
     }
 }
 runAPIRequests();
+</code></code>
 </pre>
 
 <pre class="lang lang-python">
+<code><code>
 import requests
 from requests.exceptions import HTTPError
 import pprint
@@ -479,12 +495,15 @@ if __name__ == "__main__":
 
     json_response = the_request.json()
     pprint.pprint(json_response)
+</code></code>    
 </pre>
 
 <pre class="lang lang-curl">
+<code><code>
 curl -X DELETE <script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_type&gt;/&lt;surface_id&gt;/attachments/&lt;target_id&gt; \
 -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' 
+</code></code>
 </pre>
 
 <p>
@@ -494,9 +513,11 @@ Sample Response Body after deleting the attachments in an element:
 </p>
 <p>
 <pre>
+<code><code>
 {
   "message": "Attachment {source_id} has been removed from the surface {surface_id}"
 }  
+</code></code>
 </pre>
 </p>
 
@@ -518,6 +539,7 @@ Select Node.js or Python
 </pre>
 
 <pre class="lang lang-node">
+<code><code>
 // Use Case Example (Node.js)
 
 var request = require('request');
@@ -791,11 +813,13 @@ async function runAPIRequests() {
 }
 
 // Run the requests
-runAPIRequests();       
+runAPIRequests(); 
+</code></code>      
 </pre>
 
 
 <pre class="lang lang-python">
+<code><code>
 # Use Case Example (Python)
 
 import requests
@@ -1014,6 +1038,7 @@ if __name__ == "__main__":
             if yy > canvas_height:
                 yy = 200
                 xx += delta
+</code></code>                
 </pre>
 
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.

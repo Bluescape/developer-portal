@@ -52,6 +52,7 @@ After you receive the authentication token, you can get a list of all the worksp
 
 <p>
 <pre class="lang lang-python">
+<code><code>
 # Python Code (python 3.5+)
 import requests
 import pprint
@@ -89,7 +90,9 @@ if __name__ == "__main__":
 
 
 <p>
+</code></code>
 <pre class="lang lang-node">
+<code><code>
 // NodeJS
 var axios = require('axios');
 
@@ -130,14 +133,16 @@ axios(request_values)
     .catch (function (error) {
         console.log('Error: ' + error.message);
     });
-    
+</code></code>    
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-curl">
+<code><code>
 curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/users/me/workspaces' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
+</code></code>
 </pre>
 </p>
 
@@ -169,6 +174,7 @@ What you should get: JSON with the list of the first 25 workspaces your user has
 
 <h3>Output Json sample</h3>
 <pre>
+<code><code>
 {
   "workspaces": [
       {
@@ -186,6 +192,7 @@ What you should get: JSON with the list of the first 25 workspaces your user has
   "prev": null,
   "next": null
 }
+</code></code>
 </pre>
 
 <a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
@@ -203,6 +210,7 @@ What you should get: JSON with the list of the first 25 workspaces your user has
 
 <h3>Example Query:</h3>
 <pre>
+<code><code>
 query getMyWorkspaces{
   me {
    workspaces (myWorkspace: true) {
@@ -216,6 +224,7 @@ query getMyWorkspaces{
   }
   }
 }
+</code></code>
 </pre>
 
 <h2>Code sample</h2>
@@ -232,15 +241,18 @@ query getMyWorkspaces{
 
 <p>
 <pre class="lang lang-curl">
+<code><code>
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"query getMyWorkspaces{\n  me {\n   workspaces (myWorkspace: true) {\n    totalItems\n    results {\n      name\n      description\n      isPublic\n      owner {email firstName lastName}\n    }\n  }\n  }\n}","variables":{}}'
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
+<code><code>
 const axios = require('axios');
 
 const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
@@ -273,11 +285,13 @@ const getWorkspaces = async () => {
 }
 
 getWorkspaces();
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-python">
+<code><code>
 import requests
 import pprint
 
@@ -310,11 +324,13 @@ def makeQuery():
 if __name__ == "__main__":
     response = makeQuery()
     pprint.pprint(response)
+</code></code>
 </pre>
 </p>
 
 <h3>Output</h3>
 <pre>
+<code><code>
 {
   "data": {
     "me": {
@@ -345,6 +361,7 @@ if __name__ == "__main__":
     }
   }
 }
+</code></code>
 </pre>
 
 <br />

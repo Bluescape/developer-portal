@@ -45,13 +45,16 @@ query getWorkspaces{
 </div>
 
 <pre class="lang lang-curl">
+<code><code>
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"query getWorkspaces{\n  me {\n    workspaces {\n      totalItems\n      results {\n        name\n        id\n      }\n    }\n  }\n}","variables":{}}'
+</code></code>
 </pre>
 
 <pre class="lang lang-node">
+<code><code>
 const axios = require('axios');
 
 const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
@@ -83,9 +86,11 @@ const getWorkspaces = async () => {
 }
 
 getWorkspaces();
+</code></code>
 </pre>
 
 <pre class="lang lang-python">
+<code><code>
 import requests
 import pprint
 
@@ -116,10 +121,12 @@ def makeQuery():
 if __name__ == "__main__":
     response = makeQuery()
     pprint.pprint(response)
+</code></code>
 </pre>
 
 <h3>Output</h3>
 <pre>
+<code><code>
 {
     "data": {
         "me": {
@@ -139,4 +146,5 @@ if __name__ == "__main__":
         }
     }
 }
+</code></code>
 </pre>

@@ -52,6 +52,7 @@ Here we present a comparison of Bluescape <span class="pre">v3</span> REST and G
         <td>In GraphQL, you can specify one or more types at a time. This feature allows you to add great flexibility to your scripts.<br />
 
 <pre>
+<code><code>
 query getTextAndCanvas{
   elements(workspace: "G1N2bS42uGwMhL_fGfzW", <b>type: [Text,Canvas]</b>) {
     type:__typename
@@ -61,11 +62,13 @@ query getTextAndCanvas{
     }
   }
 }
+</code></code>
 </pre>
 
 If you want to use a single Type, then remove the array brackets in the query. For example, if you want only Test types:<br />
 
 <pre>
+<code><code>
 query getTextAndCanvas{
   elements(workspace: "G1N2bS42uGwMhL_fGfzW", <b>type: Text</b>) {
     type:__typename
@@ -75,6 +78,7 @@ query getTextAndCanvas{
     }
   }
 }
+</code></code>
 </pre> 
         </td>
     </tr>
@@ -83,8 +87,11 @@ query getTextAndCanvas{
 <p>GraphQL provides great flexibility to get just the data you need, and for that you need to clearly specify what are the fields you want to be retrieved in each query. Sometimes the fields in the GraphQL are defined as <a target="_BLANK" href="https://graphql.org/learn/schema/#union-types">Unions</a>, not as a specific Type. Review the Bluescape GraphQl Schema for more details.<br />
 Unions in GraphQL are specified using this format:
 <pre>
+<code><code>
+
 ...on <b>{Type}</b> {
     <b>{Fields-to-retrieve}</b>
+</code></code>
 }</pre>
 </p>
 
@@ -98,6 +105,7 @@ Unions in GraphQL are specified using this format:
         <td>In GraphQL, all the requests are always an HTTP POST. You can specify exactly what fields will be returned, and in some cases those fields will need to be specified as <a target="_BLANK" href="https://graphql.org/learn/schema/#union-types">Unions</a>. For example, for a Line element, when you query the <b>start</b> and <b>end</b> fields, you need to specify them as a Union (according to the current GraphQl Schema). See this example:<br />
 
 <pre>
+<code><code>
 query GetLinesFromWorkspace($workspaceId: String!){
     elements(workspaceId: $workspaceId, type: Line) {        
         type: __typename
@@ -115,7 +123,7 @@ query GetLinesFromWorkspace($workspaceId: String!){
             }
         }
     }
-}
+}</code></code>
 </pre>
         </td>
     </tr>
@@ -129,6 +137,7 @@ GraphQL allows you to consolidate multiple queries and mutations in a single cal
     <li>For the createCanvas mutations, we are using a fragment (canvasData) to consolidate what fields we want to be reported for all the newly created canvases.</li>
 </ul> 
 <pre>
+<code><code>
 mutation createMultipleElementsInOneGroup($workspaceId: String!) {
     canvas1: createCanvas(workspaceId: $workspaceId, input: {
         transform : { x: 1000 y:1000}
@@ -157,17 +166,19 @@ fragment canvasData on Canvas {
     name
     id
     transform {x y }
-}
+}</code></code>
 </pre> 
 with these variables:
 <pre>
+<code><code>
 {
     "workspaceId": "&lt;workspaceID&gt;"
-}
+}</code></code>
 </pre>
 
 and the output is (the values in the id field are just a reference, they will change every time you run the mutations):
 <pre>
+<code><code>
 {
     "data": {
         "canvas1": {
@@ -191,6 +202,7 @@ and the output is (the values in the id field are just a reference, they will ch
         }
     }
 }
+</code></code>
 </pre>
 </p>
 

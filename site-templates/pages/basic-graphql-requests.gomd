@@ -34,6 +34,7 @@
 </p>
 
 <pre>
+<code><code>
 query getElementsFromWorkspace($workspaceId: String!){
   elements(workspaceId: $workspaceId) {
     __typename
@@ -42,7 +43,8 @@ query getElementsFromWorkspace($workspaceId: String!){
       x y
     }
   }
-}   
+}
+</code></code>   
 </pre>
 
 <p>
@@ -52,6 +54,7 @@ query getElementsFromWorkspace($workspaceId: String!){
 <h4>Output</h4>
 
 <pre>
+<code><code>
 {
   "data": {
     "elements": [
@@ -74,6 +77,7 @@ query getElementsFromWorkspace($workspaceId: String!){
     ]
   }
 }
+</code></code>
 </pre>
 
 <p>
@@ -83,16 +87,19 @@ query getElementsFromWorkspace($workspaceId: String!){
 </p>
 
 <pre>
+<code><code>
 query getElementsFromWorkspace($workspaceId: String!){
   elements(workspaceId: $workspaceId, type: Shape) {
     __typename
     id
   }
 } 
+</code></code>
 </pre>
 
 <h4>Output</h4>
 <pre>
+<code><code>
 {
   "data": {
     "elements": [
@@ -103,6 +110,7 @@ query getElementsFromWorkspace($workspaceId: String!){
     ]
   }
 }
+</code></code>
 </pre>
 
 <p>
