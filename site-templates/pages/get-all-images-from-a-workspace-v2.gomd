@@ -42,13 +42,16 @@ This page contains the implementation details for v2 REST APIs. You can also see
 
 <p>
 <pre class="lang lang-curl">
+<code><code>
 curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/v2/workspaces/&lt;SET_WORKSPACEID&gt;/elements/images' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-python">
+<code><code>
 # Python Code (python 3.5+)
 import requests
 import pprint
@@ -79,12 +82,13 @@ if __name__ == "__main__":
    json_response = the_request.json()
 
    pprint.pprint(json_response)
-
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
+<code><code>
 // Node.js Javascript   
 /*
 
@@ -125,7 +129,8 @@ axios(request_values)
     })
     .catch (function (error) {
         console.log('Error: ' + error.message);
-    });               
+    });     
+</code></code>          
 </pre>        
 </p>
 
@@ -203,6 +208,7 @@ What you should get: JSON with the list of all images in the workspace
 <h3>Output Json sample</h3>
 
 <pre>
+<code><code>
 {'images': [{'comments': [{'actorId': '38988',
            'actorType': 'user',
            'date': '2019-07-23T17:37:03+00:00',
@@ -246,10 +252,12 @@ What you should get: JSON with the list of all images in the workspace
                  'y': 4520}
                 ]
 }     
+</code></code>
 </pre>
 
 <!-- V3
 <pre>
+<code><code>
 {
     "data": [
         {
@@ -276,6 +284,7 @@ What you should get: JSON with the list of all images in the workspace
         }
     ]
 } 
+</code></code>
 </pre>
 -->
 

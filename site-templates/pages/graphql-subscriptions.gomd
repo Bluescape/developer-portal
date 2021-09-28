@@ -18,6 +18,7 @@ Below you can find 2 types of implementations: <a href="#playground_example">usi
 <p>You can access the playground via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page.
 Here is an example of subscription for events, for reporting the change in position (x,y) of Image elements, using the <span class="pre">commands</span> subscription: <br />
 <pre>
+<code><code>
 subscription imageElementUpdated($workspaceId: String!) {
   commands(workspaceId: $workspaceId) {
     ... on UpdateElementCommand {
@@ -34,6 +35,7 @@ subscription imageElementUpdated($workspaceId: String!) {
     }
   }
 }
+</code></code>
 </pre>
 </p>
 <p>
@@ -41,15 +43,19 @@ Set the correct values for:
 <ul>
   <li><b>QUERY VARIABLES</b>: 
 <pre>
+<code><code>
 {
     "workspaceId": "&lt;workspaceId&gt;"
 }
+</code></code>
 </pre></li>
   <li>and <b>HTTP HEADERS</b>
 <pre>
+<code><code>
 {
   "Authorization":"Bearer `<`SET_TOKEN`>`"
 }
+</code></code>
 </pre></li>
 </ul>  
 </p>
@@ -64,6 +70,7 @@ The implementation in the GraphQL Playground shows us how the data for the subsc
 Please inspect the examples below to implement a basic parser for the subscription events.  
 
 <pre>
+<code><code>
 /*
 Requires the following libraries and versions:
 1) ws, version 7.4.5
@@ -123,12 +130,14 @@ subscribe(`subscription imageChangesSubscription($workspaceId: String!) {
   }`, {
     workspaceId: '&lt;workspaceId&gt;'
   });
+</code></code>
 </pre>
 
 </p>
 <p>
 When you move an image, this is the type of event you will receive: 
  <pre>
+<code><code>
  Update received:
 {
   data: {
@@ -139,6 +148,7 @@ When you move an image, this is the type of event you will receive:
     }
   }
 }
+</code></code>
  </pre>
  You can parse this even data and trigger an action.
  </p>

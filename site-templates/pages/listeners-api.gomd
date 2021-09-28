@@ -64,6 +64,7 @@ In <span class="pre">v3</span> you will use <a href="/docs/page/graphql-subscrip
 </p>
 
 <pre>
+<code><code>
 {
   workspace_id: 'hf5aTv5fTfGyATSvoklO',
   event:
@@ -89,6 +90,7 @@ In <span class="pre">v3</span> you will use <a href="/docs/page/graphql-subscrip
     textTransform: 'inherit'
   }
 }
+</code></code>
 </pre>
 
 <p>
@@ -150,6 +152,7 @@ In <span class="pre">v3</span> you will use <a href="/docs/page/graphql-subscrip
     <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
 </div>
 <pre class="lang lang-curl">
+<code><code>
 curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v2/listeners \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
@@ -158,8 +161,10 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     "workspaceId": &lt;SET_WORKSPACE_UID&gt;,
     "eventTypes": ["WORKSPACE_ALL"]
   }'
+</code></code>
 </pre>
 <pre class="lang lang-node">
+<code><code>
   const body = {
     "type" : "workspace",
     "url": "http://sample-app.com/bluescape/listeners/incoming",
@@ -167,8 +172,10 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     "eventTypes": ["WORKSPACE_ALL"]
   };
   sendRequest(body);
+</code></code>
 </pre>
 <pre class="lang lang-python">
+<code><code>
   data_load = {
     'type' : 'workspace',
     'url' : 'http://sample-app.com/bluescape/listeners/incoming',
@@ -176,6 +183,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     'eventTypes' : ['WORKSPACE_ALL']
   }
   sendRequest(data_load)
+</code></code>
 </pre>
 
 <h4>Listener targeting the creation of new documents in a workspace</h4>
@@ -186,6 +194,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
 </div>
 <pre class="lang lang-curl">
+<code><code>
 curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v2/listeners \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
@@ -194,8 +203,10 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     "workspaceId": &lt;SET_WORKSPACE_UID&gt;,
     "eventTypes": ["DOCUMENT_CREATE"]
   }'
+</code></code>
 </pre>
 <pre class="lang lang-node">
+<code><code>
   const body = {
     "type" : "workspace",
     "url": "http://sample-app.com/bluescape/listeners/incoming",
@@ -203,8 +214,10 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     "eventTypes": ["DOCUMENT_CREATE"]
   };
   sendRequest(body);
+</code></code>
 </pre>
 <pre class="lang lang-python">
+<code><code>
   data_load = {
     'type' : 'workspace',
     'url' : 'http://sample-app.com/bluescape/listeners/incoming',
@@ -212,6 +225,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     'eventTypes' : ['DOCUMENT_CREATE']
   }
   sendRequest(data_load)
+</code></code>  
 </pre>
 
 <h4>Listener targeting all actions on a specific document</h4>
@@ -225,6 +239,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
 </div>
 
 <pre class="lang lang-curl">
+<code><code>
 curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v2/listeners \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
@@ -234,9 +249,11 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     "targetId": &lt;SET_DOC_ID&gt;,  // the document ID
     "eventTypes": ["DOCUMENT_ALL"]
   }'
+</code></code>
 </pre>
 
 <pre class="lang lang-node">
+<code><code>
   const body = {
     "type" : "workspace",
     "url": "http://sample-app.com/bluescape/listeners/incoming",
@@ -245,9 +262,11 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     "eventTypes": ["DOCUMENT_ALL"]
   };
   sendRequest(body);
+</code></code>
 </pre>
 
 <pre class="lang lang-python">
+<code><code>
   data_load = {
     'type' : 'workspace',
     'url' : 'http://sample-app.com/bluescape/listeners/incoming',
@@ -256,6 +275,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     'eventTypes' : ['DOCUMENT_ALL']
   }
   sendRequest(data_load)
+</code></code>
 </pre>
 
 <h4>Listener targeting updates to a specific note</h4>
@@ -269,6 +289,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
 </div>
 
 <pre class="lang lang-curl">
+<code><code>
 curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v2/listeners \
   -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
   -H 'Content-Type: application/json' \
@@ -278,9 +299,11 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     "targetId": &lt;SET_NOTE_ID&gt;,  // the note ID
     "eventTypes": ["NOTE_UPDATE"]
   }'
+</code></code>
 </pre>
 
 <pre class="lang lang-node">
+<code><code>
   const body = {
     "type" : "workspace",
     "url": "http://sample-app.com/bluescape/listeners/incoming",
@@ -289,9 +312,11 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     "eventTypes": ["NOTE_UPDATE"]
   };
   sendRequest(body);
+</code></code>
 </pre>
 
 <pre class="lang lang-python">
+<code><code>
   data_load = {
     'type' : 'workspace',
     'url' : 'http://sample-app.com/bluescape/listeners/incoming',
@@ -299,6 +324,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
     'eventTypes' : ['NOTE_UPDATE']
   }
   sendRequest(data_load)
+</code></code>
 </pre>
 
 <a name="listener-states" class="internal-anchor"><h3>Listener States</h3></a>
@@ -342,6 +368,7 @@ curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script
 </div>
 
 <pre class = "lang lang-curl">
+<code><code>
 /*
 How to run:
 node this_script_name.js
@@ -365,8 +392,10 @@ app.post("/", (req, res, next) => {
   console.log("Webhook Received!")
   res.status(200).send('OK');
 });
+</code></code>
 </pre>
 <pre class="lang lang-node">
+<code><code>
 /*
 How to run:
 node this_script_name.js
@@ -390,9 +419,11 @@ app.post("/", (req, res, next) => {
   console.log("Webhook Received!")
   res.status(200).send('OK');
 });
+</code></code>
 </pre>
 
 <pre class="lang lang-python">
+<code><code>
   # How to run:
   # python this_script_name.py
   
@@ -420,6 +451,7 @@ app.post("/", (req, res, next) => {
           
   if __name__ == '__main__':
       app.run(port=3000)
+</code></code>      
 </pre>
 
 <p>
@@ -467,6 +499,7 @@ app.post("/", (req, res, next) => {
 </div>
 
 <pre class = "lang lang-curl">
+<code><code>
   var axios = require('axios');
   const token = &lt;SET_TOKEN&gt;;
   const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
@@ -501,8 +534,10 @@ app.post("/", (req, res, next) => {
       .catch (function (error) {
           console.log('Error: ' + error.message);
     });
+</code></code>    
 </pre>
 <pre class="lang lang-node">
+<code><code>
   var axios = require('axios');
   const token = &lt;SET_TOKEN&gt;;
   const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
@@ -537,9 +572,11 @@ app.post("/", (req, res, next) => {
       .catch (function (error) {
           console.log('Error: ' + error.message);
     });
+</code></code>    
 </pre>
 
 <pre class="lang lang-python">
+<code><code>
   import requests
   from requests.exceptions import HTTPError
   import pprint
@@ -570,6 +607,7 @@ app.post("/", (req, res, next) => {
   
       json_response = the_request.json()
       pprint.pprint(json_response)
+</code></code>
 </pre>
 
 <a name="act-on-listener" class="internal-anchor"><h4>Acting on Listener Events</h4></a>
@@ -588,18 +626,24 @@ app.post("/", (req, res, next) => {
 </div>
 
 <pre class = "lang lang-curl">
+<code><code>
   const processSomething = callback => {
     setTimeout(callback, 5000);
   }
+  </code></code>
 </pre>
 <pre class="lang lang-node">
+<code><code>
   const processSomething = callback => {
     setTimeout(callback, 5000);
   }
+  </code></code>
 </pre>
 <pre class="lang lang-python">
+<code><code>
   def processSomething():
     # No timeout needed for python. This method will be populated later on.
+</code></code>
 </pre>
 <p>
   The function is defined with a timeout of 5 seconds. This turns the handling of the event into an asyncronous action in order to give 
@@ -619,6 +663,7 @@ app.post("/", (req, res, next) => {
 </div>
 
 <pre class="lang lang-curl">
+<code><code>
   function sendRequest(payload) {
     request_values = {
       method: 'POST',
@@ -659,8 +704,10 @@ app.post("/", (req, res, next) => {
       });  
     res.status(200).send('OK');
   }); 
+</code></code>
 </pre>
 <pre class="lang lang-node">
+<code><code>
   function sendRequest(payload) {
     request_values = {
       method: 'POST',
@@ -701,8 +748,10 @@ app.post("/", (req, res, next) => {
       });  
     res.status(200).send('OK');
   });
+</code></code>  
 </pre>
 <pre class="lang lang-python">  
+<code><code>
   app = Flask(__name__)
   token = ''
   def sendRequest(payload):
@@ -736,6 +785,7 @@ app.post("/", (req, res, next) => {
           sendRequest(payload)  
   if __name__ == '__main__':
       app.run(port=3000)
+</code></code>
 </pre>
 <p>
   That's it! We now have functional listener pipeline that is able to send notifications along with info about what as happened

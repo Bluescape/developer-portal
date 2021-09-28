@@ -42,13 +42,16 @@ This page contains the implementation details for <a href="#rest">v3 REST APIs</
 
 <p>
 <pre class="lang lang-curl">
+<code><code>
 curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-python">
+<code><code>
 # Python Code (python 3.5+)
 import requests
 import pprint
@@ -79,12 +82,13 @@ if __name__ == "__main__":
    json_response = the_request.json()
 
    pprint.pprint(json_response)
-
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
+<code><code>
 // Node.js Javascript   
 /*
 
@@ -125,7 +129,8 @@ axios(request_values)
     })
     .catch (function (error) {
         console.log('Error: ' + error.message);
-    });               
+    });    
+</code></code>           
 </pre>        
 </p>
 
@@ -185,6 +190,7 @@ What you should get: JSON with the list of all images in the workspace
 
 <h3>Output Json sample</h3>
 <pre>
+<code><code>
 {
     "data": [
         {
@@ -211,6 +217,7 @@ What you should get: JSON with the list of all images in the workspace
         }
     ]
 } 
+</code></code>
 </pre>
 
 <a name="graphql" class="internal-anchor"><h2>Implementation using v3 GraphQL APIs</h2></a>
@@ -229,12 +236,14 @@ What you should get: JSON with the list of all images in the workspace
 <h3>Example Query:</h3>
 
 <pre>
+<code><code>
 query getImagesFromWorkspace($workspaceId: String!){
   elements(workspaceId: $workspaceId, type: Image) {
     __typename
     id
   }
 } 
+</code></code>
 </pre>
 
 <h2>Code sample</h2>
@@ -251,15 +260,18 @@ query getImagesFromWorkspace($workspaceId: String!){
 
 <p>
 <pre class="lang lang-curl">
+<code><code>
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"<workspaceId>"}}'
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
+<code><code>
 const axios = require('axios');
 
 const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
@@ -293,11 +305,13 @@ const getWorkspaces = async () => {
 }
 
 getWorkspaces();
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-python">
+<code><code>
 import requests
 import pprint
 
@@ -332,6 +346,7 @@ def makeQuery():
 if __name__ == "__main__":
     response = makeQuery()
     pprint.pprint(response)
+</code></code>
 </pre>
 
 </p>

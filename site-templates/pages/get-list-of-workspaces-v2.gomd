@@ -50,6 +50,7 @@ After you receive the authentication token, you can get a list of all the worksp
 </div>
 
 <p>
+<code><code>
 <pre class="lang lang-python">
 # Python Code (python 3.5+)
 import requests
@@ -83,12 +84,14 @@ if __name__ == "__main__":
 
   # added to format display of json output
    pprint.pprint(json_response)
+</code></code>
 </pre>
 </p>
 
 
 <p>
 <pre class="lang lang-node">
+<code><code>
 // NodeJS
 var axios = require('axios');
 
@@ -129,14 +132,16 @@ axios(request_values)
     .catch (function (error) {
         console.log('Error: ' + error.message);
     });
-    
+</code></code>    
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-curl">
+<code><code>
 curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/v2/users/me/workspaces' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
+</code></code>
 </pre>
 </p>
 
@@ -168,6 +173,7 @@ What you should get: JSON with the list of the first 25 workspaces your user has
 
 <h3>Output Json sample</h3>
 <pre>
+<code><code>
 {'limit': 25,
 'offset': 0,
 'paging': {'next': '/v2/users/me/workspaces?offset=25&limit=25',
@@ -229,6 +235,7 @@ What you should get: JSON with the list of the first 25 workspaces your user has
             'default_role_uid': None,  
             ... 
             ... 
+</code></code>
 </pre>
 <br />
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.

@@ -58,6 +58,7 @@ This page contains the implementation details for v2 REST APIs. You can also see
 
 <p>
 <pre class="lang lang-python">
+<code><code>
 ## Python Code (python 3.5+)
 import requests
 import datetime
@@ -133,11 +134,14 @@ if __name__ == "__main__":
     pprint.pprint(json_response)
 
     text_id = json_response['text']['id']
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
+<code><code>
+
 // Node.js Javascript
 /*
 
@@ -232,6 +236,7 @@ async function runAPIRequests() {
 
 // Run the requests
 runAPIRequests();
+</code></code>
 </pre>
 </p>
 
@@ -270,6 +275,7 @@ runAPIRequests();
 <p>
 From this answer you can obtain the newly created Canvas ID: ['canvas']['id'] 
 <pre>
+<code><code>
 {'canvas': {'borderColor': 'Yellow',
             'height': 4000,
             'id': '5d3f40a660c139001477f4ea',
@@ -279,12 +285,14 @@ From this answer you can obtain the newly created Canvas ID: ['canvas']['id']
             'x': 10000,
             'y': 1000}
 }    
+</code></code>
 </pre>
 </p>
 
 <h4>Text creation</h4>
 
 <pre>
+<code><code>
 {
     "text": {
         "id": "60b9bfb39ce614001754291b",
@@ -305,12 +313,14 @@ From this answer you can obtain the newly created Canvas ID: ['canvas']['id']
         "order": 1
     }
 }  
+</code></code>
 </pre>
 
 
 <!-- v3
 From this response, you can obtain the newly created Canvas ID: ['data']['id']
 <pre>
+<code><code>
 {
     "data": {
         "id": "600223e68de4a9001c434fe4",
@@ -335,10 +345,12 @@ From this response, you can obtain the newly created Canvas ID: ['data']['id']
         }
     }
 }
+</code></code>
 </pre>
 
 <h4>Text Creation</h4>
 <pre>
+<code><code>
 {
     "data": {
         "id": "604abe996a3fdb001f7cec3b",
@@ -376,6 +388,7 @@ From this response, you can obtain the newly created Canvas ID: ['data']['id']
         }
     }
 }
+</code></code>
 </pre>
 -->
 

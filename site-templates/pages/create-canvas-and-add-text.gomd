@@ -28,10 +28,11 @@ This page contains the implementation details for <a href="#rest">v3 REST APIs</
           <td><b>Body</b></td>
             <td>
             <pre>
+            <code><code>
 {
 &nbsp;&nbsp;&nbsp;&nbsp; "type": "Canvas",
 &nbsp;&nbsp;&nbsp;&nbsp; "name": "&lt;SET_CANVAS_NAME&gt;"
-}</pre>
+}</code></code></pre>
             </td>
         </tr>
         <tr>
@@ -61,10 +62,11 @@ This page contains the implementation details for <a href="#rest">v3 REST APIs</
             <td><b>Body</b></td>
             <td>
             <pre>
+            <code><code>
 {
 &nbsp;&nbsp;&nbsp;&nbsp; "type": "Text",
 &nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;"
-}</pre>
+}<c/ode></code></pre>
             </td>
         </tr>
         <tr>
@@ -72,28 +74,28 @@ This page contains the implementation details for <a href="#rest">v3 REST APIs</
           <td>You need to ensure that the Text's size fits within the Canvas' boundaries. You also need to ensure that the Text's position falls within the Canvas' boundaries. </br>
               If you need to change the dimensions or position of the Text, you'll need to add extra parameters in the Body of your request. </br>
               <b>To change the dimensions of the Text object, the body should look like this:</b></br>
-              <pre>{
+              <pre><code><code>{
 &nbsp;&nbsp;&nbsp;&nbsp; "type": "Text",
 &nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;",
 &nbsp;&nbsp;&nbsp;&nbsp; "style": {"width": "&lt;SET_WIDTH&gt", "height": "&lt;SET_HEIGHT&gt"}
-}</pre>
+}</code></code></pre>
               
               By specifying the <b>relativeToOriginOf</b> query parameter in the endpoint, /v3/workspaces/{workspaceId}/elements<b>?relativeToOriginOf={CANVAS_ID}</b>, the position of the text content will be relative to the top-left corner of the Canvas.</br>
               <b>To change the position of the Text, the body should look like this:</b></br>
-            <pre> 
+            <pre> <code><code>
 {
 &nbsp;&nbsp;&nbsp;&nbsp; "type": "Text",
 &nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;",
 &nbsp;&nbsp;&nbsp;&nbsp; "transform": {"x": "&lt;SET_X&gt;", "y": "&lt;SET_Y&gt;"}
-}</pre>   
+}</code></code></pre>   
 
               <b>To change the font of the Text, the body should look like this: </b></br>
-            <pre> 
+            <pre> <code><code>
 {
 &nbsp;&nbsp;&nbsp;&nbsp; "type": "Text",
 &nbsp;&nbsp;&nbsp;&nbsp; "text": "&lt;SET_TEXT&gt;",
 &nbsp;&nbsp;&nbsp;&nbsp; "style": {"fontSize": "&lt;SET_SIZE&gt"}
-}</pre>   
+}</code></code></pre>   
 You can place the <span class='pre'>style</span> and <span class='pre'>transform</span> parameters into the body of the request to change the dimensions, position and font simultaneously.       
 
                </br>
@@ -117,6 +119,7 @@ You can place the <span class='pre'>style</span> and <span class='pre'>transform
 
 <p>
 <pre class="lang lang-python">
+<code><code>
 # Python Code (python 3.5+)
 import requests
 import datetime
@@ -188,11 +191,13 @@ if __name__ == "__main__":
     pprint.pprint(json_response)
 
     textId = json_response['data']['id']
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
+<code><code>
 // Node.js Javascript
 /*
 
@@ -280,6 +285,7 @@ async function runAPIRequests() {
 
 // Run the requests
 runAPIRequests();
+</code></code>
 </pre>
 </p>
 
@@ -318,6 +324,7 @@ Each time you run a POST API, you will get back a Response Body with the propert
 
 From this response, you can obtain the newly created Canvas ID: ['data']['id']
 <pre>
+<code><code>
 {
     "data": {
         "id": "600223e68de4a9001c434fe4",
@@ -342,10 +349,12 @@ From this response, you can obtain the newly created Canvas ID: ['data']['id']
         }
     }
 }
+</code></code>
 </pre>
 
 <h4>Text Creation</h4>
 <pre>
+<code><code>
 {
     "data": {
         "id": "604abe996a3fdb001f7cec3b",
@@ -383,6 +392,7 @@ From this response, you can obtain the newly created Canvas ID: ['data']['id']
         }
     }
 }
+</code></code>
 </pre>
 
 <a name="graphql" class="internal-anchor"><h2>Implementation using v3 GraphQL APIs</h2></a>
@@ -396,6 +406,7 @@ From this response, you can obtain the newly created Canvas ID: ['data']['id']
 </p>
 
 <pre>
+<code><code>
 mutation createCanvasExample($workspaceId: String!, $input: CreateCanvasInput!){
     createCanvas(workspaceId: $workspaceId, input: $input) {
         __typename
@@ -404,6 +415,7 @@ mutation createCanvasExample($workspaceId: String!, $input: CreateCanvasInput!){
         transform { x y }
     }
 }
+</code></code>
 </pre>
 <p>
     Notice that this is a <i>mutation</i> operation and not a query. This is because it is a Create request instead of just retrieving data, similar to
@@ -411,6 +423,7 @@ mutation createCanvasExample($workspaceId: String!, $input: CreateCanvasInput!){
 </p>
 
 <pre>
+<code><code>
 {
     "workspaceId": "&lt;SET_WORKSPACEID&gt;",
     "input": {
@@ -420,11 +433,13 @@ mutation createCanvasExample($workspaceId: String!, $input: CreateCanvasInput!){
             "y": 100}
     }
 }
+</code></code>
 </pre>
 
 <h3>Output</h3>
 
 <pre>
+<code><code>
 {
     "data": {
         "createCanvas": {
@@ -438,6 +453,7 @@ mutation createCanvasExample($workspaceId: String!, $input: CreateCanvasInput!){
         }
     }
 }
+</code></code>
 </pre>
 <p>
 In the output above, the value of "id" will change every time that you run the <span class="pre">createCanvas</span> mutation.
@@ -449,6 +465,7 @@ In the output above, the value of "id" will change every time that you run the <
 </p>
 
 <pre>
+<code><code>
 mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
     createText(workspaceId: $workspaceId, relativeToOriginOf: $idRelativeTo, input: $input) {
         __typename
@@ -456,12 +473,14 @@ mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
         text
         transform {x y }
     }
-}      
+}   
+</code></code>   
 </pre>
 <p>
     Which can be ran with parameters such as: 
 </p>
 <pre>
+<code><code>
 {
     "workspaceId": "&lt;SET_WORKSPACEID&gt;",
     "idRelativeTo" : "&lt;SET_CANVAS_ID&gt;"
@@ -481,6 +500,7 @@ mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
         }
     }
 }
+</code></code>
 </pre>
 
 <h2>Code sample</h2>
@@ -496,6 +516,7 @@ mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
 
 <p>
 <pre class="lang lang-node">
+<code><code>
 const axios = require('axios');
 
 const url = "<script type="text/javascript">document.write(apiBaseStr);</script>/v3/graphql/"
@@ -581,11 +602,13 @@ async function startProcess() {
 }
 
 startProcess();
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-python">
+<code><code>
 import requests
 import pprint
 
@@ -665,6 +688,7 @@ if __name__ == "__main__":
     
     textResponse = makeQuery(textQuery, textParams)
     pprint.pprint(textResponse)
+</code></code>
 </pre>
 </p>
 
