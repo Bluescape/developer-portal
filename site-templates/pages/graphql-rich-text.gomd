@@ -10,7 +10,7 @@ the <b>workspaceId</b> of where they want the text Element to be added.
 </p>
 
 <pre>
-<script type="text/javascript">document.write(apiBaseStr); </script>/graphql
+<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql
 </pre>
 
 <a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
