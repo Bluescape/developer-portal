@@ -10,7 +10,7 @@ the <b>workspaceId</b> of where they want the text Element to be added.
 </p>
 
 <pre>
-<script type="text/javascript">document.write(apiBaseStr); </script>/graphql
+<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql
 </pre>
 
 <a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
@@ -50,7 +50,8 @@ This mutation can be called with the following variables:
 </p>
 
 <pre>
-"workspaceId": &lt;workspaceId&gt;,
+{
+    "workspaceId": &lt;workspaceId&gt;,
     "input": {
         "blocks": {
             "block": {
@@ -292,16 +293,19 @@ if __name__ == "__main__":
 </pre>
 
 <p>
-After this, the Rich Text element will be added to the workspace. It can then be queried at a later time to retrieve various information on it.
-Example Query:
+After this, the Rich Text element will be added to the workspace. </br>
+</p>
+
+<a name="query-rich-text-graphql" class="internal-anchor"><h2>Query Rich Text in GraphQL</h2></a>
+<p>
+If you want to see the details of the format of Text elements with Rich Text, you can use the query below:
 </p>
 
 <pre>
 query getTextElementsfromWorkspace ($workspaceId: String!){
     elements(workspaceId: $workspaceId type: Text ) {
         type: __typename        
-        id
-        
+        id        
         ... on Text {
               id
             transform {
@@ -332,6 +336,12 @@ query getTextElementsfromWorkspace ($workspaceId: String!){
 }
 </pre>
 
+use these variables:
+<pre>
+{
+    "workspaceId": &lt;workspaceId&gt;
+}
+</pre>
 <p>
 This query returns a large amount of information on the text element, however it can be altered to return more or less details depending on what is needed.
 </p>
