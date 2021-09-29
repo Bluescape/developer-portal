@@ -294,7 +294,11 @@ if __name__ == "__main__":
 
 <p>
 After this, the Rich Text element will be added to the workspace. </br>
-If you want to see the details of the format of the Rich Text elements, you can use the query below:
+</p>
+
+<a name="query-rich-text-graphql" class="internal-anchor"><h2>Query Rich Text in GraphQL</h2></a>
+<p>
+If you want to see the details of the format of Text elements with Rich Text, you can use the query below:
 </p>
 
 <pre>
