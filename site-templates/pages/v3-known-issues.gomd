@@ -10,6 +10,7 @@
 <h4>GraphQL APIs</h4>
 <ul>
     <li>Query for Strokes: traits are returned empty (COL-3483).</li>
+    <li>Stroke scale does not account for stroke brushWidth (ELE-622)</li>
 </ul>
 <h4>GraphQL Subscriptions</h4>
 <ul>
