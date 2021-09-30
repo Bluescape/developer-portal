@@ -235,7 +235,7 @@ query getMyWorkspaces{
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
---data-raw '{"query":"query getMyWorkspaces{\n  me {\n   workspaces (myWorkspace: true) {\n    totalItems\n    results {\n      name\n      description\n      isPublic\n      owner {email firstName lastName}\n    }\n  }\n  }\n}","variables":{}}'
+--data-raw '{"query":"query getMyWorkspaces{\n  me {\n   workspaces {\n    totalItems\n    results {\n      name\n      description\n      isPublic\n      owner {email firstName lastName}\n    }\n  }\n  }\n}","variables":{}}'
 </pre>
 </p>
 
@@ -247,7 +247,7 @@ const url = "<script type="text/javascript">document.write(apiBaseStr); </script
 const token = "&lt;SET_TOKEN&gt;"
 const query = `query getMyWorkspaces{
         me {
-          workspaces (myWorkspace: true) {
+          workspaces {
             totalItems
             results {
             name
@@ -286,7 +286,7 @@ token = "&lt;SET_TOKEN&gt;"
 query = """
     query getMyWorkspaces{
         me {
-          workspaces (myWorkspace: true) {
+          workspaces {
             totalItems
             results {
             name
