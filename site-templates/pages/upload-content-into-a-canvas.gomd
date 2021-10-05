@@ -643,37 +643,59 @@ curl --location -g --request POST '<script type="text/javascript">document.write
 WORKING ON IT
 const axios = require('axios');
 
-const url = "https://api./v3/graphql"
-const token = "<SET_TOKEN>"
-const query = 
-    `query getImagesFromWorkspace($workspaceId: String!){
-        elements(workspaceId: $workspaceId, type: Image) {
-        __typename
-        id
+const url = "https://api.stg1.bluescape.com/v3/graphql"
+const token = "&lt;SET_TOKEN&gt;"
+const query =
+    `mutation uploadImageFromURL($workspaceId: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $url:String! $scale:Float $idCanvasRelativeTo: String!) {
+        createImage(
+              workspaceId: $workspaceId, relativeToOriginOf: $idCanvasRelativeTo
+              input: {
+                title:$title
+                imageFormat: $imageFormat
+                sourceUrl: $url
+                transform: {
+                  x: $x
+                  y: $y 
+                  scale:$scale
+                }
+        }) 
+        #return values after creation:
+        {
+            content{ uploadId url fields}
+            preview{uploadId url fields}
+            image{id width height ingestionState}
         }
-    } `
-const variables = {   
-    workspaceId: "<SET_WORKSPACEID>"
+    }`
+const variables = {
+    "workspaceId": "&lt;WORKSPACE_ID&gt;",
+    "idCanvasRelativeTo": "&lt;CANVAS_ID&gt;",
+    "title": "Yosemite, open view",
+    "imageFormat": "jpeg",
+    "previewFormat": "jpeg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Yosemite_nat_park_valley_view.JPG/1200px-Yosemite_nat_park_valley_view.JPG",
+    "x": 0,
+    "y": 0,
+    "scale": 1
 }
-const getImagesInWorkspaces = async () => {
+const uploadImageByURL = async () => {
     try {
         const response = await axios.post(url,
             {
                 query: query,
                 variables: variables
-            }, 
-            {headers: {"Authorization": "Bearer " + token}})
-        
+            },
+            { headers: { "Authorization": "Bearer " + token } })
+
         answerData = JSON.stringify(response.data);
         console.log(answerData);
         return response
     }
-    catch(error) {
+    catch (error) {
         console.error(error)
     }
 }
 
-getImagesInWorkspaces();
+uploadImageByURL();
 </pre>
 </p>
 
