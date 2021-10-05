@@ -566,7 +566,7 @@ You can use the following mutations: <span class="pre">createDocument</span>, <s
 <p>
 Example of <span class="pre">createImage</span> mutation:
 <pre>
-mutation uploadImageFromURL($workspaceId: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $url:String! $scale:Float) {
+mutation uploadImageFromURL($workspaceId: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $url:String! $scale:Float $idCanvasRelativeTo:String!) {
     createImage(
           workspaceId: $workspaceId, relativeToOriginOf: $idCanvasRelativeTo
           input: {
@@ -608,6 +608,7 @@ Example of parameters to load an image:
 <pre>
 {
     "workspaceId": "&lt;workspaceID&gt;",
+    "idCanvasRelativeTo": "&lt;CANVAS_ID&gt;",
     "title":"Yosemite, open view",
     "imageFormat":"jpeg",
     "previewFormat":"jpeg",
