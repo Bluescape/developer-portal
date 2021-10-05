@@ -264,7 +264,8 @@ const getWorkspaces = async () => {
             {query: query}, 
             {headers: {"Authorization": "Bearer " + token}})
         
-        console.log(response.data);
+        answerData = JSON.stringify(response.data);
+        console.log(answerData);
         return response
     }
     catch(error) {

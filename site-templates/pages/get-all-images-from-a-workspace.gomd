@@ -213,6 +213,10 @@ What you should get: JSON with the list of all images in the workspace
 } 
 </pre>
 
+<p>
+Please note that the <span class="pre">url</span> field under <span class="pre">asset</span> is the URL you can use to download that particular image or asset. This is a signed URL, with an expiration time. 
+</p>
+
 <a name="graphql" class="internal-anchor"><h2>Implementation using v3 GraphQL APIs</h2></a>
 
 <table class="table table-striped">
@@ -251,10 +255,10 @@ query getImagesFromWorkspace($workspaceId: String!){
 
 <p>
 <pre class="lang lang-curl">
-curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
---data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"<workspaceId>"}}'
+--data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {__typename id }\n}\n","variables":{"workspaceId":"&lt;workspaceId&gt;"}}'
 </pre>
 </p>
 
@@ -262,20 +266,19 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
 <pre class="lang lang-node">
 const axios = require('axios');
 
-const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
+const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
 const token = "&lt;SET_TOKEN&gt;"
 const query = 
     `query getImagesFromWorkspace($workspaceId: String!){
         elements(workspaceId: $workspaceId, type: Image) {
         __typename
         id
-        name
         }
     } `
 const variables = {   
     workspaceId: "&lt;SET_WORKSPACEID&gt;"
 }
-const getWorkspaces = async () => {
+const getImagesInWorkspaces = async () => {
     try {
         const response = await axios.post(url,
             {
@@ -284,7 +287,8 @@ const getWorkspaces = async () => {
             }, 
             {headers: {"Authorization": "Bearer " + token}})
         
-        console.log(response.data);
+        answerData = JSON.stringify(response.data);
+        console.log(answerData);
         return response
     }
     catch(error) {
@@ -292,7 +296,7 @@ const getWorkspaces = async () => {
     }
 }
 
-getWorkspaces();
+getImagesInWorkspaces();
 </pre>
 </p>
 
@@ -301,14 +305,18 @@ getWorkspaces();
 import requests
 import pprint
 
-url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
+'''
+Required modules:
+   requests 2.22.0
+'''
+
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
 token = "&lt;SET_TOKEN&gt;"
 query = """
     query getImagesFromWorkspace($workspaceId: String!){
         elements(workspaceId: $workspaceId, type: Image) {
         __typename
         id
-        name
         }
     } 
     """

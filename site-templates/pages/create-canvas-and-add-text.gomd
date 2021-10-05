@@ -156,10 +156,10 @@ if __name__ == "__main__":
     )
 
     json_response = the_request.json()
-    # pprint.pprint(json_response) 
+    # pprint.pprint(json_response) # Uncomment to see the response body
 
     canvasId = json_response['data']['id']
-
+    print("Canvas ID: ", canvasId)
 
     # Add Text to a canvas  
     # Path: 	/v3/workspaces/&lt;workspaceId&gt;/elements
@@ -185,9 +185,11 @@ if __name__ == "__main__":
 
     json_response = the_request.json()
 
-    pprint.pprint(json_response)
+    # pprint.pprint(json_response) # Uncomment to see the response body
 
     textId = json_response['data']['id']
+    print("Text ID: ", textId)
+
 </pre>
 </p>
 
@@ -498,7 +500,7 @@ mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
 <pre class="lang lang-node">
 const axios = require('axios');
 
-const url = "<script type="text/javascript">document.write(apiBaseStr);</script>/v3/graphql/"
+const url = "<script type="text/javascript">document.write(apiBaseStr);</script>/v3/graphql"
 const token = "&lt;SET_TOKEN&gt;"
 const workspaceId = "&lt;SET_WORKSPACEID&gt;"
 
@@ -544,10 +546,11 @@ async function startProcess() {
     const canvasResponse = await makeQuery(canvasQuery, canvasParams);
     console.log(canvasResponse);
 
-    canvasID = canvasResponse.data.id; 
+    # The answer has the mutation name in it to wrap the results
+    canvasID = canvasResponse.data.createCanvas.id; 
 
     const textQuery =
-        `mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
+        `mutation createTextExample($workspaceId: String!, $input: CreateTextInput! $idRelativeTo:String!){
             createText(workspaceId: $workspaceId, relativeToOriginOf: $idRelativeTo, input: $input) {
             __typename
             id
@@ -562,8 +565,8 @@ async function startProcess() {
         "input": {
             "text": "Example text inside canvas",
             "transform": {
-                "x": 50,
-                "y": 50,
+                "x": 200,
+                "y": 200,
                 "scaleX": 1,
                 "scaleY": 1
             },
@@ -589,7 +592,7 @@ startProcess();
 import requests
 import pprint
 
-url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/"
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
 token = "&lt;SET_TOKEN&gt;"
 workspaceId = "&lt;SET_WORKSPACEID&gt;"
 
@@ -622,8 +625,8 @@ if __name__ == "__main__":
     "input": {
         "name": "Example Canvas",
         "transform": {
-            "x": 100,
-            "y": 100
+            "x": 50,
+            "y": 50
             }
         }
     }
@@ -631,10 +634,11 @@ if __name__ == "__main__":
     canvasResponse = makeQuery(canvasQuery, canvasParams)
     pprint.pprint(canvasResponse)
 
-    canvasID = canvasResponse['data']['id']
+    # The answer has the mutation name in it to wrap the results
+    canvasID = canvasResponse['data']['createCanvas']['id']
 
     textQuery = """
-    mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
+    mutation createTextExample($workspaceId: String!, $input: CreateTextInput! $idRelativeTo: String!){
         createText(workspaceId: $workspaceId, relativeToOriginOf: $idRelativeTo, input: $input) {
             __typename
             id
@@ -649,8 +653,8 @@ if __name__ == "__main__":
         "input": {
             "text": "Example text inside canvas",
             "transform": {
-                "x": 50,
-                "y": 50,
+                "x": 200,
+                "y": 200,
                 "scaleX": 1,
                 "scaleY": 1
             },
