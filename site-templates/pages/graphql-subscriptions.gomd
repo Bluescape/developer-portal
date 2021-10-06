@@ -48,7 +48,7 @@ Set the correct values for:
   <li>and <b>HTTP HEADERS</b>
 <pre>
 {
-  "Authorization":"Bearer `<`SET_TOKEN`>`"
+  "Authorization":"Bearer &lt;SET_TOKEN&gt;"
 }
 </pre></li>
 </ul>  
@@ -67,16 +67,18 @@ Please inspect the examples below to implement a basic parser for the subscripti
 /*
 Requires the following libraries and versions:
 1) ws, version 7.4.5
-2) graphql-ws, version 4.5.1
+2) graphql , version 15.16.1
+3) graphql-ws, version 4.5.1
 
 To install them, run:
 npm install &lt;library-name&gt;
 */
 var ws = require('ws');
 var {createClient} = require('graphql-ws');
-const JWT_TOKEN = '<SET_TOKEN>';
+const JWT_TOKEN = '&lt;SET_TOKEN&gt;';
 // Please note the 'wss' protocol
-const WS_URL = 'wss://<script type="text/javascript">document.write(graphQLStr); </script>';
+const WS_URL = 'wss://<script type="text/javascript">document.write(graphQLStrShort); </script>';
+const WORKSPACE_ID = '&lt;workspaceId&gt;';
 
 const observer = {
   error(e) {
@@ -105,7 +107,7 @@ function subscribe(query, variables) {
 }
 
 // Set the subscription
-subscribe(`subscription imageChangesSubscription($workspaceId: String!) {
+const GRAPHQL_SUBSCRIPTION = `subscription imageChangesSubscription($workspaceId: String!) {
     commands(workspaceId: $workspaceId) {
       ... on UpdateElementCommand {
         workspaceId
@@ -120,14 +122,16 @@ subscribe(`subscription imageChangesSubscription($workspaceId: String!) {
         }
       }
     }
-  }`, {
-    workspaceId: '&lt;workspaceId&gt;'
+  }`
+
+subscribe( GRAPHQL_SUBSCRIPTION, {
+    workspaceId: WORKSPACE_ID
   });
 </pre>
 
 </p>
 <p>
-When you move an image, this is the type of event you will receive: 
+When you move an image, this is the type of event you will receive (the value of the <span class="pre">id</span> field is just an example): 
  <pre>
  Update received:
 {
@@ -140,5 +144,78 @@ When you move an image, this is the type of event you will receive:
   }
 }
  </pre>
+
  You can parse this even data and trigger an action.
  </p>
+
+<a name="uploadIngestionStatus" class="internal-anchor"><h3>Example of use of subscriptions: check ingestion status of uploads</h3></a>
+<p>
+Other very interesting case for the use of subscriptions is to monitor the ingestion status of the upload of images, documents or videos.<br/>
+The upload of assets to the workspace will go through 3 ingestion stages:
+<ul>
+  <li>transfering</li>
+  <li>processing</li>
+  <li>complete_success</li>
+</ul>
+
+You can use the example above and replace the graphQL subscription with the one below:
+
+<pre>
+subscription viewUploadAssetIngestionStateSubscription($workspaceId: String!) {
+    item: commands(workspaceId: $workspaceId) {
+      ... on UploadAssetCommand{
+          workspaceId
+        elementId
+        elementType
+        ingestionState      
+      }
+      
+    }
+  }
+</pre>
+
+The <span class="pre">ingestionState</span> field will display the status of each upload as it changes over time. When the status is <span class="pre">complete_success</span> it means that the upload has been completed successfully and you can interact with the object. Before this status, you cannot access or try to modify the still uploading element (you will get an error from the API execution).
+</p>
+<p>
+Example of the events reported by the <span class="pre">viewUploadAssetIngestionStateSubscription</span> above for the upload of an image (the values of <span class="pre">workspaceId</span> and <span class="pre">elementId</span> are sample values to show they belong to the same object being uploaded):
+
+<pre>
+{
+  data: {
+    item: {
+      workspaceId: '9D5UnzlRcvk8ujOgCK-J',
+      elementId: '615e12bd90f5ca11cf8d951f',
+      elementType: 'Image',
+      ingestionState: 'transferring'
+    }
+  }
+}
+Observer.next
+{ data: { item: {} } }
+Observer.next
+{
+  data: {
+    item: {
+      workspaceId: '9D5UnzlRcvk8ujOgCK-J',
+      elementId: '615e12bd90f5ca11cf8d951f',
+      elementType: 'Image',
+      ingestionState: 'processing'
+    }
+  }
+}
+Observer.next
+{
+  data: {
+    item: {
+      workspaceId: '9D5UnzlRcvk8ujOgCK-J',
+      elementId: '615e12bd90f5ca11cf8d951f',
+      elementType: 'Image',
+      ingestionState: 'complete_success'
+    }
+  }
+}
+</pre>
+</P>
+
+<br />
+If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
