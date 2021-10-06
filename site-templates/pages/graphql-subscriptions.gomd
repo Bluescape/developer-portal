@@ -48,7 +48,7 @@ Set the correct values for:
   <li>and <b>HTTP HEADERS</b>
 <pre>
 {
-  "Authorization":"Bearer `<`SET_TOKEN`>`"
+  "Authorization":"Bearer &lt;SET_TOKEN&gt;"
 }
 </pre></li>
 </ul>  
@@ -74,9 +74,9 @@ npm install &lt;library-name&gt;
 */
 var ws = require('ws');
 var {createClient} = require('graphql-ws');
-const JWT_TOKEN = '<SET_TOKEN>';
+const JWT_TOKEN = '&lt;SET_TOKEN&gt;';
 // Please note the 'wss' protocol
-const WS_URL = 'wss://<script type="text/javascript">document.write(graphQLStr); </script>';
+const WS_URL = 'wss://<script type="text/javascript">document.write(graphQLStrShort); </script>';
 
 const observer = {
   error(e) {
