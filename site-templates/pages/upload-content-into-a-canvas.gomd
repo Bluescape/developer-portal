@@ -437,36 +437,28 @@ See the example below to learn how to upload an image by URL.
 
 <p>
 <pre class="lang lang-curl">
+# If you do not define height and width, 
+# the image will be centered in an squared area defined by whatever value is higher: width or height.
+# This may lead to think that the image is wrongly positioned, not in the (x,y) position you specified.
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACEID&gt;/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "type": "Image",
     "transform": {
-        "x": 12000,
-        "y": 200
+        "x": 50,
+        "y": 50
     },
     "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Yosemite_nat_park_valley_view.JPG/1200px-Yosemite_nat_park_valley_view.JPG",
-    "imageFormat": "jpg"
+    "imageFormat": "jpg",
+    "title": "Yosemite"
 }'
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
- /*
-
-How to run:
-node this_script_name.js
-
-Requires "axios" module (0.19.0), run:
-npm install request-promise
-npm install fs
-
-*/
-
 const request = require('request-promise');
-const fs = require('fs');
 
 const token = '&lt;SET_TOKEN&gt;'
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
@@ -482,10 +474,10 @@ async function main() {
     const zygote_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;';
     const zygote_body = {
         "type": "Image",
-        "title": "Nachooooo.jpg",
+        "title": "Yosemite",
         "imageFormat": "jpg",
-        "transform": { "x": 100, "y": 100, "scale": 1 },
-        "sourceUrl": "https://i.imgur.com/k66EOEe.jpeg"
+        "transform": { "x": 50, "y": 50, "scale": 1 },
+        "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Yosemite_nat_park_valley_view.JPG/1200px-Yosemite_nat_park_valley_view.JPG"
     }
     const zygote_options = {
         headers: request_headers,
@@ -497,7 +489,8 @@ async function main() {
     const zygote_response = await request(zygote_options)
     .catch(err => console.log(err))
 
-    console.log(zygote_response)
+    answer = JSON.stringify(zygote_response);
+    console.log(answer);
 }
 
 main();
@@ -523,10 +516,10 @@ if __name__ == "__main__":
     zygote_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/elements?relativeToOriginOf=&lt;CANVAS_ID&gt;'
     zygote_body = {
         "type": "Image",
-        "title": "Nachooooo.jpg",
+        "title": "Yosemite view",
         "imageFormat": "jpg",
-        "transform": { "x": 100, "y": 100, "scale": 1 },
-        "sourceUrl": "https://i.imgur.com/k66EOEe.jpeg"
+        "transform": { "x": 50, "y": 50, "scale": 1 },
+        "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Yosemite_nat_park_valley_view.JPG/1200px-Yosemite_nat_park_valley_view.JPG"
     }
 
     zygote_request = requests.post(zygote_endpoint, headers = request_headers, json = zygote_body)
@@ -534,7 +527,29 @@ if __name__ == "__main__":
     pprint.pprint(zygote_response)
 </pre>
 </p>
+<p>
+In the REST APIs, while the image is still uploading, the status is visible in the traits of the elements, as <span class="pre">"transfering"</span> in the response body. For example:
+<pre>
+{
+  "data": {
+    "image": {
+      "id": "&lt;IMAGE_ID&gt;",
+      ...
+      "traits": {
+        "http://bluescape.dev/zygote/v1/ingestionState": {
+          "http://bluescape.dev/zygote/v1/ingestionState/timestamp": 1633481223994,
+          "http://bluescape.dev/zygote/v1/ingestionState/stage": "transferring"
+        }
+      }
+      ...
+    }
+  }
+}
+</pre>
+Once the upload is completed, the traits will be empty, which means that the image upload is complete and you can access it in the workspace.
+</p>
 
+<p>
 To upload video you will use the same API, but slightly different payload. The main changes are the value in <span class="pre">type</span> and use a <span class="pre">videoFormat</span> field instead of <span class="pre">imageFormate</span>. The example below is set to upload a .mov video:
 
 <pre>
@@ -631,7 +646,7 @@ Example of parameters to load an image:
 
 <p>
     <pre class="lang lang-curl">
-curl --location -g --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/graphql' \
+curl --location -g --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"mutation uploadImageFromURL($workspaceId: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $url:String! $scale:Float $idCanvasRelativeTo:String!) {\n    createImage(\n          workspaceId: $workspaceId, relativeToOriginOf: $idCanvasRelativeTo\n          input: {\n            title:$title\n            imageFormat: $imageFormat\n            sourceUrl: $url\n            transform: {\n              x: $x\n              y: $y\n              scale:$scale\n            }\n    }) \n    #return values after creation:\n    {\n        content{ uploadId url fields}\n        preview{uploadId url fields}\n        image{id width height ingestionState}\n    }\n}","variables":{"ws":"&lt;WORKSPACE_ID&gt;","idCanvasRelativeTo": "&lt;CANVAS_ID&gt;","title":"Yosemite, grand view","imageFormat":"jpeg","previewFormat":"gif","url":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Yosemite_nat_park_valley_view.JPG/1200px-Yosemite_nat_park_valley_view.JPG","x":0,"y":0,"scale":1}}'    
@@ -640,10 +655,9 @@ curl --location -g --request POST '<script type="text/javascript">document.write
 
 <p>
 <pre class="lang lang-node">
-WORKING ON IT
 const axios = require('axios');
 
-const url = "https://api.stg1.bluescape.com/v3/graphql"
+const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
 const token = "&lt;SET_TOKEN&gt;"
 const query =
     `mutation uploadImageFromURL($workspaceId: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $url:String! $scale:Float $idCanvasRelativeTo: String!) {
@@ -701,7 +715,65 @@ uploadImageByURL();
 
 <p>
 <pre class="lang lang-python">
-Python
+import requests
+import pprint
+
+'''
+Required modules:
+   requests 2.22.0
+'''
+
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
+token = "&lt;SET_TOKEN&gt;"
+query = """
+    mutation uploadImageFromURL($workspaceId: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $url:String! $scale:Float $idCanvasRelativeTo: String!) {
+        createImage(
+              workspaceId: $workspaceId, relativeToOriginOf: $idCanvasRelativeTo
+              input: {
+                title:$title
+                imageFormat: $imageFormat
+                sourceUrl: $url
+                transform: {
+                  x: $x
+                  y: $y 
+                  scale:$scale
+                }
+        }) 
+        #return values after creation:
+        {
+            content{ uploadId url fields}
+            preview{uploadId url fields}
+            image{id width height ingestionState}
+        }
+    }
+    """
+
+variables = {
+    "workspaceId": "&lt;WORKSPACE_ID&gt;",
+    "idCanvasRelativeTo": "&lt;CANVAS_ID&gt;",
+    "title": "Yosemite, open view",
+    "imageFormat": "jpeg",
+    "previewFormat": "jpeg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Yosemite_nat_park_valley_view.JPG/1200px-Yosemite_nat_park_valley_view.JPG",
+    "x": 0,
+    "y": 0,
+    "scale": 1
+}
+
+def makeQuery():
+    response = requests.post(url,
+                             headers={"Authorization": "Bearer " + token
+                                      },
+                             json={
+                                 'query': query,
+                                 'variables': variables
+                             })
+    return response.json()
+
+if __name__ == "__main__":
+    response = makeQuery()
+    pprint.pprint(response)
+
 </pre>
 </p>
 
