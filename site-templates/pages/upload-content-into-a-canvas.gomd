@@ -379,6 +379,8 @@ curl --location --request PUT '<script type="text/javascript">document.write(api
 
 <p>
 <pre class="lang lang-node">
+const request = require('request-promise');
+
 const upload_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/assets/uploads/' + zygote_response.data.content.uploadId
 const upload_options = {
     headers: request_headers,
@@ -397,6 +399,8 @@ console.log(upload_response.statusCode)
 
 <p>
 <pre class="lang lang-python">
+import requests
+
 upload_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/assets/uploads/' + zygote_data['uploadId']
 upload_response = requests.put(upload_endpoint, headers= request_headers, json={})
 pprint.pprint(upload_response.status_code)
