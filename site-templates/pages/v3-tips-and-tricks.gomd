@@ -48,7 +48,7 @@ One of the most interesting features of GraphQL is introspection. Introspection 
 
 <pre>
 query GetSchema{
-  ____schema__ {
+  __schema {
     types {
       name
       description
@@ -64,7 +64,7 @@ The query answer will be something like this:
 <pre>
 {
     "data": {
-        "____schema__": {
+        "__schema": {
             "types": [
                 {
                     "name": "Browser",
@@ -84,7 +84,7 @@ You can also specify a particular type to get its details:
 
 <pre>
 query ElementDetails {
-  ____type(name:"Element")__ {
+  __type(name:"Element") {
     name
     fields {
       name
