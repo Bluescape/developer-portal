@@ -1,6 +1,6 @@
 <h1>GraphQL subscriptions</h1>
 <p>
-GraphQL Subscriptions enable clients to listen to real-time messages whenever important changes happen inside of Bluescape workspaces and organizations. The client connects to the server with a bi-directional communication channel using the WebSocket protocol and sends a subscription query that specifies which event it is interested in. When an event is triggered, the Bluescape server executes the stored GraphQL query, and the result is sent back to the client using the same communication channel.<br />
+GraphQL Subscriptions enable clients to listen to real-time messages whenever important changes happen inside of Bluescape workspaces and organizations. The client connects to the server with a bi-directional communication channel using the WebSocket protocol and sends a subscription query that specifies which event it is interested in. When an event is triggered, the Bluescape server executes the stored GraphQL query, and the result is sent back to the client using the same communication channel. <br />
 
 The client can unsubscribe by sending a message to the Bluescape server. The Bluescape server can also unsubscribe at any time due to errors or timeouts.
 <img width="500"  class="img-responsive center-block" src="/docs/assets/images/graphql-subscription-workflow.png">
@@ -11,10 +11,22 @@ The client can unsubscribe by sending a message to the Bluescape server. The Blu
 </p>
 
 <h3>Example of implementation</h3>
+<p>
+Content in this page:
+<ul>
+  <li><a href="#gl_subscription_playground_example">Subscription implementation in GraphQL Playground</a></li>
+  <li><a href="#gl_subscription_script_example">Subscription implementation in a script</a></li>
+  <li><a href="#uploadIngestionStatus">Example of use of subscriptions: check ingestion status of uploads</a></li>
+  <li><a href="#gl_use_cursor">Example of use of subscriptions: use cursor to reconnect to a subscription</a></li>
+</ul>
 
-Below you can find 2 types of implementations: <a href="#playground_example">using the GraphQl Playground</a> to test and inspect the subscriptions, and <a href="#script_example">using a script</a> to capture an process the subscription events.
+</p>
 
-<a name="playground_example" class="internal-anchor"><h4>Subscription implementation in GraphQL Playground</h4></a>
+<h3>Example of subscription implementation</h3>
+
+Below you can find 2 types of implementations: <a href="#gl_subscription_playground_example">using the GraphQl Playground</a> to test and inspect the subscriptions, and <a href="#gl_subscription_script_example">using a script</a> to capture an process the subscription events.
+
+<a name="gl_subscription_playground_example" class="internal-anchor"><h4>Subscription implementation in GraphQL Playground</h4></a>
 <p>You can access the playground via the <script type="text/javascript">document.write('<a href="' + graphQLStr + '" target="_blank">GraphQL Playground</a>');</script> page.
 Here is an example of subscription for events, for reporting the change in position (x,y) of Image elements, using the <span class="pre">commands</span> subscription: <br />
 <pre>
@@ -58,7 +70,8 @@ Click the "Play" button in the top middle section of the screen. You should see 
 After moving the image, you will see that a new event is reported to the subscription, where the position (x,y) has changed: 
 <img width="600" class="img-responsive center-block" src="/docs/assets/images/graphql_subscription_events.png">
 </p>
-<a name="script_example" class="internal-anchor"><h4>Subscription implementation in a script</h4></a>
+
+<a name="gl_subscription_script_example" class="internal-anchor"><h4>Subscription implementation in a script</h4></a>
 <p>
 The implementation in the GraphQL Playground shows us how the data for the subscription will be delivered. The next step is to use a script or an implementation to take specific actions based on the data of the events that we are receiving from the subscription.</br>
 Please inspect the examples below to implement a basic parser for the subscription events.  
@@ -215,7 +228,75 @@ Observer.next
   }
 }
 </pre>
-</P>
+</p>
+
+<a name="gl_use_cursor" class="internal-anchor"><h3>Example of use of subscriptions: use cursor to reconnect to a subscription</h3></a>
+<p>
+GraphQL subscriptions are long-lasting operations that can deliver changes in real time. GraphQL <span class="pre">commands</span> subscription provides you with live updates that happen in a workspace. For example:
+
+<pre>
+subscription($workspaceId: String!) {
+  commands(workspaceId: $workspaceId) {
+    ... on CreateElementCommand {
+      element {
+        id
+        type: __typename
+      }
+    }
+  }
+}
+</pre>
+</p>
+
+<p>
+GraphQL subscriptions deliver changes as long as underlying connection is active. If the connection is terminated, the client must reconnect by re-sending the subscription operation. In this case, if changes happened to elements or to the workspace in between disconnect and reconnect events, the client will not receive these changes. To avoid loss of data your client can use cursors. GraphQL subscription <b>cursors</b> are identifiers which exist on every command, similar to the concept of an event unique ID. Then, it is a good practice to include the <span class="pre">cursor</span> field in the subscription.<br />
+Your client can subscribe and receive GraphQL subscription commands with cursors. See the following example:
+
+<pre>
+subscription($workspaceId: String!) {
+  commands(workspaceId: $workspaceId) {
+    cursor
+    ... on CreateElementCommand {
+      element {
+        id
+        type: __typename
+      }
+    }
+  }
+}
+</pre>
+<!--
+A <span class="pre">cursor</span> field will a value similar to this example: <span class="pre">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...wubEm18bmo8ov2YYpJHIQNpXCVP3dBqCoTyJPdlbRk4'</span>
+-->
+</p>
+<p>
+If your subscription was interrupted and you want to get all the events since the last available cursor, then provide the last known cursor value to a subscription like in the example below. This subscription also will keep receiving the new events. It is like saying: "create a subscription, listing all the events since <span class="pre">lastKnownCursor</span> and all the new ones".
+
+<pre>
+subscription($workspaceId: String!, $lastKnownCursor: ID!) {
+  commands(workspaceId: $workspaceId, cursor: $lastKnownCursor) {
+    cursor
+    ... on CreateElementCommand {
+      element {
+        id
+        type: __typename
+      }
+    }
+  }
+}
+</pre>
+Use these variables:
+
+<pre>
+{
+    "workspaceId": "&lt;workspaceId&gt;",
+    "lastKnownCursor": "&lt;last_known_cursor_value&gt;"
+
+}
+</pre>
+
+The subscription will list all the events since the value of <span class="pre">lastKnownCursor</span>, and you client can process them: all the missed events and in the correct sequence. 
+</p>
 
 <br />
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
