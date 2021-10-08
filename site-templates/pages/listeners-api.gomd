@@ -101,7 +101,7 @@ In <span class="pre">v3</span> you will use <a href="/docs/page/graphql-subscrip
 </p>
 
 <p>
-    The full list of event types that can be subscribed to is available <a href="/docs/page/listener-events">here</a> in
+    The full list of event types that can be subscribed to is available <a href="/docs/page/listener-events-v2">here</a> in
     the Reference section.
 </p>
 
