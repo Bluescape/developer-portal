@@ -160,7 +160,7 @@ section, .section, .full {
 
 article {
   padding-bottom: 1em;
-  padding-top:60px;
+  /* padding-top:60px; */
 }
 
 article.panel {
