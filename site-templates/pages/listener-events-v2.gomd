@@ -15,8 +15,17 @@
     </tr>
 
     <tr>
-        <td>ALL</td>
-        <td>All events for all objects.</td>
+        <td>ATTACH_ALL</td>
+        <td>An attachment was created or deleted.</td>
+    </tr>
+    <tr>
+        <td>ATTACH_ADD</td>
+        <td>An attachment was created: an element was attached to other element.</td>
+    </tr>
+
+    <tr>
+        <td>ATTACH_DELETE</td>
+        <td>An attachment was deleted: an element was detached from other element.</td>
     </tr>
 
     <tr>
@@ -177,5 +186,59 @@
     <tr>
         <td>TEXT_UPDATE</td>
         <td>A text element was updated.</td>
+    </tr>
+
+    <tr>
+        <td>WORKSPACE_ALL</td>
+        <td>A workspace had a change. See list of changes listed below.</td>
+    </tr>
+
+    <tr>
+        <td>WORKSPACE_ARCHIVE</td>
+        <td>A workspace was archived.</td>
+    </tr>
+
+    <tr>
+        <td>WORKSPACE_DELETE</td>
+        <td>A workspace was deleted.</td>
+    </tr>
+
+    <tr>
+        <td>WORKSPACE_DUPLICATE</td>
+        <td>A workspace was duplicated.</td>
+    </tr>
+
+    <tr>
+        <td>WORKSPACE_PUBLISH</td>
+        <td>A workspace was published.</td>
+    </tr>
+
+    <tr>
+        <td>WORKSPACE_UNPUBLISH</td>
+        <td>A workspace was unpublished.</td>
+    </tr>
+    <tr>
+        <td>WORKSPACE_UPDATE</td>
+        <td>A workspace was updated.</td>
+    </tr>
+    <tr>
+        <td>WORKSPACE_USER_ALL</td>
+        <td>All events related to a user in a workspace. See list below.</td>
+    </tr>
+    <tr>
+        <td>WORKSPACE_USER_ADD</td>
+        <td>A user was added to a workspace.</td>
+    </tr>
+    <tr>
+        <td>WORKSPACE_USER_REMOVE</td>
+        <td>A user was removed from a workspace.</td>
+    </tr>
+    <tr>
+        <td>WORKSPACE_USER_ROLE_CHANGE</td>
+        <td>The role of a user in a workspace was changed.</td>
+    </tr>
+    <tr>
+        <td>WORKSPACE_USER_UPDATE</td>
+        <td>A user associated with a workspace had one of its properties updated.</td>
     </tr>
 </table>
