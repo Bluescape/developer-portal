@@ -24,7 +24,6 @@
     --->
     <li><a href="/docs/page/traits-api">Traits APIs</a></li>
     <li><a href="/docs/page/attachments-api">Attachments APIs</a></li>
-    <!-- <li><a href="/docs/page/attachments-listener-events">Attachment Listener Events</a></li> -->
 
     <li><a href="/docs/page/listeners-api">Listeners APIs</a></li>
 
