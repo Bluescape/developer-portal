@@ -205,7 +205,7 @@ What you should get: JSON with the list of the first 25 workspaces your user has
 <pre>
 query getMyWorkspaces{
   me {
-   workspaces (myWorkspace: true) {
+   workspaces {
     totalItems
     results {
       name
