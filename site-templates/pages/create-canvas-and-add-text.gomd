@@ -451,7 +451,7 @@ In the output above, the value of "id" will change every time that you run the <
 </p>
 
 <pre>
-mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){
+mutation createTextExample($workspaceId: String!, $input: CreateTextInput!, $idRelativeTo: String! ){
     createText(workspaceId: $workspaceId, relativeToOriginOf: $idRelativeTo, input: $input) {
         __typename
         id
