@@ -249,28 +249,34 @@ In v3 GraphQL traits, you have 2 options to specify the JSON-LD keyword in the T
         </table>
 
 <h3>Add Traits when creating an element, GraphQL API</h3>
+<p>
+In this example, we will add Traits to a regular shape:
+<p>
 
 <pre>
-mutation createShapeWithTraits($ws: String! $textContent:String!) {
-    createShape(
-        workspaceId: $ws
-        input: {
-        text:$textContent
-        traits:{context: "http://schema.org/", 
+mutation createShape($workspaceId: String! $textContent: String! ) {
+      createShape(
+          workspaceId: $workspaceId
+          input: {  
+            text: $textContent
+            transform: {x:0 y:0}
+            style: {
+                 regularShape: {
+                	kind: Ellipse 
+                    width:2000 height:2000 strokeWidth: 5 
+            			fillColor: {
+               			 r:255 g:100 b:255 a:1}
+                 }              
+            }
+            traits:{
+                context: "http://schema.org/", 
                 content: {
                     name: "shape with traits", 
                     shape: "ellipse"
                     }
-                }
-        kind: Ellipse           
-        style: {
-            width:2000 height:2000 strokeWidth: 5 
-            fillColor: {
-                r:255 g:100 b:255 a:1}
-        }
-        transform: {x:0 y:0}
-        })
-    {id kind traits}
+            }
+          })
+        {id kind traits }
     }
 </pre>
 
@@ -282,7 +288,7 @@ with the following variables:
 }
 </pre>
 
-In the Response body, see how the traits have been created:
+In the Response body, see how the traits have been created (the id field value may be different):
 <pre>
 {
     "data": {
