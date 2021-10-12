@@ -262,10 +262,9 @@ mutation createShape($workspaceId: String! $textContent: String! ) {
             transform: {x:0 y:0}
             style: {
                  regularShape: {
-                	kind: Ellipse 
+                    kind: Ellipse 
                     width:2000 height:2000 strokeWidth: 5 
-            			fillColor: {
-               			 r:255 g:100 b:255 a:1}
+                    fillColor: { r:255 g:100 b:255 a:1 }
                  }              
             }
             traits:{
@@ -273,7 +272,7 @@ mutation createShape($workspaceId: String! $textContent: String! ) {
                 content: {
                     name: "shape with traits", 
                     shape: "ellipse"
-                    }
+                }
             }
           })
         {id kind traits }
@@ -283,7 +282,7 @@ mutation createShape($workspaceId: String! $textContent: String! ) {
 with the following variables:
 <pre>
 {
-    "workspace": "`<`workspaceId`>`",
+    "workspace": "&lt;workspaceId&gt;",
     "textContent" : "New shape, with traits!"
 }
 </pre>
