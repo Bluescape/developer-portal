@@ -1,0 +1,211 @@
+<h1>How to find elements in a workspace</h1>
+<p>
+<b>Objective</b>: find elements in the workspace that match a specific name or text string.  This is done to get properties of that element, to edit it or to delete it. Also, you may want to find a specific canvas to retrieve its content or to add more elements to it.<br />
+
+This page contains the implementation details for <a href="#rest">v3 REST APIs</a> and for <a href="#graphql">v3 GraphQL APIs</a>.
+</p>
+
+<a name="rest" class="internal-anchor"><h2>Implementation using REST APIs</h2></a>
+<p>
+In v3 we have access to a <span class="pre">search</span> API. This API allows to run a search for a string and we will get all the objects matching that string in their text content.
+</p>
+
+<table class="table table-striped">
+  <tr>
+    <td><b>Endpoint</b></td>
+    <td>/v3/workspaces/&lt;workspaceId&gt;/search</td>
+  </tr>
+  <tr>
+      <td><b>Method</b></td>
+      <td>POST</td>
+  </tr>  
+  <tr>
+    <td><b>Comments</b></td>
+    <td>Searches a workspace with a query string, can filter by element types.<br/>
+    The output contains a <span class="pre">"matchText"</span> field that shows what is the text matching the search query.
+    </td>
+  </tr>
+</table>
+<p>
+    You can specify what type of elements are included in the search. If you want to search only on Image, Shape and Text elements, you can specify the <span class="pre">"filterTypes"</span> field with those values, as in this example of the request body:
+
+<pre>
+{
+  "filterTypes": [
+    "Image", "Shape", "Text"
+  ],
+  "orderDirection": "desc",
+  "query": "<STRING_TO_MATCH>"
+} 
+</pre>
+
+</p>
+
+<p>
+     If you want to run a search for all the elements in the workspace, and not for a specific set, then simply remove the <span class="pre">"filterTypes"</span> key in the body request of the API call. <b>IMPORTANT</b>: currently the search API does not match or search the content of Comments in elements.
+
+<pre>
+{
+  "orderDirection": "desc",
+  "query": "<STRING_TO_MATCH>" 
+}
+</pre>
+
+</p>
+
+<h2>Code sample</h2>
+
+<p>
+    See below code samples.
+</p>
+
+
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/search' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--data-raw '{
+  "filterTypes": [
+    "Canvas"
+  ],
+  "orderDirection": "desc",
+  "query": "&lt;STRING_TO_MATCH&gt"
+}'
+# if you want to get a shorter version of the results of the search, add the following line at to the script above, after "}'":
+# | jq . | egrep "(matchText|\"id\"|type)" 
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+ADD code
+
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+ADD           
+</pre>        
+</p>
+
+
+<h2>OUTPUT</h2>
+
+<p>
+What you should get: JSON with the list of all elements matching the search query. In this example we run a search for "new". The results contain 2 results: an image an a shape. The <span class="pre">"matchText"</span> field shows the text that matched the search query.
+</p>
+
+<p>
+<pre>
+{
+    "data": [
+        {
+            "matchText": "January 2021 reports: summary data",
+            "score": 0.046,
+            "element": {
+                "id": "5ef27790ff5317444e00052a",
+                "zIndex": 1330,
+                "transform": {
+                    "x": 115610.49999999997,
+                    "y": -33618,
+                    "scaleX": 1,
+                    "scaleY": 1
+                },
+                "pinned": false,
+                "comments": [],
+                "type": "Canvas",
+                "name": "January 2021 reports: summary data",
+                "style": {
+                    "width": 47914,
+                    "height": 25208,
+                    "borderColor": {
+                        "r": 238, "g": 85, "b": 80, "a": 1
+                    }
+                }
+            }
+        },
+        {
+            "matchText": "January 2021: all projects",
+            "score": 0.032,
+            "element": {
+                "id": "617c44b4b9575c0c10e783c9",
+                "zIndex": 2963,
+                "transform": {
+                    "x": 60092,
+                    "y": -34409,
+                    "scaleX": 1,
+                    "scaleY": 1
+                },
+                "pinned": false,
+                "comments": [],
+                "type": "Canvas",
+                "name": "January 2021: all projects",
+                "style": {
+                    "width": 43243,
+                    "height": 20170,
+                    "borderColor": {
+                        "r": 153, "g": 198, "b": 255, "a": 1
+                    }
+                }
+            }
+        }
+    ]
+}
+</pre>
+</p>
+
+
+<p>
+<pre class="lang lang-node">
+const axios = require('axios');
+
+const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
+const token = "&lt;SET_TOKEN&gt;"
+const query = 
+    `query getImagesFromWorkspace($workspaceId: String!){
+        elements(workspaceId: $workspaceId, type: Image) {
+        __typename
+        id
+        }
+    } `
+const variables = {   
+    workspaceId: "&lt;SET_WORKSPACEID&gt;"
+}
+const getImagesInWorkspaces = async () => {
+    try {
+        const response = await axios.post(url,
+            {
+                query: query,
+                variables: variables
+            }, 
+            {headers: {"Authorization": "Bearer " + token}})
+        
+        answerData = JSON.stringify(response.data);
+        console.log(answerData);
+        return response
+    }
+    catch(error) {
+        console.error(error)
+    }
+}
+
+getImagesInWorkspaces();
+</pre>
+</p>
+
+
+<a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
+<p>
+In GraphQl we currently do not have a search API. The approach here is to run a query for the type of element you want, and then loop through the list of results looking for the specific element matching the string you are after. 
+</p>
+
+<p>
+If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
+</p>
