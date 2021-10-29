@@ -1,6 +1,6 @@
 <h1>How to find elements in a workspace</h1>
 <p>
-<b>Objective</b>: find elements in the workspace that match a specific name or text string.  This is done to get properties of that element, to edit it or to delete it. Also, you may want to find a specific canvas to retrieve its content or to add more elements to it.<br />
+<b>Objective</b>: find elements in the workspace that match a specific text string.  This is done to get properties of that element, to edit it or to delete it. Also, you may want to find a specific canvas to retrieve its content or to add more elements to it.<br />
 
 This page contains the implementation details for <a href="#rest">v3 REST APIs</a> and for <a href="#graphql">v3 GraphQL APIs</a>.
 </p>
@@ -56,7 +56,7 @@ In v3 we have access to a <span class="pre">search</span> API. This API allows t
 <h2>Code sample</h2>
 
 <p>
-    See below code samples.
+    See below code samples for a search on Canvas elements.
 </p>
 
 
@@ -84,14 +84,104 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
 
 <p>
 <pre class="lang lang-python">
-ADD code
+# Python Code (python 3.5+)
+import requests
+import datetime
+import pprint
 
+'''
+
+Required modules:
+    requests 2.22.0
+
+'''
+
+token = '<SET_TOKEN>'        
+
+if __name__ == "__main__":
+    portal = 'https://api.' 
+    workspaceId = '&lt;SET_WORKSPACE_ID&gt;'  # REMEMBER TO ADD THE WORKSPACE ID
+
+    # Run search
+    # Path: /v3/workspaces/<workspaceId>/search
+
+    API_endpoint = '/v3/workspaces/' + workspaceId + '/elements'
+
+    timestamp = datetime.datetime.now()
+
+    data_load = {
+        "filterTypes": [
+            "Canvas"
+        ],
+        "orderDirection": "desc",
+        "query": "&lt;STRING_TO_MATCH&gt"
+    }
+
+    the_request = requests.post(
+        portal + API_endpoint,
+        headers={"Authorization": "Bearer " + token,
+                    "Content-Type": "application/json"
+                    },
+        json=data_load
+    )
+
+    json_response = the_request.json()
+    pprint.pprint(json_response)  
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
-ADD           
+// Node.js Javascript   
+/*
+
+How to run:
+node this_script_name.js
+
+Requires "axios" module (0.19.0), run:
+npm install axios
+
+website: https://github.com/axios/axios
+
+*/
+
+var axios = require('axios');
+
+const token = '<SET_TOKEN>';
+const portal = 'https://api.';
+const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
+const api_version = 'v3';
+const api_endpoint = '/workspaces/' + workspaceId + '/search';
+
+data_load = {
+    "filterTypes": [
+        "Canvas"
+    ],
+    "orderDirection": "desc",
+    "query": "&lt;STRING_TO_MATCH&gt"
+}
+
+var request_values = {
+    url: portal + '/' + api_version + api_endpoint,
+    method : 'POST' ,
+    headers : {
+        'Authorization': "Bearer " + token,
+        'Content-Type' : 'application/json'    
+    },
+    data : data_load,
+};
+
+axios(request_values)
+    .then(function (response) {
+        if (response.status == 200)
+        {
+            console.log("Success");
+            console.log(response.data);
+        }
+    })
+    .catch (function (error) {
+        console.log('Error: ' + error.message);
+    });             
 </pre>        
 </p>
 
@@ -99,7 +189,19 @@ ADD
 <h2>OUTPUT</h2>
 
 <p>
-What you should get: JSON with the list of all elements matching the search query. In this example we run a search for "new". The results contain 2 results: an image an a shape. The <span class="pre">"matchText"</span> field shows the text that matched the search query.
+What you should get: JSON with the list of all elements matching the search query. In this example we run a search for Canvas containing  "January 2021". This is the request body:
+</p>
+<pre>
+{
+  "filterTypes": [
+    "Canvas"
+  ],
+  "orderDirection": "desc",
+  "query": "January 2021"
+}
+</pre>
+<p>
+The output contains 2 results. The <span class="pre">"matchText"</span> field shows the text that matched the search query. Now you can process the results or run a new search with a search query with more specific terms (for example "January 2021 summary data"). The values for the <span class="pre">"id"</span> fields are only examples.
 </p>
 
 <p>
@@ -204,6 +306,33 @@ getImagesInWorkspaces();
 <a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
 <p>
 In GraphQl we currently do not have a search API. The approach here is to run a query for the type of element you want, and then loop through the list of results looking for the specific element matching the string you are after. 
+</p>
+
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"query getCanvasesfromWorkspace($workspaceId: String!) {\n  elements(workspaceId: $workspaceId, type: Canvas) {\n    ... on Canvas {\n      type: __typename\n      id\n      name\n      transform {\n        x\n        y\n      }      \n    }\n  }    \n}","variables":{"workspaceId":"&lt;workspaceId&gt;"}}'
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+python
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+javascript
+</pre>
 </p>
 
 <p>
