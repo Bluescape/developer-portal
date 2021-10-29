@@ -13,10 +13,12 @@
     <li>Query for Strokes: traits are returned empty (COL-3483).</li>
     <li>Stroke scale does not account for stroke brushWidth (ELE-622)</li>
 </ul>
+<!--
 <h4>GraphQL Subscriptions</h4>
 <ul>
-    <li>Rich text elements are not sized properly when no width/height is provided on instantiation (COL-4374).</li>
+    <li></li>
 </ul>
+-->
 <!-- 
 <h4>General Issues</h4>
 <ul>
