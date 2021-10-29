@@ -2,26 +2,15 @@
 
 <div class="col-md-8 content">
 
-    <h1>What's new in the 21.10.1, October 08th 2021, Release</h1>
+    <h1>What's new in the 21.11.1, November 12, 2021, Release</h1>
 
-    <h3>API v3 is GA</h3>
+    <h3>New Guide pages</h3>
     <p>
         <ul>  
-            <li>v3 API version is GA! See more details in the <a href="/docs/page/versioning">versioning page</a>.</li>
-            <li>We have <a href="/docs/page/reference">REST</a> and <a href="/docs/page/what-is-graphql">GraphQl</a> APIs for v3.</li>
-            <li>Please review the v3 documentation pages, such as <a href="/docs/page/what-is-new-in-v3">What is new in v3</a></li> and <a href="/docs/page/compare-graphql-rest">differences between GraphQL and REST APIs</a></li>. See more content in the <a href="/docs/page/guides">Guides</a> section.         
-            <li>New GraphQL APIs are available to <a href="/docs/page/graphql-rich-text">add Rich Text to a workspace</a>.</li>
-
+            <li>Check the new  Guide page on <a href="/docs/page/find-elements-in-workspace">how to find content in a workspace</a>.</li>
+            <li>Check the Guide page on <a href="/docs/page/graphql-rich-text">how to add Rich Text in a workspace</a>.</li>
         </ul>
-    </p>
-    <h3>New Application Registration process</h3>
-    <p>
-        <ul>
-            <li>The Application Registration process was moved from the Developer Portal to Bluescape Admin.</li>
-            <li>The link to the new Application Registration can be found <a href="/docs/page/appRegistration">here</a>.</li>
-            <li>Details about the Application creation can be found <a href="/docs/page/app-auth#appendix1">here</a>.</li>
-        </ul>
-    </p>
+    </p>   
 
 </div>
 
