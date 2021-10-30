@@ -286,7 +286,51 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
 
 <p>
 <pre class="lang lang-python">
-python
+import requests
+import pprint
+
+'''
+Required modules:
+   requests 2.22.0
+'''
+
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
+token = "&lt;SET_TOKEN&gt;"
+query = """
+    query getCanvasesfromWorkspace($workspaceId: String!) {
+        elements(workspaceId: $workspaceId, type: Canvas) {
+            ... on Canvas {
+            type: __typename
+            id
+            name
+            transform {
+                x
+                y
+            }      
+            }
+        }    
+    }
+    """
+
+variables = {   
+    "workspaceId": "&lt;SET_WORKSPACEID&gt;"
+}
+
+def makeQuery():
+
+    response = requests.post(url, 
+    headers={"Authorization": "Bearer " + token
+    },
+    json={
+        'query': query,
+        'variables': variables
+        })
+
+    return response.json()
+
+if __name__ == "__main__":
+    response = makeQuery()
+    pprint.pprint(response)
 </pre>
 </p>
 
@@ -297,12 +341,19 @@ const axios = require('axios');
 const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
 const token = "&lt;SET_TOKEN&gt;"
 const query = 
-    `query getImagesFromWorkspace($workspaceId: String!){
-        elements(workspaceId: $workspaceId, type: Image) {
-        __typename
-        id
-        }
-    } `
+ `query getCanvasesfromWorkspace($workspaceId: String!) {
+  elements(workspaceId: $workspaceId, type: Canvas) {
+    ... on Canvas {
+      type: __typename
+      id
+      name
+      transform {
+        x
+        y
+      }      
+    }
+  }    
+}`
 const variables = {   
     workspaceId: "&lt;SET_WORKSPACEID&gt;"
 }
