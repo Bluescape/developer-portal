@@ -158,7 +158,7 @@ data_load = {
         "Canvas"
     ],
     "orderDirection": "desc",
-    "query": "&lt;STRING_TO_MATCH&gt"
+    "query": "&lt;STRING_TO_MATCH&gt;"
 }
 
 var request_values = {
@@ -263,6 +263,32 @@ The output contains 2 results. The <span class="pre">"matchText"</span> field sh
 </pre>
 </p>
 
+<a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
+<p>
+In GraphQl we currently do not have a search API. The approach here is to run a query for the type of element you want, and then loop through the list of results looking for the specific element matching the string you are after. 
+</p>
+
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
+# Uses 'jq' to filter the results, to filter the string to match: | jq '.data.elements[] | select(.name|test("&lt;STRING_TO_MATCH&gt"))'
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"query getCanvasesfromWorkspace($workspaceId: String!) {\n  elements(workspaceId: $workspaceId, type: Canvas) {\n    ... on Canvas {\n      type: __typename\n      id\n      name\n      transform {\n        x\n        y\n      }      \n    }\n  }    \n}","variables":{"workspaceId":"&lt;workspaceId&gt;"}}' | jq '.data.elements[] | select(.name|test("&lt;STRING_TO_MATCH&gt"))'
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+python
+</pre>
+</p>
 
 <p>
 <pre class="lang lang-node">
@@ -299,39 +325,6 @@ const getImagesInWorkspaces = async () => {
 }
 
 getImagesInWorkspaces();
-</pre>
-</p>
-
-
-<a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
-<p>
-In GraphQl we currently do not have a search API. The approach here is to run a query for the type of element you want, and then loop through the list of results looking for the specific element matching the string you are after. 
-</p>
-
-<div class="lang-selector">
-    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
-    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
-    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
-</div>
-
-<p>
-<pre class="lang lang-curl">
-curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
---header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
---header 'Content-Type: application/json' \
---data-raw '{"query":"query getCanvasesfromWorkspace($workspaceId: String!) {\n  elements(workspaceId: $workspaceId, type: Canvas) {\n    ... on Canvas {\n      type: __typename\n      id\n      name\n      transform {\n        x\n        y\n      }      \n    }\n  }    \n}","variables":{"workspaceId":"&lt;workspaceId&gt;"}}'
-</pre>
-</p>
-
-<p>
-<pre class="lang lang-python">
-python
-</pre>
-</p>
-
-<p>
-<pre class="lang lang-node">
-javascript
 </pre>
 </p>
 
