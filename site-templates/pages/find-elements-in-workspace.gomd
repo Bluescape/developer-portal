@@ -296,7 +296,12 @@ Required modules:
 
 url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
 token = "&lt;SET_TOKEN&gt;"
-query = """
+workspaceId = "&lt;workspaceId&gt;"
+
+# String to match on the Canvas "name" field
+canvasNameToMatch = '&lt;STRING_TO_MATCH&gt;'
+
+getCanvasesQuery = """
     query getCanvasesfromWorkspace($workspaceId: String!) {
         elements(workspaceId: $workspaceId, type: Canvas) {
             ... on Canvas {
@@ -312,25 +317,63 @@ query = """
     }
     """
 
-variables = {   
-    "workspaceId": "&lt;SET_WORKSPACEID&gt;"
+getCanvasContentQuery = """
+    query getCanvasContent($workspaceId: String!, $canvasId: String!) {
+        elements(workspaceId: $workspaceId, canvasId: $canvasId ) {            
+            type: __typename
+            id            
+            transform {
+                x
+                y
+            }     
+            ...on Image {
+                title
+                filename
+                asset { imageFormat }
+            } 
+            ... on Text {
+                text
+            }
+            ... on Document {
+                title
+                filename
+                asset { documentFormat }
+            }
+            
+        }    
+    }
+    """
+
+variables = {
+    "workspaceId": workspaceId
 }
 
-def makeQuery():
-
-    response = requests.post(url, 
-    headers={"Authorization": "Bearer " + token
-    },
-    json={
-        'query': query,
-        'variables': variables
-        })
-
+def makePostQuery(query, variables):
+    response = requests.post(url,
+                             headers={"Authorization": "Bearer " + token
+                                      },
+                             json={
+                                 'query': query,
+                                 'variables': variables
+                             })
     return response.json()
 
 if __name__ == "__main__":
-    response = makeQuery()
-    pprint.pprint(response)
+    response = makePostQuery(getCanvasesQuery, variables)
+    listOfCanvases = response['data']['elements']
+    for canvasItem in listOfCanvases:
+        if canvasItem['name'] == canvasNameToMatch:
+            # Get the content of the matching Canvas
+            variablesLocal = {
+                "workspaceId": workspaceId,
+                "canvasId": canvasItem['id']
+            }
+            CanvasContent = makePostQuery(
+                getCanvasContentQuery, variablesLocal)                
+            listOfCanvasContent = CanvasContent['data']['elements'] # Process this list as needed            
+            # pprint.pprint(ListCanvasContent) # uncomment to see the list 
+            break  # leave the loop
+
 </pre>
 </p>
 
@@ -357,7 +400,8 @@ const query =
 const variables = {   
     workspaceId: "&lt;SET_WORKSPACEID&gt;"
 }
-const getImagesInWorkspaces = async () => {
+
+const getCanvasList = async () => {
     try {
         const response = await axios.post(url,
             {
@@ -375,7 +419,7 @@ const getImagesInWorkspaces = async () => {
     }
 }
 
-getImagesInWorkspaces();
+getCanvasList();
 </pre>
 </p>
 
