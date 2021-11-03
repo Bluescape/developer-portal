@@ -22,6 +22,7 @@ In v3 we have access to a <span class="pre">search</span> API. This API allows t
   <tr>
     <td><b>Comments</b></td>
     <td>Searches a workspace with a query string, can filter by element types.<br/>
+    <b>IMPORTANT</b>: currently this search API does not match or search the content of Comments in elements.<br />
     The output contains a <span class="pre">"matchText"</span> field that shows what is the text matching the search query.
     </td>
   </tr>
@@ -42,7 +43,7 @@ In v3 we have access to a <span class="pre">search</span> API. This API allows t
 </p>
 
 <p>
-     If you want to run a search for all the elements in the workspace, and not for a specific set, then simply remove the <span class="pre">"filterTypes"</span> key in the body request of the API call. <b>IMPORTANT</b>: currently the search API does not match or search the content of Comments in elements.
+     If you want to run a search for all the elements in the workspace, and not for a specific set, then simply remove the <span class="pre">"filterTypes"</span> key in the body request of the API call. 
 
 <pre>
 {
@@ -53,10 +54,80 @@ In v3 we have access to a <span class="pre">search</span> API. This API allows t
 
 </p>
 
+<p>
+Below there is an example of the response body of this API. The search was for "January 2021", for Canvas elements. The output contains 2 results. 
+<ul>
+    <li>The <span class="pre">"matchText"</span> field shows the text that matched the search query.</li>
+    <li>The <span class="pre">"element"</span> key contains the properties of each matched element.</li>
+    <li>The values for the <span class="pre">"id"</span> fields are only examples, they will be different in your workspace.</li>
+</ul>
+Now you can process the results or run a new search with a search query with more specific terms (for example "January 2021 summary data"). 
+</p>
+
+<p>
+<pre>
+{
+    "data": [
+        {
+            "matchText": "January 2021 reports: summary data",
+            "score": 0.046,
+            "element": {
+                "id": "5ef27790ff5317444e00052a",
+                "zIndex": 1330,
+                "transform": {
+                    "x": 115610.49999999997,
+                    "y": -33618,
+                    "scaleX": 1,
+                    "scaleY": 1
+                },
+                "pinned": false,
+                "comments": [],
+                "type": "Canvas",
+                "name": "January 2021 reports: summary data",
+                "style": {
+                    "width": 47914,
+                    "height": 25208,
+                    "borderColor": {
+                        "r": 238, "g": 85, "b": 80, "a": 1
+                    }
+                }
+            }
+        },
+        {
+            "matchText": "January 2021: all projects",
+            "score": 0.032,
+            "element": {
+                "id": "617c44b4b9575c0c10e783c9",
+                "zIndex": 2963,
+                "transform": {
+                    "x": 60092,
+                    "y": -34409,
+                    "scaleX": 1,
+                    "scaleY": 1
+                },
+                "pinned": false,
+                "comments": [],
+                "type": "Canvas",
+                "name": "January 2021: all projects",
+                "style": {
+                    "width": 43243,
+                    "height": 20170,
+                    "borderColor": {
+                        "r": 153, "g": 198, "b": 255, "a": 1
+                    }
+                }
+            }
+        }
+    ]
+}
+</pre>
+</p>
+
+
 <h2>Code sample</h2>
 
 <p>
-    See below code samples for a search on Canvas elements.
+    See below code samples for a search on a string, restricted to Canvas elements, to list the content of a specific Canvas. Here we are assuming there will be a single matching result (only 1 Canvas has the name we are trying to match) and then we will list the content of that Canvas.
 </p>
 
 
@@ -200,68 +271,7 @@ What you should get: JSON with the list of all elements matching the search quer
   "query": "January 2021"
 }
 </pre>
-<p>
-The output contains 2 results. The <span class="pre">"matchText"</span> field shows the text that matched the search query. Now you can process the results or run a new search with a search query with more specific terms (for example "January 2021 summary data"). The values for the <span class="pre">"id"</span> fields are only examples.
-</p>
 
-<p>
-<pre>
-{
-    "data": [
-        {
-            "matchText": "January 2021 reports: summary data",
-            "score": 0.046,
-            "element": {
-                "id": "5ef27790ff5317444e00052a",
-                "zIndex": 1330,
-                "transform": {
-                    "x": 115610.49999999997,
-                    "y": -33618,
-                    "scaleX": 1,
-                    "scaleY": 1
-                },
-                "pinned": false,
-                "comments": [],
-                "type": "Canvas",
-                "name": "January 2021 reports: summary data",
-                "style": {
-                    "width": 47914,
-                    "height": 25208,
-                    "borderColor": {
-                        "r": 238, "g": 85, "b": 80, "a": 1
-                    }
-                }
-            }
-        },
-        {
-            "matchText": "January 2021: all projects",
-            "score": 0.032,
-            "element": {
-                "id": "617c44b4b9575c0c10e783c9",
-                "zIndex": 2963,
-                "transform": {
-                    "x": 60092,
-                    "y": -34409,
-                    "scaleX": 1,
-                    "scaleY": 1
-                },
-                "pinned": false,
-                "comments": [],
-                "type": "Canvas",
-                "name": "January 2021: all projects",
-                "style": {
-                    "width": 43243,
-                    "height": 20170,
-                    "borderColor": {
-                        "r": 153, "g": 198, "b": 255, "a": 1
-                    }
-                }
-            }
-        }
-    ]
-}
-</pre>
-</p>
 
 <a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
 <p>
@@ -396,8 +406,8 @@ website: https://github.com/axios/axios
 const axios = require('axios');
 
 const url = "https://api.uat.alpha.dev.bluescape.io/v3/graphql"
-const token = "&lt;SET_TOKEN&gt;>"
-const workspaceId = "&lt;workspaceId&gt;s"
+const token = "&lt;SET_TOKEN&gt;"
+const workspaceId = "&lt;workspaceId&gt;"
 // String to match on the Canvas "name" field
 const canvasNameToMatch = 'January 2021 meeting'
 
@@ -442,7 +452,7 @@ async function getCanvasContentFoundByName() {
   const canvasList = canvasResponse.data.elements;
   var canvasID = ''
 
-  # Search for the match in the "name" field
+  // Search for the match in the "name" field
   for (var i in canvasList) {
     theCanvasName = canvasList[i].name;
     if (theCanvasName == canvasNameToMatch) {

@@ -33,8 +33,7 @@ Here is an example of subscription for events, for reporting the change in posit
 subscription imageElementUpdated($workspaceId: String!) {
   commands(workspaceId: $workspaceId) {
     ... on UpdateElementCommand {
-      workspaceId
-      id
+      workspaceId      
       data {
         ... on UpdateImage {
           transform {
