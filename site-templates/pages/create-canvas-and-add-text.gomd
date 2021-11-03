@@ -546,7 +546,7 @@ async function startProcess() {
     const canvasResponse = await makeQuery(canvasQuery, canvasParams);
     console.log(canvasResponse);
 
-    # The answer has the mutation name in it to wrap the results
+    // The answer has the mutation name in it to wrap the results
     canvasID = canvasResponse.data.createCanvas.id; 
 
     const textQuery =
