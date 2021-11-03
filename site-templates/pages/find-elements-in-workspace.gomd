@@ -484,7 +484,7 @@ async function getCanvasContentFoundByName() {
 
   const textResponse = await makeQuery(getCanvasContentQuery, textParamsGetCanvasContent);
   const listOfCanvasContent = textResponse.data.elements; // Process this list as needed 
-  // console.log(JSON.stringify(listOfCanvasContent, null, "  ")); // # uncomment to see the list 
+  // console.log(JSON.stringify(listOfCanvasContent, null, "  ")); // uncomment to see the list 
 }
 
 // Run the requests
