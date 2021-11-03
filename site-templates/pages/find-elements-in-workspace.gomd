@@ -296,7 +296,12 @@ Required modules:
 
 url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
 token = "&lt;SET_TOKEN&gt;"
-query = """
+workspaceId = "&lt;workspaceId&gt;"
+
+# String to match on the Canvas "name" field
+canvasNameToMatch = '&lt;STRING_TO_MATCH&gt;'
+
+getCanvasesQuery = """
     query getCanvasesfromWorkspace($workspaceId: String!) {
         elements(workspaceId: $workspaceId, type: Canvas) {
             ... on Canvas {
@@ -312,70 +317,178 @@ query = """
     }
     """
 
-variables = {   
-    "workspaceId": "&lt;SET_WORKSPACEID&gt;"
+getCanvasContentQuery = """
+    query getCanvasContent($workspaceId: String!, $canvasId: String!) {
+        elements(workspaceId: $workspaceId, canvasId: $canvasId ) {            
+            type: __typename
+            id            
+            transform {
+                x
+                y
+            }     
+            ...on Image {
+                title
+                filename
+                asset { imageFormat }
+            } 
+            ... on Text {
+                text
+            }
+            ... on Document {
+                title
+                filename
+                asset { documentFormat }
+            }
+            
+        }    
+    }
+    """
+
+variables = {
+    "workspaceId": workspaceId
 }
 
-def makeQuery():
-
-    response = requests.post(url, 
-    headers={"Authorization": "Bearer " + token
-    },
-    json={
-        'query': query,
-        'variables': variables
-        })
-
+def makePostQuery(query, variables):
+    response = requests.post(url,
+                             headers={"Authorization": "Bearer " + token
+                                      },
+                             json={
+                                 'query': query,
+                                 'variables': variables
+                             })
     return response.json()
 
 if __name__ == "__main__":
-    response = makeQuery()
-    pprint.pprint(response)
+    response = makePostQuery(getCanvasesQuery, variables)
+    listOfCanvases = response['data']['elements']
+    for canvasItem in listOfCanvases:
+        if canvasItem['name'] == canvasNameToMatch:
+            # Get the content of the matching Canvas
+            variablesLocal = {
+                "workspaceId": workspaceId,
+                "canvasId": canvasItem['id']
+            }
+            CanvasContent = makePostQuery(
+                getCanvasContentQuery, variablesLocal)                
+            listOfCanvasContent = CanvasContent['data']['elements'] # Process this list as needed            
+            # pprint.pprint(ListCanvasContent) # uncomment to see the list 
+            break  # leave the loop
+
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
+// Node.js Javascript
+
+/*
+
+How to run:
+node this_script_name.js
+
+Requires "axios" module (0.19.0), run:
+npm install axios
+
+website: https://github.com/axios/axios
+
+*/
+
 const axios = require('axios');
 
-const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
-const token = "&lt;SET_TOKEN&gt;"
-const query = 
- `query getCanvasesfromWorkspace($workspaceId: String!) {
-  elements(workspaceId: $workspaceId, type: Canvas) {
-    ... on Canvas {
-      type: __typename
-      id
-      name
-      transform {
-        x
-        y
-      }      
-    }
-  }    
-}`
-const variables = {   
-    workspaceId: "&lt;SET_WORKSPACEID&gt;"
-}
-const getImagesInWorkspaces = async () => {
-    try {
-        const response = await axios.post(url,
-            {
-                query: query,
-                variables: variables
-            }, 
-            {headers: {"Authorization": "Bearer " + token}})
-        
-        answerData = JSON.stringify(response.data);
-        console.log(answerData);
-        return response
-    }
-    catch(error) {
-        console.error(error)
-    }
+const url = "https://api.uat.alpha.dev.bluescape.io/v3/graphql"
+const token = "&lt;SET_TOKEN&gt;>"
+const workspaceId = "&lt;workspaceId&gt;s"
+// String to match on the Canvas "name" field
+const canvasNameToMatch = 'January 2021 meeting'
+
+const makeQuery = async (query, params) => {
+  try {
+    const response = await axios.post(url,
+      {
+        query: query,
+        variables: params
+      },
+      {
+        headers: { "Authorization": "Bearer " + token }
+      })
+    return response.data
+  }
+  catch (error) {
+    console.error(error)
+  }
 }
 
-getImagesInWorkspaces();
+async function getCanvasContentFoundByName() {
+
+  const canvasListQuery =
+    `query getCanvasesfromWorkspace($workspaceId: String!) {
+      elements(workspaceId: $workspaceId, type: Canvas) {
+          ... on Canvas {
+          type: __typename
+          id
+          name
+          transform {
+              x
+              y
+          }      
+          }
+      }    
+  }`
+
+  const canvasListParams = {
+    "workspaceId": workspaceId
+  }
+  const canvasResponse = await makeQuery(canvasListQuery, canvasListParams);
+  const canvasList = canvasResponse.data.elements;
+  var canvasID = ''
+
+  # Search for the match in the "name" field
+  for (var i in canvasList) {
+    theCanvasName = canvasList[i].name;
+    if (theCanvasName == canvasNameToMatch) {
+      canvasID = canvasList[i].id
+      break
+    }
+  }
+
+  const getCanvasContentQuery =
+    `query getCanvasContent($workspaceId: String!, $canvasId: String!) {
+      elements(workspaceId: $workspaceId, canvasId: $canvasId ) {            
+          type: __typename
+          id            
+          transform {
+              x
+              y
+          }     
+          ...on Image {
+              title
+              filename
+              asset { imageFormat }
+          } 
+          ... on Text {
+              text
+          }
+          ... on Document {
+              title
+              filename
+              asset { documentFormat }
+          }
+          
+      }    
+    }`
+
+  const textParamsGetCanvasContent = {
+    "workspaceId": workspaceId,
+    "canvasId": canvasID
+  }
+
+  const textResponse = await makeQuery(getCanvasContentQuery, textParamsGetCanvasContent);
+  const listOfCanvasContent = textResponse.data.elements; // Process this list as needed 
+  // console.log(JSON.stringify(listOfCanvasContent, null, "  ")); // uncomment to see the list 
+}
+
+// Run the requests
+getCanvasContentFoundByName();
 </pre>
 </p>
 
