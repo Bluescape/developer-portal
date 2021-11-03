@@ -127,7 +127,7 @@ Now you can process the results or run a new search with a search query with mor
 <h2>Code sample</h2>
 
 <p>
-    See below code samples for a search on a string, restricted to Canvas elements, to list the content of a specific Canvas. Here we are assuming there will be a single matching result (only 1 Canvas has the name we are trying to match) and then we will list the content of that Canvas.
+    See below code samples for a search on a string, restricted to Canvas elements, to list the content of a specific Canvas. Here we are assuming there will be a only 1 Canvas that has the name we are trying to match with the search query, and then we will list the content of that Canvas.
 </p>
 
 
@@ -170,7 +170,7 @@ Required modules:
 token = '<SET_TOKEN>'        
 
 if __name__ == "__main__":
-    portal = 'https://api.' 
+    portal = '<script type="text/javascript">document.write(apiBaseStr); </script>' 
     workspaceId = '&lt;SET_WORKSPACE_ID&gt;'  # REMEMBER TO ADD THE WORKSPACE ID
 
     # Run search
@@ -203,7 +203,7 @@ if __name__ == "__main__":
 
 <p>
 <pre class="lang lang-node">
-// Node.js Javascript   
+// Node.js Javascript REST API example for search and list content of Canvas
 /*
 
 How to run:
@@ -218,41 +218,83 @@ website: https://github.com/axios/axios
 
 var axios = require('axios');
 
-const token = '<SET_TOKEN>';
-const portal = 'https://api.';
+const token = '&lt;SET_TOKEN&gt;';
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
 const api_version = 'v3';
-const api_endpoint = '/workspaces/' + workspaceId + '/search';
 
-data_load = {
-    "filterTypes": [
-        "Canvas"
-    ],
-    "orderDirection": "desc",
-    "query": "&lt;STRING_TO_MATCH&gt;"
+function runRequest(portal, api_version, api_endpoint, the_method, data_load) {
+    var request_values = {
+        url: `${portal}/${api_version}${api_endpoint}`,
+        method: the_method,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + token
+        },
+        data: data_load,
+    };
+    // console.log("request: ", request_values);
+
+    let req = axios(request_values)
+        .catch(error => {
+            console.error(`ERROR processing ${portal}/${api_version}${api_endpoint}`);
+            console.error(error.message);
+            console.error(error.response.data);
+            return Promise.reject(error);
+        });;
+
+    return req;
 }
 
-var request_values = {
-    url: portal + '/' + api_version + api_endpoint,
-    method : 'POST' ,
-    headers : {
-        'Authorization': "Bearer " + token,
-        'Content-Type' : 'application/json'    
-    },
-    data : data_load,
-};
+async function runSearchAndGetCanvasContent() {
+    try {
 
-axios(request_values)
-    .then(function (response) {
-        if (response.status == 200)
-        {
-            console.log("Success");
-            console.log(response.data);
+        // Run search
+        const canvasNameToMatch = '&lt;STRING_TO_MATCH&gt';
+
+        var api_endpoint = `/workspaces/${workspaceId}/search`;
+        var the_method = 'POST';
+
+        var data_load = {
+            "filterTypes": [
+                "Canvas"
+            ],
+            "orderDirection": "desc",
+            "query": canvasNameToMatch
         }
-    })
-    .catch (function (error) {
-        console.log('Error: ' + error.message);
-    });             
+
+        var canvasSearchResponse = await runRequest(portal, api_version, api_endpoint, the_method, data_load);
+        const canvasList = canvasSearchResponse.data.data;
+
+        var canvasID = '';
+
+        for (var i in canvasList) {
+            theCanvasName = canvasList[i].element.name;
+            console.log("theCanvasName:", theCanvasName)
+            if (theCanvasName == canvasNameToMatch) {
+                canvasID = canvasList[i].element.id
+                // console.log("match!", "ID: ", canvasID)
+                break
+            }
+        }
+
+        // Let's get the content of the Canvas
+        api_endpoint = `/workspaces/${workspaceId}/elements?canvas=${canvasID}`;
+        the_method = 'GET';
+        data_load = ''
+
+        var listOfCanvasContent = await runRequest(portal, api_version, api_endpoint, the_method, data_load);
+        const canvasContent = listOfCanvasContent.data.data; // It is an array of elements data
+        // console.log("Canvas Content:", canvasContent); // Uncomment to see the content list
+
+    } catch (error) {
+        console.error('ERROR:');
+        console.error(error.message);
+    }
+}
+
+// Run the requests
+runSearchAndGetCanvasContent();           
 </pre>        
 </p>
 
