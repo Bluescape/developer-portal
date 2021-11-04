@@ -22,6 +22,7 @@ In v3 we have access to a <span class="pre">search</span> API. This API allows t
   <tr>
     <td><b>Comments</b></td>
     <td>Searches a workspace with a query string, can filter by element types.<br/>
+    <b>IMPORTANT</b>: currently this search API does not match or search the content of Comments in elements.<br />
     The output contains a <span class="pre">"matchText"</span> field that shows what is the text matching the search query.
     </td>
   </tr>
@@ -42,7 +43,7 @@ In v3 we have access to a <span class="pre">search</span> API. This API allows t
 </p>
 
 <p>
-     If you want to run a search for all the elements in the workspace, and not for a specific set, then simply remove the <span class="pre">"filterTypes"</span> key in the body request of the API call. <b>IMPORTANT</b>: currently the search API does not match or search the content of Comments in elements.
+     If you want to run a search for all the elements in the workspace, and not for a specific set, then simply remove the <span class="pre">"filterTypes"</span> key in the body request of the API call. 
 
 <pre>
 {
@@ -53,155 +54,14 @@ In v3 we have access to a <span class="pre">search</span> API. This API allows t
 
 </p>
 
-<h2>Code sample</h2>
-
 <p>
-    See below code samples for a search on Canvas elements.
-</p>
-
-
-<div class="lang-selector">
-    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
-    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
-    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
-</div>
-
-<p>
-<pre class="lang lang-curl">
-curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/search' \
---header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
---data-raw '{
-  "filterTypes": [
-    "Canvas"
-  ],
-  "orderDirection": "desc",
-  "query": "&lt;STRING_TO_MATCH&gt"
-}'
-# if you want to get a shorter version of the results of the search, add the following line at to the script above, after "}'":
-# | jq . | egrep "(matchText|\"id\"|type)" 
-</pre>
-</p>
-
-<p>
-<pre class="lang lang-python">
-# Python Code (python 3.5+)
-import requests
-import datetime
-import pprint
-
-'''
-
-Required modules:
-    requests 2.22.0
-
-'''
-
-token = '<SET_TOKEN>'        
-
-if __name__ == "__main__":
-    portal = 'https://api.' 
-    workspaceId = '&lt;SET_WORKSPACE_ID&gt;'  # REMEMBER TO ADD THE WORKSPACE ID
-
-    # Run search
-    # Path: /v3/workspaces/<workspaceId>/search
-
-    API_endpoint = '/v3/workspaces/' + workspaceId + '/elements'
-
-    timestamp = datetime.datetime.now()
-
-    data_load = {
-        "filterTypes": [
-            "Canvas"
-        ],
-        "orderDirection": "desc",
-        "query": "&lt;STRING_TO_MATCH&gt"
-    }
-
-    the_request = requests.post(
-        portal + API_endpoint,
-        headers={"Authorization": "Bearer " + token,
-                    "Content-Type": "application/json"
-                    },
-        json=data_load
-    )
-
-    json_response = the_request.json()
-    pprint.pprint(json_response)  
-</pre>
-</p>
-
-<p>
-<pre class="lang lang-node">
-// Node.js Javascript   
-/*
-
-How to run:
-node this_script_name.js
-
-Requires "axios" module (0.19.0), run:
-npm install axios
-
-website: https://github.com/axios/axios
-
-*/
-
-var axios = require('axios');
-
-const token = '<SET_TOKEN>';
-const portal = 'https://api.';
-const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
-const api_version = 'v3';
-const api_endpoint = '/workspaces/' + workspaceId + '/search';
-
-data_load = {
-    "filterTypes": [
-        "Canvas"
-    ],
-    "orderDirection": "desc",
-    "query": "&lt;STRING_TO_MATCH&gt;"
-}
-
-var request_values = {
-    url: portal + '/' + api_version + api_endpoint,
-    method : 'POST' ,
-    headers : {
-        'Authorization': "Bearer " + token,
-        'Content-Type' : 'application/json'    
-    },
-    data : data_load,
-};
-
-axios(request_values)
-    .then(function (response) {
-        if (response.status == 200)
-        {
-            console.log("Success");
-            console.log(response.data);
-        }
-    })
-    .catch (function (error) {
-        console.log('Error: ' + error.message);
-    });             
-</pre>        
-</p>
-
-
-<h2>OUTPUT</h2>
-
-<p>
-What you should get: JSON with the list of all elements matching the search query. In this example we run a search for Canvas containing  "January 2021". This is the request body:
-</p>
-<pre>
-{
-  "filterTypes": [
-    "Canvas"
-  ],
-  "orderDirection": "desc",
-  "query": "January 2021"
-}
-</pre>
-<p>
-The output contains 2 results. The <span class="pre">"matchText"</span> field shows the text that matched the search query. Now you can process the results or run a new search with a search query with more specific terms (for example "January 2021 summary data"). The values for the <span class="pre">"id"</span> fields are only examples.
+Below there is an example of the response body of this API. The search was for "January 2021", for Canvas elements. The output contains 2 results. 
+<ul>
+    <li>The <span class="pre">"matchText"</span> field shows the text that matched the search query.</li>
+    <li>The <span class="pre">"element"</span> key contains the properties of each matched element.</li>
+    <li>The values for the <span class="pre">"id"</span> fields are only examples, they will be different in your workspace.</li>
+</ul>
+Now you can process the results or run a new search with a search query with more specific terms (for example "January 2021 summary data"). 
 </p>
 
 <p>
@@ -263,6 +123,225 @@ The output contains 2 results. The <span class="pre">"matchText"</span> field sh
 </pre>
 </p>
 
+
+<h2>Code sample</h2>
+
+<p>
+    See below code samples for a search on a string, restricted to Canvas elements, to list the content of a specific Canvas. Here we are assuming there will be a only 1 Canvas that has the name we are trying to match with the search query, and then we will list the content of that Canvas.
+</p>
+
+
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/search' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--data-raw '{
+  "filterTypes": [
+    "Canvas"
+  ],
+  "orderDirection": "desc",
+  "query": "&lt;STRING_TO_MATCH&gt;"
+}'
+# if you want to get a shorter version of the results of the search, add the following line at to the script above, after "}'":
+# | jq . | egrep "(matchText|\"id\"|type)" 
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+# Python Code (python 3.5+)
+import requests
+import datetime
+import pprint
+
+'''
+
+Required modules:
+    requests 2.22.0
+
+'''
+
+token = '<SET_TOKEN>'
+
+if __name__ == "__main__":
+    portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
+    workspaceId = '&lt;SET_WORKSPACE_ID&gt;'  # REMEMBER TO ADD THE WORKSPACE ID
+
+    canvasNameToMatch = '&lt;STRING_TO_MATCH&gt;'
+
+    # Run search
+    # Path: /v3/workspaces/<workspaceId>/search
+
+    API_endpoint = '/v3/workspaces/' + workspaceId + '/search'
+
+    data_load = {
+        "filterTypes": [
+            "Canvas"
+        ],
+        "orderDirection": "desc",
+        "query": canvasNameToMatch
+    }
+
+    the_request = requests.post(
+        portal + API_endpoint,
+        headers={"Authorization": "Bearer " + token,
+                 "Content-Type": "application/json"
+                 },
+        json=data_load
+    )
+
+    canvasSearchResponse = the_request.json()
+    # pprint.pprint(canvasSearchResponse) # uncomment to see the list
+
+    canvasList = canvasSearchResponse['data']
+
+    canvasID = ''
+
+    for theElement in canvasList:
+        print(theElement)
+        theCanvasName = theElement['element']['name']
+        if theCanvasName == canvasNameToMatch:
+            canvasID = theElement['element']['id']
+
+    # Let's get the content from the canvas
+    API_endpoint = '/v3/workspaces/' + workspaceId + '/elements?canvas=' + canvasID
+
+    the_request = requests.get(
+        portal + API_endpoint,
+        headers={"Authorization": "Bearer " + token,
+                 "Content-Type": "application/json"
+                 }
+    )
+
+    listOfCanvasContent = the_request.json()
+    # You can process this list of arrays of elements data
+    canvasContent = listOfCanvasContent['data']
+    # pprint.pprint(listOfCanvasContent)  # uncomment to see the list
+
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+// Node.js Javascript REST API example for search and list content of Canvas
+/*
+
+How to run:
+node this_script_name.js
+
+Requires "axios" module (0.19.0), run:
+npm install axios
+
+website: https://github.com/axios/axios
+
+*/
+
+var axios = require('axios');
+
+const token = '&lt;SET_TOKEN&gt;';
+const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
+const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
+const api_version = 'v3';
+
+function runRequest(portal, api_version, api_endpoint, the_method, data_load) {
+    var request_values = {
+        url: `${portal}/${api_version}${api_endpoint}`,
+        method: the_method,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + token
+        },
+        data: data_load,
+    };
+
+    let req = axios(request_values)
+        .catch(error => {
+            console.error(`ERROR processing ${portal}/${api_version}${api_endpoint}`);
+            console.error(error.message);
+            console.error(error.response.data);
+            return Promise.reject(error);
+        });;
+
+    return req;
+}
+
+async function runSearchAndGetCanvasContent() {
+    try {
+
+        // Run search
+        // Path: /v3/workspaces/<workspaceId>/search
+        
+        const canvasNameToMatch = '&lt;STRING_TO_MATCH&gt;';
+
+        var api_endpoint = `/workspaces/${workspaceId}/search`;
+        var the_method = 'POST';
+
+        var data_load = {
+            "filterTypes": [
+                "Canvas"
+            ],
+            "orderDirection": "desc",
+            "query": canvasNameToMatch
+        }
+
+        var canvasSearchResponse = await runRequest(portal, api_version, api_endpoint, the_method, data_load);
+        const canvasList = canvasSearchResponse.data.data;
+
+        var canvasID = '';
+
+        for (var i in canvasList) {
+            theCanvasName = canvasList[i].element.name;
+            console.log("theCanvasName:", theCanvasName)
+            if (theCanvasName == canvasNameToMatch) {
+                canvasID = canvasList[i].element.id
+                // console.log("match!", "ID: ", canvasID)
+                break
+            }
+        }
+
+        // Let's get the content of the Canvas
+        api_endpoint = `/workspaces/${workspaceId}/elements?canvas=${canvasID}`;
+        the_method = 'GET';
+        data_load = ''
+
+        var listOfCanvasContent = await runRequest(portal, api_version, api_endpoint, the_method, data_load);
+        const canvasContent = listOfCanvasContent.data.data; // It is an array of elements data
+        // console.log("Canvas Content:", canvasContent); // Uncomment to see the content list
+
+    } catch (error) {
+        console.error('ERROR:');
+        console.error(error.message);
+    }
+}
+
+// Run the requests
+runSearchAndGetCanvasContent();           
+</pre>        
+</p>
+
+
+<h2>OUTPUT</h2>
+
+<p>
+What you should get: JSON with the list of all elements matching the search query. In this example we run a search for Canvas containing  "January 2021". This is the request body:
+</p>
+<pre>
+{
+  "filterTypes": [
+    "Canvas"
+  ],
+  "orderDirection": "desc",
+  "query": "January 2021"
+}
+</pre>
+
+
 <a name="graphql" class="internal-anchor"><h2>Implementation using GraphQL APIs</h2></a>
 <p>
 In GraphQl we currently do not have a search API. The approach here is to run a query for the type of element you want, and then loop through the list of results looking for the specific element matching the string you are after. 
@@ -276,11 +355,11 @@ In GraphQl we currently do not have a search API. The approach here is to run a 
 
 <p>
 <pre class="lang lang-curl">
-# Uses 'jq' to filter the results, to filter the string to match: | jq '.data.elements[] | select(.name|test("&lt;STRING_TO_MATCH&gt"))'
+# Uses 'jq' to filter the results, to filter the string to match: | jq '.data.elements[] | select(.name|test("&lt;STRING_TO_MATCH&gt;"))'
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
---data-raw '{"query":"query getCanvasesfromWorkspace($workspaceId: String!) {\n  elements(workspaceId: $workspaceId, type: Canvas) {\n    ... on Canvas {\n      type: __typename\n      id\n      name\n      transform {\n        x\n        y\n      }      \n    }\n  }    \n}","variables":{"workspaceId":"&lt;workspaceId&gt;"}}' | jq '.data.elements[] | select(.name|test("&lt;STRING_TO_MATCH&gt"))'
+--data-raw '{"query":"query getCanvasesfromWorkspace($workspaceId: String!) {\n  elements(workspaceId: $workspaceId, type: Canvas) {\n    ... on Canvas {\n      type: __typename\n      id\n      name\n      transform {\n        x\n        y\n      }      \n    }\n  }    \n}","variables":{"workspaceId":"&lt;workspaceId&gt;"}}' | jq '.data.elements[] | select(.name|test("&lt;STRING_TO_MATCH&gt;"))'
 </pre>
 </p>
 
@@ -396,8 +475,8 @@ website: https://github.com/axios/axios
 const axios = require('axios');
 
 const url = "https://api.uat.alpha.dev.bluescape.io/v3/graphql"
-const token = "&lt;SET_TOKEN&gt;>"
-const workspaceId = "&lt;workspaceId&gt;s"
+const token = "&lt;SET_TOKEN&gt;"
+const workspaceId = "&lt;workspaceId&gt;"
 // String to match on the Canvas "name" field
 const canvasNameToMatch = 'January 2021 meeting'
 
@@ -442,7 +521,7 @@ async function getCanvasContentFoundByName() {
   const canvasList = canvasResponse.data.elements;
   var canvasID = ''
 
-  # Search for the match in the "name" field
+  // Search for the match in the "name" field
   for (var i in canvasList) {
     theCanvasName = canvasList[i].name;
     if (theCanvasName == canvasNameToMatch) {
