@@ -33,8 +33,8 @@ Here is an example of subscription for events, for reporting the change in posit
 subscription imageElementUpdated($workspaceId: String!) {
   commands(workspaceId: $workspaceId) {
     ... on UpdateElementCommand {
-      workspaceId
-      id
+      elementId
+      workspaceId      
       data {
         ... on UpdateImage {
           transform {
@@ -124,7 +124,7 @@ const GRAPHQL_SUBSCRIPTION = `subscription imageChangesSubscription($workspaceId
     commands(workspaceId: $workspaceId) {
       ... on UpdateElementCommand {
         workspaceId
-        id
+        elementId
         data {
           ... on UpdateImage {
             transform {
@@ -151,7 +151,7 @@ When you move an image, this is the type of event you will receive (the value of
   data: {
     commands: {
       workspaceId: '&lt;workspaceId&gt;',
-      id: '609abX787e69f2ca25b65262',
+      elementId: '609abX787e69f2ca25b65262',
       data: { transform: { x: 13599.666666666668, y: -8254.500000000004 } }
     }
   }
