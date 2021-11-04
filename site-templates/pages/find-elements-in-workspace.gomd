@@ -1,6 +1,6 @@
 <h1>How to find elements in a workspace</h1>
 <p>
-<b>Objective</b>: find elements in the workspace that match a specific text string.  This is done to get properties of that element, to edit it or to delete it. Also, you may want to find a specific canvas to retrieve its content or to add more elements to it.<br />
+<b>Objective</b>: find elements in the workspace that match a specific text string.  This is done to get properties of that element, to edit it or to delete it. Also, you may want to find a specific canvas to retrieve its content or to add more elements to it. In this page we will search for a specific Cnavsa for its name and will display the content of that Canvas.<br />
 
 This page contains the implementation details for <a href="#rest">v3 REST APIs</a> and for <a href="#graphql">v3 GraphQL APIs</a>.
 </p>
@@ -27,6 +27,23 @@ In v3 we have access to a <span class="pre">search</span> API. This API allows t
     </td>
   </tr>
 </table>
+
+<table class="table table-striped">
+  <tr>
+    <td><b>Endpoint</b></td>
+    <td>/v3/workspaces/&lt;workspaceId&gt;/elements?canvas=&lt;CANVAS_ID&gt;</td>
+  </tr>
+  <tr>
+      <td><b>Method</b></td>
+      <td>GET</td>
+  </tr>  
+  <tr>
+    <td><b>Comments</b></td>
+    <td>Returns the content of the Canvas specified by &lt;CANVAS_ID&gt;
+    </td>
+  </tr>
+</table>
+
 <p>
     You can specify what type of elements are included in the search. If you want to search only on Image, Shape and Text elements, you can specify the <span class="pre">"filterTypes"</span> field with those values, as in this example of the request body:
 
@@ -61,9 +78,9 @@ Below there is an example of the response body of this API. The search was for "
     <li>The <span class="pre">"element"</span> key contains the properties of each matched element.</li>
     <li>The values for the <span class="pre">"id"</span> fields are only examples, they will be different in your workspace.</li>
 </ul>
-Now you can process the results or run a new search with a search query with more specific terms (for example "January 2021 summary data"). 
-</p>
 
+</p>
+This is an example of the results (response body) for a search for for "January 2021":
 <p>
 <pre>
 {
@@ -121,8 +138,9 @@ Now you can process the results or run a new search with a search query with mor
     ]
 }
 </pre>
-</p>
 
+Now you can process the results or run a new search with a search query with more specific terms, for example "January 2021 summary data". 
+</p>
 
 <h2>Code sample</h2>
 
@@ -342,7 +360,10 @@ The scripts above will show 2 sets of outputs:
 
 
 </p>
- Search Results (values for <span class="pre">"id"</span> are samples only, they will be different for your workspace):
+<p>
+ Search Results output (values for <span class="pre">"id"</span> are samples only, they will be different for your workspace):
+</p>
+<p>
 <pre>
 {
   "data": [
@@ -370,8 +391,11 @@ The scripts above will show 2 sets of outputs:
   ]
 }
 </pre>
-
-Canvas Content (values for <span class="pre">"id"</span> and <span class="pre">"url"</span> are samples only, they will be different for your workspace):
+</p>
+<p>
+Canvas Content output (values for <span class="pre">"id"</span> and <span class="pre">"url"</span> are samples only, they will be different for your workspace):
+</p>
+<p>
 <pre>
 {
   "data": [
@@ -727,6 +751,111 @@ The scripts above (thata use GraphQL) will show 2 sets of outputs:
     <li>The results of the search </li>
     <li>The content of the Canvas that matches the search query</li>
 </ul>
+</p>
+<p>
+Search Results output (values for <span class="pre">"id"</span> are samples only, they will be different for your workspace):
+</p>
+
+<p>
+<pre>
+[
+  {
+    "type": "Canvas",
+    "id": "60c40b72736f01e805f71b54",
+    "name": "FEBRUARY 2021",
+    "transform": {
+      "x": -11461,
+      "y": 11650
+    }
+  },
+  {
+    "type": "Canvas",
+    "id": "618186ede12c4366912c6d18",
+    "name": "January 2021 meeting",
+    "transform": {
+      "x": -1976,
+      "y": 2972
+    }
+  },
+  {
+    "type": "Canvas",
+    "id": "6182f80c0dab0b47b057decf",
+    "name": "COMPLIANCE MATRIX",
+    "transform": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  ...
+  ...
+  {
+    "type": "Canvas",
+    "id": "6182f84c0dff0b47b057dea6",
+    "name": "Notes for next meeting",
+    "transform": {
+      "x": 0,
+      "y": 0
+    }
+  }
+]
+</pre>
+
+</p>
+<p>
+Canvas Content output (values for <span class="pre">"id"</span> are samples only, they will be different for your workspace):
+</p>
+<p>
+
+<pre>
+[
+  {
+    "type": "Document",
+    "id": "61819fbdaf0a7a58abdf4ae9",
+    "transform": {
+      "x": -1784,
+      "y": 3451
+    },
+    "title": "New_CICD_Process_slim-21-pages.pdf",
+    "filename": "New_CICD_Process_slim-21-pages.pdf",
+    "asset": {
+      "documentFormat": "pdf"
+    }
+  },
+  {
+    "type": "Text",
+    "id": "61819feaaf0a7a58abdf4aeb",
+    "transform": {
+      "x": -1784,
+      "y": 3200
+    },
+    "text": "Description:  documents for the January 2021 meeting"
+  },
+  {
+    "type": "Image",
+    "id": "6181a214af0a7a58abdf4af9",
+    "transform": {
+      "x": -1784,
+      "y": 4144
+    },
+    "title": "Compliance reviewer.jpg",
+    "filename": "Compliance reviewer.jpg",
+    "asset": {
+      "imageFormat": "jpeg"
+    }
+  },
+  {
+    "type": "Text",
+    "id": "6181a50caf0a7a58abdf4afd",
+    "transform": {
+      "x": -1153,
+      "y": 5132
+    },
+    "text": "Compliance Department person"
+  }
+]
+</pre>
+
+</p>
 
 <p>
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
