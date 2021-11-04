@@ -719,6 +719,15 @@ getCanvasContentFoundByName();
 </pre>
 </p>
 
+<h2>OUTPUT</h2>
+
+<p>
+The scripts above (thata use GraphQL) will show 2 sets of outputs:
+<ul>
+    <li>The results of the search </li>
+    <li>The content of the Canvas that matches the search query</li>
+</ul>
+
 <p>
 If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
 </p>
