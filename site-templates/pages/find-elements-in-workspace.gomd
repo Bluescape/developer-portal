@@ -127,7 +127,8 @@ Now you can process the results or run a new search with a search query with mor
 <h2>Code sample</h2>
 
 <p>
-    See below code samples for a search on a string, restricted to Canvas elements, to list the content of a specific Canvas. Here we are assuming there will be a only 1 Canvas that has the name we are trying to match with the search query, and then we will list the content of that Canvas.
+    See below code samples for a search on a Canvas (by name), to list the content of that Canvas. <br />
+    We will run a search for the name, restricted to Canvas type (see the <span class="pre">"filterTypes"</span> field in the request body). For these examples we are assuming that there will be a Canvas that has the name we are trying to match with the search query.
 </p>
 
 
