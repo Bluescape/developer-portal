@@ -146,7 +146,7 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
     "Canvas"
   ],
   "orderDirection": "desc",
-  "query": "&lt;STRING_TO_MATCH&gt"
+  "query": "&lt;STRING_TO_MATCH&gt;"
 }'
 # if you want to get a shorter version of the results of the search, add the following line at to the script above, after "}'":
 # | jq . | egrep "(matchText|\"id\"|type)" 
@@ -167,37 +167,63 @@ Required modules:
 
 '''
 
-token = '<SET_TOKEN>'        
+token = '<SET_TOKEN>'
 
 if __name__ == "__main__":
-    portal = '<script type="text/javascript">document.write(apiBaseStr); </script>' 
+    portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
     workspaceId = '&lt;SET_WORKSPACE_ID&gt;'  # REMEMBER TO ADD THE WORKSPACE ID
+
+    canvasNameToMatch = '&lt;STRING_TO_MATCH&gt;'
 
     # Run search
     # Path: /v3/workspaces/<workspaceId>/search
 
-    API_endpoint = '/v3/workspaces/' + workspaceId + '/elements'
-
-    timestamp = datetime.datetime.now()
+    API_endpoint = '/v3/workspaces/' + workspaceId + '/search'
 
     data_load = {
         "filterTypes": [
             "Canvas"
         ],
         "orderDirection": "desc",
-        "query": "&lt;STRING_TO_MATCH&gt"
+        "query": canvasNameToMatch
     }
 
     the_request = requests.post(
         portal + API_endpoint,
         headers={"Authorization": "Bearer " + token,
-                    "Content-Type": "application/json"
-                    },
+                 "Content-Type": "application/json"
+                 },
         json=data_load
     )
 
-    json_response = the_request.json()
-    pprint.pprint(json_response)  
+    canvasSearchResponse = the_request.json()
+    # pprint.pprint(canvasSearchResponse) # uncomment to see the list
+
+    canvasList = canvasSearchResponse['data']
+
+    canvasID = ''
+
+    for theElement in canvasList:
+        print(theElement)
+        theCanvasName = theElement['element']['name']
+        if theCanvasName == canvasNameToMatch:
+            canvasID = theElement['element']['id']
+
+    # Let's get the content from the canvas
+    API_endpoint = '/v3/workspaces/' + workspaceId + '/elements?canvas=' + canvasID
+
+    the_request = requests.get(
+        portal + API_endpoint,
+        headers={"Authorization": "Bearer " + token,
+                 "Content-Type": "application/json"
+                 }
+    )
+
+    listOfCanvasContent = the_request.json()
+    # You can process this list of arrays of elements data
+    canvasContent = listOfCanvasContent['data']
+    # pprint.pprint(listOfCanvasContent)  # uncomment to see the list
+
 </pre>
 </p>
 
@@ -233,7 +259,6 @@ function runRequest(portal, api_version, api_endpoint, the_method, data_load) {
         },
         data: data_load,
     };
-    // console.log("request: ", request_values);
 
     let req = axios(request_values)
         .catch(error => {
@@ -250,7 +275,9 @@ async function runSearchAndGetCanvasContent() {
     try {
 
         // Run search
-        const canvasNameToMatch = '&lt;STRING_TO_MATCH&gt';
+        // Path: /v3/workspaces/<workspaceId>/search
+        
+        const canvasNameToMatch = '&lt;STRING_TO_MATCH&gt;';
 
         var api_endpoint = `/workspaces/${workspaceId}/search`;
         var the_method = 'POST';
@@ -328,11 +355,11 @@ In GraphQl we currently do not have a search API. The approach here is to run a 
 
 <p>
 <pre class="lang lang-curl">
-# Uses 'jq' to filter the results, to filter the string to match: | jq '.data.elements[] | select(.name|test("&lt;STRING_TO_MATCH&gt"))'
+# Uses 'jq' to filter the results, to filter the string to match: | jq '.data.elements[] | select(.name|test("&lt;STRING_TO_MATCH&gt;"))'
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
---data-raw '{"query":"query getCanvasesfromWorkspace($workspaceId: String!) {\n  elements(workspaceId: $workspaceId, type: Canvas) {\n    ... on Canvas {\n      type: __typename\n      id\n      name\n      transform {\n        x\n        y\n      }      \n    }\n  }    \n}","variables":{"workspaceId":"&lt;workspaceId&gt;"}}' | jq '.data.elements[] | select(.name|test("&lt;STRING_TO_MATCH&gt"))'
+--data-raw '{"query":"query getCanvasesfromWorkspace($workspaceId: String!) {\n  elements(workspaceId: $workspaceId, type: Canvas) {\n    ... on Canvas {\n      type: __typename\n      id\n      name\n      transform {\n        x\n        y\n      }      \n    }\n  }    \n}","variables":{"workspaceId":"&lt;workspaceId&gt;"}}' | jq '.data.elements[] | select(.name|test("&lt;STRING_TO_MATCH&gt;"))'
 </pre>
 </p>
 
