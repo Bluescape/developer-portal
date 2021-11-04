@@ -201,6 +201,8 @@ if __name__ == "__main__":
     # pprint.pprint(canvasSearchResponse) # uncomment to see the list
 
     canvasList = canvasSearchResponse['data']
+    print("Search results:")
+    pprint.pprint(canvasList)
 
     canvasID = ''
 
@@ -293,6 +295,8 @@ async function runSearchAndGetCanvasContent() {
 
         var canvasSearchResponse = await runRequest(portal, api_version, api_endpoint, the_method, data_load);
         const canvasList = canvasSearchResponse.data.data;
+        console.log("Search results:");
+        console.log(canvasList);
 
         var canvasID = '';
 
@@ -301,7 +305,6 @@ async function runSearchAndGetCanvasContent() {
             console.log("theCanvasName:", theCanvasName)
             if (theCanvasName == canvasNameToMatch) {
                 canvasID = canvasList[i].element.id
-                // console.log("match!", "ID: ", canvasID)
                 break
             }
         }
@@ -309,7 +312,7 @@ async function runSearchAndGetCanvasContent() {
         // Let's get the content of the Canvas
         api_endpoint = `/workspaces/${workspaceId}/elements?canvas=${canvasID}`;
         the_method = 'GET';
-        data_load = ''
+        data_load = '';
 
         var listOfCanvasContent = await runRequest(portal, api_version, api_endpoint, the_method, data_load);
         const canvasContent = listOfCanvasContent.data.data; // It is an array of elements data
@@ -330,15 +333,112 @@ runSearchAndGetCanvasContent();
 <h2>OUTPUT</h2>
 
 <p>
-What you should get: JSON with the list of all elements matching the search query. In this example we run a search for Canvas containing  "January 2021". This is the request body:
+The scripts above will show 2 sets of outputs:
+<ul>
+    <li>The results of the search </li>
+    <li>The content of the Canvas that matches the search query</li>
+</ul>
+
+
 </p>
+ Search Results:
 <pre>
-{
-  "filterTypes": [
-    "Canvas"
-  ],
-  "orderDirection": "desc",
-  "query": "January 2021"
+{'data': [{'element': {'comments': [],
+                       'id': '618186ede12c4366912c6d18',
+                       'name': 'January 2021 meeting',
+                       'pinned': False,
+                       'style': {'borderColor': {'a': 1,
+                                                 'b': 255,
+                                                 'g': 198,
+                                                 'r': 153},
+                                 'height': 2419,
+                                 'width': 2159},
+                       'transform': {'scaleX': 1,
+                                     'scaleY': 1,
+                                     'x': -1976,
+                                     'y': 2972},
+                       'type': 'Canvas',
+                       'zIndex': 3751},
+           'matchText': 'January 2021 meeting',
+           'score': 0}]}
+</pre>
+
+Canvas Content:
+<pre>
+{'data': [{'asset': {'documentFormat': 'pdf',
+                     'url': 'https://s3.us-east-1.amazonaws.com/acceptance-new.public-assets.bluescape.com/sessions/objects/E-IYMCBISe7QIPlxanns/61819fbdaf0a7a58abdf4ae9.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIVWWSYKG7DKFMQJA%2F20211103%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20211103T232428Z&X-Amz-Expires=300&X-Amz-Signature=bb7f45deefb4cea22c1f09d8f8d18d671febc123ce1acf74dda8e882abfd170c&X-Amz-SignedHeaders=host'},
+           'attachments': [],
+           'comments': [],
+           'filename': 'New_CICD_Process_slim-21-pages.pdf',
+           'height': 720,
+           'id': '61819fbdaf0a7a58abdf4ae9',
+           'ingestionState': 'complete_success',
+           'pinned': False,
+           'preview': {'imageFormat': 'jpeg',
+                       'url': 'https://s3.us-east-1.amazonaws.com/acceptance-new.public-assets.bluescape.com/sessions/objects/E-IYMCBISe7QIPlxanns/61819fbdaf0a7a58abdf4ae9.pdf_thumb.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIVWWSYKG7DKFMQJA%2F20211103%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20211103T232428Z&X-Amz-Expires=300&X-Amz-Signature=d423bfdc3443d1a16fee63209de4564c55c767ab1dea51656228be8dd9d6b712&X-Amz-SignedHeaders=host'},
+           'title': 'New_CICD_Process_slim-21-pages.pdf',
+           'transform': {'scaleX': 0.78125,
+                         'scaleY': 0.7819444444444444,
+                         'x': -1784,
+                         'y': 3451},
+           'type': 'Document',
+           'width': 1280,
+           'zIndex': 3758},
+          {'blocks': [{'align': 'left',
+                       'content': [{'text': 'Description:  documents for the '
+                                            'January 2021 meeting'}],
+                       'type': 'TextBlock'}],
+           'comments': [],
+           'id': '61819feaaf0a7a58abdf4aeb',
+           'pinned': False,
+           'style': {'backgroundColor': {'a': 0, 'b': 0, 'g': 0, 'r': 0},
+                     'color': {'a': 1, 'b': 255, 'g': 255, 'r': 255},
+                     'fontFamily': 'Noto_Sans',
+                     'fontSize': 64,
+                     'height': 163,
+                     'textTransform': 'none',
+                     'verticalAlign': 'top',
+                     'width': 1716},
+           'text': 'Description:  documents for the January 2021 meeting',
+           'transform': {'scaleX': 1, 'scaleY': 1, 'x': -1784, 'y': 3200},
+           'type': 'Text',
+           'zIndex': 3759},
+          {'asset': {'imageFormat': 'jpeg',
+                     'url': 'https://s3.us-east-1.amazonaws.com/acceptance-new.public-assets.bluescape.com/sessions/objects/E-IYMCBISe7QIPlxanns/6181a214af0a7a58abdf4af9.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIVWWSYKG7DKFMQJA%2F20211103%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20211103T232428Z&X-Amz-Expires=300&X-Amz-Signature=ea7f72b657acb4ac40efe61209d93e75479370766e8261b60a2d23cf1742f7bc&X-Amz-SignedHeaders=host'},
+           'attachments': [],
+           'comments': [],
+           'filename': 'Compliance reviewer.jpg',
+           'height': 1920,
+           'id': '6181a214af0a7a58abdf4af9',
+           'ingestionState': 'complete_success',
+           'pinned': False,
+           'title': 'Compliance reviewer.jpg',
+           'transform': {'scaleX': 0.5208333333333334,
+                         'scaleY': 0.5208333333333334,
+                         'x': -1784,
+                         'y': 4144},
+           'type': 'Image',
+           'width': 1920,
+           'zIndex': 3763},
+          {'blocks': [{'align': 'left',
+                       'content': [{'text': 'Compliance Department person'}],
+                       'type': 'TextBlock'}],
+           'comments': [],
+           'id': '6181a50caf0a7a58abdf4afd',
+           'pinned': False,
+           'style': {'backgroundColor': {'a': 0, 'b': 0, 'g': 0, 'r': 0},
+                     'color': {'a': 1, 'b': 255, 'g': 255, 'r': 255},
+                     'fontFamily': 'Noto_Sans',
+                     'fontSize': 64,
+                     'height': 163,
+                     'textTransform': 'none',
+                     'verticalAlign': 'top',
+                     'width': 1043},
+           'text': 'Compliance Department person',
+           'transform': {'scaleX': 1, 'scaleY': 1, 'x': -1153, 'y': 5132},
+           'type': 'Text',
+           'zIndex': 3764}
+    ]
 }
 </pre>
 
