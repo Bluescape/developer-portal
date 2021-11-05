@@ -37,7 +37,7 @@ Here we present a comparison of Bluescape <span class="pre">v3</span> REST and G
     </tr>
 </table>
 <h4>Filtering elements by Type</h4>
-<p>GraphQL provides a great flexibility to get just the data you need, and for that you need to clearly specify what are the fields you want to be retrieved in each query</p>
+<p>GraphQL provides a great flexibility to get just the data you need, and for that you need to clearly specify what are the fields you want to be retrieved in each query.</p>
 <table class="table table-striped">
     <tr>
         <td><center><b>REST</b></center></td>
@@ -79,6 +79,53 @@ query getTextAndCanvas{
         </td>
     </tr>
 </table>
+
+<h4>How to get the content of a Canvas</h4>
+<p>One operation you may run is to get and examine the content of a Canvas. See below how to do it in REST and in GraphQL.
+</p>
+<table class="table table-striped">
+    <tr>
+        <td><center><b>REST</b></center></td>
+        <td><center><b>GraphQL</b></center></td>
+    </tr>
+    <tr>
+        <td>
+        in REST APIs, to get the content of a Canvas, you need to get the <span class="pre">Id</span> of that particular Canvas and run the following GET query:<br />
+<pre>
+/v3/workspaces/<workspaceId>/elements?canvas=&lt;CANVAS_ID&gt;
+</pre>
+</td>
+        <td>In GraphQL, to get the content of a Canvas, you can add the <span class="pre">"canvasId"</span> parameter to an <span class="pre">elements</span> query. Remember that you need to add what you want to display of each element type: <br />
+<pre>
+query getCanvasContent($workspaceId: String!, $canvasId: String!) {
+      elements(workspaceId: $workspaceId, canvasId: $canvasId ) {            
+          type: __typename
+          id            
+          transform {
+              x
+              y
+          }     
+          ...on Image {
+              title
+              filename
+              asset { imageFormat }
+          } 
+          ... on Text {
+              text
+          }
+          ... on Document {
+              title
+              filename
+              asset { documentFormat }
+          }
+          
+      }    
+    }
+</pre>
+</td>
+    </tr>
+</table>
+
 <h4>For queries, some fields can be Unions in GraphQL</h4>
 <p>GraphQL provides great flexibility to get just the data you need, and for that you need to clearly specify what are the fields you want to be retrieved in each query. Sometimes the fields in the GraphQL are defined as <a target="_BLANK" href="https://graphql.org/learn/schema/#union-types">Unions</a>, not as a specific Type. Review the Bluescape GraphQl Schema for more details.<br />
 Unions in GraphQL are specified using this format:
