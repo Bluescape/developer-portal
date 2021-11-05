@@ -246,7 +246,7 @@ query getImagesFromWorkspace($workspaceId: String!){
 </code></code>
 </pre>
 
-<h2>Code sample</h2>
+<h2>Code sample - WORKING HERE</h2>
 
 <p>
     See below for full code examples of this implementation in Python and Node.js.
