@@ -252,6 +252,31 @@ query getImagesFromWorkspace($workspaceId: String!){
     See below for full code examples of this implementation in Python and Node.js.
 </p>
 
+<pre class="lang lang-curl">
+<code>
+Just PRE - CODE
+end point - javascript: <script src="/docs/assets/javascript/apiBase.js"></script> 
+end point - jquery: REPLACEME
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"<workspaceId>"}}'
+</code>
+</pre>
+<br />
+<pre class="lang lang-curl">
+<code><code>
+Just PRE - CODE - CODE
+end point - javascript: <script src="/docs/assets/javascript/apiBase.js"></script> 
+end point - jquery: REPLACEME
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"<workspaceId>"}}'
+</code></code>
+</pre>
+
+
 <div class="lang-selector">
     <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
@@ -261,6 +286,8 @@ query getImagesFromWorkspace($workspaceId: String!){
 <p>
 <pre class="lang lang-curl">
 <code><code>
+end point javascript: <script src="writeBaseStr.js"></script> 
+end point - jquery: REPLACEME
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
