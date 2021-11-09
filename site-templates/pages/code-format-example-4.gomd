@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/googlecode.min.css">
-<script>hljs.initHighlightingOnLoad();</script>
-<h1>code-format-example-1</h1>
+<link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/base16/3024.css">
+<script>hljs.highlightAll();</script>
+<h1>code-format-example-4</h1>
 
 <p>
 <b>Objective</b>: get a list of all the images in a Workspace. You will need the Workspace ID. This list will contain, for each image, details such as: image name, creation date, traits, comments, etc.<br />
