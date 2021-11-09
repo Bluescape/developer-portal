@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/rainbow.min.css">  
 <script>hljs.initHighlightingOnLoad();</script>
 <h1>code-format-example-1</h1>
 
