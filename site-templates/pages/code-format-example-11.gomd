@@ -1,23 +1,28 @@
-<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
+<script src="/docs/assets/javascript/highlight/highlight.min.js"></script>
+<link rel="stylesheet" href="/docs/assets/javascript/highlight/styles/base16/3024.min.css">
 
 <script type="text/javascript">
+//hljs.configure(ignoreUnescapedHTML);
 $(document).ready(function () {
     $("code").text(function (index, text) {
-        return text.replaceAll("apiBaseStrTOREPLACE", apiBaseStr);
+        return text.replaceAll("apiBaseStrURL", apiBaseStr).replaceAll("graphQLStrURL", graphQLStr);
     });
+    $("p").text(function (index, text) {
+        return text.replaceAll("apiBaseStrURL", apiBaseStr).replaceAll("graphQLStrURL", graphQLStr);
+    });
+    //$("body").html($("body").html().replaceAll("apiBaseStrURL", apiBaseStr));
 });
-</script>
 
-
-<script src="/docs/assets/javascript/highlight/highlight.min.js"></script>
-<link rel="stylesheet" href="/docs/assets/javascript/highlight/styles/github.min.css">
-<script>
-//hljs.configure(ignoreUnescapedHTML);
 hljs.highlightAll();
 </script>
+
+
 <h1>code-format-example-11</h1>
 
 <p>
+apiBaseStrURL <br />
+graphQLStrURL <br />
 <b>Objective</b>: get a list of all the images in a Workspace. You will need the Workspace ID. This list will contain, for each image, details such as: image name, creation date, traits, comments, etc.<br />
 This page contains the implementation details for <a href="#rest">v3 REST APIs</a> and for <a href="#graphql">v3 GraphQL APIs</a>. You can also see the example for <a href="/docs/page/get-all-images-from-a-workspace-v2">v2 REST APIs</a>.
 </p>
@@ -60,8 +65,8 @@ This page contains the implementation details for <a href="#rest">v3 REST APIs</
 <p>
 <pre class="lang lang-curl">
 <code class="language-bash"><code>
-to replace: apiBaseStrTOREPLACE
-curl --location --request GET 'apiBaseStrTOREPLACE/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
+to replace: apiBaseStrURL
+curl --location --request GET 'apiBaseStrURL/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
 </code></code>
 </pre>
@@ -82,7 +87,7 @@ Required modules:
 token = '&lt;SET_TOKEN&gt;'
 
 if __name__ == "__main__":
-   portal = "apiBaseStrTOREPLACE"
+   portal = "apiBaseStrURL"
    workspaceId = '&lt;SET_WORKSPACE_ID&gt;'   
    API_version = 'v3'
 
@@ -123,7 +128,7 @@ website: https://github.com/axios/axios
 var axios = require('axios');
 
 const token = '&lt;SET_TOKEN&gt;';
-const portal = 'apiBaseStrTOREPLACE';
+const portal = 'apiBaseStrURL';
 const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
 const api_version = 'v3';
 const api_endpoint = '/workspaces/' + workspaceId + '/elements?type=Image';
