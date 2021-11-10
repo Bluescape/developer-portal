@@ -1,7 +1,6 @@
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 
 <script type="text/javascript">
-var apiBaseStr = "https://api." + window.location.hostname.split('.').splice(1).join('.');
 $(document).ready(function () {
     $("code").text(function (index, text) {
         return text.replaceAll("apiBaseStrTOREPLACE", apiBaseStr);
