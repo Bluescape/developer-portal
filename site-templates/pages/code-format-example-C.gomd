@@ -1,8 +1,31 @@
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
 <script src="/docs/assets/javascript/highlight/highlight.min.js"></script>
 <link rel="stylesheet" href="/docs/assets/javascript/highlight/styles/base16/3024.min.css">
 
-<script>hljs.highlightAll();</script>
-<h1>code-format-example-4</h1>
+<style>
+pre {
+    font-size: 14px !important;
+    border: 0px ;
+    background-color: transparent;
+}
+</style>
+
+<script type="text/javascript">
+//hljs.configure(ignoreUnescapedHTML);
+$(document).ready(function () {
+    $("code").text(function (index, text) {
+        return text.replaceAll("apiBaseStrURL", apiBaseStr).replaceAll("graphQLStrURL", graphQLStr).replaceAll("applicationStrURL", applicationStr).replaceAll("healthStrURL", healthStr).replaceAll("healthLinkURL", healthLink).replaceAll("appStrLowerURL", appStrLower).replaceAll("appStrURL", appStr).replaceAll("identityStrURL", identityStr);
+    });
+    $("p").text(function (index, text) {
+        return text.replaceAll("apiBaseStrURL", apiBaseStr).replaceAll("graphQLStrURL", graphQLStr).replaceAll("applicationStrURL", applicationStr).replaceAll("healthStrURL", healthStr).replaceAll("healthLinkURL", healthLink).replaceAll("appStrLowerURL", appStrLower).replaceAll("appStrURL", appStr).replaceAll("identityStrURL", identityStr);;
+    });
+    //$("body").html($("body").html().replaceAll("apiBaseStrURL", apiBaseStr));
+});
+
+hljs.highlightAll();
+</script>
+
+<h1>code-format-example-C</h1>
 
 <p>
 <b>Objective</b>: get a list of all the images in a Workspace. You will need the Workspace ID. This list will contain, for each image, details such as: image name, creation date, traits, comments, etc.<br />
@@ -46,16 +69,16 @@ This page contains the implementation details for <a href="#rest">v3 REST APIs</
 
 <p>
 <pre class="lang lang-curl">
-<code><code>
-curl --location --request GET '<script src="/docs/assets/javascript/apiBase.js"></script>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
+<code class="language-bash">
+curl --location --request GET 'graphQLStrURL/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
-</code></code>
+</code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-python">
-<code><code>
+<code class="language-python">
 # Python Code (python 3.5+)
 import requests
 import pprint
@@ -68,7 +91,7 @@ Required modules:
 token = '&lt;SET_TOKEN&gt;'
 
 if __name__ == "__main__":
-   portal = "<script src="/docs/assets/javascript/apiBase.js"></script>"
+   portal = "graphQLStrURL"
    workspaceId = '&lt;SET_WORKSPACE_ID&gt;'   
    API_version = 'v3'
 
@@ -86,13 +109,13 @@ if __name__ == "__main__":
    json_response = the_request.json()
 
    pprint.pprint(json_response)
-</code></code>
+</code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
-<code><code>
+<code class="language-javascript">
 // Node.js Javascript   
 /*
 
@@ -109,7 +132,7 @@ website: https://github.com/axios/axios
 var axios = require('axios');
 
 const token = '&lt;SET_TOKEN&gt;';
-const portal = '<script src="/docs/assets/javascript/apiBase.js"></script>';
+const portal = 'graphQLStrURL';
 const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
 const api_version = 'v3';
 const api_endpoint = '/workspaces/' + workspaceId + '/elements?type=Image';
@@ -134,7 +157,7 @@ axios(request_values)
     .catch (function (error) {
         console.log('Error: ' + error.message);
     });    
-</code></code>           
+</code>      
 </pre>        
 </p>
 
@@ -194,7 +217,7 @@ What you should get: JSON with the list of all images in the workspace
 
 <h3>Output Json sample</h3>
 <pre>
-<code><code>
+<code class="language-json">
 {
     "data": [
         {
@@ -221,7 +244,7 @@ What you should get: JSON with the list of all images in the workspace
         }
     ]
 } 
-</code></code>
+</code> 
 </pre>
 
 <a name="graphql" class="internal-anchor"><h2>Implementation using v3 GraphQL APIs</h2></a>
@@ -256,31 +279,6 @@ query getImagesFromWorkspace($workspaceId: String!){
     See below for full code examples of this implementation in Python and Node.js.
 </p>
 
-<pre class="lang lang-curl">
-<code>
-Just PRE - CODE
-end point - javascript: <script src="/docs/assets/javascript/apiBase.js"></script> 
-end point - jquery: REPLACEME
-curl --location --request POST '<script src="/docs/assets/javascript/apiBase.js"></script>/v3/graphql/' \
---header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
---header 'Content-Type: application/json' \
---data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"<workspaceId>"}}'
-</code>
-</pre>
-<br />
-<pre class="lang lang-curl">
-<code><code>
-Just PRE - CODE - CODE
-end point - javascript: <script src="/docs/assets/javascript/apiBase.js"></script> 
-end point - jquery: REPLACEME
-curl --location --request POST '<script src="/docs/assets/javascript/apiBase.js"></script>/v3/graphql/' \
---header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
---header 'Content-Type: application/json' \
---data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"<workspaceId>"}}'
-</code></code>
-</pre>
-
-
 <div class="lang-selector">
     <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
@@ -289,10 +287,8 @@ curl --location --request POST '<script src="/docs/assets/javascript/apiBase.js"
 
 <p>
 <pre class="lang lang-curl">
-<code><code>
-end point - javascript: <script src="/docs/assets/javascript/apiBase.js"></script> 
-end point - jquery: REPLACEME
-curl --location --request POST '<script src="/docs/assets/javascript/apiBase.js"></script>/v3/graphql/' \
+<code class="language-bash">
+curl --location --request POST 'graphQLStrURL' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"<workspaceId>"}}'
@@ -302,10 +298,10 @@ curl --location --request POST '<script src="/docs/assets/javascript/apiBase.js"
 
 <p>
 <pre class="lang lang-node">
-<code><code>
+<code class="language-javascript">
 const axios = require('axios');
 
-const url = "<script src="/docs/assets/javascript/apiBase.js"></script>/v3/graphql/"
+const url = "graphQLStrURL"
 const token = "&lt;SET_TOKEN&gt;"
 const query = 
     `query getImagesFromWorkspace($workspaceId: String!){
@@ -336,17 +332,18 @@ const getWorkspaces = async () => {
 }
 
 getWorkspaces();
-</code></code>
+</code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-python">
-<code><code>
+<code class="language-python">
+
 import requests
 import pprint
 
-url = "<script src="/docs/assets/javascript/apiBase.js"></script>v3/graphql/"
+url = "graphQLStrURL"
 token = "&lt;SET_TOKEN&gt;"
 query = """
     query getImagesFromWorkspace($workspaceId: String!){
@@ -377,7 +374,7 @@ def makeQuery():
 if __name__ == "__main__":
     response = makeQuery()
     pprint.pprint(response)
-</code></code>
+</code>
 </pre>
 
 </p>

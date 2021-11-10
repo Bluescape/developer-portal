@@ -1,9 +1,31 @@
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
 <script src="/docs/assets/javascript/highlight/highlight.min.js"></script>
 <link rel="stylesheet" href="/docs/assets/javascript/highlight/styles/github.min.css">
-<script>
+
+<style>
+pre {
+    font-size: 14px !important;
+    border: 0px ;
+    background-color: transparent;
+}
+</style>
+
+<script type="text/javascript">
 //hljs.configure(ignoreUnescapedHTML);
+$(document).ready(function () {
+    $("code").text(function (index, text) {
+        return text.replaceAll("apiBaseStrURL", apiBaseStr).replaceAll("graphQLStrURL", graphQLStr).replaceAll("applicationStrURL", applicationStr).replaceAll("healthStrURL", healthStr).replaceAll("healthLinkURL", healthLink).replaceAll("appStrLowerURL", appStrLower).replaceAll("appStrURL", appStr).replaceAll("identityStrURL", identityStr);
+    });
+    $("p").text(function (index, text) {
+        return text.replaceAll("apiBaseStrURL", apiBaseStr).replaceAll("graphQLStrURL", graphQLStr).replaceAll("applicationStrURL", applicationStr).replaceAll("healthStrURL", healthStr).replaceAll("healthLinkURL", healthLink).replaceAll("appStrLowerURL", appStrLower).replaceAll("appStrURL", appStr).replaceAll("identityStrURL", identityStr);;
+    });
+    //$("body").html($("body").html().replaceAll("apiBaseStrURL", apiBaseStr));
+});
+
 hljs.highlightAll();
 </script>
+
+
 <h1>code-format-example-1</h1>
 
 <p>
