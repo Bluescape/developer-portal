@@ -1,6 +1,6 @@
 <h1>How to find elements in a workspace</h1>
 <p>
-<b>Objective</b>: find elements in the workspace that match a specific text string.  This is done to get properties of that element, to edit it or to delete it. Also, you may want to find a specific canvas to retrieve its content or to add more elements to it. In this page we will search for a specific Cnavsa for its name and will display the content of that Canvas.<br />
+<b>Objective</b>: find elements in the workspace that match a specific text string.  This is done to get properties of that element, to edit it or to delete it. Also, you may want to find a specific canvas to retrieve its content or to add more elements to it. In this page we will search for a specific Canvas for its name and will display the content of that Canvas.<br />
 
 This page contains the implementation details for <a href="#rest">v3 REST APIs</a> and for <a href="#graphql">v3 GraphQL APIs</a>.
 </p>
