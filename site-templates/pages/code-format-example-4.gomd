@@ -1,4 +1,6 @@
-<link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/base16/3024.css">
+<script src="/docs/assets/javascript/highlight/highlight.min.js"></script>
+<link rel="stylesheet" href="/docs/assets/javascript/highlight/styles/base16/3024.min.css">
+
 <script>hljs.highlightAll();</script>
 <h1>code-format-example-4</h1>
 
@@ -45,7 +47,7 @@ This page contains the implementation details for <a href="#rest">v3 REST APIs</
 <p>
 <pre class="lang lang-curl">
 <code><code>
-curl --location --request GET '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
+curl --location --request GET '<script src="/docs/assets/javascript/apiBase.js"></script>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
 </code></code>
 </pre>
@@ -66,7 +68,7 @@ Required modules:
 token = '&lt;SET_TOKEN&gt;'
 
 if __name__ == "__main__":
-   portal = "<script type="text/javascript">document.write(apiBaseStr); </script>"
+   portal = "<script src="/docs/assets/javascript/apiBase.js"></script>"
    workspaceId = '&lt;SET_WORKSPACE_ID&gt;'   
    API_version = 'v3'
 
@@ -107,7 +109,7 @@ website: https://github.com/axios/axios
 var axios = require('axios');
 
 const token = '&lt;SET_TOKEN&gt;';
-const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
+const portal = '<script src="/docs/assets/javascript/apiBase.js"></script>';
 const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
 const api_version = 'v3';
 const api_endpoint = '/workspaces/' + workspaceId + '/elements?type=Image';
@@ -259,7 +261,7 @@ query getImagesFromWorkspace($workspaceId: String!){
 Just PRE - CODE
 end point - javascript: <script src="/docs/assets/javascript/apiBase.js"></script> 
 end point - jquery: REPLACEME
-curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
+curl --location --request POST '<script src="/docs/assets/javascript/apiBase.js"></script>/v3/graphql/' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"<workspaceId>"}}'
@@ -271,7 +273,7 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
 Just PRE - CODE - CODE
 end point - javascript: <script src="/docs/assets/javascript/apiBase.js"></script> 
 end point - jquery: REPLACEME
-curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
+curl --location --request POST '<script src="/docs/assets/javascript/apiBase.js"></script>/v3/graphql/' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"query getImagesFromWorkspace($workspaceId: String!){\n  elements(workspaceId: $workspaceId, type: Image) {\n\t__typename\n\tid\n  }\n}\n","variables":{"workspaceId":"<workspaceId>"}}'
