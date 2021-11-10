@@ -1,6 +1,9 @@
 <script src="/docs/assets/javascript/highlight/highlight.min.js"></script>
 <link rel="stylesheet" href="/docs/assets/javascript/highlight/styles/github.min.css">
-<script>hljs.initHighlightingOnLoad();</script>
+<script>
+//hljs.configure(ignoreUnescapedHTML);
+hljs.highlightAll();
+</script>
 <h1>code-format-example-1</h1>
 
 <p>
@@ -45,7 +48,7 @@ This page contains the implementation details for <a href="#rest">v3 REST APIs</
 
 <p>
 <pre class="lang lang-curl">
-<code><code>
+<code class="language-bash"><code>
 curl --location --request GET '<script src="/docs/assets/javascript/apiBase.js"></script>/v3/workspaces/&lt;workspaceId&gt;/elements?type=Image' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
 </code></code>

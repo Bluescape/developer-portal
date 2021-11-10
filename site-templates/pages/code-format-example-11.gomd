@@ -69,7 +69,7 @@ curl --location --request GET 'apiBaseStrTOREPLACE/v3/workspaces/&lt;workspaceId
 
 <p>
 <pre class="lang lang-python">
-<code><code>
+<code class="language-python"><code>
 # Python Code (python 3.5+)
 import requests
 import pprint
@@ -106,7 +106,7 @@ if __name__ == "__main__":
 
 <p>
 <pre class="lang lang-node">
-<code><code>
+<code class="language-javascript"><code>
 // Node.js Javascript   
 /*
 
