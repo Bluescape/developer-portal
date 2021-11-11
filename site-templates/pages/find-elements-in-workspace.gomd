@@ -642,7 +642,7 @@ website: https://github.com/axios/axios
 
 const axios = require('axios');
 
-const url = "https://api.uat.alpha.dev.bluescape.io/v3/graphql"
+const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
 const token = "&lt;SET_TOKEN&gt;"
 const workspaceId = "&lt;workspaceId&gt;"
 // String to match on the Canvas "name" field
