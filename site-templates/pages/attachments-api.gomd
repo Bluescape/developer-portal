@@ -139,7 +139,7 @@ function runRequest(portal,api_endpoint,method,data_load) {
 }
 
 async function runAPIRequests() {
-    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments'
+    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments'
 
     data_load = {
         'sourceId': "&lt;SET_SOURCE_ID&gt;"
@@ -171,7 +171,7 @@ api_version = '/v3/'
 
 if __name__ == "__main__":
 
-    API_endpoint = API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments'
+    API_endpoint = API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments'
 
     data_load = {
         'sourceId': '&lt;SET_SOURCE_ID&gt;',     # Example showing how to use the filter_by field
@@ -192,7 +192,7 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_id&gt;/attachments \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;SET_WORKSPACE_ID&gt;/elements/&lt;SET_SURFACE_ID&gt;/attachments \
 -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' \
 -d '{
@@ -279,7 +279,7 @@ function runRequest(portal,api_endpoint,method,data_load) {
 }
 
 async function runAPIRequests() {
-    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments'
+    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments'
 
     method = 'GET';
 
@@ -305,7 +305,7 @@ api_version = '/v3/'
 
 
 if __name__ == "__main__":
-    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments'
+    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments'
 
     the_request = requests.get(
             API_endpoint,
@@ -318,7 +318,7 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X GET <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_id&gt;/attachments \
+curl -X GET <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;SET_SURFACE_ID&gt;/attachments \
 -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' 
 </pre>
@@ -417,7 +417,7 @@ function runRequest(portal,api_endpoint,method,data_load) {
     });
 }
 async function runAPIRequests() {
-    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments/&lt;ATTACHMENT_ID&gt;'
+    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments/&lt;ATTACHMENT_ID&gt;'
 
     method = 'DELETE';
 
@@ -443,7 +443,7 @@ api_version = '/v3/'
 
 
 if __name__ == "__main__":
-    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments/&lt;ATTACHMENT_ID&gt;'
+    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments/&lt;ATTACHMENT_ID&gt;'
 
     the_request = requests.delete(
             API_endpoint,
@@ -456,7 +456,7 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X DELETE <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_id&gt;/attachments/&lt;attachment_id&gt; \
+curl -X DELETE <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;SET_SURFACE_ID&gt;/attachments/&lt;attachment_id&gt; \
 -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' 
 </pre>
@@ -752,16 +752,18 @@ using these variables:
 </p>
 
 <a name="use-case-example" class="internal-anchor"><h3>Use Case Example</h3></a>
-Below is a simple, end-to-end example of how someone might use the Attachments APIs. This example is one in which a user uploads
+<p>
+Below is a simple, end-to-end example of how someone might use the Attachments APIs.<br /> This example is one in which a user uploads
 content from a local directory into a Bluescape workspace, generates text fields corresponding to the names of the uploaded files, and 
 attaches the text fields to the files. An e-mail is then sent to the specified recipient notifying them of the changes that were 
 made within the workspace.
-<br />
+</p>
 
 <p><div class="lang-selector">
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
     <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
 </div></p>
+
 
 <pre class="lang lang-curl">
 Select Node.js or Python
@@ -795,7 +797,7 @@ const token = &lt;SET_TOKEN&gt;;
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
 const api_version = 'v3';
-var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/images';
+var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements?type=images';
 var method = '';
 
 const canvas_x = 0;
@@ -872,17 +874,22 @@ async function runAPIRequests() {
     *****************************/
 
     try {           
-        api_endpoint = '/v3/workspaces/' + workspace_uid + '/elements/canvas';
+        api_endpoint = '/v3/workspaces/' + workspace_uid + '/elements';
         method = 'POST';
         var currtime = new Date().toISOString().slice(0,16).replace('T',' ');
 
         var data_load = {
-            'x': canvas_x,
-            'y': canvas_y,
-            'width': canvas_width,
-            'height': canvas_height,
+            'type' : 'Canvas',
+            'transform' : {
+                'x': canvas_x,
+                'y': canvas_y
+            },
+            'style' : {
+                'width': canvas_width,
+                'height': canvas_height
+                'borderColor': {'r': 238, 'g': 85, 'b': 80, 'a': 1}
+            },
             'name': "New Canvas - Creation time: " + currtime ,
-            'borderColor': 'Red'
         }
         
         const canvasResponse = await runRequest(portal,api_endpoint,method,data_load);
@@ -1011,7 +1018,7 @@ async function runAPIRequests() {
                     from: '&lt;INSERT_YOUR_EMAIL&gt;',
                     to: '&lt;INSERT_DESTINATION_EMAIL&gt;',
                     subject: 'Attachment Canvas is Ready for Review',
-                    text: 'An attachment canvas is ready for review. You can reach this workspace here:' + '<script type="text/javascript">document.write("https://client." + window.location.hostname.split('.').splice(1).join('.')); </script>' + '/' + workspace_uid
+                    text: 'An attachment canvas is ready for review. You can reach this workspace here:' + '<script type="text/javascript">document.write(apiBaseStr); </script>' + '/' + workspace_uid
                     };
                     transporter.sendMail(mailOptions, function(error, info){
                     if (error) {
