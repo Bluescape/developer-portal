@@ -139,7 +139,7 @@ function runRequest(portal,api_endpoint,method,data_load) {
 }
 
 async function runAPIRequests() {
-    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments'
+    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments'
 
     data_load = {
         'sourceId': "&lt;SET_SOURCE_ID&gt;"
@@ -171,7 +171,7 @@ api_version = '/v3/'
 
 if __name__ == "__main__":
 
-    API_endpoint = API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments'
+    API_endpoint = API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments'
 
     data_load = {
         'sourceId': '&lt;SET_SOURCE_ID&gt;',     # Example showing how to use the filter_by field
@@ -192,7 +192,7 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_id&gt;/attachments \
+curl -X POST <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;SET_SURFACE_ID&gt;/attachments \
 -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' \
 -d '{
@@ -279,7 +279,7 @@ function runRequest(portal,api_endpoint,method,data_load) {
 }
 
 async function runAPIRequests() {
-    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments'
+    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments'
 
     method = 'GET';
 
@@ -305,7 +305,7 @@ api_version = '/v3/'
 
 
 if __name__ == "__main__":
-    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments'
+    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments'
 
     the_request = requests.get(
             API_endpoint,
@@ -318,7 +318,7 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X GET <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_id&gt;/attachments \
+curl -X GET <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;SET_SURFACE_ID&gt;/attachments \
 -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' 
 </pre>
@@ -417,7 +417,7 @@ function runRequest(portal,api_endpoint,method,data_load) {
     });
 }
 async function runAPIRequests() {
-    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments/&lt;ATTACHMENT_ID&gt;'
+    api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments/&lt;ATTACHMENT_ID&gt;'
 
     method = 'DELETE';
 
@@ -443,7 +443,7 @@ api_version = '/v3/'
 
 
 if __name__ == "__main__":
-    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SURFACE_ID&gt;/attachments/&lt;ATTACHMENT_ID&gt;'
+    API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments/&lt;ATTACHMENT_ID&gt;'
 
     the_request = requests.delete(
             API_endpoint,
@@ -456,7 +456,7 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X DELETE <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;surface_id&gt;/attachments/&lt;attachment_id&gt; \
+curl -X DELETE <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;SET_SURFACE_ID&gt;/attachments/&lt;attachment_id&gt; \
 -H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 -H 'Content-Type: application/json' 
 </pre>
