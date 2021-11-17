@@ -48,13 +48,15 @@ In v3 we have access to a <span class="pre">search</span> API. This API allows t
     You can specify what type of elements are included in the search. If you want to search only on Image, Shape and Text elements, you can specify the <span class="pre">"filterTypes"</span> field with those values, as in this example of the request body:
 
 <pre>
+<code><code>
 {
   "filterTypes": [
     "Image", "Shape", "Text"
   ],
   "orderDirection": "desc",
-  "query": "<STRING_TO_MATCH>"
+  "query": "&lt;STRING_TO_MATCH&gt;"
 } 
+</code></code>
 </pre>
 
 </p>
@@ -63,10 +65,12 @@ In v3 we have access to a <span class="pre">search</span> API. This API allows t
      If you want to run a search for all the elements in the workspace, and not for a specific set, then simply remove the <span class="pre">"filterTypes"</span> key in the body request of the API call. 
 
 <pre>
+<code><code>
 {
   "orderDirection": "desc",
-  "query": "<STRING_TO_MATCH>" 
+  "query": "&lt;STRING_TO_MATCH&gt;" 
 }
+</code></code>
 </pre>
 
 </p>
@@ -83,6 +87,7 @@ Below there is an example of the response body of this API. The search was for "
 This is an example of the results (response body) for a search for for "January 2021":
 <p>
 <pre>
+<code><code>
 {
     "data": [
         {
@@ -137,6 +142,7 @@ This is an example of the results (response body) for a search for for "January 
         }
     ]
 }
+</code></code>
 </pre>
 
 Now you can process the results or run a new search with a search query with more specific terms, for example "January 2021 summary data". 
@@ -158,7 +164,8 @@ Now you can process the results or run a new search with a search query with mor
 
 <p>
 <pre class="lang lang-curl">
-curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/search' \
+<code class="language-bash"><code>
+curl --location --request POST 'apiBaseStrURL/v3/workspaces/&lt;workspaceId&gt;/search' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --data-raw '{
   "filterTypes": [
@@ -169,11 +176,13 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
 }'
 # if you want to get a shorter version of the results of the search, add the following line at to the script above, after "}'":
 # | jq . | egrep "(matchText|\"id\"|type)" 
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-python">
+<code class="language-python"><code>
 # Python Code (python 3.5+)
 import requests
 import datetime
@@ -186,10 +195,10 @@ Required modules:
 
 '''
 
-token = '<SET_TOKEN>'
+token = '&lt;SET_TOKEN&gt;'
 
 if __name__ == "__main__":
-    portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
+    portal = 'apiBaseStrURL'
     workspaceId = '&lt;SET_WORKSPACE_ID&gt;'  # REMEMBER TO ADD THE WORKSPACE ID
 
     canvasNameToMatch = '&lt;STRING_TO_MATCH&gt;'
@@ -245,12 +254,13 @@ if __name__ == "__main__":
     canvasContent = listOfCanvasContent['data']
     print("Canvas content:")
     pprint.pprint(listOfCanvasContent)  
-
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
+<code class="language-javascript"><code>
 // Node.js Javascript REST API example for search and list content of Canvas
 /*
 
@@ -267,7 +277,7 @@ website: https://github.com/axios/axios
 var axios = require('axios');
 
 const token = '&lt;SET_TOKEN&gt;';
-const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
+const portal = 'apiBaseStrURL';
 const workspaceId = '&lt;SET_WORKSPACE_ID&gt;';
 const api_version = 'v3';
 
@@ -344,7 +354,8 @@ async function runSearchAndGetCanvasContent() {
 }
 
 // Run the requests
-runSearchAndGetCanvasContent();           
+runSearchAndGetCanvasContent();   
+</code></code>
 </pre>        
 </p>
 
@@ -365,6 +376,7 @@ The scripts above will show 2 sets of outputs:
 </p>
 <p>
 <pre>
+<code><code>
 {
   "data": [
     {
@@ -390,6 +402,7 @@ The scripts above will show 2 sets of outputs:
     }
   ]
 }
+</code></code>
 </pre>
 </p>
 <p>
@@ -397,6 +410,7 @@ Canvas Content output (values for <span class="pre">"id"</span> and <span class=
 </p>
 <p>
 <pre>
+<code><code>
 {
   "data": [
     {
@@ -499,6 +513,7 @@ Canvas Content output (values for <span class="pre">"id"</span> and <span class=
     }
   ]
 }
+</code></code>
 </pre>
 
 
@@ -515,16 +530,19 @@ In GraphQl we currently do not have a search API. The approach here is to run a 
 
 <p>
 <pre class="lang lang-curl">
+<code class="language-bash"><code>
 # Uses 'jq' to filter the results, to filter the string to match: | jq '.data.elements[] | select(.name|test("&lt;STRING_TO_MATCH&gt;"))'
-curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
+curl --location --request POST 'apiBaseStrURL/v3/graphql' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"query getCanvasesfromWorkspace($workspaceId: String!) {\n  elements(workspaceId: $workspaceId, type: Canvas) {\n    ... on Canvas {\n      type: __typename\n      id\n      name\n      transform {\n        x\n        y\n      }      \n    }\n  }    \n}","variables":{"workspaceId":"&lt;workspaceId&gt;"}}' | jq '.data.elements[] | select(.name|test("&lt;STRING_TO_MATCH&gt;"))'
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-python">
+<code class="language-python"><code>
 import requests
 import pprint
 
@@ -535,7 +553,7 @@ Required modules:
    requests 2.22.0
 '''
 
-url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
+url = "apiBaseStrURL/v3/graphql"
 token = "&lt;SET_TOKEN&gt;"
 workspaceId = "&lt;workspaceId&gt;"
 
@@ -619,12 +637,13 @@ if __name__ == "__main__":
             print("Canvas content:")
             pprint.pprint(ListCanvasContent) # uncomment to see the list 
             break  # leave the loop
-
+</code></code>
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
+<code class="language-javascript"><code>
 // Node.js Javascript
 // List the content of a canvas searching for a match for canvas "name" in list of canvases from the workspace
 
@@ -642,7 +661,7 @@ website: https://github.com/axios/axios
 
 const axios = require('axios');
 
-const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
+const url = "apiBaseStrURL/v3/graphql"
 const token = "&lt;SET_TOKEN&gt;"
 const workspaceId = "&lt;workspaceId&gt;"
 // String to match on the Canvas "name" field
@@ -740,6 +759,7 @@ async function getCanvasContentFoundByName() {
 
 // Run the requests
 getCanvasContentFoundByName();
+</code></code>
 </pre>
 </p>
 
@@ -758,6 +778,7 @@ Search Results output (values for <span class="pre">"id"</span> are samples only
 
 <p>
 <pre>
+<code><code>
 [
   {
     "type": "Canvas",
@@ -798,6 +819,7 @@ Search Results output (values for <span class="pre">"id"</span> are samples only
     }
   }
 ]
+</code></code>
 </pre>
 
 </p>
@@ -807,6 +829,7 @@ Canvas Content output (values for <span class="pre">"id"</span> are samples only
 <p>
 
 <pre>
+<code><code>
 [
   {
     "type": "Document",
@@ -853,6 +876,7 @@ Canvas Content output (values for <span class="pre">"id"</span> are samples only
     "text": "Compliance Department person"
   }
 ]
+</code></code>
 </pre>
 
 </p>
