@@ -53,7 +53,7 @@ In v3 we have access to a <span class="pre">search</span> API. This API allows t
     "Image", "Shape", "Text"
   ],
   "orderDirection": "desc",
-  "query": "<STRING_TO_MATCH>"
+  "query": "&lt;STRING_TO_MATCH&gt;"
 } 
 </pre>
 
@@ -65,7 +65,7 @@ In v3 we have access to a <span class="pre">search</span> API. This API allows t
 <pre>
 {
   "orderDirection": "desc",
-  "query": "<STRING_TO_MATCH>" 
+  "query": "&lt;STRING_TO_MATCH&gt;" 
 }
 </pre>
 
