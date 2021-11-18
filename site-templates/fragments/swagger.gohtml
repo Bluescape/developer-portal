@@ -4,6 +4,26 @@
     <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-standalone-preset.js"></script>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css" >
     <link rel="stylesheet" type="text/css" href="{{.Prefix}}styles/components/swagger.css" >
+    <script>
+
+        function waitForElement(elementPath, callBack){
+            window.setTimeout(function(){
+                if($(elementPath).length){
+                callBack(elementPath, $(elementPath));
+                }else{
+                waitForElement(elementPath, callBack);
+                }
+            },500)
+        }
+
+        waitForElement(".servers-title",function(){
+            console.log("done!!");
+            $(".info").append('<p>You can use the "Try it out" button to execute the APIs directly from this document, see <a target = "_BLANK" href="https://community.bluescape.com/t/run-the-rest-apis-directly-from-the-developer-portal-use-the-try-it-out-button/360">how to do it here</a>.</p>');
+        });
+    </script>
+
+
+
     <style>
         pre, span.pre {
             background-color: transparent;
@@ -24,10 +44,7 @@
     </style>
 {{end}}
 <span id="swagger-ui"></span>
-<script>
- $(document).ready(function () {
-    $("information-container").append('<p>You can use the "Try it out" button to execute the APIs directly from this document, see <a target = "_BLANK" href="/docs/page/run-apis-in-openapi-doc">how to do it here</a>.</p>");
- });
+<script> 
  const ui = SwaggerUIBundle({
      url: "/openapi/services/{{.CurrentNamespace}}/{{.CurrentService}}/openapi.json",
      dom_id: '#swagger-ui',
@@ -37,5 +54,6 @@
          SwaggerUIBundle.SwaggerUIStandalonePreset
 
      ],
- })
+ });
+ 
 </script>
