@@ -28,7 +28,7 @@
     <ol>
       <li>Check <a href="https://community.bluescape.com/c/support/9 ">Service Updates</a> for any service disruption advisories.</li>
       <li>Send a simple HTTP GET to the <a href="../"><script type="text/javascript">document.write(healthLink); </script></a> API method. A <span class="pre">HTTP 200</span> application/json response of <span class="pre">{"ok":true}</span> indicates at least part of the Bluescape Service is available.</li>
-      <li>Still unsure if Bluescape is down? Contact our enthusiastic support team at the <a href="https://community.bluescape.com/c/support/9" target="_blank">Support page</a>.</li>
+      <li>Still unsure if Bluescape is down? Contact our enthusiastic support team in the <a href="https://community.bluescape.com/c/support/9" target="_blank">Bluescape Community</a>.</li>
     </ol>
 
     <h3>How do I authenticate my requests to Bluescape?</h3>
