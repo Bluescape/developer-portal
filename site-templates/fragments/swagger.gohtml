@@ -7,7 +7,7 @@
     <script>
 
         // TODO: need to check if the whole cycle works for the second time "Try it out" is clicked, on other API
-        console.log("here 8.8 !");
+        console.log("here 8.11 !");
 
         function waitForElement(elementPath, callBack){
             window.setTimeout(function(){
@@ -55,6 +55,12 @@
                 
             });
 
+            $("button.btn.try-out__btn").bind("click", function() {
+                console.log("'Try it out' Button clicked - B");
+                console.log("    Text in button: "+ $("button.btn.try-out__btn").text());
+
+            });
+
 
          });
 
@@ -64,9 +70,14 @@
 
 
          });
-      
 
-      // html body div.o-page main.o-page__main div article section div span#swagger-ui div.swagger-ui div div.wrapper section.block.col-12.block-desktop.col-12-desktop div span div.opblock-tag-section.is-open div.no-margin div.operation-tag-content span div#operations-Elements-RestQueryController\.find.opblock.opblock-get.is-open div.no-margin div.opblock-body div.responses-wrapper div.responses-inner div div table.responses-table.live-responses-table tbody tr.response td.response-col_status
+
+        waitForElement("button.btn.try-out__btn",function(){
+            $("button.btn.try-out__btn").bind("click", function() {
+                console.log("'Try it out' Button clicked - A");
+                console.log(">>>> Text in button: "+ $("button.btn.try-out__btn").text());
+            });
+        });
 
     </script>
 
