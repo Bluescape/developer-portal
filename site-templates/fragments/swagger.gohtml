@@ -6,6 +6,9 @@
     <link rel="stylesheet" type="text/css" href="{{.Prefix}}styles/components/swagger.css" >
     <script>
 
+        // TODO: need to check if the whole cycle works for the second time "Try it out" is clicked, on other API
+        console.log("here 8.8 !");
+
         function waitForElement(elementPath, callBack){
             window.setTimeout(function(){
                 if($(elementPath).length){
@@ -14,12 +17,57 @@
                 waitForElement(elementPath, callBack);
                 }
             },500)
-        }
+        };
 
         waitForElement(".servers-title",function(){
             console.log("done!!");
             $(".info").append('<p>You can use the "Try it out" button to execute the APIs directly from this document, see <a target = "_BLANK" href="https://community.bluescape.com/t/run-the-rest-apis-directly-from-the-developer-portal-use-the-try-it-out-button/360">how to do it here</a>.</p>');
+
+            {{/* $(".execute").bind("click", function() {
+                console.log("Execute button clicked");
+                // alert( $( this ).text() );
+            });
+
+            $(".servers-title").bind("click", function() {
+                console.log("servers-title clicked");
+                // alert( $( this ).text() );
+            }); */}}
+
         });
+
+         waitForElement(".execute",function(){
+            console.log("Execute is present");
+            $(".execute").bind("click", function() {
+                console.log("Execute button clicked !");
+
+                var selectorAnswer = "div.responses-inner div div table.responses-table.live-responses-table tbody tr.response td.response-col_status";
+                waitForElement(selectorAnswer,function(){
+                    console.log("response col present! Content: "+ $(selectorAnswer).text());
+                    var answerCode = $(selectorAnswer).text();
+                    console.log('Answer code: ' + answerCode);
+                    if ( answerCode == "401") {
+                        console.log("remember to login into bluescape");
+                        alert("Remember to login into bluescape");
+                        // Check https://stackoverflow.com/questions/10689556/show-html-in-alert-window-same-like-iframe
+                    } 
+
+                });
+                
+            });
+
+
+         });
+
+        var selectorAnswer = "div.responses-inner div div table.responses-table.live-responses-table tbody tr.response td.response-col_status";
+        waitForElement(selectorAnswer,function(){
+            console.log("response col present! Content: "+ $(selectorAnswer).text());
+
+
+         });
+      
+
+      // html body div.o-page main.o-page__main div article section div span#swagger-ui div.swagger-ui div div.wrapper section.block.col-12.block-desktop.col-12-desktop div span div.opblock-tag-section.is-open div.no-margin div.operation-tag-content span div#operations-Elements-RestQueryController\.find.opblock.opblock-get.is-open div.no-margin div.opblock-body div.responses-wrapper div.responses-inner div div table.responses-table.live-responses-table tbody tr.response td.response-col_status
+
     </script>
 
 
