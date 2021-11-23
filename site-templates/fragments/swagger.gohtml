@@ -1,8 +1,58 @@
 {{define "swagger-head"}}
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script> 
     <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
     <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-standalone-preset.js"></script>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css" >
     <link rel="stylesheet" type="text/css" href="{{.Prefix}}styles/components/swagger.css" >
+    <script>
+
+        console.log("here 10.52 !");
+
+        var GETrunOK = false;       
+
+        function waitForElement(elementPath, callBack){
+            window.setTimeout(function(){
+                if($(elementPath).length){
+                    callBack(elementPath, $(elementPath));
+                }else{
+                    waitForElement(elementPath, callBack);
+                }
+            },500)
+        };
+        
+        // Check click on "Try it out" Button
+        waitForElement("button.btn.try-out__btn",function(){
+            $(document).on("click","button.btn.try-out__btn", function(){
+
+                // The text is captured AFTER it changes from "Try it out" to "Cancel", so it gets "Cancel" in the line below
+                var buttonText = $(this).text();
+
+                // Runnign a simple GET to test if teh user is logged into Bluescape 
+                // TODO: add the script to capture the current environment, to change the domain of the GET below
+                fetch ("https://api.uat.alpha.dev.bluescape.io/v3/users/me")
+                .then(response => {
+                    if ( response.status  == 200 ) {
+                        GETrunOK = true;
+                    } else {
+                        GETrunOK = false;
+                    }
+                    return response.json()
+                })                
+                .catch((error) => {            
+                    console.error("BB - Error runnign GET");
+                    console.log(error);
+                })
+                .finally( function() {
+                    if ( !GETrunOK && (buttonText == "Cancel" ) ) {
+                        alert("To use this Execute option, remember to login into bluescape. [BB]");
+                    }
+                });
+            });
+
+        });
+
+    </script>
+
     <style>
         pre, span.pre {
             background-color: transparent;
@@ -23,7 +73,7 @@
     </style>
 {{end}}
 <span id="swagger-ui"></span>
-<script>
+<script> 
  const ui = SwaggerUIBundle({
      url: "/openapi/services/{{.CurrentNamespace}}/{{.CurrentService}}/openapi.json",
      dom_id: '#swagger-ui',
@@ -33,5 +83,6 @@
          SwaggerUIBundle.SwaggerUIStandalonePreset
 
      ],
- })
+ });
+ 
 </script>
