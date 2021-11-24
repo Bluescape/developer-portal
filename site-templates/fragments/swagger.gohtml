@@ -39,12 +39,12 @@
                     return response.json()
                 })                
                 .catch((error) => {            
-                    console.error("BB - Error runnign GET");
+                    console.error("Error runnign GET call to Bluescape");
                     console.log(error);
                 })
                 .finally( function() {
                     if ( !GETrunOK && (buttonText == "Cancel" ) ) {
-                        alert("To use this Execute option, remember to login into bluescape. [BB]");
+                        alert('To use the "Try it out" feature, first log into Bluescape for the authentication to work.');
                     }
                 });
             });
