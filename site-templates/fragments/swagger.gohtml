@@ -6,9 +6,9 @@
     <link rel="stylesheet" type="text/css" href="{{.Prefix}}styles/components/swagger.css" >
     <script>
 
-        console.log("here 10.52 !");
-
         var GETrunOK = false;       
+        const apiBaseStrDomanin = window.location.hostname.split('.').splice(1).join('.');
+        const fetchURL = 'https://api.' + apiBaseStrDomanin + '/v3/users/me';
 
         function waitForElement(elementPath, callBack){
             window.setTimeout(function(){
@@ -22,14 +22,23 @@
         
         // Check click on "Try it out" Button
         waitForElement("button.btn.try-out__btn",function(){
+
+            // MODAL
+            const modal = $("#js-modal");
+            const openBtn = $("#js-open");
+            const closeBtn = $("#js-close");
+            closeBtn.on("click", () => {
+                modal.removeClass("show");
+            });
+
+            // Click on "Try it out" button
             $(document).on("click","button.btn.try-out__btn", function(){
 
                 // The text is captured AFTER it changes from "Try it out" to "Cancel", so it gets "Cancel" in the line below
                 var buttonText = $(this).text();
 
-                // Runnign a simple GET to test if teh user is logged into Bluescape 
-                // TODO: add the script to capture the current environment, to change the domain of the GET below
-                fetch ("https://api.uat.alpha.dev.bluescape.io/v3/users/me")
+                // Runnign a simple GET to test if the user is logged into Bluescape 
+                fetch (fetchURL)
                 .then(response => {
                     if ( response.status  == 200 ) {
                         GETrunOK = true;
@@ -44,12 +53,13 @@
                 })
                 .finally( function() {
                     if ( !GETrunOK && (buttonText == "Cancel" ) ) {
-                        alert('To use the "Try it out" feature, first log into Bluescape for the authentication to work.');
+                        modal.addClass("show");
                     }
                 });
             });
 
         });
+
 
     </script>
 
@@ -70,6 +80,54 @@
         td {
             border: none;
         }
+
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            transition: opacity 0.7s ease-in-out, visiblity 0.7s ease-in-out;
+            z-index: 1;
+        }
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #333333;
+            background: #ffffff;
+            width: 50%;
+            height: 250px;
+            text-align: center;
+            padding: 30px 50px;
+        }
+        .modal-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: inherit;
+        }
+        .modal-title {
+            margin-bottom: 10px;
+        }
+        .modal-text {
+            margin-bottom: 20px;
+        }
+        .modal-close {
+            padding: 10px 20px;
+            background: #333333;
+            color: #ffffff;
+        }
+
     </style>
 {{end}}
 <span id="swagger-ui"></span>
@@ -86,3 +144,17 @@
  });
  
 </script>
+
+<div id="js-modal" class="modal">
+  <div class="modal-container">
+    <div class="modal-inner">
+      <p class="modal-text">To use the "Try it out" feature, first log into Bluescape for the authentication to work.<br />
+      See more details in this Bluescape Community <a target="_blank" href="https://community.bluescape.com/t/run-the-rest-apis-directly-from-the-developer-portal-use-the-try-it-out-button/360">article</a>.  
+      <br />
+        <button id="js-close" class="modal-close" type="button">
+            Close
+        </button>
+      </p>
+    </div>
+  </div>
+</div>
