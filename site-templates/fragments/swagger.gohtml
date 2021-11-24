@@ -20,6 +20,10 @@
             },500)
         };
         
+        waitForElement("#info",function(){
+            $("#info").append('To run the APIs in this page, you must first log into Bluescape. For mode rdetails refert to this Community <a target="_blank" href="https://community.bluescape.com/t/run-the-rest-apis-directly-from-the-developer-portal-use-the-try-it-out-button/360">article</a>.');
+        });
+
         // Check click on "Try it out" Button
         waitForElement("button.btn.try-out__btn",function(){
 
