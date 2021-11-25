@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css" >
     <link rel="stylesheet" type="text/css" href="{{.Prefix}}styles/components/swagger.css" >
     <script>
-
+      
         var GETrunOK = false;       
         const apiBaseStrDomanin = window.location.hostname.split('.').splice(1).join('.');
         const fetchURL = 'https://api.' + apiBaseStrDomanin + '/v3/users/me';
@@ -20,6 +20,10 @@
             },500)
         };
         
+        waitForElement(".info",function(){
+            $(".info").append('<div class="infoBanner">To run the APIs in this page, you must first log into Bluescape. For mode details refer to this Community <a target="_blank" href="https://community.bluescape.com/t/run-the-rest-apis-directly-from-the-developer-portal-use-the-try-it-out-button/360">article</a>.</div>');
+        });
+
         // Check click on "Try it out" Button
         waitForElement("button.btn.try-out__btn",function(){
 
@@ -64,6 +68,16 @@
     </script>
 
     <style>
+
+        .infoBanner {
+            background-color: #dcdcdc;
+            border-color: #000000; 
+            border-style: solid;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+
         pre, span.pre {
             background-color: transparent;
             padding: 6px 10px;
