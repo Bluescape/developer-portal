@@ -10,8 +10,8 @@
 <h4>GraphQL APIs</h4>
 <ul>
     <li>Query for Strokes: traits are returned empty (ELE-86).</li>
-    <li>Stroke scale does not account for stroke brushWidth (ELE-622)</li>
-    <li>When creating a stroke, the response body always returns x=0, y=0 , independent of stroke starting point. (ELE-672)</li>
+    <li>Stroke scale does not account for stroke brushWidth (ELE-622).</li>
+    <li>When creating a stroke, the response body always returns x=0, y=0 , independent of stroke starting point. (ELE-672).</li>
 </ul>
 <!--
 <h4>GraphQL Subscriptions</h4>
