@@ -1,17 +1,17 @@
 <h1>v3 Known issues</h1>
-<p>Release: 21.11.1 (November 12, 2021)</p>
+<p>Release: 21.12.1 (December 10, 2021)</p>
 
 <h4>REST APIs</h4>
 
 <ul>
     <li>PATCH for Browser: after modifying height/width, the preview image does not scale or changes (WEBC-10223).</li>
-    <li>GET for Whiteboard: does not return Traits (COL-3878).</li>
-    <li>Search API does not match content of comments (ELE-632)</li>
+    <li>GET for Whiteboard: does not return Traits (ELE-103).</li>
 </ul>
 <h4>GraphQL APIs</h4>
 <ul>
-    <li>Query for Strokes: traits are returned empty (COL-3483).</li>
+    <li>Query for Strokes: traits are returned empty (ELE-86).</li>
     <li>Stroke scale does not account for stroke brushWidth (ELE-622)</li>
+    <li>When creating a stroke, the response body always returns x=0, y=0 , independent of stroke starting point. (ELE-672)</li>
 </ul>
 <!--
 <h4>GraphQL Subscriptions</h4>
