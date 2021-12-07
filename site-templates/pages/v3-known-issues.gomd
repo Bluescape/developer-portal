@@ -6,6 +6,8 @@
 <ul>
     <li>PATCH for Browser: after modifying height/width, the preview image does not scale or changes (WEBC-10223).</li>
     <li>GET for Whiteboard: does not return Traits (ELE-103).</li>
+    <li>POST for creating a new video element: for uploads from local drive, it requires the "previewFormat" field to be provided (ELE-676).</li>
+    <li>POST for creating a new video element: for uploads from local drive, if preview image is not assigned to video element, the video element stays in "processing" status and does not allow to play video (ELE-676).</li>
 </ul>
 <h4>GraphQL APIs</h4>
 <ul>
