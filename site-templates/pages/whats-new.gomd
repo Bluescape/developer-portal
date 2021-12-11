@@ -2,13 +2,13 @@
 
 <div class="col-md-8 content">
 
-    <h1>What's new in the 21.11.1, November 12, 2021, Release</h1>
+    <h1>What's new in the 21.12.1, December 10, 2021, Release</h1>
 
-    <h3>New Guide pages</h3>
+    <h3>Test the REST APIs on the Reference pages</h3>
     <p>
         <ul>  
-            <li>Check the new Guide page on <a href="/docs/page/find-elements-in-workspace">how to find content in a workspace</a>.</li>
-            <li>Check the Guide page on <a href="/docs/page/graphql-rich-text">how to add Rich Text in a workspace</a>.</li>
+            <li>Did you know that you can test the REST APIs in the <a target="_blank" href="/docs/page/reference">Reference</a> section, directly in the API pages?</li>
+            <li>Check the instruction in this Community page for <a target="_blank" href="https://community.bluescape.com/t/run-the-rest-apis-directly-from-the-developer-portal-use-the-try-it-out-button/360">how to run the REST APIs directly from the Developer Portal: use the “Try it out” button</a>.</li>
         </ul>
     </p>   
 
