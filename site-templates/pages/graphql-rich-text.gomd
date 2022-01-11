@@ -294,7 +294,130 @@ if __name__ == "__main__":
 </pre>
 
 <p>
-After this, the Rich Text element will be added to the workspace. </br>
+After running the mutation above, the Rich Text element will be added to the workspace. </br>
+</p>
+
+<p>
+If you want to create more complex structures, such as lists and applying specific format to a particular word or group of words, please see the example below.<br />
+To generate the following Text element:<br />
+<img width="300" class="img-responsive center-block" src="/docs/assets/images/rich-text-example-lists.png">
+then use this graphQL mutation:
+<pre>
+mutation myCreateTextWithBlocks($ws: String! $x: Float! $y: Float!, $width:Float!, $height:Float!) {
+        createText(
+            workspaceId: $ws
+            input: {
+                transform: {
+                    x:$x 
+                    y:$y
+                }
+                style:{
+                    width:$width
+                    height:$height
+                    fontSize:65
+                    fontFamily:"Helvetica"
+                    textTransform:none
+                    verticalAlign:top
+                    color:{ r:255 g:255 b:255 a:1 }
+                    backgroundColor:{ r:0 g:0 b:255 a:1 }
+                }
+                blocks: [
+                    {
+                        block:{
+                            align: left
+                            content: [
+                                {
+                                    text: "text block example, line one"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        block:{
+                            align: left
+                            content: [
+                                {
+                                    text: ""
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        list:{
+                            kind:bullet
+                            items: [
+                            {
+                                indent: 0,
+                                content: [
+                                    {
+                                        text: "list 1"
+                                    }
+                                ]
+                            },
+                            {
+                                indent: 1,
+                                content: [
+                                    {
+                                        text: "list 2"
+                                    }
+                                ]
+                            }
+                        ]
+                        }
+                    },
+                    {
+                        block:{
+                            align: left
+                            content: [
+                                {
+                                    text: ""
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        block:{
+                            content:[
+                                {
+                                    text:"new "
+                                },
+                                {
+                                    span:{
+                                        fontWeight:bold
+                                        content:[
+                                            {
+                                                text:"BOLD"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    text:" text"
+                                }
+                            ]
+                        }
+                    }       
+                ]
+            }
+        )
+        {
+            id
+            text
+            transform {x y}
+        }
+      }
+</pre>
+
+with these variables:
+<pre>
+{
+    "ws": "<workspaceID>",
+    "x": 0,
+    "y": 0,
+    "width": 900,
+    "height":600
+}
+</pre>
 </p>
 
 <a name="query-rich-text-graphql" class="internal-anchor"><h2>Query Rich Text in GraphQL</h2></a>
