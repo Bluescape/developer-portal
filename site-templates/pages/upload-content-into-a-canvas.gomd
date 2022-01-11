@@ -25,7 +25,11 @@ Please check the previous guide in <a href="/docs/page/create-canvas-and-add-tex
 </p>
 <a name="rest-v3" class="internal-anchor"></a>
 <p>
-The upload of content into a workspace by APIs can be done in 2 ways: <a href="#rest-upload-from-local-drive">upload from local drive</a> or <a href="#rest-upload-using-URL">upload by a URL</a>.
+The upload of content into a workspace by APIs can be done in 2 ways:
+<ul>
+    <li>upload from local drive: <a href="#rest-upload-from-local-drive">REST implementation</a>, and GraphQL implementation.</li>
+    <li>upload by URL: <a href="#rest-upload-using-URL">REST implementation</a> and <a href="#graphql-upload-by-url">GraphQL implementation</a></li>
+</ul>
 
 <a name="rest-upload-from-local-drive" class="internal-anchor"><h2>Upload from local using REST APIs</h2></a>
 <p>
@@ -38,11 +42,13 @@ In REST APIs v3, the upload process from your local drive is divided in 3 steps:
 </ol>
 </p>
 <h4>STEP 1: Create zygote or placeholder for the file to upload</h4>
+
 <p>
-This is the first step of three for the upload. You will need to create a zygote or placeholder, in the workspace, for the file to upload. This step will generate the Id of the object and the credentials for doing the actual upload of the file. See the details below.
+This is the first step of three for the upload, for both REST and GraphQL APIs. You will need to create a zygote or placeholder, in the workspace, for the file to upload. This step will generate the Id of the object and the credentials for doing the actual upload of the file. See the details below.
+<h3>STEP 1: implementation using REST API</h3>
 <table class="table table-striped">
         <tr>
-          <td><b>API</b></td>
+          <td><b>REST API</b></td>
           <td>/v3/workspaces/&lt;workspaceId&gt;/elements</td>
         </tr>
         <tr>
@@ -236,6 +242,40 @@ From the response body, you will need to use the following fields for the next s
 </table>
 
 </p>
+
+<h3>STEP 1: implementation using GraphQL API</h3>
+
+<p>
+For this first step, in GraphQL you can use the following mutations: <span class="pre">createDocument</span>, <span class="pre">createImage</span>, <span class="pre">createVideo</span>. <br />
+In these mutations you will need to use the <span class="pre">filename</span> field to specify that it is an upload from your local drive, and provide the fullpath to the file to upload.
+</p>
+
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
+ADD CURL
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+ADD NODE
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+ADD PYTHON
+</pre>
+</p>
+
+
+
 
 <h4>STEP 2: Upload the file to S3</h4>
 <p>
@@ -573,7 +613,7 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
 </pre>
 </p>
 
-<a name="graphql" class="internal-anchor"><h2>Upload by URL using GraphQL APIs</h2></a>
+<a name="graphql-upload-by-url" class="internal-anchor"><h2>Upload by URL using GraphQL APIs</h2></a>
 <p>
 You can use the URL pointing to a resource to upload it into a workspace.<br />
 When should we use this "upload by URL" approach? When you integrate with external services that host images, videos and/or documents, and you want to access them (to view or download them),most of the time you are provided with a URL to those assets, not the actual binary object. Then, you can use that URL to access those assets to upload them directly into a workspace.
@@ -581,6 +621,7 @@ When should we use this "upload by URL" approach? When you integrate with extern
 <p>
 Please note that &lt;CANVAS_ID&gt; is the ID of the preciously created canvas. This is the canvas where you want to add the uploaded content. The position of the content to upload will be in reference to the top-left corner of this Canvas.
 You can use the following mutations: <span class="pre">createDocument</span>, <span class="pre">createImage</span>, <span class="pre">createVideo</span>.
+To specify that you will sue a URL for the upload of the asset, you will need to use the <span class="pre">sourceUrl</span> field in the mutation, to specify the URL of the asset to upload.
 </p>
 <p>
 Example of <span class="pre">createImage</span> mutation:
@@ -848,6 +889,22 @@ The response will inform you of the current status of the ingestion of the uploa
 }
 </pre>
 
+</p>
+
+<a name="graphql-from-local" class="internal-anchor"><h2>Upload from Local using GraphQL APIs</h2></a>
+<p>
+</p>
+
+<p>
+</p>
+
+<p>
+</p>
+
+<p>
+</p>
+
+<p>
 </p>
 
 <p>

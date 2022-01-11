@@ -30,7 +30,6 @@ the <b>workspaceId</b> of where they want the text Element to be added.
 <pre>
 mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {
         createText(workspaceId: $workspaceId, input: $input) {
-            ... on Text {
             id
             transform {x y scaleX scaleY}
             pinned
@@ -38,10 +37,9 @@ mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {
             text
             style { textTransform fontSize fontFamily verticalAlign color {r g b a }}
             blocks {
-                ...on TextBlock {
-                align content}}
-                }
+                ...on TextBlock { align content}
             }
+        }
     }
 </pre>
 
@@ -73,6 +71,9 @@ This mutation can be called with the following variables:
         }
     }
 </pre>
+
+And this is the text you will see created in your workspace:<br/>
+<img width="300" class="img-responsive center-block" src="/docs/assets/images/rich-text-example.png">
 
 <h2>Code sample</h2>
 
