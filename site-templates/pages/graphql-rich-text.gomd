@@ -56,14 +56,14 @@ This mutation can be called with the following variables:
             "align": "left",
             "content": {
                 "span": {
-                    "text": "Rich Text Example!",
+                    "text": "Rich Text Example...",
                     "fontSize": 30,
                     "fontFamily": "Helvetica",
                     "fontWeight": "normal",
                     "fontStyle": "italic",
                     "textDecoration": "underline",
-                    "color": { "r": 23, "g": 56, "b": 100, "a": 1},
-                    "backgroundColor": { "r": 223, "g": 156, "b": 200, "a": 1}
+                    "color": { "r": 255, "g": 255, "b":255, "a": 1},
+                    "backgroundColor": { "r": 0, "g": 0, "b": 200, "a": 1}
                         }
                     }
                 }
@@ -92,7 +92,7 @@ And this is the text you will see created in your workspace:<br/>
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
---data-raw '{"query":"mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {\n        createText(workspaceId: $workspaceId, input: $input) {\n            ... on Text {\n            id\n            transform {x y scaleX scaleY}\n            pinned\n            zIndex\n            text\n            style { textTransform fontSize fontFamily verticalAlign color {r g b a }}\n            blocks {\n                ...on TextBlock {\n                align content}}\n                }\n            }\n    }","variables":{"workspaceId":{workspaceId},"input":{"blocks":{"block":{"align":"left","content":{"span":{"text":"Rich Text Example!","fontSize":30,"fontFamily":"Helvetica","fontWeight":"normal","fontStyle":"italic","textDecoration":"underline","color":{"r":23,"g":56,"b":100,"a":1},"backgroundColor":{"r":223,"g":156,"b":200,"a":1}}}}}}}}'
+--data-raw '{"query":"mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {\n        createText(workspaceId: $workspaceId, input: $input) {\n            ... on Text {\n            id\n            transform {x y scaleX scaleY}\n            pinned\n            zIndex\n            text\n            style { textTransform fontSize fontFamily verticalAlign color {r g b a }}\n            blocks {\n                ...on TextBlock {\n                align content}}\n                }\n            }\n    }","variables":{"workspaceId":{workspaceId},"input":{"blocks":{"block":{"align":"left","content":{"span":{"text":"Rich Text Example...","fontSize":30,"fontFamily":"Helvetica","fontWeight":"normal","fontStyle":"italic","textDecoration":"underline","color":{"r":23,"g":56,"b":100,"a":1},"backgroundColor":{"r":223,"g":156,"b":200,"a":1}}}}}}}}'
 </pre>
 </p>
 
@@ -128,14 +128,14 @@ const textParams = {
             "align": "left",
             "content": {
                 "span": {
-                    "text": "Rich Text Example!",
+                    "text": "Rich Text Example...",
                     "fontSize": 30,
                     "fontFamily": "Helvetica",
                     "fontWeight": "normal",
                     "fontStyle": "italic",
                     "textDecoration": "underline",
-                    "color": { "r": 23, "g": 56, "b": 100, "a": 1},
-                    "backgroundColor": { "r": 223, "g": 156, "b": 200, "a": 1}
+                    "color": { "r": 255, "g": 255, "b":255, "a": 1},
+                    "backgroundColor": { "r": 0, "g": 0, "b": 200, "a": 1}
                         }
                     }
                 }
@@ -194,14 +194,14 @@ params = {
             "align": "left",
             "content": {
                 "span": {
-                    "text": "Rich Text Example!",
+                    "text": "Rich Text Example...",
                     "fontSize": 30,
                     "fontFamily": "Helvetica",
                     "fontWeight": "normal",
                     "fontStyle": "italic",
                     "textDecoration": "underline",
-                    "color": { "r": 23, "g": 56, "b": 100, "a": 1},
-                    "backgroundColor": { "r": 223, "g": 156, "b": 200, "a": 1}
+                    "color": { "r": 255, "g": 255, "b":255, "a": 1},
+                    "backgroundColor": { "r": 0, "g": 0, "b": 200, "a": 1}
                         }
                     }
                 }
@@ -241,7 +241,7 @@ if __name__ == "__main__":
             },
             "pinned": false,
             "zIndex": 4,
-            "text": "Rich Text Example!",
+            "text": "Rich Text Example...",
             "style": {
                 "textTransform": "none",
                 "fontSize": 64,
@@ -267,20 +267,20 @@ if __name__ == "__main__":
                                     "underline"
                                 ],
                                 "color": {
-                                    "r": 23,
-                                    "g": 56,
-                                    "b": 100,
+                                    "r": 255,
+                                    "g": 255,
+                                    "b": 255,
                                     "a": 1
                                 },
                                 "backgroundColor": {
-                                    "r": 223,
-                                    "g": 156,
+                                    "r": 0,
+                                    "g": 0,
                                     "b": 200,
                                     "a": 1
                                 },
                                 "content": [
                                     {
-                                        "text": "Rich Text Example!"
+                                        "text": "Rich Text Example..."
                                     }
                                 ]
                             }
