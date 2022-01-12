@@ -326,9 +326,7 @@ mutation myCreateTextWithBlocks($ws: String! $x: Float! $y: Float!, $width:Float
                         block:{
                             align: left
                             content: [
-                                {
-                                    text: "text block example, line one"
-                                }
+                                { text: "text block example, line one" }
                             ]
                         }
                     },
@@ -336,9 +334,7 @@ mutation myCreateTextWithBlocks($ws: String! $x: Float! $y: Float!, $width:Float
                         block:{
                             align: left
                             content: [
-                                {
-                                    text: ""
-                                }
+                                { text: "" }
                             ]
                         }
                     },
@@ -349,17 +345,13 @@ mutation myCreateTextWithBlocks($ws: String! $x: Float! $y: Float!, $width:Float
                             {
                                 indent: 0,
                                 content: [
-                                    {
-                                        text: "list 1"
-                                    }
+                                    { text: "list 1" }
                                 ]
                             },
                             {
                                 indent: 1,
                                 content: [
-                                    {
-                                        text: "list 2"
-                                    }
+                                    { text: "list 2" }
                                 ]
                             }
                         ]
@@ -369,31 +361,23 @@ mutation myCreateTextWithBlocks($ws: String! $x: Float! $y: Float!, $width:Float
                         block:{
                             align: left
                             content: [
-                                {
-                                    text: ""
-                                }
+                                { text: "" }
                             ]
                         }
                     },
                     {
                         block:{
                             content:[
-                                {
-                                    text:"new "
-                                },
+                                { text:"new " },
                                 {
                                     span:{
                                         fontWeight:bold
                                         content:[
-                                            {
-                                                text:"BOLD"
-                                            }
+                                            { text:"BOLD" }
                                         ]
                                     }
                                 },
-                                {
-                                    text:" text"
-                                }
+                                { text:" text" }
                             ]
                         }
                     }       
