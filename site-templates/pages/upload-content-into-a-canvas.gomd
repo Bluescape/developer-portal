@@ -45,7 +45,7 @@ In REST APIs v3, the upload process from your local drive is divided in 3 steps:
 
 <p>
 This is the first step of three for the upload, for both REST and GraphQL APIs. You will need to create a zygote or placeholder, in the workspace, for the file to upload. This step will generate the Id of the object and the credentials for doing the actual upload of the file. See the details below.
-<h3>STEP 1: implementation using REST API</h3>
+<h3>STEP 1, implementation using REST API</h3>
 <table class="table table-striped">
         <tr>
           <td><b>REST API</b></td>
@@ -243,13 +243,14 @@ From the response body, you will need to use the following fields for the next s
 
 </p>
 
-<h3>STEP 1: implementation using GraphQL API</h3>
+<h3>STEP 1, implementation using GraphQL API</h3>
 
 <p>
 For this first step, in GraphQL you can use the following mutations: <span class="pre">createDocument</span>, <span class="pre">createImage</span>, <span class="pre">createVideo</span>. <br />
 In these mutations you will need to use the <span class="pre">filename</span> field to specify that it is an upload from your local drive, and provide the fullpath to the file to upload.
 </p>
 
+In the example below, see an example of how to create the zygote for an image, using the <span class="pre">createImage</span> mutation, providing a <span class="pre">"testimage.jpeg"</span> placeholder for the <span class="pre">title</span> and <span class="pre">filename</span> fields:
 <div class="lang-selector">
     <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
@@ -258,19 +259,73 @@ In these mutations you will need to use the <span class="pre">filename</span> fi
 
 <p>
 <pre class="lang lang-curl">
-ADD CURL
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"#create Image from disk\n#imageFormat: jpeg, jpg, gif, png, tiff, tif, image/jpeg, image/gif, image/png, image/tiff\nmutation createImageFromDisk($ws: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $filename:String! $scale:Float) {\n    createImage(\n          workspaceId: $ws\n          input: {\n            title:$title\n            imageFormat: $imageFormat\n            filename:$filename\n            transform: {\n              x: $x\n              y: $y\n              scale:$scale\n            }\n    }) \n    #return values after creation:    \n    {\n        content{ uploadId url fields}\n        preview{uploadId url fields}\n        image{id width height ingestionState}\n    }\n}","variables":{"ws":"&lt;WORKSPACE_ID&gt;","title":"testimage.jpeg","filename":"testimage.jpeg","imageFormat":"jpeg","previewFormat":"jpeg","x":0,"y":0,"scale":1}}'
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-node">
-ADD NODE
+var request = require('request');
+var options = {
+  'method': 'POST',
+  'url': 'https://api.apps.us.bluescape.com/v3/graphql',
+  'headers': {
+    'Authorization': 'Bearer &lt;SET_TOKEN&gt;',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    query: `#create Image from disk
+#imageFormat: jpeg, jpg, gif, png, tiff, tif, image/jpeg, image/gif, image/png, image/tiff
+mutation createImageFromDisk($ws: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $filename:String! $scale:Float) {
+    createImage(
+          workspaceId: $ws
+          input: {
+            title:$title
+            imageFormat: $imageFormat
+            filename:$filename
+            transform: {
+              x: $x
+              y: $y
+              scale:$scale
+            }
+    }) 
+    #return values after creation:    
+    {
+        content{ uploadId url fields}
+        preview{uploadId url fields}
+        image{id width height ingestionState}
+    }
+}`,
+    variables: {"ws":"&lt;WORKSPACE_ID&gt;","title":"testimage.jpeg","filename":"testimage.jpeg","imageFormat":"jpeg","previewFormat":"jpeg","x":0,"y":0,"scale":1}
+  })
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
 </pre>
 </p>
 
 <p>
 <pre class="lang lang-python">
-ADD PYTHON
+import requests
+
+url = "https://api.apps.us.bluescape.com/v3/graphql"
+
+payload="{\"query\":\"#create Image from disk\\n#imageFormat: jpeg, jpg, gif, png, tiff, tif, image/jpeg, image/gif, image/png, image/tiff\\nmutation createImageFromDisk($ws: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $filename:String! $scale:Float) {\\n    createImage(\\n          workspaceId: $ws\\n          input: {\\n            title:$title\\n            imageFormat: $imageFormat\\n            filename:$filename\\n            transform: {\\n              x: $x\\n              y: $y\\n              scale:$scale\\n            }\\n    }) \\n    #return values after creation:    \\n    {\\n        content{ uploadId url fields}\\n        preview{uploadId url fields}\\n        image{id width height ingestionState}\\n    }\\n}\",\"variables\":{\"ws\":\"&lt;WORKSPACE_ID&gt;\",\"title\":\"testimage.jpeg\",\"filename\":\"testimage.jpeg\",\"imageFormat\":\"jpeg\",\"previewFormat\":\"jpeg\",\"x\":0,\"y\":0,\"scale\":1}}"
+headers = {
+  'Authorization': 'Bearer &lt;SET_TOKEN&gt;',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
 </pre>
 </p>
 
@@ -279,7 +334,8 @@ ADD PYTHON
 
 <h4>STEP 2: Upload the file to S3</h4>
 <p>
-In this step, you will use the S3 credentials generated in the previous step. You will use them to upload the file into S3.<br />
+In this step you will use the S3 credentials, generated in the previous step, to upload the file into S3.<br />
+This step is the same for both REST and GraphQL APIs. The main difference will be how you provide the <span class="pre">"fields"</span> values to upload the file to S3.</br>
 Please note that you will run an API call directly to  S3 (or the repository you are using), and the credentials for authentication and authorization for the upload are the ones provided in the previous step, in the <span class="pre">data/content/fields</span> block.
 </p>
 <p>
@@ -385,7 +441,11 @@ curl --location --request POST 'https://s3.us-east-1.amazonaws.com/acceptance-ne
 
 <p>
 The last step is to link the zygote or placeholder to the file we uploaded in the previous step. For this step we will need the id from <span class="pre">data/content/uploadId</span> generated in the response body in step 1.
+</p>
 
+<h4>STEP 3, implementation using REST API</h4>
+
+<p>
 <table class="table table-striped">
         <tr>
           <td><b>API</b></td>
@@ -447,11 +507,91 @@ pprint.pprint(upload_response.status_code)
 </pre>
 </p>
 
+<h4>STEP 3, implementation using GraphQL API</h4>
+
+<p>
+Run the <span class="pre">"processAsset"</span> GraphQL mutation to finish the upload process:
+
+<pre>
+mutation linkUploadToZygote($workspaceId: String! $uploadID: String!) {
+    processAsset( workspaceId:$workspaceId id:$uploadID input:{})
+}
+</pre>
+
+and provide these variables:
+<pre>
+{
+    "workspaceId": "&lt;WORKSPACE_ID&gt;",
+    "uploadID": "&lt;uploadId&gt;"
+}
+</pre>
+
+Here are examples of the implementation of the mutation:
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"\nmutation myProcessAsset($ws: String! $uploadID: String!) {\n    processAsset( workspaceId:$ws id:$uploadID input:{\n    })\n}","variables":{"ws":"&lt;WORKSPACE_ID&gt;","uploadID":"&lt;uploadId&gt;"}}'
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+var request = require('request');
+var options = {
+  'method': 'POST',
+  'url': '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql',
+  'headers': {
+    'Authorization': 'Bearer &lt;SET_TOKEN&gt;',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    query: `mutation myProcessAsset($ws: String! $uploadID: String!) {
+    processAsset( workspaceId:$ws id:$uploadID input:{
+    })
+}`,
+    variables: {"ws":"&lt;WORKSPACE_ID&gt;","uploadID":"&lt;uploadId&gt;"}
+  })
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+import requests
+
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
+
+payload="{\"query\":\"\\nmutation myProcessAsset($ws: String! $uploadID: String!) {\\n    processAsset( workspaceId:$ws id:$uploadID input:{\\n    })\\n}\",\"variables\":{\"ws\":\"&lt;WORKSPACE_ID&gt;\",\"uploadID\":\"&lt;uploadId&gt;\"}}"
+headers = {
+  'Authorization': 'Bearer &lt;SET_TOKEN&gt;',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+</pre>
+</p>
+
+
+</p>
 
 
 <a name="rest-upload-using-URL" class="internal-anchor"><h2>Upload by URL using REST APIs</h2></a>
 <p>
-You can use the URL pointing to a resource to upload it into a workspace.<br />
+An alternative method to upload content into a workspace is to upload by URL. You can use the URL pointing to a resource to upload it into a workspace.<br />
 When should we use this "upload by URL" approach? When you integrate with external services that host images, videos and/or documents, and you want to access them (to view or download them),most of the time you are provided with a URL to those assets, not the actual binary object. Then, you can use that URL to access those assets to upload them directly into a workspace.
 <table class="table table-striped">
         <tr>
@@ -889,22 +1029,6 @@ The response will inform you of the current status of the ingestion of the uploa
 }
 </pre>
 
-</p>
-
-<a name="graphql-from-local" class="internal-anchor"><h2>Upload from Local using GraphQL APIs</h2></a>
-<p>
-</p>
-
-<p>
-</p>
-
-<p>
-</p>
-
-<p>
-</p>
-
-<p>
 </p>
 
 <p>
