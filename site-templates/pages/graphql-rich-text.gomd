@@ -30,7 +30,6 @@ the <b>workspaceId</b> of where they want the text Element to be added.
 <pre>
 mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {
         createText(workspaceId: $workspaceId, input: $input) {
-            ... on Text {
             id
             transform {x y scaleX scaleY}
             pinned
@@ -38,10 +37,9 @@ mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {
             text
             style { textTransform fontSize fontFamily verticalAlign color {r g b a }}
             blocks {
-                ...on TextBlock {
-                align content}}
-                }
+                ...on TextBlock { align content}
             }
+        }
     }
 </pre>
 
@@ -58,14 +56,14 @@ This mutation can be called with the following variables:
             "align": "left",
             "content": {
                 "span": {
-                    "text": "Rich Text Example!",
+                    "text": "Rich Text Example...",
                     "fontSize": 30,
                     "fontFamily": "Helvetica",
                     "fontWeight": "normal",
                     "fontStyle": "italic",
                     "textDecoration": "underline",
-                    "color": { "r": 23, "g": 56, "b": 100, "a": 1},
-                    "backgroundColor": { "r": 223, "g": 156, "b": 200, "a": 1}
+                    "color": { "r": 255, "g": 255, "b":255, "a": 1},
+                    "backgroundColor": { "r": 0, "g": 0, "b": 200, "a": 1}
                         }
                     }
                 }
@@ -73,6 +71,9 @@ This mutation can be called with the following variables:
         }
     }
 </pre>
+
+And this is the text you will see created in your workspace:<br/>
+<img width="300" class="img-responsive center-block" src="/docs/assets/images/rich-text-example.png">
 
 <h2>Code sample</h2>
 
@@ -91,7 +92,7 @@ This mutation can be called with the following variables:
 curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql/' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
---data-raw '{"query":"mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {\n        createText(workspaceId: $workspaceId, input: $input) {\n            ... on Text {\n            id\n            transform {x y scaleX scaleY}\n            pinned\n            zIndex\n            text\n            style { textTransform fontSize fontFamily verticalAlign color {r g b a }}\n            blocks {\n                ...on TextBlock {\n                align content}}\n                }\n            }\n    }","variables":{"workspaceId":{workspaceId},"input":{"blocks":{"block":{"align":"left","content":{"span":{"text":"NoahText2","fontSize":30,"fontFamily":"Helvetica","fontWeight":"normal","fontStyle":"italic","textDecoration":"underline","color":{"r":23,"g":56,"b":100,"a":1},"backgroundColor":{"r":223,"g":156,"b":200,"a":1}}}}}}}}'
+--data-raw '{"query":"mutation addRichTextExample($workspaceId: String!, $input: CreateTextInput!) {\n        createText(workspaceId: $workspaceId, input: $input) {\n            ... on Text {\n            id\n            transform {x y scaleX scaleY}\n            pinned\n            zIndex\n            text\n            style { textTransform fontSize fontFamily verticalAlign color {r g b a }}\n            blocks {\n                ...on TextBlock {\n                align content}}\n                }\n            }\n    }","variables":{"workspaceId":{workspaceId},"input":{"blocks":{"block":{"align":"left","content":{"span":{"text":"Rich Text Example...","fontSize":30,"fontFamily":"Helvetica","fontWeight":"normal","fontStyle":"italic","textDecoration":"underline","color":{"r":23,"g":56,"b":100,"a":1},"backgroundColor":{"r":223,"g":156,"b":200,"a":1}}}}}}}}'
 </pre>
 </p>
 
@@ -127,14 +128,14 @@ const textParams = {
             "align": "left",
             "content": {
                 "span": {
-                    "text": "Rich Text Example!",
+                    "text": "Rich Text Example...",
                     "fontSize": 30,
                     "fontFamily": "Helvetica",
                     "fontWeight": "normal",
                     "fontStyle": "italic",
                     "textDecoration": "underline",
-                    "color": { "r": 23, "g": 56, "b": 100, "a": 1},
-                    "backgroundColor": { "r": 223, "g": 156, "b": 200, "a": 1}
+                    "color": { "r": 255, "g": 255, "b":255, "a": 1},
+                    "backgroundColor": { "r": 0, "g": 0, "b": 200, "a": 1}
                         }
                     }
                 }
@@ -193,14 +194,14 @@ params = {
             "align": "left",
             "content": {
                 "span": {
-                    "text": "Rich Text Example!",
+                    "text": "Rich Text Example...",
                     "fontSize": 30,
                     "fontFamily": "Helvetica",
                     "fontWeight": "normal",
                     "fontStyle": "italic",
                     "textDecoration": "underline",
-                    "color": { "r": 23, "g": 56, "b": 100, "a": 1},
-                    "backgroundColor": { "r": 223, "g": 156, "b": 200, "a": 1}
+                    "color": { "r": 255, "g": 255, "b":255, "a": 1},
+                    "backgroundColor": { "r": 0, "g": 0, "b": 200, "a": 1}
                         }
                     }
                 }
@@ -240,7 +241,7 @@ if __name__ == "__main__":
             },
             "pinned": false,
             "zIndex": 4,
-            "text": "Rich Text Example!",
+            "text": "Rich Text Example...",
             "style": {
                 "textTransform": "none",
                 "fontSize": 64,
@@ -266,20 +267,20 @@ if __name__ == "__main__":
                                     "underline"
                                 ],
                                 "color": {
-                                    "r": 23,
-                                    "g": 56,
-                                    "b": 100,
+                                    "r": 255,
+                                    "g": 255,
+                                    "b": 255,
                                     "a": 1
                                 },
                                 "backgroundColor": {
-                                    "r": 223,
-                                    "g": 156,
+                                    "r": 0,
+                                    "g": 0,
                                     "b": 200,
                                     "a": 1
                                 },
                                 "content": [
                                     {
-                                        "text": "Rich Text Example!"
+                                        "text": "Rich Text Example..."
                                     }
                                 ]
                             }
@@ -293,7 +294,114 @@ if __name__ == "__main__":
 </pre>
 
 <p>
-After this, the Rich Text element will be added to the workspace. </br>
+After running the mutation above, the Rich Text element will be added to the workspace. </br>
+</p>
+
+<p>
+If you want to create more complex structures, such as lists and applying specific format to a particular word or group of words, please see the example below.<br />
+To generate the following Text element:<br />
+<img width="300" class="img-responsive center-block" src="/docs/assets/images/rich-text-example-lists.png">
+then use this graphQL mutation:
+<pre>
+mutation myCreateTextWithBlocks($ws: String! $x: Float! $y: Float!, $width:Float!, $height:Float!) {
+        createText(
+            workspaceId: $ws
+            input: {
+                transform: {
+                    x:$x 
+                    y:$y
+                }
+                style:{
+                    width:$width
+                    height:$height
+                    fontSize:65
+                    fontFamily:"Helvetica"
+                    textTransform:none
+                    verticalAlign:top
+                    color:{ r:255 g:255 b:255 a:1 }
+                    backgroundColor:{ r:0 g:0 b:255 a:1 }
+                }
+                blocks: [
+                    {
+                        block:{
+                            align: left
+                            content: [
+                                { text: "text block example, line one" }
+                            ]
+                        }
+                    },
+                    {
+                        block:{
+                            align: left
+                            content: [
+                                { text: "" }
+                            ]
+                        }
+                    },
+                    {
+                        list:{
+                            kind:bullet
+                            items: [
+                            {
+                                indent: 0,
+                                content: [
+                                    { text: "list 1" }
+                                ]
+                            },
+                            {
+                                indent: 1,
+                                content: [
+                                    { text: "list 2" }
+                                ]
+                            }
+                        ]
+                        }
+                    },
+                    {
+                        block:{
+                            align: left
+                            content: [
+                                { text: "" }
+                            ]
+                        }
+                    },
+                    {
+                        block:{
+                            content:[
+                                { text:"new " },
+                                {
+                                    span:{
+                                        fontWeight:bold
+                                        content:[
+                                            { text:"BOLD" }
+                                        ]
+                                    }
+                                },
+                                { text:" text" }
+                            ]
+                        }
+                    }       
+                ]
+            }
+        )
+        {
+            id
+            text
+            transform {x y}
+        }
+      }
+</pre>
+
+with these variables:
+<pre>
+{
+    "ws": "<workspaceID>",
+    "x": 0,
+    "y": 0,
+    "width": 900,
+    "height":600
+}
+</pre>
 </p>
 
 <a name="query-rich-text-graphql" class="internal-anchor"><h2>Query Rich Text in GraphQL</h2></a>
