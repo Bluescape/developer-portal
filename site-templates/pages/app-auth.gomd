@@ -200,8 +200,10 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6
     b) Set your <span class="pre">client_id</span> and <span class="pre">redirect_uri</span> into the example URL below, and paste it into a browser.<br />
 </p>
 <p>
-    Example, replace <span class="pre">client_id</span> with your Client ID and <span class="pre">redirect_url</span> with the redirect URL you configured in your Application:<br />
+    Replace <span class="pre">client_id</span> with your Client ID and <span class="pre">redirect_url</span> with the redirect URL you configured in your Application:<br />
     <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=<b>code</b>&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>  
+    For example (these are just illustration values): </br>
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=<b>code</b>&client_id=<b>70304a04-d522-45fe-8f8e-cba38845a9af</b>&redirect_uri=<b>https://127.0.0.1/callback</b></pre> <br />
     After the login and authorization of the application, you will be redirected to a new URL and greeted with an error page in the browser. The address bar (where you see your URL) contains the Access Code. Example:
 <pre><script type="text/javascript">document.write(apiBaseStr); </script>/tools/access-token/callback?code=BFyQPkmEYeSmWP1XYmeiXRJtdEgJLY</pre>
     
@@ -618,7 +620,7 @@ const client = new Bluescape({ authorization });</pre>
     <li>In the left menu, select "<b>Applications</b>" <br />
         <img class="img-responsive center-block" src="/docs/assets/images/user-menu.png">
     </li>
-    <li>To view the <b>Client Secret</b>, click the gear to the right of the application <img class="img-responsive center-block" src="/docs/assets/images/gear.png"> Then, the eye icon <img class="img-responsive center-block" src="/docs/assets/images/eye.png"> This will display your client secret.</li>      
+    <li>To view the <b>Client Secret</b>, click the gear to the right of the application <img class="img-responsive center-block" src="/docs/assets/images/gear.png" width="200"> Then, the eye icon <img class="img-responsive center-block" src="/docs/assets/images/eye.png"> This will display your client secret.</li>      
     <li>It is critical that you keep the <b>Client Secret</b> a secret. You can always get a new <b>Client Secret</b> by clicking the <b>Regenerate</b> button, <img class="img-responsive center-block" src="/docs/assets/images/regenerate.png"> This operation will void the previously used <b>Client Secret</b>, so you will need to update the new <b>Client Secret</b> in any place where it is being used.</li>
     <br />
                 <img class="img-responsive center-block" src="/docs/assets/images/edit-application.png">
