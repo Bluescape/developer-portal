@@ -287,7 +287,7 @@ curl -w "%{http_code}\\n" -X POST \
     "code":"AIT6zDsPGaB-46T2mHlU0DJ-kh-Vuz",
     "client_id":"70304a04-d522-45fe-8f8e-cb238845a9af",
     "client_secret":"50bccef3a05f5433624ge8eb47a01c5d",
-    "redirect_uri":"https://something.com"
+    "redirect_uri":"http://127.0.0.1/callback"
 }'
 </pre>    
 </p>
@@ -405,7 +405,7 @@ curl -w "%{http_code}\\n" -X POST \
         "refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiUkVGUkVTSCIsImF1ZCI6WyI2YzQzNzIyM2UzYjA5NjJjMzFmMjllNzlmMGJmZGEyOWVhMWE2ODljIl0sInRva2VuIjoiQVlXMmR6TE9RZDZkdHExVFlsSFgwdHJReHg0RGVpaGJ3dGVlaG9MQmJ1UkJOeXhmMkIiLCJzdWIiOjE3ODcyLCJhenAiOiI2MzI2MzQzOSIsInNwaWQiOm51bGwsImFwcF9hdXRob3JpemF0aW9uX2lkIjoyNjcyLCJuYmYiOjE1NjU4MjI2NDAsImlhdCI6MTU2NTgyMjY1MCwiaXNzIjoiaHR0cHM6Ly9pZGVudGl0eS1hcGkudWF0MS5ibHVlc2NhcGUuY29tIn0.u13lw8kbQkHSYD5W_RP68z5zfsGcA2b_8Ofy9VdCSWs",
         "client_id":"70304a04-d522-45fe-8f8e-cb238845a9af",
         "client_secret":"50bccef3a05f5433624ge8eb47a01c5d",
-        "redirect_uri":"https://something.com"
+        "redirect_uri":"http://127.0.0.1/callback"
     }'</pre>
 </p>
 
