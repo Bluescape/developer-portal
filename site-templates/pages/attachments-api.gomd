@@ -12,8 +12,7 @@
 </p>
 
 <p>    
-    When executing an Attachments API, the user will see the source element be moved onto the base element specified, and a yellow border will appear around the
-    newly attached objects. When deleting an Attachment (or detaching), the user will see a flashing blue border around the element that was detached, this to signify the operation is complete.<br/>
+    When executing an Attachments API, the user will see the source element be moved onto the base element specified. When deleting an Attachment (or detaching), the user will see the detached element in the same position, but it is not attached to the surface.<br/>
     <b>NOTE</b>: The object to which an element is attached is referred as the <span class="pre">surface</span> in this page.
 </p>
 <p>
