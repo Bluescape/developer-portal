@@ -631,10 +631,10 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X POST <script type="text/javascript">document.write(graphQLStr); </script>/v3/graphql
--H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
--H 'Content-Type: application/json' \
---data-raw '{"query":"mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){\n    createText(workspaceId: $workspaceId, input: $input) {\n        id\n    }\n}    ","variables":{"workspaceId":"&lt;SET_WORKSPACE_UID&gt;","input":{"transform":{"x":10,"y":10},"text":"This text is attached","surface":"&lt;SET_SURFACE_ID&gt;"}}}''
+curl --location --request POST 'https://api.stg1.bluescape.com/v3/graphql' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){\n        createText(workspaceId: $workspaceId, input: $input) {\n            __typename\n            id\n            text\n            transform { x y }\n        }\n    }","variables":{"workspaceId":"&lt;SET_WORKSPACE_UID&gt;","input":{"text":"This text is attached","surface":"&lt;SET_SURFACE_ID&gt;","transform":{"x":10,"y":10}}}}'
 </pre>    
 
 Sample Response Body:
