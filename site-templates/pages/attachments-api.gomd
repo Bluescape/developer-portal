@@ -141,7 +141,8 @@ async function runAPIRequests() {
     api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments'
 
     data_load = {
-        'attachment': "&lt;SET_SOURCE_ID&gt;"
+        'attachment': "&lt;SET_SOURCE_ID&gt;",
+        'transform' : {'x':10, 'y': 10}
     }
 
     method = 'POST';
@@ -173,9 +174,11 @@ if __name__ == "__main__":
     API_endpoint = API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments'
 
     data_load = {
-        'sourceId': '&lt;SET_SOURCE_ID&gt;',     # Example showing how to use the filter_by field
-        'x' : 10,
-        'y' : 10
+        'attachment': '&lt;SET_SOURCE_ID&gt;',     # Example showing how to use the filter_by field
+        'transform' : {
+            'x' : 10,
+            'y' : 10
+        }
     }
 
     the_request = requests.post(
@@ -530,7 +533,7 @@ Sample Request:
 <pre class="lang lang-node">
 const axios = require('axios');
 
-const url = "<script type="text/javascript">document.write(graphQLStr); </script>/v3/graphql"
+const url = "<script type="text/javascript">document.write(graphQLStr); </script>"
 const token = "&lt;SET_TOKEN&gt;"
 const workspaceId = "&lt;SET_WORKSPACEID&gt;"
 
@@ -547,7 +550,7 @@ const variables = {
     "workspaceId": workspaceId,
     "input": {
         "text": "This text is attached",
-        "surface": "&lt;SET_SURFACE_ID&gt;"
+        "surface": "&lt;SET_SURFACE_ID&gt;",
         "transform": {
             "x": 10,
             "y": 10
@@ -582,7 +585,7 @@ from requests.exceptions import HTTPError
 import pprint
 
 token = '&lt;SET_TOKEN&gt;'
-portal = '<script type="text/javascript">document.write(graphQLStr); </script>/v3/graphql'
+portal = '<script type="text/javascript">document.write(graphQLStr); </script>'
 
 workspace_uid = '&lt;SET_WORKSPACE_UID&gt;'
 
@@ -628,7 +631,7 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl --location --request POST 'https://api.stg1.bluescape.com/v3/graphql' \
+curl --location --request POST '<script type="text/javascript">document.write(graphQLStr); </script>' \
 --header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
 --header 'Content-Type: application/json' \
 --data-raw '{"query":"mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){\n        createText(workspaceId: $workspaceId, input: $input) {\n            __typename\n            id\n            text\n            transform { x y }\n        }\n    }","variables":{"workspaceId":"&lt;SET_WORKSPACE_UID&gt;","input":{"text":"This text is attached","surface":"&lt;SET_SURFACE_ID&gt;","transform":{"x":10,"y":10}}}}'
