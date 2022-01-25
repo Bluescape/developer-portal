@@ -461,7 +461,7 @@ curl -X DELETE <script type="text/javascript">document.write(apiBaseStr); </scri
 <p>
 <br />
 
-Sample Response Body after deleting the attachments in an element:
+The Response Body, after deleting the attachments in an element, will return an status HTTP 204: no content. It means that the operation was executed successfully.
 </p>
 <p>
 <pre>
