@@ -152,8 +152,10 @@ When users arrive at the authorization page, they will be asked to log in to the
     Both Application ID formats will work for generating Access Tokens.
 </p>
 <p>
-    Example, replace <span class="pre">client_id</span> with your Client ID (application ID) and <span class="pre">redirect_url</span> with the redirect URL you configured in your Application:
+    Example, replace <span class="pre">client_id</span> with your Client ID (application ID) and <span class="pre">redirect_url</span> with the redirect URL you configured in your Application (copy and paste them):
     <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>
+    For example (these are just illustration values): </br>
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=<b>code</b>&client_id=<b>70304a04-d522-45fe-8f8e-cba38845a9af</b>&redirect_uri=<b>https://127.0.0.1/callback</b></pre> 
     After the login and authorization of the application, you will be greeted with an error page in the browser; this is because you will have been redirected to a new URL, which will contain your token. Look at the the address bar of your browser (where you see your URL) to find your Token. This is an example of the expected return URL that contains the Token:<br />
 <pre><script type="text/javascript">document.write(apiBaseStr);</script>/tools/access-token/callback#<b>access_token</b>=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6WyIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZiYjY5MTQ5MjliZjhjIiwiNmM0MzcyMjNlM2IwOTYyYzMxZjI5ZTc5ZjBiZmRhMjllYTFhNjg5YyIsIjM2ZjhjZjUxNzVlNGZhYWE0ZjA2NzE4NDA0YjdkZjk0ZGRjMGQ4YWUiLCIwMTVmNDgxYWNmZTQwMmM5YmFlNDM1Mzg5ZWZ1YjY5MTQ5MjljZTlkIl0sImV4cCI6MTU2NzAyNzE5NiwiYXpwIjoiODlhY2NlODIiLCJzY29wZXMiOl3idXNlciJdLCJhcHBfYXV0aG9yaXphdGlvbl9pZCI6MjA1MSwibmJmIPoxNTY1ODE3NTg8LCJpYXQiOjE1NjU4MTc1OTYsImlzcyI6Imh0dHBzOi8vaWRlbnRp4XktYXBpLmFwcHMudOMuYmx1ZXNjYXBlLmNvbSJ9.5N1SpTv1FmxzhQujEY5kqjzJBTrWWnts2r9ilbm9Jis&<b>token_type</b>=Bearer
 </pre>
@@ -200,8 +202,10 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlDCCCVNFUiIsInN1YiI6Mzg5ODgsImF1ZCI6
     b) Set your <span class="pre">client_id</span> and <span class="pre">redirect_uri</span> into the example URL below, and paste it into a browser.<br />
 </p>
 <p>
-    Example, replace <span class="pre">client_id</span> with your Client ID and <span class="pre">redirect_url</span> with the redirect URL you configured in your Application:<br />
+    Replace <span class="pre">client_id</span> with your Client ID and <span class="pre">redirect_url</span> with the redirect URL you configured in your Application (copy and paste them):<br />
     <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=<b>code</b>&client_id=<b>&lt;client_id&gt;</b>&redirect_uri=<b>&lt;redirect_url&gt;</b></pre>  
+    For example (these are just illustration values): </br>
+    <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=<b>code</b>&client_id=<b>70304a04-d522-45fe-8f8e-cba38845a9af</b>&redirect_uri=<b>https://127.0.0.1/callback</b></pre> 
     After the login and authorization of the application, you will be redirected to a new URL and greeted with an error page in the browser. The address bar (where you see your URL) contains the Access Code. Example:
 <pre><script type="text/javascript">document.write(apiBaseStr); </script>/tools/access-token/callback?code=BFyQPkmEYeSmWP1XYmeiXRJtdEgJLY</pre>
     
@@ -283,7 +287,7 @@ curl -w "%{http_code}\\n" -X POST \
     "code":"AIT6zDsPGaB-46T2mHlU0DJ-kh-Vuz",
     "client_id":"70304a04-d522-45fe-8f8e-cb238845a9af",
     "client_secret":"50bccef3a05f5433624ge8eb47a01c5d",
-    "redirect_uri":"https://something.com"
+    "redirect_uri":"http://127.0.0.1/callback"
 }'
 </pre>    
 </p>
@@ -401,7 +405,7 @@ curl -w "%{http_code}\\n" -X POST \
         "refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiUkVGUkVTSCIsImF1ZCI6WyI2YzQzNzIyM2UzYjA5NjJjMzFmMjllNzlmMGJmZGEyOWVhMWE2ODljIl0sInRva2VuIjoiQVlXMmR6TE9RZDZkdHExVFlsSFgwdHJReHg0RGVpaGJ3dGVlaG9MQmJ1UkJOeXhmMkIiLCJzdWIiOjE3ODcyLCJhenAiOiI2MzI2MzQzOSIsInNwaWQiOm51bGwsImFwcF9hdXRob3JpemF0aW9uX2lkIjoyNjcyLCJuYmYiOjE1NjU4MjI2NDAsImlhdCI6MTU2NTgyMjY1MCwiaXNzIjoiaHR0cHM6Ly9pZGVudGl0eS1hcGkudWF0MS5ibHVlc2NhcGUuY29tIn0.u13lw8kbQkHSYD5W_RP68z5zfsGcA2b_8Ofy9VdCSWs",
         "client_id":"70304a04-d522-45fe-8f8e-cb238845a9af",
         "client_secret":"50bccef3a05f5433624ge8eb47a01c5d",
-        "redirect_uri":"https://something.com"
+        "redirect_uri":"http://127.0.0.1/callback"
     }'</pre>
 </p>
 
@@ -453,8 +457,8 @@ curl -w "%{http_code}\\n" -X POST \
                 For example, let's consider this Application:<br >
 
                 <img class="img-responsive center-block" src="/docs/assets/images/edit-application.png"><br />
-                For the image above, the correct value for <b>redirect_uri</b> is <b>https://something.com</b>, and the full URL to trigger the Access Token generation would be:
-                <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=9076e5d4-6a83-4233-a826-c1ec547c8a44&<b>redirect_uri</b>=<b>https://something.com</b></pre>
+                For the image above, the correct value for <b>redirect_uri</b> is <b>http://127.0.0.1/callback</b>, and the full URL to trigger the Access Token generation would be:
+                <pre><script type="text/javascript">document.write(apiBaseStr); </script>/authorize?response_type=token&client_id=9076e5d4-6a83-4233-a826-c1ec547c8a44&<b>redirect_uri</b>=<b>http://127.0.0.1/callback</b></pre>
             
             </td>
         </tr>
@@ -594,10 +598,13 @@ const client = new Bluescape({ authorization });</pre>
     <li>Go to your application list: <a href="../"><script type="text/javascript">document.write('<a href="' + applicationStr + '" target="_blank">Applications</a>');</script></a></li>
     <li>Sign in, if you haven't already.</li>
     <li>In the left menu, select "<b>Applications</b>" <br />
-        <img class="img-responsive center-block" src="/docs/assets/images/user-menu.png">
+        <img class="img-responsive center-block" src="/docs/assets/images/user-menu.png" width="150">
     </li>
     <li>Click the “<b>New Application</b>” button</li>
     <li>Fill out the required fields:</li> 
+        <ul>
+            <li>Oauth redirect uri: after the initial process to generate the Access Token or Access Code is run, it will use this URL to redirect the workflow to deliver (depending on the Oauth method) the Access Token or Access Token and Refresh Token. For manual generation of the Access Token, you can set it as <span class="pre">http://127.0.0.1/callback</span></li>
+        </ul>
             <br />
                 <img class="img-responsive center-block" src="/docs/assets/images/app-basic-info.png">       
     <li>Save</li>
@@ -616,7 +623,7 @@ const client = new Bluescape({ authorization });</pre>
     <li>Go to your application list: <a href="../"><script type="text/javascript">document.write('<a href="' + applicationStr + '" target="_blank">Applications</a>');</script></a></li>
     <li>Sign in, if you haven't already.</li>
     <li>In the left menu, select "<b>Applications</b>" <br />
-        <img class="img-responsive center-block" src="/docs/assets/images/user-menu.png">
+        <img class="img-responsive center-block" src="/docs/assets/images/user-menu.png" width="150">
     </li>
     <li>To view the <b>Client Secret</b>, click the gear to the right of the application <img class="img-responsive center-block" src="/docs/assets/images/gear.png"> Then, the eye icon <img class="img-responsive center-block" src="/docs/assets/images/eye.png"> This will display your client secret.</li>      
     <li>It is critical that you keep the <b>Client Secret</b> a secret. You can always get a new <b>Client Secret</b> by clicking the <b>Regenerate</b> button, <img class="img-responsive center-block" src="/docs/assets/images/regenerate.png"> This operation will void the previously used <b>Client Secret</b>, so you will need to update the new <b>Client Secret</b> in any place where it is being used.</li>

@@ -17,4 +17,8 @@
         <th>OAuth Authorization URL</th>
         <td><script type="text/javascript">document.write(apiBaseStr); </script>/authorize</td>
     </tr>
+    <tr>
+        <th>Authorization Token endpoint</th>
+        <td><script type="text/javascript">document.write(identityStr); </script>/api/v2/oauth2/token</td>
+    </tr>    
 </table>
