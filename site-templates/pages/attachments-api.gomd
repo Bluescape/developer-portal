@@ -105,7 +105,7 @@ Sample Request:
 <pre class="lang lang-node">
 var request = require('request');
 
-const token = &lt;SET_TOKEN&gt;;
+const token = '&lt;SET_TOKEN&gt;';
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
 const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
 const api_version = 'v3';
@@ -318,8 +318,7 @@ if __name__ == "__main__":
 
 <pre class="lang lang-curl">
 curl -X GET <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;SET_SURFACE_ID&gt;/attachments \
--H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
--H 'Content-Type: application/json' 
+-H 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
 </pre>
 <br />
 
@@ -456,8 +455,7 @@ if __name__ == "__main__":
 
 <pre class="lang lang-curl">
 curl -X DELETE <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;SET_SURFACE_ID&gt;/attachments/&lt;attachment_id&gt; \
--H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
--H 'Content-Type: application/json' 
+-H 'Authorization: Bearer &lt;SET_TOKEN&gt;'
 </pre>
 
 <p>
