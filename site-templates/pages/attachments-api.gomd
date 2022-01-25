@@ -452,8 +452,9 @@ if __name__ == "__main__":
                     }
         )
 
-    json_response = the_request.json()
-    pprint.pprint(json_response)
+    # Successful response is HTTP 204
+    pprint.pprint(the_request.status_code)
+    
 </pre>
 
 <pre class="lang lang-curl">
