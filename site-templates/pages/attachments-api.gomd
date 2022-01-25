@@ -107,7 +107,7 @@ var request = require('request');
 
 const token = '&lt;SET_TOKEN&gt;';
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
-const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
+const workspace_uid = '&lt;SET_WORKSPACE_UID&gt;';
 const api_version = 'v3';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/';
 
@@ -247,7 +247,7 @@ var request = require('request');
 
 const token = &lt;SET_TOKEN&gt;;
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
-const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
+const workspace_uid = '&lt;SET_WORKSPACE_UID&gt;';
 const api_version = 'v3';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/attachments';
 
@@ -386,7 +386,7 @@ var request = require('request');
 
 const token = &lt;SET_TOKEN&gt;;
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
-const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
+const workspace_uid = '&lt;SET_WORKSPACE_UID&gt;';
 const api_version = 'v3';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/attachments';
 
