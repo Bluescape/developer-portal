@@ -141,7 +141,7 @@ async function runAPIRequests() {
     api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments'
 
     data_load = {
-        'sourceId': "&lt;SET_SOURCE_ID&gt;"
+        'attachment': "&lt;SET_SOURCE_ID&gt;"
     }
 
     method = 'POST';
