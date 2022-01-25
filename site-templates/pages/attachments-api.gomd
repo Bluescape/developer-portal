@@ -12,8 +12,7 @@
 </p>
 
 <p>    
-    When executing an Attachments API, the user will see the source element be moved onto the base element specified, and a yellow border will appear around the
-    newly attached objects. When deleting an Attachment (or detaching), the user will see a flashing blue border around the element that was detached, this to signify the operation is complete.<br/>
+    When executing an Attachments API, the user will see the source element be moved onto the base element specified. When deleting an Attachment (or detaching), the user will see the detached element in the same position, but it is not attached to the surface.<br/>
     <b>NOTE</b>: The object to which an element is attached is referred as the <span class="pre">surface</span> in this page.
 </p>
 <p>
@@ -106,9 +105,9 @@ Sample Request:
 <pre class="lang lang-node">
 var request = require('request');
 
-const token = &lt;SET_TOKEN&gt;;
+const token = '&lt;SET_TOKEN&gt;';
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
-const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
+const workspace_uid = '&lt;SET_WORKSPACE_UID&gt;';
 const api_version = 'v3';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/';
 
@@ -142,7 +141,8 @@ async function runAPIRequests() {
     api_endpoint = '/v3' + '/workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments'
 
     data_load = {
-        'sourceId': "&lt;SET_SOURCE_ID&gt;"
+        'attachment': "&lt;SET_SOURCE_ID&gt;",
+        'transform' : {'x':10, 'y': 10}
     }
 
     method = 'POST';
@@ -174,9 +174,11 @@ if __name__ == "__main__":
     API_endpoint = API_endpoint = portal + api_version + 'workspaces/' + workspace_uid + '/elements/&lt;SET_SURFACE_ID&gt;/attachments'
 
     data_load = {
-        'sourceId': '&lt;SET_SOURCE_ID&gt;',     # Example showing how to use the filter_by field
-        'x' : 10,
-        'y' : 10
+        'attachment': '&lt;SET_SOURCE_ID&gt;',     # Example showing how to use the filter_by field
+        'transform' : {
+            'x' : 10,
+            'y' : 10
+        }
     }
 
     the_request = requests.post(
@@ -248,7 +250,7 @@ var request = require('request');
 
 const token = &lt;SET_TOKEN&gt;;
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
-const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
+const workspace_uid = '&lt;SET_WORKSPACE_UID&gt;';
 const api_version = 'v3';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/attachments';
 
@@ -319,8 +321,7 @@ if __name__ == "__main__":
 
 <pre class="lang lang-curl">
 curl -X GET <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;SET_SURFACE_ID&gt;/attachments \
--H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
--H 'Content-Type: application/json' 
+-H 'Authorization: Bearer &lt;SET_TOKEN&gt;' 
 </pre>
 <br />
 
@@ -388,7 +389,7 @@ var request = require('request');
 
 const token = &lt;SET_TOKEN&gt;;
 const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
-const workspace_uid = &lt;SET_WORKSPACE_UID&gt;;
+const workspace_uid = '&lt;SET_WORKSPACE_UID&gt;';
 const api_version = 'v3';
 var api_endpoint = '/' + api_version + '/workspaces/' + workspace_uid + '/elements/attachments';
 
@@ -451,20 +452,20 @@ if __name__ == "__main__":
                     }
         )
 
-    json_response = the_request.json()
-    pprint.pprint(json_response)
+    # Successful response is HTTP 204
+    pprint.pprint(the_request.status_code)
+    
 </pre>
 
 <pre class="lang lang-curl">
 curl -X DELETE <script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspace_uid&gt;/elements/&lt;SET_SURFACE_ID&gt;/attachments/&lt;attachment_id&gt; \
--H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
--H 'Content-Type: application/json' 
+-H 'Authorization: Bearer &lt;SET_TOKEN&gt;'
 </pre>
 
 <p>
 <br />
 
-Sample Response Body after deleting the attachments in an element:
+The Response Body, after deleting the attachments in an element, will return an status HTTP 204: no content. It means that the operation was executed successfully.
 </p>
 <p>
 <pre>
@@ -533,7 +534,7 @@ Sample Request:
 <pre class="lang lang-node">
 const axios = require('axios');
 
-const url = "<script type="text/javascript">document.write(graphQLStr); </script>/v3/graphql"
+const url = "<script type="text/javascript">document.write(graphQLStr); </script>"
 const token = "&lt;SET_TOKEN&gt;"
 const workspaceId = "&lt;SET_WORKSPACEID&gt;"
 
@@ -550,7 +551,7 @@ const variables = {
     "workspaceId": workspaceId,
     "input": {
         "text": "This text is attached",
-        "surface": "&lt;SET_SURFACE_ID&gt;"
+        "surface": "&lt;SET_SURFACE_ID&gt;",
         "transform": {
             "x": 10,
             "y": 10
@@ -585,9 +586,9 @@ from requests.exceptions import HTTPError
 import pprint
 
 token = '&lt;SET_TOKEN&gt;'
-portal = '<script type="text/javascript">document.write(graphQLStr); </script>/v3/graphql'
+portal = '<script type="text/javascript">document.write(graphQLStr); </script>'
 
-workspace_uid = '&lt;SET_WORKSPACE_UID&gt;'
+workspaceId = '&lt;SET_WORKSPACE_UID&gt;'
 
 if __name__ == "__main__":
 
@@ -613,6 +614,7 @@ if __name__ == "__main__":
                 "x": 10,
                 "y": 10
             }
+        }
     }
 
     the_request = requests.post(
@@ -620,10 +622,10 @@ if __name__ == "__main__":
             headers={"Authorization": "Bearer " + token,
                         "Content-Type": "application/json"
                     },
-            json = json={
-            'query': textMutation,
-            'variables': graphqlVariables
-        }
+            json={
+                "query": textMutation,
+                "variables": graphqlVariables
+            }
         )
 
     json_response = the_request.json()
@@ -631,10 +633,10 @@ if __name__ == "__main__":
 </pre>
 
 <pre class="lang lang-curl">
-curl -X POST <script type="text/javascript">document.write(graphQLStr); </script>/v3/graphql
--H 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
--H 'Content-Type: application/json' \
---data-raw '{"query":"mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){\n    createText(workspaceId: $workspaceId, input: $input) {\n        id\n    }\n}    ","variables":{"workspaceId":"&lt;SET_WORKSPACE_UID&gt;","input":{"transform":{"x":10,"y":10},"text":"This text is attached","surface":"&lt;SET_SURFACE_ID&gt;"}}}''
+curl --location --request POST '<script type="text/javascript">document.write(graphQLStr); </script>' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"mutation createTextExample($workspaceId: String!, $input: CreateTextInput!){\n        createText(workspaceId: $workspaceId, input: $input) {\n            __typename\n            id\n            text\n            transform { x y }\n        }\n    }","variables":{"workspaceId":"&lt;SET_WORKSPACE_UID&gt;","input":{"text":"This text is attached","surface":"&lt;SET_SURFACE_ID&gt;","transform":{"x":10,"y":10}}}}'
 </pre>    
 
 Sample Response Body:
