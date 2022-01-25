@@ -588,7 +588,7 @@ import pprint
 token = '&lt;SET_TOKEN&gt;'
 portal = '<script type="text/javascript">document.write(graphQLStr); </script>'
 
-workspace_uid = '&lt;SET_WORKSPACE_UID&gt;'
+workspaceId = '&lt;SET_WORKSPACE_UID&gt;'
 
 if __name__ == "__main__":
 
@@ -614,6 +614,7 @@ if __name__ == "__main__":
                 "x": 10,
                 "y": 10
             }
+        }
     }
 
     the_request = requests.post(
@@ -621,10 +622,10 @@ if __name__ == "__main__":
             headers={"Authorization": "Bearer " + token,
                         "Content-Type": "application/json"
                     },
-            json = json={
-            'query': textMutation,
-            'variables': graphqlVariables
-        }
+            json={
+                "query": textMutation,
+                "variables": graphqlVariables
+            }
         )
 
     json_response = the_request.json()
