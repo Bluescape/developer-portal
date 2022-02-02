@@ -7,27 +7,35 @@
 
 <table class="table table-striped">
         <tr>
+          <td>Type</td>
+          <td>Allowed extensions</td>
+          <td>Maximum size to upload (default)</td>
+        </tr>
+        <tr>
           <td>Images</td>
           <td>png, jpeg, gif, tiff, pdf, docx, pptx, xlsx, doc, ppt, xls</td>
+          <td>50 Mb</td>
         </tr>
         <tr>
             <td>Documents</td>
             <td>doc, docx, ppt, pptx, xls, xlsx, pdf, docMime, docxMime, pptMime, pptxMime, xlsMime, xlsxMime, pdfMime</td>
+          <td>50 Mb</td>
         </tr>        
         <tr>
           <td>Videos</td>
           <td>mp4, mov, m4v, quicktime, mp4Mime, m4vMime, quicktimeMime</td>
+          <td>150 Mb</td>
         </tr>
 </table>
  
-This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a> and for <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">v2 REST APIs</a>.<br />
+This page contains the implementation details for REST APIs v3 and for GraphQL APIs, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">v2 REST APIs</a>.<br />
 Please check the previous guide in <a href="/docs/page/create-canvas-and-add-text" target="_BLANK">how to create a Canvas and add a Text Element</a> to see how to create a Canvas and obtain this new Canvas Id. You will need the Canvas Id to position the content to upload inside this Canvas.
 </p>
 <a name="rest-v3" class="internal-anchor"></a>
 <p>
 The upload of content into a workspace by APIs can be done in 2 ways:
 <ul>
-    <li>upload from local drive: <a href="#rest-upload-from-local-drive">REST implementation</a>, and GraphQL implementation.</li>
+    <li>upload from local drive: <a href="#rest-upload-from-local-drive">REST implementation</a>, and <a href="#graphql-upload-from-local-drive">GraphQL implementation</a>.</li>
     <li>upload by URL: <a href="#rest-upload-using-URL">REST implementation</a> and <a href="#graphql-upload-by-url">GraphQL implementation</a></li>
 </ul>
 
@@ -243,7 +251,7 @@ From the response body, you will need to use the following fields for the next s
 
 </p>
 
-<h3>STEP 1, implementation using GraphQL API</h3>
+<a name="graphql-upload-from-local-drive" class="internal-anchor"><h3>STEP 1, implementation using GraphQL API</h3></a>
 
 <p>
 For this first step, in GraphQL you can use the following mutations: <span class="pre">createDocument</span>, <span class="pre">createImage</span>, <span class="pre">createVideo</span>. <br />
