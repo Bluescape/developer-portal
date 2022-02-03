@@ -7,27 +7,35 @@
 
 <table class="table table-striped">
         <tr>
+          <td>Type</td>
+          <td>Allowed extensions</td>
+          <td>Maximum size to upload (default)</td>
+        </tr>
+        <tr>
           <td>Images</td>
           <td>png, jpeg, gif, tiff, pdf, docx, pptx, xlsx, doc, ppt, xls</td>
+          <td>50 Mb</td>
         </tr>
         <tr>
             <td>Documents</td>
             <td>doc, docx, ppt, pptx, xls, xlsx, pdf, docMime, docxMime, pptMime, pptxMime, xlsMime, xlsxMime, pdfMime</td>
+          <td>50 Mb</td>
         </tr>        
         <tr>
           <td>Videos</td>
           <td>mp4, mov, m4v, quicktime, mp4Mime, m4vMime, quicktimeMime</td>
+          <td>150 Mb</td>
         </tr>
 </table>
  
-This page contains the implementation details for <a href="#rest-v3">REST APIs v3</a> and for <a href="#graphql">GraphQL APIs</a>, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">v2 REST APIs</a>.<br />
+This page contains the implementation details for REST APIs v3 and for GraphQL APIs, and you can see the page with details for the <a href="/docs/page/upload-content-into-a-canvas-v2">v2 REST APIs</a>.<br />
 Please check the previous guide in <a href="/docs/page/create-canvas-and-add-text" target="_BLANK">how to create a Canvas and add a Text Element</a> to see how to create a Canvas and obtain this new Canvas Id. You will need the Canvas Id to position the content to upload inside this Canvas.
 </p>
 <a name="rest-v3" class="internal-anchor"></a>
 <p>
 The upload of content into a workspace by APIs can be done in 2 ways:
 <ul>
-    <li>upload from local drive: <a href="#rest-upload-from-local-drive">REST implementation</a>, and GraphQL implementation.</li>
+    <li>upload from local drive: <a href="#rest-upload-from-local-drive">REST implementation</a>, and <a href="#graphql-upload-from-local-drive">GraphQL implementation</a>.</li>
     <li>upload by URL: <a href="#rest-upload-using-URL">REST implementation</a> and <a href="#graphql-upload-by-url">GraphQL implementation</a></li>
 </ul>
 
@@ -243,7 +251,7 @@ From the response body, you will need to use the following fields for the next s
 
 </p>
 
-<h3>STEP 1, implementation using GraphQL API</h3>
+<a name="graphql-upload-from-local-drive" class="internal-anchor"><h3>STEP 1, implementation using GraphQL API</h3></a>
 
 <p>
 For this first step, in GraphQL you can use the following mutations: <span class="pre">createDocument</span>, <span class="pre">createImage</span>, <span class="pre">createVideo</span>. <br />
@@ -434,13 +442,23 @@ curl --location --request POST 'https://s3.us-east-1.amazonaws.com/acceptance-ne
 </p>
 
 <p>
-    <b>IMPORTANT</b>: If the upload process is successful, you will get a return code <span class="pre">204</span>, then proceed to the last step of the upload.
+    <b>IMPORTANT</b>:
+    <ul>
+      <li>If the upload process is successful, you will get a return code <span class="pre">204</span>, then proceed to the last step of the upload.</li>
+      <li>If you get an error on this step, you will need to specify the <b>error code</b> and the <b>error message</b> to the next final step. See more details on the next final step instructions.</li>
+    </ul> 
 </p>
 
 <h4>STEP 3: Link the zygote or placeholder to the uploaded file</h4>
 
 <p>
-The last step is to link the zygote or placeholder to the file we uploaded in the previous step. For this step we will need the id from <span class="pre">data/content/uploadId</span> generated in the response body in step 1.
+The last step is to link the zygote or placeholder to the file we uploaded in the previous step. For this step we will need the id from <span class="pre">data/content/uploadId</span> generated in the response body in step 1.</br>
+In case something went wrong on the previous step and the asset was not uploaded successfully (maybe the asset was too big, over the size limit), then you will need to send the error in this step. Otherwise, the zygote will be in permanent "Processing" status until it times out. When you send the error message, the zygote will display and error message and letting you delete the zygote for the failed upload). <br />
+Please note that the <b>error code</b> and the <b>error message</b> can be customized, they do not need to follow a particular format and will not be verified by the API.<br />
+The image below shows how the zygote will show an error when the asset is too big (a video in this case) and the option to cancel the upload, that will delete the zygote:</br>
+<center>
+<img width="400" src="/docs/assets/images/zygote-reporting-error.png">
+</center>
 </p>
 
 <h4>STEP 3, implementation using REST API</h4>
@@ -462,6 +480,7 @@ The last step is to link the zygote or placeholder to the file we uploaded in th
 </table>
 </p>
 
+Examples for when the upload on step 2 was successful:
 <div class="lang-selector">
     <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
@@ -506,6 +525,56 @@ upload_response = requests.put(upload_endpoint, headers= request_headers, json={
 pprint.pprint(upload_response.status_code)
 </pre>
 </p>
+<p>
+Examples for reporting errors on step 2, to show an error message in the zygote:
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
+# Report error on the upload operation, to make the zygote to display an error message
+curl --location --request PUT '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/assets/uploads/&lt;uploadId&gt;' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{ "errorCode" : "&lt;ERROR-CODE-FROM-STEP-2&gt;", "errorMessage" : "&lt;ERROR-MESSAGE-FROM-STEP-2&gt;"}'
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+const request = require('request-promise');
+// Report error on the upload operation, to make the zygote to display an error message
+const upload_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/assets/uploads/' + zygote_response.data.content.uploadId
+const upload_options = {
+    headers: request_headers,
+    uri: upload_endpoint,
+    method: 'PUT',
+    json: { 
+      "errorCode" : "&lt;ERROR-CODE-FROM-STEP-2&gt;",
+      "errorMessage" : "&lt;ERROR-MESSAGE-FROM-STEP-2&gt;"
+    },
+    resolveWithFullResponse: true
+}
+
+const upload_response = await request(upload_options)
+.catch(err => console.log(err))
+
+console.log(upload_response.statusCode)
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+import requests
+# Report error on the upload operation, to make the zygote to display an error message
+upload_endpoint = portal + api_version + '/workspaces/' + workspaceId + '/assets/uploads/' + zygote_data['uploadId']
+upload_response = requests.put(upload_endpoint, headers= request_headers, json={ "errorCode" : "&lt;ERROR-CODE-FROM-STEP-2&gt;", "errorMessage" : "&lt;ERROR-MESSAGE-FROM-STEP-2&gt;" })
+pprint.pprint(upload_response.status_code)
+</pre>
+</p>
 
 <h4>STEP 3, implementation using GraphQL API</h4>
 
@@ -525,8 +594,9 @@ and provide these variables:
     "uploadID": "&lt;uploadId&gt;"
 }
 </pre>
-
-Here are examples of the implementation of the mutation:
+</p>
+<p>
+Here are examples of the implementation of the mutation when the upload of step 2 was successful:<br />
 <div class="lang-selector">
     <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
@@ -566,6 +636,7 @@ request(options, function (error, response) {
 
 </pre>
 </p>
+</p>
 
 <p>
 <pre class="lang lang-python">
@@ -585,7 +656,65 @@ print(response.text)
 </pre>
 </p>
 
+Here are examples of the mutation for reporting errors on step 2, to show an error message in the zygote:
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
 
+<p>
+<pre class="lang lang-curl">
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"\nmutation myProcessAsset($ws: String! $uploadID: String!) {\n    processAsset( workspaceId:$ws id:$uploadID input:{\n errorCode: "&lt;ERROR-CODE-FROM-STEP-2&gt;" \n errorMessage: "&lt;ERROR-MESSAGE-FROM-STEP-2&gt;" })\n}","variables":{"ws":"&lt;WORKSPACE_ID&gt;","uploadID":"&lt;uploadId&gt;"}}'
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+var request = require('request');
+var options = {
+  'method': 'POST',
+  'url': '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql',
+  'headers': {
+    'Authorization': 'Bearer &lt;SET_TOKEN&gt;',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    query: `mutation myProcessAsset($ws: String! $uploadID: String!) {
+    processAsset( workspaceId:$ws id:$uploadID input:{
+      errorCode: "&lt;ERROR-CODE-FROM-STEP-2&gt;" 
+      errorMessage: "&lt;ERROR-MESSAGE-FROM-STEP-2&gt;"
+    })
+}`,
+    variables: {"ws":"&lt;WORKSPACE_ID&gt;","uploadID":"&lt;uploadId&gt;"}
+  })
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+import requests
+
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
+
+payload="{\"query\":\"\\nmutation myProcessAsset($ws: String! $uploadID: String!) {\\n    processAsset( workspaceId:$ws id:$uploadID input:{\\n errorCode: \"&lt;ERROR-CODE-FROM-STEP-2&gt;\" errorMessage: \"&lt;ERROR-MESSAGE-FROM-STEP-2&gt;\"  })\\n}\",\"variables\":{\"ws\":\"&lt;WORKSPACE_ID&gt;\",\"uploadID\":\"&lt;uploadId&gt;\"}}"
+headers = {
+  'Authorization': 'Bearer &lt;SET_TOKEN&gt;',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+</pre>
 </p>
 
 
