@@ -594,8 +594,9 @@ and provide these variables:
     "uploadID": "&lt;uploadId&gt;"
 }
 </pre>
-
-Here are examples of the implementation of the mutation when the upload of step 2 was successful:
+</p>
+<p>
+Here are examples of the implementation of the mutation when the upload of step 2 was successful:<br />
 <div class="lang-selector">
     <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
     <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
@@ -634,6 +635,7 @@ request(options, function (error, response) {
 });
 
 </pre>
+</p>
 </p>
 
 <p>
