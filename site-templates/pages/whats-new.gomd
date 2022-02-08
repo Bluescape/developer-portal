@@ -2,13 +2,12 @@
 
 <div class="col-md-8 content">
 
-    <h1>What's new in the 22.01.1, January 14, 2022, Release</h1>
+    <h1>What's new in the 22.02.1 (February 11, 2022) Release</h1>
 
     <h3>Test the REST APIs on the Reference pages</h3>
     <p>
         <ul>  
-            <li>Did you know that you can test the REST APIs in the <a target="_blank" href="/docs/page/reference">Reference</a> section, directly in the API pages?</li>
-            <li>Check the instruction in this Community page for <a target="_blank" href="https://community.bluescape.com/t/run-the-rest-apis-directly-from-the-developer-portal-use-the-try-it-out-button/360">how to run the REST APIs directly from the Developer Portal: use the “Try it out” button</a>.</li>
+            <li>We are happy to share with you the new findAvailableArea API, check the new  <a target="_blank" href="/docs/page/findavailablearea">guide on how to use this new API</a>.</li>
         </ul>
     </p>   
 
