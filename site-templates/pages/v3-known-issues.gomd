@@ -4,15 +4,16 @@
 <h4>REST APIs</h4>
 <ul>
     <li>PATCH for Browser: after modifying height/width, the preview image does not scale or changes (WEBC-10223).</li>
-    <li>PATCH for Smartgrid: adding new image to Smartgrid using API causes previously existing images in Smartgrid to be detached (ELE-686). </li>
     <li>Using textDecoration when creating text block content span, for rich text, returns error 422 (ELE-688).</li>
+    <li>Getting status code 200 OK while updating elements with type only and no actual changes (ELE-677).</li>
 </ul>
 <h4>GraphQL APIs</h4>
 <ul>
     <li>Stroke scale does not account for stroke brushWidth (ELE-622).</li>
-    <li>PATCH for Smartgrid: adding new image to Smartgrid using API causes previously existing images in Smartgrid to be detached (ELE-686).</li>
     <li>pageSize parameter does not have effect on number or returned results when listing users, always returns 25 results (AD-11378).</li>
-
+    <li>totalItems field returns null when passed as part of a fragment (AD-11423).</li>
+    <li>Image upload from URL with GraphQL createImage prevents download from workspace (ELE-684).</li>
+    <li>GraphQL gateway returns error code 500 for other backend errors, such as 401, 403, 404. Need to examine error message in detail to get correct error.(AD-11474)</li>
 </ul>
 <!--
 <h4>GraphQL Subscriptions</h4>
