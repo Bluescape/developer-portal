@@ -1,11 +1,248 @@
 <h1>How to use the findAvailableArea API in v3</h1>
 <p>
-<b>Objective</b>: Show how to use the findAvailableArea API in v3.
+<b>Objective</b>: Show how to use the <span class="pre">findAvailableArea</span> API in v3.
 </p>
 
 <p>
-<p>
+This page contains the implementation details for the use of the <span class="pre">findAvailableArea</span> API, for v3 <a href="#rest">REST APIs</a> and for <a href="#graphql">GraphQL APIs</a>. This functionality is not implemented for v2 APIs.
+</p>
 
+<p>
+When using APIs, how do I know if the coordinated I chose for locating an element is empty or if there is content already there (without analyzing the position, height and width of all the elements in the workspace)? The <span class="pre">findAvailableArea</span> API searches a workspace for an open area based on the Box provided as input, and the specified direction for this search.<br/>
+This is an example of the request body:
+<pre>
+{
+  "direction": "Right",
+  "proposedArea": {
+    "height": 1500,
+    "width": 3000,
+    "x": 100,
+    "y": 100
+  }
+}
+</pre>
+</p>
+<p>
+When executed, the API will search for empty space starting at the position <span class="pre">(100, 100)</span>, for an Area of <span class="pre">1500</span> pixels wide and <span class="pre">3000</span> pixels high. The search will be conducted from the starting position, moving in the specified direction: <span class="pre">Right</span>. 
+</p>
+<p>
+The response will contain the coordinates (x,y) that has an empty space for the Box area specified in the request body. Because the specified direction was <span class="pre">Right</span>, the response body will maintain the <span class="pre">"y"</span> coordinate. The search for empty space was performed by a horizontal movement to the right. Example: 
+<pre>
+{
+  "height": 1500,
+  "width": 3000,
+  "x": 1950,
+  "y": 100
+}
+</pre>
+In the response body, you get the coordinates of where you can start adding your new content: <span class="pre">(1950, 300)</span>, being sure that there will not be content in a box of <span class="pre">1500</span> pixels wide and <span class="pre">3000</span> pixels high, that your new content will overlap with.
+</p>
+
+<a name="rest" class="internal-anchor"><h2>Use findAvailableArea, REST APIs</h2></a>
+
+<table class="table table-striped">
+        <tr>
+          <td><b>REST API</b></td>
+          <td>/v3/workspaces/&lt;workspaceId&gt;/findAvailableArea</td>
+        </tr>
+        <tr>
+            <td><b>Method</b></td>
+            <td>POST</td>
+        </tr>  
+        <tr>
+          <td><b>Comments</b></td>
+          <td></td>
+        </tr>
+</table>
+
+<h2>Code sample</h2>
+
+
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/workspaces/&lt;workspaceId&gt;/findAvailableArea' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "direction": "Right",
+  "proposedArea": {
+    "height": 1500,
+    "width": 3000,
+    "x": 100,
+    "y": 100
+  } 
+}'
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+Node...
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+PYTHON...
+</pre>
+</p>
+
+
+<a name="graphql" class="internal-anchor"><h2>Use findAvailableArea, GraphQL APIs</h2></a>
+
+<p>
+In GraphQL you can run the <span class="pre">findAvailableArea</span> query.
+<pre>
+query findAvailableAreaForNewContent( $workspaceId: String! $proposedArea: BoxInput! $direction: FindAvailableAreaDirection!) {
+    findAvailableArea( workspaceId: $workspaceId , proposedArea: $proposedArea, direction: $direction) {
+        x y width height
+    }
+}
+</pre>
+and use these variables:
+<pre>
+{
+    "workspaceId": "&lt;workspaceId&gt;",
+    "proposedArea" : {
+        "height": 1500,
+        "width": 3000,
+        "x": 1950,
+        "y": 100
+    },
+    "direction" : "right"
+}
+</pre>
+</p>
+<h2>Code sample</h2>
+
+<div class="lang-selector">
+    <button data-lang="curl" type="button" class="btn btn-sm btn-primary curlButton">cURL</button>
+    <button data-lang="node" type="button" class="btn btn-sm btn-primary nodeButton">Node.js</button>
+    <button data-lang="python" type="button" class="btn btn-sm btn-primary pythonButton">Python</button>
+</div>
+
+<p>
+<pre class="lang lang-curl">
+curl --location --request POST '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql' \
+--header 'Authorization: Bearer &lt;SET_TOKEN&gt;' \
+--header 'Content-Type: application/json' \
+--data-raw '{"query":"query findAvailableAreaForNewContent( $workspaceId: String! $proposedArea: BoxInput! $direction: FindAvailableAreaDirection!) {\n    findAvailableArea( workspaceId: $workspaceId , proposedArea: $proposedArea, direction: $direction) {\n        x y width height\n    }\n\n\n\n}","variables":{"workspaceId":"&lt;SET_WORKSPACEID&gt;","proposedArea":{"height":1500,"width":3000,"x":1950,"y":100},"direction":"&lt;SET_DIRECTION&gt;"}}'
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-node">
+const axios = require('axios');
+
+const url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
+const token = "&lt;SET_TOKEN&gt;"
+const query = 
+    `query findAvailableAreaForNewContent( $workspaceId: String! $proposedArea: BoxInput! $direction: FindAvailableAreaDirection!) {
+        findAvailableArea( workspaceId: $workspaceId , proposedArea: $proposedArea, direction: $direction) {
+            x y width height
+        }
+    }`
+const variables = {   
+     "workspaceId": "&lt;SET_WORKSPACEID&gt;",
+    "proposedArea" : {
+        "height": 1500,
+        "width": 3000,
+        "x": 1950,
+        "y": 100
+    },
+    "direction" : "&lt;SET_DIRECTION&gt;"
+}
+const findAvailableAreaForNewContent = async () => {
+    try {
+        const response = await axios.post(url,
+            {
+                query: query,
+                variables: variables
+            }, 
+            {headers: {"Authorization": "Bearer " + token}})
+        
+        answerData = JSON.stringify(response.data);
+        console.log(answerData);
+        return response
+    }
+    catch(error) {
+        console.error(error)
+    }
+}
+
+findAvailableAreaForNewContent();
+</pre>
+</p>
+
+<p>
+<pre class="lang lang-python">
+import requests
+import pprint
+
+'''
+Required modules:
+   requests 2.22.0
+'''
+
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
+token = "&lt;SET_TOKEN&gt;"
+query = """
+    query findAvailableAreaForNewContent( $workspaceId: String! $proposedArea: BoxInput! $direction: FindAvailableAreaDirection!) {
+        findAvailableArea( workspaceId: $workspaceId , proposedArea: $proposedArea, direction: $direction) {
+            x y width height
+        }
+    }
+    """
+
+variables = {   
+    "workspaceId": "&lt;SET_WORKSPACEID&gt;",
+    "proposedArea" : {
+        "height": 1500,
+        "width": 3000,
+        "x": 1950,
+        "y": 100
+    },
+    "direction" : "&lt;SET_DIRECTION&gt;"
+}
+
+def makeQuery():
+
+    response = requests.post(url, 
+    headers={"Authorization": "Bearer " + token
+    },
+    json={
+        'query': query,
+        'variables': variables
+        })
+
+    return response.json()
+
+if __name__ == "__main__":
+    response = makeQuery()
+    pprint.pprint(response)
+</pre>
+</p>
+<p>
+Example of the response from GraphQL:
+<pre>
+{
+    "data": {
+        "findAvailableArea": {
+            "x": 32846,
+            "y": 100,
+            "width": 3000,
+            "height": 1500
+        }
+    }
+}
+</pre>
+</p>
 <p>
 If you have any questions or comments, please contact us in the <a href="https://community.bluescape.com" target="_blank">Bluescape Community site</a>.
 </p>
