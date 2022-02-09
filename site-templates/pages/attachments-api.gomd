@@ -474,7 +474,7 @@ The Response Body, after deleting the attachments in an element, will return an 
 }  
 </pre>
 </p>
-
+<br />
 <a name="how-to-implement-graphql" class="internal-anchor"><h2>How to Implement Attachments APIs: GRAPHQL APIs</h2></a>
 
 <a name="create-attachment-graphql" class="internal-anchor"><h3>Create: attach one element to another, GraphQL</h3></a>
