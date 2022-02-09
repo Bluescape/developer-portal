@@ -8,6 +8,7 @@
     <p>
         <ul>  
             <li>We are happy to share with you the new findAvailableArea API, check the new  <a target="_blank" href="/docs/page/findavailablearea">guide on how to use this new API</a>.</li>
+            <li>The Canvas element now has an option to display or not its name in the workspace: <span class="pre">style { showName: [true|false]}</span>.</li>
         </ul>
     </p>   
 
