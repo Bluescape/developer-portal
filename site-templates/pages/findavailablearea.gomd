@@ -8,7 +8,7 @@ This page contains the implementation details for the use of the <span class="pr
 </p>
 
 <p>
-When using APIs, how do I know if the coordinated I chose for locating an element is empty or if there is content already there (without analyzing the position, height and width of all the elements in the workspace)? The <span class="pre">findAvailableArea</span> API searches a workspace for an open area based on the Box provided as input, and the specified direction for this search.<br/>
+When using APIs, how do I know if the (x,y) coordinates I chose for locating an element is empty or if there is content already there (without analyzing the position, height and width of all the elements in the workspace)? The <span class="pre">findAvailableArea</span> API searches a workspace for an open area based on the Box provided as input, and the specified direction for this search.<br/>
 The image below is an example of finding available area to the right of the proposed area:<br />
 <img src="/docs/assets/images/found-available-area.png"><br />
 This is an example of the request body:
