@@ -279,7 +279,7 @@ curl --location --request POST '<script type="text/javascript">document.write(ap
 var request = require('request');
 var options = {
   'method': 'POST',
-  'url': 'https://api.apps.us.bluescape.com/v3/graphql',
+  'url': '<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql',
   'headers': {
     'Authorization': 'Bearer &lt;SET_TOKEN&gt;',
     'Content-Type': 'application/json'
@@ -322,7 +322,7 @@ request(options, function (error, response) {
 <pre class="lang lang-python">
 import requests
 
-url = "https://api.apps.us.bluescape.com/v3/graphql"
+url = "<script type="text/javascript">document.write(apiBaseStr); </script>/v3/graphql"
 
 payload="{\"query\":\"#create Image from disk\\n#imageFormat: jpeg, jpg, gif, png, tiff, tif, image/jpeg, image/gif, image/png, image/tiff\\nmutation createImageFromDisk($ws: String! $x:Float! $y:Float! $title:String! $imageFormat:ImageFormatInput! $filename:String! $scale:Float) {\\n    createImage(\\n          workspaceId: $ws\\n          input: {\\n            title:$title\\n            imageFormat: $imageFormat\\n            filename:$filename\\n            transform: {\\n              x: $x\\n              y: $y\\n              scale:$scale\\n            }\\n    }) \\n    #return values after creation:    \\n    {\\n        content{ uploadId url fields}\\n        preview{uploadId url fields}\\n        image{id width height ingestionState}\\n    }\\n}\",\"variables\":{\"ws\":\"&lt;WORKSPACE_ID&gt;\",\"title\":\"testimage.jpeg\",\"filename\":\"testimage.jpeg\",\"imageFormat\":\"jpeg\",\"previewFormat\":\"jpeg\",\"x\":0,\"y\":0,\"scale\":1}}"
 headers = {
@@ -453,7 +453,7 @@ curl --location --request POST 'https://s3.us-east-1.amazonaws.com/acceptance-ne
 
 <p>
 The last step is to link the zygote or placeholder to the file we uploaded in the previous step. For this step we will need the id from <span class="pre">data/content/uploadId</span> generated in the response body in step 1.</br>
-In case something went wrong on the previous step and the asset was not uploaded successfully (maybe the asset was too big, over the size limit), then you will need to send the error in this step. Otherwise, the zygote will be in permanent "Processing" status until it times out. When you send the error message, the zygote will display an error message and a Cancel button to let you delete the zygote created for the failed upload operation). <br />
+In case something went wrong on the previous step and the asset was not uploaded successfully (maybe the asset was too big, over the size limit), then you will need to send the error in this step. Otherwise, the zygote will be in permanent "Processing" status until it times out. When you send the error message, the zygote will display an error message and a Cancel button to let you delete the zygote created for the failed upload operation. <br />
 Please note that the <b>error code</b> and the <b>error message</b> can be customized, they do not need to follow a particular format and will not be verified by the API.<br />
 The image below shows how the zygote will show an error when the asset is too big (a video in this case) and the option to cancel the upload, that will delete the zygote:</br>
 <center>
