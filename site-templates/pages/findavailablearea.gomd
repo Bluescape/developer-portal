@@ -37,7 +37,7 @@ The response will contain the coordinates (x,y) that has an empty space for the 
   "y": 100
 }
 </pre>
-In the response body, you get the coordinates of where you can start adding your new content: <span class="pre">(1950, 300)</span>, being sure that there will not be content in a box of <span class="pre">1500</span> pixels wide and <span class="pre">3000</span> pixels high, there will be no elements that your new content will overlap over.
+In the response body, you get the coordinates of where you can start adding your new content: <span class="pre">(1950, 100)</span>, being sure that there will not be content in a box of <span class="pre">1500</span> pixels wide and <span class="pre">3000</span> pixels high, there will be no elements that your new content will overlap over.
 </p>
 
 <a name="rest" class="internal-anchor"><h2>Use findAvailableArea, REST APIs</h2></a>
@@ -179,8 +179,20 @@ if __name__ == "__main__":
    pprint.pprint(json_response)
 </pre>
 </p>
-
-
+<p>
+Example of the response from REST:
+<pre>
+{
+  "height": 1500,
+  "width": 3000,
+  "x": 1950,
+  "y": 100
+}
+</pre>
+</p>
+<p>
+In the response body, you get the coordinates of where you can start adding your new content: <span class="pre">(1950, 100)</span>, being sure that there will not be content in a box of <span class="pre">1500</span> pixels wide and <span class="pre">3000</span> pixels high, there will be no elements that your new content will overlap over.
+</p>
 <a name="graphql" class="internal-anchor"><h2>Use findAvailableArea, GraphQL APIs</h2></a>
 
 <p>
@@ -325,7 +337,7 @@ Example of the response from GraphQL:
 {
     "data": {
         "findAvailableArea": {
-            "x": 32846,
+            "x": 1950,
             "y": 100,
             "width": 3000,
             "height": 1500
@@ -333,7 +345,7 @@ Example of the response from GraphQL:
     }
 }
 </pre>
-In the response body, you get the coordinates of where you can start adding your new content: <span class="pre">(1950, 300)</span>, being sure that there will not be content in a box of <span class="pre">1500</span> pixels wide and <span class="pre">3000</span> pixels high, there will be no elements that your new content will overlap over.
+In the response body, you get the coordinates of where you can start adding your new content: <span class="pre">(1950, 100)</span>, being sure that there will not be content in a box of <span class="pre">1500</span> pixels wide and <span class="pre">3000</span> pixels high, there will be no elements that your new content will overlap over.
 </p>
 <p>
 If you have any questions or comments, please contact us in the <a href="https://community.bluescape.com" target="_blank">Bluescape Community site</a>.
