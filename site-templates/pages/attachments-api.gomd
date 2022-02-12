@@ -474,6 +474,8 @@ The Response Body, after deleting the attachments in an element, will return an 
 }  
 </pre>
 </p>
+<br />
+<a name="how-to-implement-graphql" class="internal-anchor"><h2>How to Implement Attachments APIs: GRAPHQL APIs</h2></a>
 
 <a name="create-attachment-graphql" class="internal-anchor"><h3>Create: attach one element to another, GraphQL</h3></a>
     <p>
@@ -649,9 +651,6 @@ Sample Response Body:
 </pre>
 </p>
 
-<a name="how-to-implement-rest" class="internal-anchor"><h2>How to Implement Attachments APIs: GRAPHQL APIs</h2></a>
-
-
 <a name="get-attachments-graphql" class="internal-anchor"><h3>Get: list all attachments of an element, GraphQL</h3></a>
 <p>
     <table class="table table-striped">
@@ -755,7 +754,7 @@ using these variables:
 
 
 <p>
-If you have any questions or comments, please contact us at <a href="https://support.bluescape.com" target="_blank">Bluescape support</a>.
+If you have any questions or comments, please contact us in the <a href="https://community.bluescape.com" target="_blank">Bluescape Community site</a>.
 </p>
 
 
