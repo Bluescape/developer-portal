@@ -25,7 +25,7 @@ This is an example of the request body:
 </pre>
 </p>
 <p>
-When executed, the API will search for empty space starting at the position <span class="pre">(100, 100)</span>, for an Area of <span class="pre">1500</span> pixels wide and <span class="pre">3000</span> pixels high. The search will be conducted from the starting position, moving in the specified direction: <span class="pre">Right</span>. 
+When executed, the API will search for empty space starting at the position <span class="pre">(100, 100)</span>, for an Area of <span class="pre">3000</span> pixels wide and <span class="pre">1500</span> pixels high. The search will be conducted from the starting position, moving in the specified direction: <span class="pre">Right</span>. 
 </p>
 <p>
 The response will contain the coordinates (x,y) that has an empty space for the Box area specified in the request body. Because the specified direction was <span class="pre">Right</span>, the response body will maintain the <span class="pre">"y"</span> coordinate. The search for empty space was performed by a horizontal movement to the right. Example of the response: 
@@ -37,7 +37,7 @@ The response will contain the coordinates (x,y) that has an empty space for the 
   "y": 100
 }
 </pre>
-In the response body, you get the coordinates of where you can start adding your new content: <span class="pre">(1950, 100)</span>, being sure that there will not be content in a box of <span class="pre">1500</span> pixels wide and <span class="pre">3000</span> pixels high, there will be no elements that your new content will overlap over.
+In the response body, you get the coordinates of where you can start adding your new content: <span class="pre">(1950, 100)</span>, being sure that there will not be content in a box of <span class="pre">3000</span> pixels wide and <span class="pre">1500</span> pixels high, there will be no elements that your new content will overlap over.
 </p>
 
 <a name="rest" class="internal-anchor"><h2>Use findAvailableArea, REST APIs</h2></a>
@@ -191,7 +191,7 @@ Example of the response from REST:
 </pre>
 </p>
 <p>
-In the response body, you get the coordinates of where you can start adding your new content: <span class="pre">(1950, 100)</span>, being sure that there will not be content in a box of <span class="pre">1500</span> pixels wide and <span class="pre">3000</span> pixels high, there will be no elements that your new content will overlap over.
+In the response body, you get the coordinates of where you can start adding your new content: <span class="pre">(1950, 100)</span>, being sure that there will not be content in a box of <span class="pre">3000</span> pixels wide and <span class="pre">1500</span> pixels high, there will be no elements that your new content will overlap over.
 </p>
 <a name="graphql" class="internal-anchor"><h2>Use findAvailableArea, GraphQL APIs</h2></a>
 
@@ -345,7 +345,7 @@ Example of the response from GraphQL:
     }
 }
 </pre>
-In the response body, you get the coordinates of where you can start adding your new content: <span class="pre">(1950, 100)</span>, being sure that there will not be content in a box of <span class="pre">1500</span> pixels wide and <span class="pre">3000</span> pixels high, there will be no elements that your new content will overlap over.
+In the response body, you get the coordinates of where you can start adding your new content: <span class="pre">(1950, 100)</span>, being sure that there will not be content in a box of <span class="pre">3000</span> pixels wide and <span class="pre">1500</span> pixels high, there will be no elements that your new content will overlap over.
 </p>
 <p>
 If you have any questions or comments, please contact us in the <a href="https://community.bluescape.com" target="_blank">Bluescape Community site</a>.
