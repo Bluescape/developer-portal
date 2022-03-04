@@ -746,7 +746,7 @@ getCanvasContentFoundByName();
 <h2>OUTPUT</h2>
 
 <p>
-The scripts above (thata use GraphQL) will show 2 sets of outputs:
+The scripts above (that use GraphQL) will show 2 sets of outputs:
 <ul>
     <li>The results of the search </li>
     <li>The content of the Canvas that matches the search query</li>
