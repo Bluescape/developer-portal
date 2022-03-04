@@ -4,11 +4,9 @@
 
     <h1>What's new in the 22.03.1 (March 11, 2022) Release</h1>
 
-    <h3>Test the REST APIs on the Reference pages</h3>
     <p>
         <ul>  
-            <li>We are happy to share with you the new findAvailableArea API, check the new  <a target="_blank" href="/docs/page/findavailablearea">guide on how to use this new API</a>.</li>
-            <li>The Canvas element now has an option to display or not its name in the workspace: <span class="pre">style { showName: [true|false]}</span>.</li>
+            <li>Fixed issue: in GraphQl, when querying images and the scale factor is not defined, the answer was always the smallest preview image in the URL. If you used that URL to retrieve the image, you got a small preview image. Now you get the URL pointing to the original image. </li>
         </ul>
     </p>   
 
