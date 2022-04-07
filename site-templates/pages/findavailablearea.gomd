@@ -161,6 +161,7 @@ if __name__ == "__main__":
    API_endpoint = f'/{API_version}/workspaces/{workspaceId}/findAvailableArea'
 
    proposedArea = {
+        "direction": "Right",
         "height": 1500,
         "width": 3000,
         "x": 100,
@@ -300,7 +301,7 @@ const query =
         }
     }`
 const variables = {   
-     "workspaceId": "&lt;SET_WORKSPACE_ID&gt;",
+    "workspaceId": "&lt;SET_WORKSPACE_ID&gt;",
     "proposedArea" : {
         "height": 1500,
         "width": 3000,
