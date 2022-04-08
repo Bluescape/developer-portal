@@ -108,10 +108,12 @@ const api_endpoint = `/workspaces/${workspaceId}/findAvailableArea';
 
 const proposedArea = {
         "direction": "Right",
-        "height": 1500,
-        "width": 3000,
-        "x": 100,
-        "y": 100
+        "proposedArea" : {
+            "height": 1500,
+            "width": 3000,
+            "x": 100,
+            "y": 100
+        }
     }
 
 var request_values = {
@@ -162,10 +164,12 @@ if __name__ == "__main__":
 
    proposedArea = {
         "direction": "Right",
-        "height": 1500,
-        "width": 3000,
-        "x": 100,
-        "y": 100
+        "proposedArea" : {
+            "height": 1500,
+            "width": 3000,
+            "x": 100,
+            "y": 100
+        }
     }
 
    the_request = requests.post(
