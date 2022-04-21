@@ -63,14 +63,6 @@
 <a href="/docs/page/findavailablearea" class="action">Open Guide</a>
     </p>
 
-
-<h2>Listeners</h2>
-<p>
-    Listeners are a powerful tool for monitoring Bluescape workspaces and responding to user actions. The Listeners guide describes in detail how listeners work and how to get started using them. </br>
-    GraphQL Subscriptions will be replacing Listeners in a future release. </br>
-    <a href="/docs/page/listeners-api" class="action">Open Guide</a>
-</p>
-
 <br />
 <p>
 If you have any questions or comments, please contact us in the <a href="https://community.bluescape.com" target="_blank">Bluescape Community site</a>.
