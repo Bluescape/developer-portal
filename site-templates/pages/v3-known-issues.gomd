@@ -13,6 +13,7 @@
     <li>totalItems field returns null when passed as part of a fragment (AD-11423).</li>
     <li>Image upload from URL with GraphQL createImage prevents download from workspace (ELE-684).</li>
     <li>GraphQL gateway returns error code 500 for other backend errors, such as 401, 403, 404. Need to examine error message in detail to get correct error (AD-11474).</li>
+    <li>findAvailableArea API does not work correctly when direction is "up" or "left" (ELE-742).</li>
 </ul>
 <!--
 <h4>GraphQL Subscriptions</h4>
