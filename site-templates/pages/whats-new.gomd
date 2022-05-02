@@ -6,6 +6,7 @@
 
     <p>
     <ul>
+        <li>The v2 listener APIs have been removed.</li>
         <li>There is a new GraphQL subscription event for the creation of Strokes over surfaces. These surfaces do not return this event when a Stroke is drawn over them: Canvas, Text and Video. All the rest of the surfaces will return this new event when a Stroke is drawn over them.</li>
             <ul>
                 <li> This is an example of a subscription implementation in GraphQL, notice the  <span class="pre">... on Stroke {...}</span> block:  
