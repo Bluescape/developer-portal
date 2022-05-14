@@ -209,7 +209,7 @@ axios(request_values)
     import pprint
 
     token = 'SET_YOUR_TOKEN_HERE'
-    portal = 'https://api.apps.us.bluescape.com'
+    portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
     organization_uid = 'SET_ORGANIZATION_UID_HERE'
 
 
@@ -258,7 +258,7 @@ axios(request_values)
     */
 
     const token = 'SET_YOUR_TOKEN_HERE';
-    const portal = 'https://api.apps.us.bluescape.com';
+    const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
     const api_version = 'v2';
     const api_endpoint = '/organizations/' + workspace_uid + '/walls';
 
@@ -358,7 +358,7 @@ axios(request_values)
     '''
 
     token = 'ADD_YOUR_TOKEN_HERE'    
-    portal = 'https://api.apps.us.bluescape.com'
+    portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
     workspace_uid = 'ADD_YOUR_WORKSPACE_UID'  # REMEMBER TO ADD WORKSPACE UID
     API_version = 'v2'
     API_endpoint = '/' + API_version + '/workspaces/' + workspace_uid + '/session/send_to_wall'
@@ -401,7 +401,7 @@ axios(request_values)
     */
     
     const token = 'SET_YOUR_TOKEN_HERE';
-    const portal = 'https://api.apps.us.bluescape.com';
+    const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
     const workspace_uid = 'SET_YOUR_WORKSPACE_UID'
     const api_version = 'v2';
     const api_endpoint = '/workspaces/' + workspace_uid + '/session/send_to_wall';
@@ -476,7 +476,7 @@ axios(request_values)
     '''
 
     token = 'ADD_YOUR_TOKEN_HERE'    
-    portal = 'https://api.apps.us.bluescape.com'
+    portal = '<script type="text/javascript">document.write(apiBaseStr); </script>'
     workspace_uid = 'ADD_YOUR_WORKSPACE_UID'  # REMEMBER TO ADD WORKSPACE UID
     API_version = 'v2'    
     API_endpoint = '/' + API_version + '/workspaces/' + workspace_uid + '/session/unsend_from_wall'
@@ -519,7 +519,7 @@ axios(request_values)
     */
 
     const token = 'SET_YOUR_TOKEN_HERE';
-    const portal = 'https://api.apps.us.bluescape.com';
+    const portal = '<script type="text/javascript">document.write(apiBaseStr); </script>';
     const workspace_uid = 'SET_WORKSPACE_UID_HERE'
     const api_version = 'v2';
     const api_endpoint = '/workspaces/' + workspace_uid + '/session/send_to_wall';

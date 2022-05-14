@@ -603,7 +603,7 @@ const client = new Bluescape({ authorization });</pre>
     <li>Click the “<b>New Application</b>” button</li>
     <li>Fill out the required fields:</li> 
         <ul>
-            <li>Oauth redirect uri: after the initial process to generate the Access Token or Access Code is run, it will use this URL to redirect the workflow to deliver (depending on the Oauth method) the Access Token or Access Token and Refresh Token. For manual generation of the Access Token, you can set it as <span class="pre">http://127.0.0.1/callback</span></li>
+            <li><b>Oauth redirect uri</b>: after the initial process to generate the Access Token or Access Code is run, it will use this URL to redirect the workflow to deliver (depending on the Oauth method) the Access Token or Access Token and Refresh Token. For manual generation of the Access Token, you can set it as <span class="pre">http://127.0.0.1/callback</span></li>
         </ul>
             <br />
                 <img class="img-responsive center-block" src="/docs/assets/images/app-basic-info.png">       
