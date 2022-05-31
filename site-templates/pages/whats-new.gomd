@@ -11,7 +11,6 @@
           <li>Github repo: <a href="https://github.com/Bluescape/community" target="_blank">https://github.com/Bluescape/community</a></li>
           <li>Download and start using the <a href="https://github.com/Bluescape/community/tree/master/demo-apps" target="_blank">Demo Apps</a> that demonstrate the use of the Bluescape APIs to perform tasks on the workspaces and how to get information about the users in your organizations.</li>
           <li>Download the <a href="https://github.com/Bluescape/community/tree/master/postman-collections" target="_blank">Postman Collections</a> thst contain practical examples on how to run Bluescape REST and GraphQL APIs.</li>
-          <li></li>
         </ul>
     </ul> 
     </p>   
