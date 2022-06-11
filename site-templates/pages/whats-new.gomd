@@ -2,50 +2,18 @@
 
 <div class="col-md-8 content">
 
-    <h1>What's new in the 22.05.1 (May 13, 2022) Release</h1>
+    <h1>What's new in the 22.06.1 (June 10, 2022) Release</h1>
 
     <p>
     <ul>
-        <li>The v2 listener APIs have been removed.</li>
-        <li>There is a new GraphQL subscription event for the creation of Strokes over surfaces. These surfaces do not return this event when a Stroke is drawn over them: Canvas, Text and Video. All the rest of the surfaces will return this new event when a Stroke is drawn over them.</li>
-            <ul>
-                <li> This is an example of a subscription implementation in GraphQL, notice the  <span class="pre">... on Stroke {...}</span> block:  
-<pre>
-subscription($workspaceId: String!) {  
-  item: commands(workspaceId: $workspaceId) {
-      __typename
-      ... on CreateElementCommand{
-          workspaceId
-          cursor
-          actorId      
-          actorType      
-          clientId      
-          element{        
-              __typename
-              id        
-              ... on Stroke {
-                id        
-                surface {
-                  __typename          
-                  id        
-                }
-              }    
-          }  
-      }  
-  }
-}
-</pre>
-use this variable:
-<pre>
-{
- "workspaceId": "&lt;SET-WORKSPACE-UID&gt;"
-}
-</pre>
-            </li>
-            <li>For more details, see our documentation explaining the <a href="/docs/page/graphql-subscriptions" target="_BLANK">GraphQL Subscriptions</a>.</li>
+       <li>We are glad to announce the new Bluescape Community Repo, a new Github repo with great content for you to learn about the use of the Bluescape APIs!</li>
+        <ul>
+          <li>Github repo: <a href="https://github.com/Bluescape/community" target="_blank">https://github.com/Bluescape/community</a></li>
+          <li>Download and start using the <a href="https://github.com/Bluescape/community/tree/master/demo-apps" target="_blank">Demo Apps</a> that demonstrate the use of the Bluescape APIs to perform tasks on the workspaces and how to get information about the users in your organizations.</li>
+          <li>Download the <a href="https://github.com/Bluescape/community/tree/master/postman-collections" target="_blank">Postman Collections</a> that contain practical examples on how to run Bluescape REST and GraphQL APIs.</li>
         </ul>
-       </ul> 
-    </p>   
+    </ul>
+    </p>
 
 </div>
 
