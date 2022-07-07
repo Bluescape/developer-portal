@@ -8,10 +8,10 @@
 </ul>
 <h4>GraphQL APIs</h4>
 <ul>
+    <li>Workspace query and findAvailableArea APIs do not include icons.</li>
     <li>Stroke scale does not account for stroke brushWidth (ELE-622).</li>
     <li>pageSize parameter does not have effect on number or returned results when listing users, always returns 25 results (AD-11378).</li>
     <li>totalItems field returns null when passed as part of a fragment (AD-11423).</li>
-    <li>Image upload from URL with GraphQL createImage prevents download from workspace (ELE-684).</li>
     <li>GraphQL gateway returns error code 500 for other backend errors, such as 401, 403, 404. Need to examine error message in detail to get correct error (AD-11474).</li>
     <li>findAvailableArea API does not work correctly when direction is "up" or "left" (ELE-742).</li>
 </ul>

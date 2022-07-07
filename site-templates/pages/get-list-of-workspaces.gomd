@@ -339,7 +339,7 @@ if __name__ == "__main__":
             "owner": {
               "email": "jopsephusmiller@someplace.org",
               "firstName": "Josephus",
-              "lastName": "miller"
+              "lastName": "Miller"
             }
           }
         }
