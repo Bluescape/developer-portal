@@ -2,16 +2,12 @@
 
 <div class="col-md-8 content">
 
-    <h1>What's new in the 22.06.1 (June 10, 2022) Release</h1>
+    <h1>What's new in the 22.07.1 (July 8, 2022) Release</h1>
 
     <p>
     <ul>
-       <li>We are glad to announce the new Bluescape Community Repo, a new Github repo with great content for you to learn about the use of the Bluescape APIs!</li>
-        <ul>
-          <li>Github repo: <a href="https://github.com/Bluescape/community" target="_blank">https://github.com/Bluescape/community</a></li>
-          <li>Download and start using the <a href="https://github.com/Bluescape/community/tree/master/demo-apps" target="_blank">Demo Apps</a> that demonstrate the use of the Bluescape APIs to perform tasks on the workspaces and how to get information about the users in your organizations.</li>
-          <li>Download the <a href="https://github.com/Bluescape/community/tree/master/postman-collections" target="_blank">Postman Collections</a> that contain practical examples on how to run Bluescape REST and GraphQL APIs.</li>
-        </ul>
+       <li>APIs have been added for the new feature, "Personal Meeting Room."</li>
+       <li>Read more about "Personal Meeting Room" and other new features in the July Release Notes within the <a href="https://community.bluescape.com/c/product-updates/" target="_blank">community</a>.</li>
     </ul>
     </p>
 
