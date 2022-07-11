@@ -3,6 +3,7 @@
 
 <h4>REST APIs</h4>
 <ul>
+    <li>Workspace query and findAvailableArea APIs do not include icons.</li>
     <li>PATCH for Browser: after modifying height/width, the preview image does not scale or changes (WEBC-10223).</li>
     <li>Getting status code 200 OK while updating elements with type only and no actual changes (ELE-677).</li>
 </ul>
