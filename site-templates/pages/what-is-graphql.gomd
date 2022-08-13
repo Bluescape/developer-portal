@@ -1,26 +1,2 @@
-<h1>Introduction to GraphQL</h1>
-
-<p>
-    GraphQL is being added to Bluescape's developer toolbox as an additional way to access Bluescape APIs, alongside the traditional REST methods. 
-</p>
-
-<h3>What is GraphQL?</h3>
-<p>
-    GraphQL is described as a query language for APIs. This means that it is platform and language independent which makes it easy to incorporate
-    into any existing framework. GraphQL allows for the creation of complex queries which affords the user greater control of the requests
-    that they make in order to combine functionality from several APIs, while also specifying exactly what data they would like to receive back.    
-<p>
-<p>
-    For example, a simple and fairly common use case might be to query a workspace in order to retrieve both the owner of the workspace,
-    along with all the IDs of all elements within that workspace. Previously, this would have to have been accomplished by calling two 
-    separate APIs, <span class="pre">GET workspace/{workspaceId}</span> and <span class="pre"> GET workspace/{workspaceId}/elements</span> 
-    and then parse out the necessary information from the two responses. With GraphQL, developers are able to combine these two calls into a single query,
-    while also being returned only the properties that they are interested in, reducing or even removing the amount of parsing required.
-    To learn more about GraphQL, please see their documentation at <a href="https://graphql.org/learn/" target="_blank">graphql.org/learn/</a>.
-</p>
-
-<p>For more information on what you can do with GraphQL in Bluescape, please review our <b>Getting Started</b> pages in the <a href="/docs/page/guides">Guides section</a>, stating with the <a href="/docs/page/basic-api-requests">Basic GraphQL Requests</a> guide.</p>
-<br />
-<p>
-If you have any questions or comments, please contact us in the <a href="https://community.bluescape.com" target="_blank">Bluescape Community site</a>.
-</p>
+<script type="text/javascript">redirectPage('community.bluescape.com/t/introduction-to-graphql/2012'); </script>
+This content was moved to <a href="https://community.bluescape.com/t/introduction-to-graphql/2012">here</a>
