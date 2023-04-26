@@ -1,5 +1,19 @@
 <h1>Reference</h1>
 
+<p>
+    <table style="background-color: #FFFFA5">
+        <tr>
+            <td style="padding:15px">
+                    <b><center>NOTICE</center>
+                        <br />
+                        Bluescape <span class="pre">/v2/</span> APIs are being decommissioned in August 2023. All <span class="pre">/v2/</span> APIs will lose support, and all requests sent to <span class="pre">/v2/</span> endpoints will fail once decommissioning is complete. Visit our <span class="pre">/v3/</span> API documentation to familiarize yourself with details on <span class="pre">/v3/</span> API use.
+                    <br /> <br />
+                    </b>
+            </td>
+        </tr>
+    </table>
+</p>
+
 <!--
 <p>
     <table style="background-color: #FFFFA5">
